@@ -2,7 +2,7 @@
 
 Tienda de productos digitales. Stack único: **Cloudflare (Pages, Functions, R2, dominio) + Stripe**. Sin base de datos ni otros servicios; no añadas dependencias externas sin pedirlo.
 
-- Web: `public/` (HTML/CSS/JS plano, sin build). Diseño estilo Apple → skill `apple-design`.
+- Web: `public/` (HTML/CSS/JS plano, sin build). Diseño estilo Apple → skills `apple-store-ui` (aspecto, valores de apple.com) y `apple-design` (movimiento e interacción; de emilkowalski/skills, MIT, no editar).
 - API: `functions/api/`, helper en `functions/_lib/stripe.js` (fetch directo a Stripe, sin SDK).
 - Catálogo: `data/products.json` (precios en céntimos, única fuente de precios) → skill `add-product`.
 - Despliegue, dominio y Stripe → skill `cloudflare-stripe-deploy`.

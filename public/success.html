@@ -9,32 +9,40 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <nav class="nav"><strong>Tienda</strong><a class="link" href="/">Inicio</a></nav>
+  <nav class="nav" aria-label="Principal">
+    <div class="wrap"><a class="brand" href="/">Tienda</a><ul class="nav-links"><li><a href="/#catalogo">Productos</a></li></ul></div>
+  </nav>
   <main class="center">
+    <div class="check" id="check" hidden aria-hidden="true">✓</div>
     <h1 id="title">Comprobando tu pago…</h1>
-    <p id="sub">Un momento.</p>
+    <p class="sub" id="sub">Un momento.</p>
     <div class="downloads" id="downloads"></div>
+    <p id="back" hidden><a class="link-more" href="/">Volver a la tienda</a></p>
     <p class="error" id="error" role="alert"></p>
   </main>
-  <footer>Guarda esta página: puedes volver a descargar desde este mismo enlace.</footer>
+  <footer>
+    <div class="wrap"><p>Guarda esta página en favoritos: puedes volver a descargar desde este mismo enlace.</p></div>
+  </footer>
   <script type="module">
     const id = new URLSearchParams(location.search).get('session_id');
     const $ = (s) => document.getElementById(s);
-    const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     try {
       const res = await fetch('/api/order?session_id=' + encodeURIComponent(id));
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
-      $('title').textContent = '¡Gracias por tu compra!';
+      $('check').hidden = false;
+      $('title').textContent = 'Gracias por tu compra.';
       $('sub').textContent = 'Tus archivos están listos.';
       $('downloads').innerHTML = data.items.map((p) => `
         <div class="dl"><div><b>${esc(p.name)}</b><span>${esc(p.tagline)}</span></div>
         <a class="btn" href="/api/download?session_id=${encodeURIComponent(id)}&product=${encodeURIComponent(p.slug)}">Descargar</a></div>`).join('');
     } catch (e) {
-      $('title').textContent = 'No encontramos tu pago';
-      $('sub').textContent = 'Si acabas de pagar, espera unos segundos y recarga.';
+      $('title').textContent = 'No encontramos tu pago.';
+      $('sub').textContent = 'Si acabas de pagar, espera unos segundos y recarga la página.';
       $('error').textContent = e.message;
     }
+    $('back').hidden = false;
   </script>
 </body>
 </html>

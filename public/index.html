@@ -4,30 +4,75 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <title>Tienda Digital</title>
-  <meta name="description" content="Productos digitales con descarga inmediata.">
+  <meta name="description" content="Productos digitales con descarga inmediata. Pago seguro con Stripe.">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <nav class="nav">
-    <strong>Tienda</strong>
-    <a class="link" href="#catalogo">Productos</a>
+  <nav class="nav" aria-label="Principal">
+    <div class="wrap">
+      <a class="brand" href="/">Tienda</a>
+      <ul class="nav-links">
+        <li><a href="#catalogo">Productos</a></li>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <header class="hero">
-    <p class="eyebrow">Productos digitales</p>
-    <h1>Simple. Directo. Tuyo.</h1>
-    <p class="lead">Compra una vez y descarga al instante.</p>
-    <a class="btn" href="#catalogo">Ver productos</a>
-  </header>
+  <main>
+    <header class="hero wrap">
+      <h1>Productos digitales.</h1>
+      <p class="sub">Compra una vez. Descarga al instante.</p>
+      <div class="ctas">
+        <a class="btn" href="#catalogo">Comprar</a>
+        <a class="btn ghost" href="#como-funciona">Más información</a>
+      </div>
+      <div class="hero-art reveal" aria-hidden="true">Hecho para usarse hoy.</div>
+    </header>
 
-  <main class="section" id="catalogo">
-    <h2>Catálogo</h2>
-    <div class="grid" id="grid" aria-live="polite"></div>
-    <p class="error" id="error" role="alert"></p>
+    <section class="section alt" id="catalogo" aria-labelledby="t-catalogo">
+      <div class="wrap wide">
+        <h2 class="section-title center" id="t-catalogo"><b>Tienda.</b> <span class="muted">La forma más sencilla de conseguir lo que necesitas.</span></h2>
+        <div class="grid" id="grid" aria-live="polite" aria-busy="true">
+          <div class="card skeleton"></div><div class="card skeleton"></div>
+        </div>
+        <p class="error" id="error" role="alert"></p>
+      </div>
+    </section>
+
+    <section class="section" id="como-funciona" aria-labelledby="t-como">
+      <div class="wrap wide">
+        <h2 class="section-title center" id="t-como">Tres pasos. Ni uno más.</h2>
+        <ol class="steps">
+          <li class="step reveal"><h3>Elige.</h3><p>Encuentra el producto que necesitas en el catálogo.</p></li>
+          <li class="step reveal"><h3>Paga con Stripe.</h3><p>Tarjeta, Apple Pay o Google Pay. Pago cifrado y seguro.</p></li>
+          <li class="step reveal"><h3>Descarga.</h3><p>Tu archivo está listo al momento. Recibes el recibo por email.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section alt" id="preguntas" aria-labelledby="t-faq">
+      <div class="wrap">
+        <h2 class="section-title center" id="t-faq">Preguntas frecuentes.</h2>
+        <div class="faq">
+          <details><summary>¿Cuándo recibo el producto?</summary><p>Justo después del pago. Te llevamos a una página con el botón de descarga.</p></details>
+          <details><summary>¿Necesito crear una cuenta?</summary><p>No. Solo tu email para el recibo. Guarda la página de descarga para volver a ella.</p></details>
+          <details><summary>¿Es seguro el pago?</summary><p>Sí. El pago lo procesa Stripe. Nunca vemos ni guardamos los datos de tu tarjeta.</p></details>
+          <details><summary>¿Y si tengo un problema?</summary><p>Responde al email del recibo y te ayudamos.</p></details>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>Pago seguro con Stripe. Descarga inmediata tras el pago.</footer>
+  <footer>
+    <div class="wrap">
+      <p class="note">Pagos procesados de forma segura por Stripe. Los precios incluyen impuestos cuando corresponda.</p>
+      <div class="row"><span>Copyright © <span id="year"></span> Tienda. Todos los derechos reservados.</span><span>España</span></div>
+    </div>
+  </footer>
   <script src="/app.js" type="module"></script>
 </body>
 </html>

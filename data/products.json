@@ -7,8 +7,16 @@
     "price": 1900,
     "currency": "eur",
     "file": "ejemplo-guia.pdf",
-    "accent": ["#0071e3", "#7b61ff"],
-    "features": ["Descarga inmediata", "Acceso de por vida", "Actualizaciones incluidas"]
+    "accent": [
+      "#0071e3",
+      "#7b61ff"
+    ],
+    "badge": "Nuevo",
+    "features": [
+      "Descarga inmediata",
+      "Acceso de por vida",
+      "Actualizaciones incluidas"
+    ]
   },
   {
     "slug": "ejemplo-plantillas",
@@ -18,7 +26,14 @@
     "price": 2900,
     "currency": "eur",
     "file": "ejemplo-plantillas.zip",
-    "accent": ["#ff6a3d", "#ff2d87"],
-    "features": ["Formato editable", "Uso personal y comercial", "Soporte por email"]
+    "accent": [
+      "#ff6a3d",
+      "#ff2d87"
+    ],
+    "features": [
+      "Formato editable",
+      "Uso personal y comercial",
+      "Soporte por email"
+    ]
   }
 ]
