@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex">
+  <title>Gracias por tu compra</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="nav"><strong>Tienda</strong><a class="link" href="/">Inicio</a></nav>
+  <main class="center">
+    <h1 id="title">Comprobando tu pago…</h1>
+    <p id="sub">Un momento.</p>
+    <div class="downloads" id="downloads"></div>
+    <p class="error" id="error" role="alert"></p>
+  </main>
+  <footer>Guarda esta página: puedes volver a descargar desde este mismo enlace.</footer>
+  <script type="module">
+    const id = new URLSearchParams(location.search).get('session_id');
+    const $ = (s) => document.getElementById(s);
+    const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    try {
+      const res = await fetch('/api/order?session_id=' + encodeURIComponent(id));
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      $('title').textContent = '¡Gracias por tu compra!';
+      $('sub').textContent = 'Tus archivos están listos.';
+      $('downloads').innerHTML = data.items.map((p) => `
+        <div class="dl"><div><b>${esc(p.name)}</b><span>${esc(p.tagline)}</span></div>
+        <a class="btn" href="/api/download?session_id=${encodeURIComponent(id)}&product=${encodeURIComponent(p.slug)}">Descargar</a></div>`).join('');
+    } catch (e) {
+      $('title').textContent = 'No encontramos tu pago';
+      $('sub').textContent = 'Si acabas de pagar, espera unos segundos y recarga.';
+      $('error').textContent = e.message;
+    }
+  </script>
+</body>
+</html>

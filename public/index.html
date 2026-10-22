@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Tienda Digital</title>
+  <meta name="description" content="Productos digitales con descarga inmediata.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <strong>Tienda</strong>
+    <a class="link" href="#catalogo">Productos</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Productos digitales</p>
+    <h1>Simple. Directo. Tuyo.</h1>
+    <p class="lead">Compra una vez y descarga al instante.</p>
+    <a class="btn" href="#catalogo">Ver productos</a>
+  </header>
+
+  <main class="section" id="catalogo">
+    <h2>Catálogo</h2>
+    <div class="grid" id="grid" aria-live="polite"></div>
+    <p class="error" id="error" role="alert"></p>
+  </main>
+
+  <footer>Pago seguro con Stripe. Descarga inmediata tras el pago.</footer>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
