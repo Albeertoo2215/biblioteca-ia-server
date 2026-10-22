@@ -285,11 +285,16 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .faq-sec .wrap { grid-template-columns: 1fr; gap: 32px; }
   .faq-sec h2 { position: static; }
   .panels { flex-direction: column; height: auto; }
-  .panel { flex: none; min-height: 84px; justify-content: flex-start; transition: min-height .8s var(--ease-out); }
-  .panel.on { flex: none; min-height: 420px; }
+  /* Móvil: el contenido se despliega con altura animada (nada aparece de golpe) */
+  .panel { flex: none; justify-content: flex-start; padding: 22px 24px; }
+  .panel.on { flex: none; }
   .panel .num { position: static; font-size: 1rem; opacity: .7; margin-bottom: 2px; }
-  .scene { position: relative; top: auto; right: auto; width: 100%; margin-top: 18px; display: none; }
-  .panel.on .scene { display: flex; }
+  .scene, .panel .txt { max-height: 0; overflow: hidden; margin-top: 0; padding-block: 0;
+    transition: max-height .8s var(--ease-out), opacity .5s ease, transform .6s var(--ease-out), margin .8s var(--ease-out), padding .8s var(--ease-out); }
+  .scene { position: relative; top: auto; right: auto; width: 100%; order: 3; }
+  .panel b { order: 1; } .panel .txt { order: 2; }
+  .panel.on .scene { max-height: 320px; margin-top: 18px; padding-block: 18px; }
+  .panel.on .txt { max-height: 120px; margin-top: 6px; }
 }
 @media (max-width: 560px) {
   .hero { padding-top: 88px; min-height: 86vh; }
