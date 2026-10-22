@@ -1,3 +1,4 @@
+// archivo: Guia para alquilar piso 2026 - casi3.pdf
 #import "casi3.typ": *
 #let verde = rgb("#1f8a7a")
 #show: documento.with(

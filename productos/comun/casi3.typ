@@ -36,16 +36,19 @@
 
   // Encabezados
   show heading.where(level: 1): it => {
-    pagebreak(weak: true)
+    v(10mm, weak: true)
+    // Reserva sitio: si no caben el título y unas líneas, el capítulo empieza en la página siguiente
+    block(height: 75mm, breakable: false, width: 100%)[]
+    v(-75mm)
     let n = counter(heading).get().first()
-    block(width: 100%, inset: (y: 4mm), {
+    block(width: 100%, inset: (y: 2mm), sticky: true, breakable: false, {
       if it.numbering != none { text(font: sans, size: 64pt, weight: 800, fill: color)[#if n < 10 [0]#n]; v(-6mm) }
       text(font: sans, size: 26pt, weight: 800, tracking: -0.02em)[#it.body]
     })
-    v(2mm); line(length: 22mm, stroke: 2.4pt + color); v(5mm)
+    block(sticky: true, line(length: 22mm, stroke: 2.4pt + color)); v(4mm)
   }
-  show heading.where(level: 2): it => { v(4mm); text(font: sans, size: 14pt, weight: 700, fill: marino)[#it.body]; v(1mm) }
-  show heading.where(level: 3): it => { v(2mm); text(font: sans, size: 11pt, weight: 700, fill: color)[#it.body] }
+  show heading.where(level: 2): it => block(above: 6mm, below: 2.5mm, sticky: true, text(font: sans, size: 14pt, weight: 700, fill: marino)[#it.body])
+  show heading.where(level: 3): it => block(above: 4mm, below: 2mm, sticky: true, text(font: sans, size: 11pt, weight: 700, fill: color)[#it.body])
   set heading(numbering: "1.")
   show heading.where(level: 2): set heading(numbering: none)
   show heading.where(level: 3): set heading(numbering: none)
