@@ -18,9 +18,33 @@
     "color": "#1f8a7a"
   },
   {
+    "id": "ia",
+    "name": "Packs de IA",
+    "pitch": "Prompts probados para ChatGPT y Claude, listos para pegar.",
+    "color": "#7b61ff"
+  },
+  {
+    "id": "kits",
+    "name": "Kits hechos",
+    "pitch": "Todo resuelto para una tarea concreta: tú solo lo usas.",
+    "color": "#c2410c"
+  },
+  {
+    "id": "estudio",
+    "name": "Estudio y oposiciones",
+    "pitch": "Esquemas, tests y planes para aprobar.",
+    "color": "#2156b8"
+  },
+  {
+    "id": "imprimibles",
+    "name": "Imprimibles",
+    "pitch": "Descarga, imprime y a la nevera o al cuaderno.",
+    "color": "#1f9d55"
+  },
+  {
     "id": "packs",
     "name": "Packs",
     "pitch": "Varios recursos juntos, al mismo precio.",
-    "color": "#c2410c"
+    "color": "#0f2340"
   }
 ]
