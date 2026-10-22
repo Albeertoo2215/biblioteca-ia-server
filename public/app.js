@@ -6,7 +6,6 @@ else gsap.registerPlugin(ScrollTrigger);
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 const cardsEl = document.getElementById('cards');
-const fan = document.getElementById('fan');
 const errorEl = document.getElementById('error');
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -100,46 +99,128 @@ const cardHTML = (p) => `
   </article>`;
 
 /* ── Animaciones ── */
+// Arranca una vez cuando el elemento entra en pantalla
+function onView(el, fn, threshold = 0.3) {
+  if (!el) return;
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.disconnect(); fn(); } }), { threshold });
+  io.observe(el);
+}
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+const countUp = (el, ms, delay = 0) => {
+  const t0 = performance.now() + delay;
+  const tick = (t) => { const p = Math.max(0, Math.min(1, (t - t0) / ms)); el.textContent = `${Math.round(100 * (1 - (1 - p) ** 3))} %`; if (p < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+};
+
 function heroIntro() {
   const words = splitWords(document.querySelector('[data-split="hero"]'));
   if (!motion) return;
   gsap.timeline({ defaults: { ease: 'expo.out' } })
-    .from(words, { y: 48, opacity: 0, filter: 'blur(12px)', duration: 1.2, stagger: 0.07 })
-    .from('.hero [data-fade]', { y: 24, opacity: 0, duration: 1, stagger: 0.12 }, '-=0.8');
+    .from('.glass', { y: 40, opacity: 0, scale: 0.96, duration: 1.2 })
+    .from(words, { y: 40, opacity: 0, filter: 'blur(12px)', duration: 1.1, stagger: 0.06 }, '-=0.9')
+    .from('.glass [data-fade]', { y: 20, opacity: 0, duration: 0.9, stagger: 0.1 }, '-=0.8');
 }
 
-// Abanico de portadas: entra al cargar y se abre al hacer scroll
-function buildFan(products) {
-  const list = products.slice(0, 5);
-  fan.innerHTML = list.map(cover).join('');
-  const covers = [...fan.children];
-  const mid = (covers.length - 1) / 2;
-  const rest = (i) => { const k = i - mid; return { xPercent: k * 62, yPercent: Math.abs(k) * 6, rotation: k * 7, zIndex: 10 - Math.abs(Math.round(k)) }; };
-  if (!motion) {
-    covers.forEach((c, i) => { const r = rest(i); c.style.transform = `translate(${r.xPercent}%, ${r.yPercent}%) rotate(${r.rotation}deg)`; c.style.zIndex = r.zIndex; });
-    return;
-  }
-  covers.forEach((c, i) => gsap.set(c, rest(i)));
-  gsap.from(covers, { yPercent: 60, opacity: 0, rotation: 0, xPercent: 0, duration: 1.4, ease: 'expo.out', stagger: 0.08, delay: 0.35 });
-  gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 } })
-    .to(covers, { xPercent: (i) => (i - mid) * 92, rotation: (i) => (i - mid) * 13, yPercent: -12, scale: 1.08, ease: 'none' }, 0)
-    .to('.hero .wrap', { yPercent: -30, opacity: 0, ease: 'none' }, 0);
+// Portada: columnas de portadas de producto que suben y bajan sin parar (decorativo)
+function buildMosaic(products) {
+  const mosaic = document.getElementById('mosaic');
+  if (!products.length) return;
+  const tones = [null, 'var(--tint)', 'var(--navy-2)', '#1f8a7a'];
+  const cols = Array.from({ length: 6 }, (_, c) => {
+    const items = Array.from({ length: 5 }, (_, i) => {
+      const n = c * 5 + i;
+      const p = products[n % products.length];
+      const tone = tones[(c + i) % tones.length];
+      return cover({ ...p, image: (n % 3 === 0) && p.image, color: tone || p.color })
+        .replace('class="cover"', `class="cover${tone === 'var(--tint)' ? ' light' : ''}"`);
+    }).join('');
+    return `<div class="col">${items}${items}</div>`; // duplicado para que el bucle no tenga corte
+  });
+  mosaic.innerHTML = cols.join('');
+  requestAnimationFrame(() => mosaic.classList.add('ready'));
 }
 
-function statement() {
-  const p = document.getElementById('statement');
-  const words = p.textContent.trim().split(/\s+/);
-  const accent = new Set(['Solo', 'tu', 'archivo.']);
-  p.innerHTML = words.map((w, i) => `<span class="w${i >= words.length - 3 && accent.has(w) ? ' hl' : ''}">${esc(w)} </span>`).join('');
+// Por qué: cada bloque del bento se anima al verse
+function bento() {
+  const el = document.getElementById('bento');
+  const typed = document.getElementById('typed');
   if (!motion) return;
-  gsap.to(p.querySelectorAll('.w'), { opacity: 1, stagger: 0.1, ease: 'none',
-    scrollTrigger: { trigger: '.statement', start: 'top top', end: 'bottom bottom', scrub: true } });
+  const text = typed.textContent;
+  typed.textContent = '';
+  onView(el, () => {
+    el.classList.add('play');
+    countUp(document.getElementById('dl-pct'), 2200, 400);
+    [...text].forEach((ch, i) => setTimeout(() => { typed.textContent += ch; }, 700 + i * 90));
+  });
+}
+
+// Cómo funciona: los paneles se abren por turnos y cada uno reproduce su escena
+function panels() {
+  const box = document.getElementById('panels');
+  const list = [...box.querySelectorAll('.panel')];
+  let current = 0, paused = false, timer = 0, run = 0;
+
+  const moveTo = (cur, scene, target) => {
+    const s = scene.getBoundingClientRect(), r = target.getBoundingClientRect();
+    cur.style.left = `${((r.left - s.left + r.width * 0.6) / s.width) * 100}%`;
+    cur.style.top = `${((r.top - s.top + r.height * 0.6) / s.height) * 100}%`;
+  };
+  const scenes = {
+    async elige(scene, id) {
+      const cur = scene.querySelector('.cursor'), btn = scene.querySelector('.sbtn');
+      cur.style.left = '85%'; cur.style.top = '20%'; cur.style.opacity = 1;
+      await wait(700); if (id !== run) return; moveTo(cur, scene, btn);
+      await wait(1100); if (id !== run) return; btn.classList.add('press');
+      await wait(220); btn.classList.remove('press');
+    },
+    async paga(scene, id) {
+      const cur = scene.querySelector('.cursor'), btn = scene.querySelector('.sbtn');
+      btn.classList.remove('done'); btn.textContent = 'Pagar';
+      cur.style.left = '85%'; cur.style.top = '15%'; cur.style.opacity = 1;
+      await wait(700); if (id !== run) return; moveTo(cur, scene, btn);
+      await wait(1100); if (id !== run) return; btn.classList.add('press');
+      await wait(220); btn.classList.remove('press'); btn.classList.add('done'); btn.textContent = '✓ Pagado';
+    },
+    async descarga(scene) {
+      scene.classList.remove('go'); void scene.offsetWidth; scene.classList.add('go');
+      countUp(scene.querySelector('.pct'), 1800, 600);
+    },
+  };
+  const open = (i) => {
+    current = i; run += 1;
+    list.forEach((p, j) => p.classList.toggle('on', j === i));
+    if (motion) scenes[list[i].dataset.scene](list[i].querySelector('.scene'), run);
+  };
+  const loop = () => { clearInterval(timer); timer = setInterval(() => { if (!paused) open((current + 1) % list.length); }, 4800); };
+
+  list.forEach((p, i) => {
+    p.addEventListener('mouseenter', () => { paused = true; if (current !== i) open(i); });
+    p.addEventListener('mouseleave', () => { paused = false; loop(); });
+    p.addEventListener('click', () => { if (current !== i) open(i); loop(); });
+    p.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); loop(); } });
+  });
+  if (!motion) return;
+  onView(box, () => { open(0); loop(); });
+}
+
+// Datos reales del primer producto en las escenas
+function fillScenes(products) {
+  const p = products.find((x) => x.featured) || products[0];
+  if (!p) return;
+  const price = money(p.price, p.currency);
+  const file = `${p.slug}.${(p.format || 'pdf').toLowerCase()}`;
+  document.getElementById('scene-cover').outerHTML = cover(p);
+  document.getElementById('scene-name').textContent = p.name;
+  document.getElementById('scene-price').textContent = price;
+  document.getElementById('scene-price2').textContent = price;
+  document.getElementById('scene-file').textContent = file;
+  document.getElementById('dl-name').textContent = file;
 }
 
 function revealOnScroll() {
   document.querySelectorAll('.split:not([data-split="hero"])').forEach((el) => {
     const words = splitWords(el);
-    if (motion) gsap.from(words, { y: 60, opacity: 0, filter: 'blur(10px)', duration: 1.1, ease: 'expo.out', stagger: 0.06,
+    if (motion) gsap.from(words, { y: 50, opacity: 0, filter: 'blur(10px)', duration: 1.1, ease: 'expo.out', stagger: 0.06,
       scrollTrigger: { trigger: el, start: 'top 85%' } });
   });
   if (!motion) return;
@@ -147,23 +228,12 @@ function revealOnScroll() {
     if (el.closest('.hero')) return;
     gsap.from(el, { y: 32, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
   });
+  gsap.from('.tile', { y: 60, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: 0.1, scrollTrigger: { trigger: '#bento', start: 'top 80%' } });
+  gsap.from('.panel', { y: 60, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: 0.1, scrollTrigger: { trigger: '#panels', start: 'top 82%' } });
   gsap.from('.closing .btn', { scale: 0.85, opacity: 0, duration: 1, ease: 'back.out(1.6)', scrollTrigger: { trigger: '.closing', start: 'top 70%' } });
 }
 
-// Cómo funciona: la palabra grande cambia según el bloque visible
-function howItWorks() {
-  const spans = document.querySelectorAll('.how .words span');
-  const set = (n) => spans.forEach((s, i) => { s.classList.toggle('on', i === n); s.classList.toggle('past', i < n); });
-  if (!motion) return;
-  document.querySelectorAll('.how .block').forEach((b) => {
-    const n = Number(b.dataset.step);
-    ScrollTrigger.create({ trigger: b, start: 'top 60%', end: 'bottom 60%', onEnter: () => set(n), onEnterBack: () => set(n) });
-    gsap.from(b, { y: 60, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: b, start: 'top 80%' } });
-  });
-  gsap.to('#how-bar', { '--p': 1, ease: 'none', scrollTrigger: { trigger: '.how .blocks', start: 'top 60%', end: 'bottom 60%', scrub: true } });
-}
-
-// Tarjetas: entrada en cascada, foco que sigue al cursor e inclinación 3D
+// Tarjetas del catálogo: entrada en cascada, foco que sigue al cursor e inclinación 3D
 function cards() {
   const els = cardsEl.querySelectorAll('.card');
   if (!motion) return;
@@ -196,9 +266,9 @@ function magnetic() {
 }
 
 heroIntro();
-statement();
+bento();
+panels();
 revealOnScroll();
-howItWorks();
 magnetic();
 
 try {
@@ -206,7 +276,8 @@ try {
   document.getElementById('count').textContent = `${products.length} ${products.length === 1 ? 'producto' : 'productos'}`;
   cardsEl.innerHTML = products.map(cardHTML).join('');
   cardsEl.removeAttribute('aria-busy');
-  buildFan(products);
+  buildMosaic(products);
+  fillScenes(products);
   cards();
 } catch {
   cardsEl.innerHTML = '';

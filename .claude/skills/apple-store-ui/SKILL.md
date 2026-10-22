@@ -25,7 +25,7 @@ Solo modo claro: el negro no se usa. Variables en `public/styles.css`.
 | `--badge` | `#c2410c` | Etiqueta "Nuevo" |
 
 Ritmo de bandas: portada con tinte, banda marino, blanco, gris suave. Nunca dos bandas iguales seguidas.
-Color vivo solo en botones y portadas de producto (`accent` en `data/products.json`). Sin texto en degradado ni manchas de luz.
+Color vivo solo en botones, portadas de producto (`color` en `data/products.json`) y paneles de «Cómo funciona». Sin texto en degradado ni manchas de luz.
 
 ## Tipografía
 Fuente del sistema (`-apple-system, system-ui, "SF Pro"…`), nunca webfonts.
@@ -39,15 +39,16 @@ Fuente del sistema (`-apple-system, system-ui, "SF Pro"…`), nunca webfonts.
 | Legal / nav | `0.75rem` (12px) | 400 | 1.33 | `0.01em` |
 
 
-## Componentes y movimiento (estilo página de producto Apple)
+## Componentes y movimiento (elegidos por el usuario el 2026-10-22)
 - **Nav** fija 56px, translúcida; se esconde al bajar y vuelve al subir.
-- **Botón** pill azul con relieve (degradado, brillo interior, sombra marino). `.shimmer`: reflejo que lo recorre cada pocos segundos. `.magnetic`: se acerca al cursor. `:active` se hunde.
-- **Hero** centrado: titular que entra palabra a palabra con desenfoque (`.split`), subtítulo, botón + enlace. Debajo, abanico de portadas reales que se abre al hacer scroll.
-- **Frase** (`.statement`): sección alta con texto fijo; cada palabra pasa de gris a marino con el scroll. Las últimas palabras en azul.
+- **Botón** pill azul con relieve (degradado, brillo interior, sombra marino). `.shimmer`: reflejo cada pocos segundos. `.magnetic`: se acerca al cursor. `:active` se hunde.
+- **Portada (opción C)**: mosaico de portadas de producto en 6 columnas inclinadas que suben y bajan sin parar (`#mosaic`, se construye con los productos reales), con un panel de cristal centrado: titular palabra a palabra, subtítulo, botón + enlace.
+- **Por qué comprar aquí (opción A)**: bento de 4 bloques, cada uno con su animación al verse: tarjeta que entra y «✓ Pagado», barra de descarga que cuenta hasta 100 %, email que se escribe solo, sobre con aviso.
 - **Catálogo** en banda marino: tarjetas con borde que se ilumina donde está el cursor, inclinación 3D y entrada en cascada.
-- **Cómo funciona**: palabra gigante fija (Elige., Paga., Descarga.) que cambia según el bloque visible, con barra de progreso.
+- **Cómo funciona (opción C con escenas)**: tres paneles de color (Elige, Paga, Descarga) que se abren por turnos cada 4,8 s y al pasar el ratón; el abierto reproduce su escena: cursor que pulsa Comprar, pago que pasa a «✓ Pagado», check que se dibuja y barra de descarga. Las escenas usan el producto destacado real.
 - **Preguntas** en dos columnas. **Cierre** con titular grande y botón.
-- Animaciones en `public/app.js`, una función por efecto. Solo `transform`, `opacity` y `filter`.
+- Animaciones en `public/app.js`, una función por efecto. Solo `transform`, `opacity` y `filter` (salvo los paneles, que animan `flex`).
+- Nombres de `@keyframes` únicos en todo `styles.css`: uno repetido sustituye al anterior sin avisar.
 
 ## Prohibido (señales de plantilla IA)
 Etiqueta "NUEVO" sobre el titular, texto en degradado, manchas de luz, cajas que imitan archivos o pantallas, bandas con puntos de colores, tres tarjetas iguales numeradas, frases ingeniosas ("Ni uno más"), raya larga (—) en cualquier texto.

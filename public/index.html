@@ -25,20 +25,30 @@
 
   <main id="top">
     <header class="hero">
-      <div class="wrap">
-        <h1 class="split" data-split="hero">Tus recursos digitales, al instante.</h1>
-        <p class="sub" data-fade>Pagas una vez con Stripe y descargas el archivo en segundos. Sin crear cuenta.</p>
+      <div class="mosaic" id="mosaic" aria-hidden="true"></div>
+      <div class="glass">
+        <h1 class="split" data-split="hero">Todo lo que necesitas, listo para descargar.</h1>
+        <p class="sub" data-fade>Pago seguro con Stripe. Descarga al momento. Sin crear cuenta.</p>
         <div class="actions" data-fade>
           <a class="btn lg shimmer magnetic" href="#catalogo">Ver catálogo</a>
           <a class="text-link" href="#como-funciona">Cómo funciona</a>
         </div>
       </div>
-      <div class="fan" id="fan" aria-hidden="true"></div>
     </header>
 
-    <section class="statement" aria-label="Por qué comprar aquí">
-      <div class="sticky">
-        <p id="statement">Compra una vez. Descárgalo en segundos. Sin cuentas, sin suscripciones, sin esperas. Solo tu archivo.</p>
+    <section class="why" aria-labelledby="t-why">
+      <div class="wrap">
+        <h2 class="split" id="t-why">Por qué comprar aquí.</h2>
+        <div class="bento" id="bento">
+          <div class="tile big"><h3>Pago con Stripe.</h3><p>Tarjeta, Apple Pay o Google Pay. No vemos ni guardamos los datos de tu tarjeta.</p>
+            <div class="paycard" aria-hidden="true"><div class="cc"><i></i><span>•••• 4242</span></div><span class="paid">✓ Pagado</span></div></div>
+          <div class="tile"><h3>Descarga al momento.</h3><p>Tu archivo, justo después de pagar.</p>
+            <div class="dlbar" aria-hidden="true"><div class="row"><span id="dl-name">tu-archivo.pdf</span><span id="dl-pct">100 %</span></div><div class="track"><div class="fill"></div></div></div></div>
+          <div class="tile"><h3>Sin cuenta.</h3><p>Solo tu email para el recibo.</p>
+            <div class="field" aria-hidden="true"><span id="typed">tu@email.com</span><span class="caret"></span></div></div>
+          <div class="tile wide"><h3>Recibo en tu bandeja.</h3>
+            <div class="mail"><div class="env" aria-hidden="true"><b>1</b></div><span>Stripe te envía el recibo. Guarda la página de descarga para volver cuando quieras.</span></div></div>
+        </div>
       </div>
     </section>
 
@@ -55,15 +65,32 @@
 
     <section class="how" id="como-funciona" aria-labelledby="t-como">
       <div class="wrap">
-        <div class="pin">
-          <p class="kicker" id="t-como">Cómo funciona la compra</p>
-          <div class="words" aria-hidden="true"><span class="on">Elige.</span><span>Paga.</span><span>Descarga.</span></div>
-          <div class="bar" aria-hidden="true"><i id="how-bar"></i></div>
-        </div>
-        <div class="blocks">
-          <div class="block" data-step="0"><h3>Elige lo que necesitas.</h3><p>Revisa el catálogo y pulsa Comprar en el producto que quieras.</p></div>
-          <div class="block" data-step="1"><h3>Paga con Stripe.</h3><p>Tarjeta, Apple Pay o Google Pay. No vemos ni guardamos los datos de tu tarjeta.</p></div>
-          <div class="block" data-step="2"><h3>Descarga al momento.</h3><p>Vuelves aquí con el botón de descarga. El recibo te llega por email.</p></div>
+        <h2 class="split" id="t-como">Cómo funciona.</h2>
+        <div class="panels" id="panels">
+          <div class="panel on" tabindex="0" data-scene="elige">
+            <span class="num" aria-hidden="true">01</span>
+            <div class="scene" aria-hidden="true"><span class="cursor"></span>
+              <div class="mini"><div class="cover" id="scene-cover"><span class="fmt">PDF</span><span class="t">Tu producto</span></div>
+                <div><b id="scene-name">Tu producto</b><span id="scene-price">19,00 €</span></div></div>
+              <span class="sbtn">Comprar</span></div>
+            <b>Elige</b><p class="txt">Revisa el catálogo y pulsa Comprar en el producto que quieras.</p>
+          </div>
+          <div class="panel" tabindex="0" data-scene="paga">
+            <span class="num" aria-hidden="true">02</span>
+            <div class="scene" aria-hidden="true"><span class="cursor"></span>
+              <div class="head"><span>Pago seguro</span><span id="scene-price2">19,00 €</span></div>
+              <div class="inp">tu@email.com</div><div class="inp">•••• •••• •••• 4242</div>
+              <span class="sbtn">Pagar</span></div>
+            <b>Paga</b><p class="txt">Con tarjeta, Apple Pay o Google Pay, en la página segura de Stripe.</p>
+          </div>
+          <div class="panel" tabindex="0" data-scene="descarga">
+            <span class="num" aria-hidden="true">03</span>
+            <div class="scene" aria-hidden="true">
+              <div class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+              <p class="thanks">Gracias por tu compra.</p>
+              <div class="file"><div class="row"><span id="scene-file">tu-archivo.pdf</span><span class="pct">0 %</span></div><div class="track"><div class="fill"></div></div></div></div>
+            <b>Descarga</b><p class="txt">Vuelves aquí con el botón de descarga. El recibo te llega por email.</p>
+          </div>
         </div>
       </div>
     </section>
