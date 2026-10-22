@@ -43,11 +43,14 @@ Patrón Apple Store: titular en dos tonos, `<b>Tienda.</b> <span class="muted">F
   - `.btn` primario azul relleno ("Comprar").
   - `.btn.ghost` contorno azul ("Más información").
   - Siempre en pareja primario + ghost en portada, centrados, separados 14px.
-  - Feedback en `:active` (pointer-down): `scale(.97)`, 100ms.
+  - Feedback en `:active` (pointer-down): se hunde, 100ms.
 - **Enlace con chevron** `.link-more`: "Ver más ›", color `--link`.
 - **Bloque hero** a ancho completo, texto centrado, mucho aire (padding vertical ≥ 56px móvil, 88px escritorio).
-- **Tarjeta de producto** radio 18px, `box-shadow: 2px 4px 12px rgba(0,0,0,.08)`; hover `2px 4px 16px rgba(0,0,0,.16)` + `scale(1.01)` en 300ms (solo con puntero fino).
+- **Tarjeta de producto** con doble bisel (ver abajo), sombra en capas `--shadow`; hover sube 6px con `--shadow-hover` (solo con puntero fino).
 - **Footer** fondo `--bg-alt`, texto 12px `--muted`, separadores finos.
+- **Botón 3D**: degradado vertical (`--blue-top` → `--blue` → `--blue-deep`), brillo interior arriba, sombra azul en capas; hover sube 2px y cruza un reflejo; `:active` se hunde (`translateY(1px) scale(.97)`, sombra interior).
+- **Doble bisel** (`.card` + `.card-core`, `.step` + `.step-core`): carcasa translúcida de 6px y núcleo con radio concéntrico (30px fuera, 24px dentro).
+- **Profundidad**: tarjetas de producto con portada 3D (`.cover`) e inclinación con el puntero; hero con pila de archivos en perspectiva y orbes de luz. Todo con `transform`/`opacity`, desactivado con reduced-motion y en táctil.
 
 ## Layout
 - Ancho de contenido 980px (texto) / 1200px (rejillas), gutter lateral 22px (16px en móvil).

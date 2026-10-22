@@ -8,12 +8,13 @@
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <title>Tienda Digital</title>
   <meta name="description" content="Productos digitales con descarga inmediata. Pago seguro con Stripe.">
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <nav class="nav" aria-label="Principal">
     <div class="wrap">
-      <a class="brand" href="/">Tienda</a>
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Tienda</a>
       <ul class="nav-links">
         <li><a href="#catalogo">Productos</a></li>
         <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -23,21 +24,40 @@
   </nav>
 
   <main>
-    <header class="hero wrap">
-      <h1>Productos digitales.</h1>
-      <p class="sub">Compra una vez. Descarga al instante.</p>
-      <div class="ctas">
-        <a class="btn" href="#catalogo">Comprar</a>
-        <a class="btn ghost" href="#como-funciona">Más información</a>
+    <header class="hero">
+      <div class="hero-glow" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+      <div class="wrap">
+        <p class="pill rise" style="--i:0"><b>Nuevo</b>Descarga inmediata tras el pago</p>
+        <h1 class="rise" style="--i:1">Productos digitales.<br><span class="grad">Listos al instante.</span></h1>
+        <p class="sub rise" style="--i:2">Compra una vez. Descarga en segundos. Tuyo para siempre.</p>
+        <div class="ctas rise" style="--i:3">
+          <a class="btn" href="#catalogo">Ver productos
+            <span class="btn-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </a>
+          <a class="btn ghost" href="#como-funciona">Más información</a>
+        </div>
+        <div class="stage rise" style="--i:4" id="stage" aria-hidden="true">
+          <div class="stack">
+            <div class="file f1"><span class="ext">PDF</span><span class="lines"><i></i><i></i><i></i></span></div>
+            <div class="file f2"><span class="ext">ZIP</span><span class="lines"><i></i><i></i><i></i></span></div>
+            <div class="file f3"><span class="ext">PNG</span><span class="lines"><i></i><i></i><i></i></span></div>
+          </div>
+        </div>
       </div>
-      <div class="hero-art reveal" aria-hidden="true">Hecho para usarse hoy.</div>
     </header>
+
+    <div class="marquee" aria-label="Ventajas">
+      <div class="marquee-track">
+        <span>Pago seguro con Stripe</span><span>Apple Pay y Google Pay</span><span>Descarga inmediata</span><span>Recibo por email</span><span>Sin crear cuenta</span><span>Acceso de por vida</span>
+        <span aria-hidden="true">Pago seguro con Stripe</span><span aria-hidden="true">Apple Pay y Google Pay</span><span aria-hidden="true">Descarga inmediata</span><span aria-hidden="true">Recibo por email</span><span aria-hidden="true">Sin crear cuenta</span><span aria-hidden="true">Acceso de por vida</span>
+      </div>
+    </div>
 
     <section class="section alt" id="catalogo" aria-labelledby="t-catalogo">
       <div class="wrap wide">
-        <h2 class="section-title center" id="t-catalogo"><b>Tienda.</b> <span class="muted">La forma más sencilla de conseguir lo que necesitas.</span></h2>
+        <h2 class="section-title center reveal" id="t-catalogo"><b>Tienda.</b> <span class="muted">La forma más sencilla de conseguir lo que necesitas.</span></h2>
         <div class="grid" id="grid" aria-live="polite" aria-busy="true">
-          <div class="card skeleton"></div><div class="card skeleton"></div>
+          <div class="card skeleton"><div class="card-core"></div></div><div class="card skeleton"><div class="card-core"></div></div>
         </div>
         <p class="error" id="error" role="alert"></p>
       </div>
@@ -45,19 +65,19 @@
 
     <section class="section" id="como-funciona" aria-labelledby="t-como">
       <div class="wrap wide">
-        <h2 class="section-title center" id="t-como">Tres pasos. Ni uno más.</h2>
+        <h2 class="section-title center reveal" id="t-como">Tres pasos. Ni uno más.</h2>
         <ol class="steps">
-          <li class="step reveal"><h3>Elige.</h3><p>Encuentra el producto que necesitas en el catálogo.</p></li>
-          <li class="step reveal"><h3>Paga con Stripe.</h3><p>Tarjeta, Apple Pay o Google Pay. Pago cifrado y seguro.</p></li>
-          <li class="step reveal"><h3>Descarga.</h3><p>Tu archivo está listo al momento. Recibes el recibo por email.</p></li>
+          <li class="step reveal" style="--i:0"><div class="step-core"><h3>Elige.</h3><p>Encuentra el producto que necesitas en el catálogo.</p></div></li>
+          <li class="step reveal" style="--i:1"><div class="step-core"><h3>Paga con Stripe.</h3><p>Tarjeta, Apple Pay o Google Pay. Pago cifrado y seguro.</p></div></li>
+          <li class="step reveal" style="--i:2"><div class="step-core"><h3>Descarga.</h3><p>Tu archivo está listo al momento. Recibes el recibo por email.</p></div></li>
         </ol>
       </div>
     </section>
 
     <section class="section alt" id="preguntas" aria-labelledby="t-faq">
       <div class="wrap">
-        <h2 class="section-title center" id="t-faq">Preguntas frecuentes.</h2>
-        <div class="faq">
+        <h2 class="section-title center reveal" id="t-faq">Preguntas frecuentes.</h2>
+        <div class="faq reveal">
           <details><summary>¿Cuándo recibo el producto?</summary><p>Justo después del pago. Te llevamos a una página con el botón de descarga.</p></details>
           <details><summary>¿Necesito crear una cuenta?</summary><p>No. Solo tu email para el recibo. Guarda la página de descarga para volver a ella.</p></details>
           <details><summary>¿Es seguro el pago?</summary><p>Sí. El pago lo procesa Stripe. Nunca vemos ni guardamos los datos de tu tarjeta.</p></details>
