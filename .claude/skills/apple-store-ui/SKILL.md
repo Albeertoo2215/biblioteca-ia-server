@@ -39,18 +39,18 @@ Fuente del sistema (`-apple-system, system-ui, "SF Pro"…`), nunca webfonts.
 | Legal / nav | `0.75rem` (12px) | 400 | 1.33 | `0.01em` |
 
 
-## Componentes
-- **Nav** 56px, sticky, translúcida. A la derecha: dos enlaces de texto y un botón "Ver catálogo". Separador solo al hacer scroll.
-- **Botón** pill (`border-radius: 980px`), azul con relieve sutil (degradado vertical, brillo interior, sombra teñida de marino, nunca brillo azul). Hover sube 1px; `:active` se hunde. Secundario = enlace de texto con "›", no otro botón.
-- **Hero partido**: titular a la izquierda (máx. 3 líneas, sin `<br>` ni color partido), subtítulo ≤ 20 palabras, un botón + un enlace. A la derecha, la tarjeta del producto destacado (`"featured": true` o el primero), real, con botón Comprar. Detrás, una placa marino girada 3°.
-- **Portada de producto** (`.cover`): imagen real si el producto tiene `image`; si no, bloque de color (`color`) con el formato (PDF, ZIP...) y el nombre.
-- **Catálogo**: banda marino con filas anchas blancas (portada, texto, precio + Comprar). No usar rejilla de tarjetas iguales.
-- **Cómo funciona**: dos columnas; pasos como verbos (Elige, Paga, Descarga), sin números.
-- **Preguntas**: dos columnas, título fijo a la izquierda, acordeón a la derecha con una sola línea divisoria por fila.
-- **Radios**: botones pill, tarjetas 16-20px, portadas 12px. No mezclar otros.
+## Componentes y movimiento (estilo página de producto Apple)
+- **Nav** fija 56px, translúcida; se esconde al bajar y vuelve al subir.
+- **Botón** pill azul con relieve (degradado, brillo interior, sombra marino). `.shimmer`: reflejo que lo recorre cada pocos segundos. `.magnetic`: se acerca al cursor. `:active` se hunde.
+- **Hero** centrado: titular que entra palabra a palabra con desenfoque (`.split`), subtítulo, botón + enlace. Debajo, abanico de portadas reales que se abre al hacer scroll.
+- **Frase** (`.statement`): sección alta con texto fijo; cada palabra pasa de gris a marino con el scroll. Las últimas palabras en azul.
+- **Catálogo** en banda marino: tarjetas con borde que se ilumina donde está el cursor, inclinación 3D y entrada en cascada.
+- **Cómo funciona**: palabra gigante fija (Elige., Paga., Descarga.) que cambia según el bloque visible, con barra de progreso.
+- **Preguntas** en dos columnas. **Cierre** con titular grande y botón.
+- Animaciones en `public/app.js`, una función por efecto. Solo `transform`, `opacity` y `filter`.
 
 ## Prohibido (señales de plantilla IA)
-Hero centrado, etiqueta "NUEVO" sobre el titular, texto en degradado, manchas de luz, cajas que imitan archivos o pantallas, bandas con puntos de colores, tres tarjetas iguales numeradas, frases ingeniosas ("Ni uno más"), raya larga (—) en cualquier texto.
+Etiqueta "NUEVO" sobre el titular, texto en degradado, manchas de luz, cajas que imitan archivos o pantallas, bandas con puntos de colores, tres tarjetas iguales numeradas, frases ingeniosas ("Ni uno más"), raya larga (—) en cualquier texto.
 
 ## Layout
 - Ancho de contenido 980px (texto) / 1200px (rejillas), gutter lateral 22px (16px en móvil).

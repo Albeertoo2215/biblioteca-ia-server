@@ -5,9 +5,12 @@
   "description": "Tienda de productos digitales estilo Apple. Cloudflare Pages + R2 + Stripe.",
   "scripts": {
     "dev": "wrangler pages dev public --r2=FILES --compatibility-date=2024-11-01",
-    "deploy": "wrangler pages deploy public --project-name=tienda-digital"
+    "deploy": "wrangler pages deploy public --project-name=tienda-digital",
+    "vendor": "cp node_modules/gsap/dist/gsap.min.js node_modules/gsap/dist/ScrollTrigger.min.js node_modules/lenis/dist/lenis.min.js node_modules/lenis/dist/lenis.css public/vendor/"
   },
   "devDependencies": {
+    "gsap": "3.12.5",
+    "lenis": "1.1.13",
     "wrangler": "^3.90.0"
   }
 }
