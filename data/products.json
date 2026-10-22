@@ -3,37 +3,31 @@
     "slug": "ejemplo-guia",
     "name": "Guía de ejemplo",
     "tagline": "Producto de demostración.",
-    "description": "Sustituye este producto por el tuyo. Edita data/products.json.",
+    "description": "Una guía práctica en PDF. Sustituye este producto de ejemplo por el tuyo en data/products.json.",
     "price": 1900,
     "currency": "eur",
     "file": "ejemplo-guia.pdf",
-    "accent": [
-      "#ff9a5a",
-      "#f0567a"
-    ],
     "badge": "Nuevo",
     "features": [
       "Descarga inmediata",
       "Acceso de por vida",
       "Actualizaciones incluidas"
-    ]
+    ],
+    "color": "#2f6fde"
   },
   {
     "slug": "ejemplo-plantillas",
     "name": "Pack de plantillas",
     "tagline": "Otro producto de demostración.",
-    "description": "Cambia nombre, precio y archivo cuando tengas tu producto real.",
+    "description": "Plantillas editables listas para usar. Producto de ejemplo: cambia nombre, precio y archivo.",
     "price": 2900,
     "currency": "eur",
     "file": "ejemplo-plantillas.zip",
-    "accent": [
-      "#4d8af0",
-      "#7b61ff"
-    ],
     "features": [
       "Formato editable",
       "Uso personal y comercial",
       "Soporte por email"
-    ]
+    ],
+    "color": "#0f2340"
   }
 ]

@@ -31,29 +31,26 @@ Color vivo solo en botones y portadas de producto (`accent` en `data/products.js
 Fuente del sistema (`-apple-system, system-ui, "SF Pro"…`), nunca webfonts.
 | Uso | Tamaño | Peso | Line-height | Tracking |
 | --- | --- | --- | --- | --- |
-| Titular hero | `clamp(2.5rem, 6vw, 3.5rem)` (56px) | 600 | 1.07 | `-0.005em` |
-| Titular sección | `clamp(2rem, 4.5vw, 3rem)` (48px) | 600 | 1.08 | `-0.003em` |
+| Titular hero | `clamp(2.5rem, 5.2vw, 4rem)` (64px) | 700 | 1.04 | `-0.035em` |
+| Titular sección | `clamp(2rem, 4vw, 2.75rem)` (44px) | 700 | 1.1 | `-0.03em` |
 | Subtítulo hero | `clamp(1.3rem, 2.4vw, 1.75rem)` (28px) | 400 | 1.14 | `0.007em` |
 | Titular tarjeta | `1.5rem` (24px) | 600 | 1.17 | `0.009em` |
 | Cuerpo | `1.0625rem` (17px) | 400 | 1.47 | `0` |
 | Legal / nav | `0.75rem` (12px) | 400 | 1.33 | `0.01em` |
 
-Patrón Apple Store: titular en dos tonos, `<b>Tienda.</b> <span class="muted">Frase gris.</span>`.
 
 ## Componentes
-- **Nav** 44px, sticky, translúcida (`rgba` + `backdrop-filter: saturate(180%) blur(20px)`). Sin borde fijo: el separador aparece al hacer scroll (`.nav.scrolled`).
-- **Botones** pill (`border-radius: 980px`), 17px, padding `11px 21px`.
-  - `.btn` primario azul relleno ("Comprar").
-  - `.btn.ghost` contorno azul ("Más información").
-  - Siempre en pareja primario + ghost en portada, centrados, separados 14px.
-  - Feedback en `:active` (pointer-down): se hunde, 100ms.
-- **Enlace con chevron** `.link-more`: "Ver más ›", color `--link`.
-- **Bloque hero** a ancho completo, texto centrado, mucho aire (padding vertical ≥ 56px móvil, 88px escritorio).
-- **Tarjeta de producto** con doble bisel (ver abajo), sombra en capas `--shadow`; hover sube 6px con `--shadow-hover` (solo con puntero fino).
-- **Footer** fondo `--bg-alt`, texto 12px `--muted`, separadores finos.
-- **Botón 3D**: degradado vertical (`--blue-top` → `--blue` → `--blue-deep`), brillo interior arriba, sombra azul en capas; hover sube 2px y cruza un reflejo; `:active` se hunde (`translateY(1px) scale(.97)`, sombra interior).
-- **Doble bisel** (`.card` + `.card-core`, `.step` + `.step-core`): carcasa translúcida de 6px y núcleo con radio concéntrico (30px fuera, 24px dentro).
-- **Profundidad**: tarjetas de producto con portada 3D (`.cover`) e inclinación con el puntero; hero con pila de archivos en perspectiva y orbes de luz. Todo con `transform`/`opacity`, desactivado con reduced-motion y en táctil.
+- **Nav** 56px, sticky, translúcida. A la derecha: dos enlaces de texto y un botón "Ver catálogo". Separador solo al hacer scroll.
+- **Botón** pill (`border-radius: 980px`), azul con relieve sutil (degradado vertical, brillo interior, sombra teñida de marino, nunca brillo azul). Hover sube 1px; `:active` se hunde. Secundario = enlace de texto con "›", no otro botón.
+- **Hero partido**: titular a la izquierda (máx. 3 líneas, sin `<br>` ni color partido), subtítulo ≤ 20 palabras, un botón + un enlace. A la derecha, la tarjeta del producto destacado (`"featured": true` o el primero), real, con botón Comprar. Detrás, una placa marino girada 3°.
+- **Portada de producto** (`.cover`): imagen real si el producto tiene `image`; si no, bloque de color (`color`) con el formato (PDF, ZIP...) y el nombre.
+- **Catálogo**: banda marino con filas anchas blancas (portada, texto, precio + Comprar). No usar rejilla de tarjetas iguales.
+- **Cómo funciona**: dos columnas; pasos como verbos (Elige, Paga, Descarga), sin números.
+- **Preguntas**: dos columnas, título fijo a la izquierda, acordeón a la derecha con una sola línea divisoria por fila.
+- **Radios**: botones pill, tarjetas 16-20px, portadas 12px. No mezclar otros.
+
+## Prohibido (señales de plantilla IA)
+Hero centrado, etiqueta "NUEVO" sobre el titular, texto en degradado, manchas de luz, cajas que imitan archivos o pantallas, bandas con puntos de colores, tres tarjetas iguales numeradas, frases ingeniosas ("Ni uno más"), raya larga (—) en cualquier texto.
 
 ## Layout
 - Ancho de contenido 980px (texto) / 1200px (rejillas), gutter lateral 22px (16px en móvil).
