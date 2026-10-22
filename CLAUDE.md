@@ -9,4 +9,6 @@ Animación: GSAP 3.12.5 + ScrollTrigger y Lenis 1.1.13, servidos desde `public/v
 - Catálogo: `data/products.json` (precios en céntimos, única fuente de precios) → skill `add-product`.
 - Despliegue, dominio y Stripe → skill `cloudflare-stripe-deploy`.
 
+Marca: logo «casi3» (Bricolage Grotesque 800, OFL, convertido a trazos; el 3 en `--blue`) en `public/brand/`: `logo.svg`, `logo-white.svg` (fondos oscuros), `favicon.svg`, `apple-touch-icon.png`, `og.png`. No redibujarlo ni cambiar sus colores.
+
 Reglas: textos en español; secretos solo en `.dev.vars` (ignorado) o secretos de Cloudflare; los archivos de producto nunca van al repo.
