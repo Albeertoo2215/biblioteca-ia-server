@@ -1,0 +1,26 @@
+[
+  {
+    "id": "guias",
+    "name": "Guías",
+    "pitch": "Aprende algo útil en una tarde.",
+    "color": "#2f6fde"
+  },
+  {
+    "id": "plantillas",
+    "name": "Plantillas",
+    "pitch": "Copia, rellena y listo.",
+    "color": "#0f2340"
+  },
+  {
+    "id": "planificadores",
+    "name": "Planificadores",
+    "pitch": "Tu semana, tus comidas o tu dinero, en orden.",
+    "color": "#1f8a7a"
+  },
+  {
+    "id": "packs",
+    "name": "Packs",
+    "pitch": "Varios recursos juntos, al mismo precio.",
+    "color": "#c2410c"
+  }
+]

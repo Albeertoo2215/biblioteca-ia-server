@@ -18,6 +18,8 @@ description: Añadir, editar o retirar un producto digital de la tienda (precio,
      "color": "#2f6fde",
      "image": "/img/mi-producto.jpg",
      "featured": true,
+     "category": "guias",
+     "tags": ["comida", "semana"],
      "badge": "Nuevo",
      "features": ["Punto 1", "Punto 2", "Punto 3"]
    }
@@ -27,6 +29,8 @@ description: Añadir, editar o retirar un producto digital de la tienda (precio,
    - `file`: nombre del objeto en R2.
    - `color`: fondo de la portada si no hay imagen. Usa `#2f6fde` (azul) o `#0f2340` (marino).
    - `image` (opcional): portada real, 4:3, en `public/img/`. Mejor que la portada de color.
+   - `category`: id de `data/categories.json` (guias, plantillas, planificadores, packs). Una categoría nueva se añade ahí con nombre y frase de venta.
+   - `tags`: palabras que la gente buscaría (el buscador también mira nombre y descripción, sin tildes).
    - `featured` (opcional): sale en la portada de la web. Solo uno.
    - `badge` (opcional): texto corto sobre el nombre ("Nuevo"). Solo en uno o dos productos.
 2. Sube el archivo al bucket privado:

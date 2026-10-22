@@ -165,8 +165,8 @@ img { max-width: 100%; display: block; }
   background: radial-gradient(50% 60% at 50% 0%, rgba(47, 111, 222, .28), transparent 70%); }
 .catalog .wrap { position: relative; }
 .catalog h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1; letter-spacing: -.045em; margin-bottom: 16px; }
-.catalog .lead { color: var(--navy-muted); font-size: 1.1875rem; max-width: 40ch; margin-bottom: 56px; }
-.cards { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); perspective: 1400px; }
+.catalog .lead { color: var(--navy-muted); font-size: 1.1875rem; max-width: 40ch; margin-bottom: 36px; }
+.cards { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); perspective: 1400px; }
 .card { position: relative; border-radius: 24px; padding: 1px; background: rgba(255, 255, 255, .1); will-change: transform; }
 /* Borde que se ilumina donde está el cursor */
 .card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: 0; transition: opacity .4s ease; pointer-events: none;
@@ -196,6 +196,28 @@ img { max-width: 100%; display: block; }
 .card.skeleton { min-height: 560px; background: linear-gradient(90deg, var(--navy-2) 0, #1f3a62 50%, var(--navy-2) 100%) 0 0 / 200% 100%; animation: shimmer 1.4s infinite linear; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 .catalog .error { color: #ffb4a8; }
+/* Filtros: categorías con píldora deslizante + buscador */
+.filters { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+.cats { position: relative; display: flex; gap: 4px; padding: 4px; border-radius: 980px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+.cats::-webkit-scrollbar { display: none; }
+.cat { position: relative; z-index: 1; flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 0; border-radius: 980px; background: none; color: var(--navy-muted); font: inherit; font-size: .9375rem; font-weight: 600; cursor: pointer; transition: color .3s ease; }
+.cat:hover { color: #fff; }
+.cat[aria-selected="true"] { color: var(--navy); }
+.cat i { font-style: normal; font-size: .75rem; opacity: .7; font-variant-numeric: tabular-nums; }
+.pill-bg { position: absolute; top: 4px; bottom: 4px; left: 0; width: 0; border-radius: 980px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  transition: transform .5s var(--ease-out), width .5s var(--ease-out); }
+.search { display: flex; align-items: center; gap: 10px; flex: 1 1 260px; max-width: 360px; padding: 0 16px; height: 46px; border-radius: 980px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: box-shadow .2s ease, background .2s ease; }
+.search:focus-within { background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 2px #8fb4ff; }
+.search svg { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--navy-muted); stroke-width: 2; stroke-linecap: round; }
+.search input { flex: 1; min-width: 0; border: 0; background: none; color: #fff; font: inherit; outline: none; }
+.search input::placeholder { color: var(--navy-muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.cat-pitch { color: var(--navy-muted); min-height: 1.5em; margin-bottom: 28px; transition: opacity .3s ease; }
+.card.out { display: none; }
+.card.enter { animation: cardin .5s var(--ease-out) both; animation-delay: calc(var(--k, 0) * 50ms); }
+@keyframes cardin { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+.card .kind { display: inline-block; align-self: flex-start; font-size: .75rem; font-weight: 700; letter-spacing: .02em; padding: 4px 10px; border-radius: 980px; background: rgba(255,255,255,.1); color: #d6e2f5; }
+.empty { color: var(--navy-muted); text-align: center; padding: 48px 0; }
 
 /* ── Cómo funciona: paneles que se abren por turnos, cada uno con su escena animada ── */
 .how { padding-block: 120px; }

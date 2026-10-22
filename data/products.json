@@ -13,7 +13,12 @@
       "Acceso de por vida",
       "Actualizaciones incluidas"
     ],
-    "color": "#2f6fde"
+    "color": "#2f6fde",
+    "category": "guias",
+    "tags": [
+      "ejemplo",
+      "aprender"
+    ]
   },
   {
     "slug": "ejemplo-plantillas",
@@ -28,6 +33,88 @@
       "Uso personal y comercial",
       "Soporte por email"
     ],
-    "color": "#0f2340"
+    "color": "#0f2340",
+    "category": "plantillas",
+    "tags": [
+      "ejemplo",
+      "editable"
+    ]
+  },
+  {
+    "slug": "ejemplo-menu-semanal",
+    "name": "Menú semanal",
+    "tagline": "Planifica 7 días de comidas en 10 minutos.",
+    "description": "Producto de ejemplo: planificador con lista de la compra.",
+    "price": 299,
+    "currency": "eur",
+    "file": "ejemplo-menu-semanal.pdf",
+    "features": [
+      "Descarga inmediata",
+      "Para siempre"
+    ],
+    "color": "#1f8a7a",
+    "category": "planificadores",
+    "tags": [
+      "comida",
+      "semana",
+      "compra"
+    ]
+  },
+  {
+    "slug": "ejemplo-presupuesto",
+    "name": "Presupuesto mensual",
+    "tagline": "Controla tus gastos sin apps.",
+    "description": "Producto de ejemplo: hoja de cálculo de gastos.",
+    "price": 299,
+    "currency": "eur",
+    "file": "ejemplo-presupuesto.xlsx",
+    "features": [
+      "Descarga inmediata",
+      "Para siempre"
+    ],
+    "color": "#0f2340",
+    "category": "plantillas",
+    "tags": [
+      "dinero",
+      "ahorro"
+    ]
+  },
+  {
+    "slug": "ejemplo-rutina-casa",
+    "name": "Rutina en casa",
+    "tagline": "30 minutos, sin material.",
+    "description": "Producto de ejemplo: guía de entrenamiento.",
+    "price": 299,
+    "currency": "eur",
+    "file": "ejemplo-rutina-casa.pdf",
+    "features": [
+      "Descarga inmediata",
+      "Para siempre"
+    ],
+    "color": "#2f6fde",
+    "category": "guias",
+    "tags": [
+      "gym",
+      "entreno"
+    ]
+  },
+  {
+    "slug": "ejemplo-pack-inicio",
+    "name": "Pack de inicio",
+    "tagline": "Tres recursos para empezar con orden.",
+    "description": "Producto de ejemplo: guía, plantilla y planificador juntos.",
+    "price": 299,
+    "currency": "eur",
+    "file": "ejemplo-pack-inicio.zip",
+    "features": [
+      "Descarga inmediata",
+      "Para siempre"
+    ],
+    "color": "#c2410c",
+    "category": "packs",
+    "tags": [
+      "organización",
+      "empezar"
+    ]
   }
 ]

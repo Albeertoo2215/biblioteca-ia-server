@@ -82,11 +82,12 @@ const cover = (p) => `
   </div>`;
 
 const cardHTML = (p) => `
-  <article class="card">
+  <article class="card" data-cat="${esc(p.category || '')}" data-text="${esc([p.name, p.tagline, p.description, p.catName, ...(p.tags || [])].join(' ').toLowerCase())}">
     <div class="card-in">
       <div class="stage">${cover(p)}</div>
       <div class="body">
         ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ''}
+        ${p.catName ? `<span class="kind">${esc(p.catName)}</span>` : ''}
         <h3>${esc(p.name)}</h3>
         <p class="desc">${esc(p.description)}</p>
         <ul class="feats">${p.features.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
@@ -265,6 +266,39 @@ function magnetic() {
   });
 }
 
+// Catálogo: categorías (píldora que se desliza) + buscador por palabra, sin tildes ni mayúsculas
+const norm = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+function catalogFilters(products, categories) {
+  const cats = document.getElementById('cats'), pill = document.getElementById('pill-bg');
+  const q = document.getElementById('q'), pitch = document.getElementById('cat-pitch'), empty = document.getElementById('empty');
+  const counts = products.reduce((a, p) => ((a[p.category] = (a[p.category] || 0) + 1), a), {});
+  const list = [{ id: '', name: 'Todo', pitch: 'Todo el catálogo a 2,99 €.' }, ...categories.filter((c) => counts[c.id])];
+  cats.insertAdjacentHTML('beforeend', list.map((c) => `<button class="cat" role="tab" type="button" data-id="${esc(c.id)}" aria-selected="false">${esc(c.name)} <i>${c.id ? counts[c.id] : products.length}</i></button>`).join(''));
+  let current = '';
+  const movePill = () => { const b = cats.querySelector('[aria-selected="true"]'); pill.style.width = `${b.offsetWidth}px`; pill.style.transform = `translateX(${b.offsetLeft}px)`; };
+  const apply = () => {
+    const words = norm(q.value).split(/\s+/).filter(Boolean);
+    let k = 0, shown = 0;
+    cardsEl.querySelectorAll('.card').forEach((card) => {
+      const ok = (!current || card.dataset.cat === current) && words.every((w) => norm(card.dataset.text).includes(w));
+      card.classList.toggle('out', !ok); card.classList.remove('enter');
+      if (ok) { shown++; void card.offsetWidth; card.style.setProperty('--k', k++); card.classList.add('enter'); }
+    });
+    empty.hidden = shown > 0;
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  };
+  const select = (id) => {
+    current = id;
+    cats.querySelectorAll('.cat').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.id === id)));
+    pitch.textContent = list.find((c) => c.id === id).pitch;
+    movePill(); apply();
+  };
+  cats.addEventListener('click', (e) => { const b = e.target.closest('.cat'); if (b) select(b.dataset.id); });
+  let t; q.addEventListener('input', () => { clearTimeout(t); t = setTimeout(apply, 120); });
+  addEventListener('resize', movePill);
+  select('');
+}
+
 heroIntro();
 bento();
 panels();
@@ -274,7 +308,11 @@ magnetic();
 try {
   const products = await (await fetch('/api/products')).json();
   document.getElementById('count').textContent = `${products.length} ${products.length === 1 ? 'producto' : 'productos'}`;
+  const categories = await (await fetch('/api/categories')).json().catch(() => []);
+  const catName = Object.fromEntries(categories.map((c) => [c.id, c.name]));
+  products.forEach((p) => { p.catName = catName[p.category]; });
   cardsEl.innerHTML = products.map(cardHTML).join('');
+  catalogFilters(products, categories);
   cardsEl.removeAttribute('aria-busy');
   buildMosaic(products);
   fillScenes(products);

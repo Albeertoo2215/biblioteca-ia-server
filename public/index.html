@@ -62,9 +62,17 @@
       <div class="wrap">
         <h2 class="split" id="t-catalogo">El catálogo.</h2>
         <p class="lead" data-fade><span id="count">Productos</span> listos para descargar. Precio final, sin sorpresas.</p>
+        <div class="filters" role="search">
+          <div class="cats" id="cats" role="tablist" aria-label="Categorías"><span class="pill-bg" id="pill-bg" aria-hidden="true"></span></div>
+          <label class="search"><span class="sr">Buscar</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="q" type="search" placeholder="Buscar: comida, dinero, gym…" autocomplete="off"></label>
+        </div>
+        <p class="cat-pitch" id="cat-pitch" aria-live="polite"></p>
         <div class="cards" id="cards" aria-busy="true">
           <div class="card skeleton"></div><div class="card skeleton"></div>
         </div>
+        <p class="empty" id="empty" hidden>No hay nada con esa búsqueda. Prueba otra palabra o mira todo el catálogo.</p>
         <p class="error" id="error" role="alert"></p>
       </div>
     </section>
