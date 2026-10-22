@@ -12,7 +12,7 @@ description: Añadir, editar o retirar un producto digital de la tienda (precio,
      "name": "Mi producto",
      "tagline": "Frase corta.",
      "description": "Descripción.",
-     "price": 2500,
+     "price": 299,
      "currency": "eur",
      "file": "mi-producto.pdf",
      "color": "#2f6fde",
@@ -23,7 +23,7 @@ description: Añadir, editar o retirar un producto digital de la tienda (precio,
    }
    ```
    - `slug`: único, minúsculas y guiones. No cambiarlo después de vender (las compras lo guardan en Stripe).
-   - `price`: **en céntimos** (25 € = 2500).
+   - `price`: **en céntimos**. Precio decidido para el lanzamiento: **2,99 € = 299** en todos los productos (2026-10-22).
    - `file`: nombre del objeto en R2.
    - `color`: fondo de la portada si no hay imagen. Usa `#2f6fde` (azul) o `#0f2340` (marino).
    - `image` (opcional): portada real, 4:3, en `public/img/`. Mejor que la portada de color.

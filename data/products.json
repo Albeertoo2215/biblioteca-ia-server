@@ -4,7 +4,7 @@
     "name": "Guía de ejemplo",
     "tagline": "Producto de demostración.",
     "description": "Una guía práctica en PDF. Sustituye este producto de ejemplo por el tuyo en data/products.json.",
-    "price": 1900,
+    "price": 299,
     "currency": "eur",
     "file": "ejemplo-guia.pdf",
     "badge": "Nuevo",
@@ -20,7 +20,7 @@
     "name": "Pack de plantillas",
     "tagline": "Otro producto de demostración.",
     "description": "Plantillas editables listas para usar. Producto de ejemplo: cambia nombre, precio y archivo.",
-    "price": 2900,
+    "price": 299,
     "currency": "eur",
     "file": "ejemplo-plantillas.zip",
     "features": [
