@@ -8,8 +8,8 @@
     "currency": "eur",
     "file": "ejemplo-guia.pdf",
     "accent": [
-      "#0071e3",
-      "#7b61ff"
+      "#ff9a5a",
+      "#f0567a"
     ],
     "badge": "Nuevo",
     "features": [
@@ -27,8 +27,8 @@
     "currency": "eur",
     "file": "ejemplo-plantillas.zip",
     "accent": [
-      "#ff6a3d",
-      "#ff2d87"
+      "#4d8af0",
+      "#7b61ff"
     ],
     "features": [
       "Formato editable",

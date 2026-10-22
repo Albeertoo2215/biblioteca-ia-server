@@ -11,18 +11,21 @@ Dos fuentes, en este orden:
 
 Fuente de verdad en código: variables y clases de `public/styles.css`. Reutiliza antes de crear.
 
-## Tokens (apple.com)
-| Token | Claro | Oscuro |
+## Tokens (paleta E · Claro con bandas)
+Solo modo claro: el negro no se usa. Variables en `public/styles.css`.
+| Token | Valor | Uso |
 | --- | --- | --- |
-| `--bg` | `#fff` | `#000` |
-| `--bg-alt` (bloques, footer) | `#f5f5f7` | `#161617` |
-| `--card` | `#fff` | `#1d1d1f` |
-| `--text` | `#1d1d1f` | `#f5f5f7` |
-| `--muted` | `#6e6e73` | `#86868b` |
-| `--blue` (botón) | `#0071e3` | `#0071e3` |
-| `--link` | `#0066cc` | `#2997ff` |
+| `--bg` | `#fff` | Fondo base |
+| `--tint` | `#eaf2ff` | Degradado de la portada (arriba) |
+| `--bg-alt` | `#f3f6fa` | Bandas suaves (FAQ, footer) |
+| `--navy` | `#0f2340` | Banda de contraste (catálogo), con `.section.navy` |
+| `--text` | `#0f2340` | Texto principal |
+| `--muted` | `#5b6b82` | Texto secundario |
+| `--blue` / `--blue-top` / `--blue-deep` | `#2f6fde` / `#4d8af0` / `#2156b8` | Botones y acento |
+| `--badge` | `#c2410c` | Etiqueta "Nuevo" |
 
-Un solo color de acento. Degradados solo en el arte de producto.
+Ritmo de bandas: portada con tinte, banda marino, blanco, gris suave. Nunca dos bandas iguales seguidas.
+Color vivo solo en botones y portadas de producto (`accent` en `data/products.json`). Sin texto en degradado ni manchas de luz.
 
 ## Tipografía
 Fuente del sistema (`-apple-system, system-ui, "SF Pro"…`), nunca webfonts.
