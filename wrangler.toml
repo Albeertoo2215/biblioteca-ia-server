@@ -1,9 +1,9 @@
-name = "tienda-digital"
+name = "casitres"
 compatibility_date = "2024-11-01"
 pages_build_output_dir = "public"
 
 # Archivos de los productos (privados). Crear el bucket una vez:
-#   npx wrangler r2 bucket create tienda-digital-files
+#   npx wrangler r2 bucket create casitres-files
 [[r2_buckets]]
 binding = "FILES"
-bucket_name = "tienda-digital-files"
+bucket_name = "casitres-files"

@@ -1,6 +1,6 @@
-# Tienda Digital
+# Casitres
 
-Vende productos digitales con una web estilo Apple. Solo **Cloudflare** (dominio, hosting, archivos) y **Stripe** (pagos).
+Casitres: productos digitales de todo tipo a 2,99 €, con una web estilo Apple. Solo **Cloudflare** (dominio, hosting, archivos) y **Stripe** (pagos).
 
 ```
 npm install

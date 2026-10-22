@@ -1,6 +1,6 @@
-# Tienda Digital
+# Casitres
 
-Tienda de productos digitales. Stack único: **Cloudflare (Pages, Functions, R2, dominio) + Stripe**. Sin base de datos ni otros servicios; no añadas dependencias externas sin pedirlo.
+Casitres: tienda de productos digitales de todo tipo, todos a 2,99 €. Stack único: **Cloudflare (Pages, Functions, R2, dominio) + Stripe**. Sin base de datos ni otros servicios; no añadas dependencias externas sin pedirlo.
 Animación: GSAP 3.12.5 + ScrollTrigger y Lenis 1.1.13, servidos desde `public/vendor/` (copiados con `npm run vendor`, nunca desde un CDN). Con `prefers-reduced-motion` o sin JS la página queda estática y completa.
 
 - Web: `public/` (HTML/CSS/JS plano, sin build). Diseño estilo Apple → skills `apple-store-ui` (aspecto, valores de apple.com) y `apple-design` (movimiento e interacción; de emilkowalski/skills, MIT, no editar).

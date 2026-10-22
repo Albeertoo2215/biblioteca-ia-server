@@ -30,7 +30,7 @@ description: Añadir, editar o retirar un producto digital de la tienda (precio,
    - `featured` (opcional): sale en la portada de la web. Solo uno.
    - `badge` (opcional): texto corto sobre el nombre ("Nuevo"). Solo en uno o dos productos.
 2. Sube el archivo al bucket privado:
-   `npx wrangler r2 object put tienda-digital-files/mi-producto.pdf --file ./ruta/mi-producto.pdf`
+   `npx wrangler r2 object put casitres-files/mi-producto.pdf --file ./ruta/mi-producto.pdf`
 3. Despliega (`npm run deploy`) o haz push si hay despliegue automático.
 4. Prueba con tarjeta de test `4242 4242 4242 4242` en modo test antes de pasar a live.
 

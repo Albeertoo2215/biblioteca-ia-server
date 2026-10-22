@@ -1,11 +1,11 @@
 {
-  "name": "tienda-digital",
+  "name": "casitres",
   "version": "1.0.0",
   "private": true,
-  "description": "Tienda de productos digitales estilo Apple. Cloudflare Pages + R2 + Stripe.",
+  "description": "Casitres: productos digitales a 2,99 €. Cloudflare Pages + R2 + Stripe.",
   "scripts": {
     "dev": "wrangler pages dev public --r2=FILES --compatibility-date=2024-11-01",
-    "deploy": "wrangler pages deploy public --project-name=tienda-digital",
+    "deploy": "wrangler pages deploy public --project-name=casitres",
     "vendor": "cp node_modules/gsap/dist/gsap.min.js node_modules/gsap/dist/ScrollTrigger.min.js node_modules/lenis/dist/lenis.min.js node_modules/lenis/dist/lenis.css public/vendor/"
   },
   "devDependencies": {

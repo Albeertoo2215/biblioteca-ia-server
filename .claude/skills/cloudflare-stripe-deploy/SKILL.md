@@ -14,11 +14,11 @@ description: Configurar y desplegar la tienda en Cloudflare (Pages, R2, dominio)
 ## Puesta en marcha
 1. `npm install`
 2. Login: `npx wrangler login`
-3. Bucket: `npx wrangler r2 bucket create tienda-digital-files`
-4. Primer despliegue: `npm run deploy` (crea el proyecto Pages `tienda-digital`).
+3. Bucket: `npx wrangler r2 bucket create casitres-files`
+4. Primer despliegue: `npm run deploy` (crea el proyecto Pages `casitres`).
 5. Secretos (producción):
-   `npx wrangler pages secret put STRIPE_SECRET_KEY --project-name=tienda-digital`
-   `npx wrangler pages secret put STRIPE_WEBHOOK_SECRET --project-name=tienda-digital`
+   `npx wrangler pages secret put STRIPE_SECRET_KEY --project-name=casitres`
+   `npx wrangler pages secret put STRIPE_WEBHOOK_SECRET --project-name=casitres`
 6. Stripe → Developers → Webhooks → endpoint `https://TU-DOMINIO/api/webhook`, evento `checkout.session.completed`; copia el `whsec_...` al paso 5.
 7. Stripe → Settings → Emails: activar "recibos por email a clientes".
 8. Dominio: Cloudflare → Workers & Pages → proyecto → Custom domains → añadir tu dominio (DNS automático si el dominio está en Cloudflare).
