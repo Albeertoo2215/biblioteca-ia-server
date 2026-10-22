@@ -1,120 +1,192 @@
 [
   {
-    "slug": "ejemplo-guia",
-    "name": "Guía de ejemplo",
-    "tagline": "Producto de demostración.",
-    "description": "Una guía práctica en PDF. Sustituye este producto de ejemplo por el tuyo en data/products.json.",
+    "slug": "calendario-2027",
+    "name": "Calendario 2027",
+    "tagline": "Para imprimir, con los festivos oficiales.",
+    "description": "Vista anual y una página por mes con los 9 festivos nacionales de 2027 publicados en el BOE, puentes y espacio para objetivos.",
     "price": 299,
     "currency": "eur",
-    "file": "ejemplo-guia.pdf",
-    "badge": "Nuevo",
+    "file": "calendario-2027.pdf",
     "features": [
-      "Descarga inmediata",
-      "Acceso de por vida",
-      "Actualizaciones incluidas"
+      "16 páginas A4",
+      "Festivos oficiales 2027",
+      "Objetivos por mes"
     ],
     "color": "#2f6fde",
-    "category": "guias",
+    "category": "imprimibles",
     "tags": [
-      "ejemplo",
-      "aprender"
-    ]
-  },
-  {
-    "slug": "ejemplo-plantillas",
-    "name": "Pack de plantillas",
-    "tagline": "Otro producto de demostración.",
-    "description": "Plantillas editables listas para usar. Producto de ejemplo: cambia nombre, precio y archivo.",
-    "price": 299,
-    "currency": "eur",
-    "file": "ejemplo-plantillas.zip",
-    "features": [
-      "Formato editable",
-      "Uso personal y comercial",
-      "Soporte por email"
+      "calendario",
+      "2027",
+      "festivos",
+      "puentes",
+      "organización"
     ],
-    "color": "#0f2340",
-    "category": "plantillas",
-    "tags": [
-      "ejemplo",
-      "editable"
-    ]
+    "featured": true,
+    "badge": "Nuevo"
   },
   {
-    "slug": "ejemplo-menu-semanal",
-    "name": "Menú semanal",
-    "tagline": "Planifica 7 días de comidas en 10 minutos.",
-    "description": "Producto de ejemplo: planificador con lista de la compra.",
-    "price": 299,
-    "currency": "eur",
-    "file": "ejemplo-menu-semanal.pdf",
-    "features": [
-      "Descarga inmediata",
-      "Para siempre"
-    ],
-    "color": "#1f8a7a",
-    "category": "planificadores",
-    "tags": [
-      "comida",
-      "semana",
-      "compra"
-    ]
-  },
-  {
-    "slug": "ejemplo-presupuesto",
+    "slug": "presupuesto-mensual",
     "name": "Presupuesto mensual",
-    "tagline": "Controla tus gastos sin apps.",
-    "description": "Producto de ejemplo: hoja de cálculo de gastos.",
+    "tagline": "Controla tu dinero en 10 minutos al mes.",
+    "description": "Hoja de cálculo para Excel o Google Sheets: regla 50/30/20, gastos reales frente a presupuesto, objetivos de ahorro y deudas. Con guía en PDF.",
     "price": 299,
     "currency": "eur",
-    "file": "ejemplo-presupuesto.xlsx",
+    "file": "presupuesto-mensual.zip",
     "features": [
-      "Descarga inmediata",
-      "Para siempre"
+      "Se calcula sola",
+      "Gráficos incluidos",
+      "Guía de ahorro"
     ],
     "color": "#0f2340",
     "category": "plantillas",
     "tags": [
       "dinero",
-      "ahorro"
+      "ahorro",
+      "excel",
+      "google sheets",
+      "gastos",
+      "deudas"
     ]
   },
   {
-    "slug": "ejemplo-rutina-casa",
-    "name": "Rutina en casa",
-    "tagline": "30 minutos, sin material.",
-    "description": "Producto de ejemplo: guía de entrenamiento.",
+    "slug": "planificador-oposiciones",
+    "name": "Planificador de oposiciones",
+    "tagline": "Temario, repasos y simulacros en un archivo.",
+    "description": "Hoja con repasos espaciados automáticos (1, 3, 7, 16 y 35 días), seguimiento de simulacros y horas. Incluye el método de estudio en PDF.",
     "price": 299,
     "currency": "eur",
-    "file": "ejemplo-rutina-casa.pdf",
+    "file": "planificador-oposiciones.zip",
     "features": [
-      "Descarga inmediata",
-      "Para siempre"
+      "Repasos automáticos",
+      "Hasta 120 temas",
+      "Método con IA"
     ],
-    "color": "#2f6fde",
+    "color": "#2156b8",
+    "category": "estudio",
+    "tags": [
+      "oposiciones",
+      "estudiar",
+      "temario",
+      "examen",
+      "excel"
+    ]
+  },
+  {
+    "slug": "prompts-encontrar-trabajo",
+    "name": "Prompts para encontrar trabajo",
+    "tagline": "18 instrucciones para ChatGPT y Claude.",
+    "description": "CV adaptado a cada oferta, LinkedIn, carta, simulación de entrevista y negociación del salario. Listas para copiar y pegar.",
+    "price": 299,
+    "currency": "eur",
+    "file": "prompts-encontrar-trabajo.pdf",
+    "features": [
+      "18 prompts probados",
+      "Por fases",
+      "CV, entrevista y salario"
+    ],
+    "color": "#6d5bd0",
+    "category": "ia",
+    "tags": [
+      "empleo",
+      "cv",
+      "linkedin",
+      "entrevista",
+      "chatgpt",
+      "claude",
+      "ia"
+    ]
+  },
+  {
+    "slug": "guia-alquilar-piso",
+    "name": "Alquilar piso sin sustos",
+    "tagline": "Tus derechos y qué revisar, al día en 2026.",
+    "description": "Duración, fianza, gastos de agencia, subidas con el IRAV de 2026, checklist para la visita y qué hacer al irte. Basada en la LAU vigente.",
+    "price": 299,
+    "currency": "eur",
+    "file": "guia-alquilar-piso-2026.pdf",
+    "features": [
+      "Ley de vivienda al día",
+      "Checklist de visita",
+      "Subidas IRAV 2026"
+    ],
+    "color": "#1f8a7a",
     "category": "guias",
     "tags": [
-      "gym",
-      "entreno"
+      "alquiler",
+      "piso",
+      "vivienda",
+      "fianza",
+      "casero",
+      "irav"
     ]
   },
   {
-    "slug": "ejemplo-pack-inicio",
-    "name": "Pack de inicio",
-    "tagline": "Tres recursos para empezar con orden.",
-    "description": "Producto de ejemplo: guía, plantilla y planificador juntos.",
+    "slug": "kit-instagram-negocio",
+    "name": "Lanza tu negocio en Instagram",
+    "tagline": "30 días de contenido ya pensados.",
+    "description": "Cliente ideal, calendario de 30 publicaciones, perfil que convierte, plantillas de texto para vender y registro de métricas.",
     "price": 299,
     "currency": "eur",
-    "file": "ejemplo-pack-inicio.zip",
+    "file": "kit-instagram-negocio.pdf",
     "features": [
-      "Descarga inmediata",
-      "Para siempre"
+      "30 ideas de publicación",
+      "Plantillas de texto",
+      "Métricas que importan"
+    ],
+    "color": "#d6456b",
+    "category": "kits",
+    "tags": [
+      "instagram",
+      "redes",
+      "negocio",
+      "marketing",
+      "autónomo"
+    ]
+  },
+  {
+    "slug": "menu-semanal",
+    "name": "Menú semanal sin complicarte",
+    "tagline": "Planifica, compra y cocina en una tarde.",
+    "description": "Plato equilibrado, 4 semanas de menú y listas de la compra por pasillos, plan de batch cooking de 2 horas e inventario de despensa.",
+    "price": 299,
+    "currency": "eur",
+    "file": "menu-semanal.pdf",
+    "features": [
+      "4 semanas",
+      "Lista por pasillos",
+      "Batch cooking"
+    ],
+    "color": "#1f8a7a",
+    "category": "planificadores",
+    "tags": [
+      "comida",
+      "menú",
+      "compra",
+      "cocina",
+      "batch cooking",
+      "saludable"
+    ]
+  },
+  {
+    "slug": "pack-organiza-tu-2027",
+    "name": "Pack Organiza tu 2027",
+    "tagline": "Calendario, presupuesto y menú juntos.",
+    "description": "Los tres productos para empezar el año en orden: calendario 2027, presupuesto mensual con guía y menú semanal.",
+    "price": 299,
+    "currency": "eur",
+    "file": "pack-organiza-tu-2027.zip",
+    "features": [
+      "3 productos",
+      "Al mismo precio",
+      "Todo 2027"
     ],
     "color": "#c2410c",
     "category": "packs",
     "tags": [
+      "pack",
+      "2027",
       "organización",
-      "empezar"
+      "ahorro"
     ]
   }
 ]
