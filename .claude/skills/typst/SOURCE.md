@@ -1,0 +1,1 @@
+Origen: https://github.com/ChanMeng666/typst-claude-skill (skills/typst, commit 9f8db80), licencia MIT. Copiado sin modificar. En este repo Typst se usa desde Python (paquete pip «typst»), sin instalar el binario.
