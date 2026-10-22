@@ -15,7 +15,9 @@ description: Añadir, editar o retirar un producto digital de la tienda (precio,
      "price": 2500,
      "currency": "eur",
      "file": "mi-producto.pdf",
-     "accent": ["#0071e3", "#7b61ff"],
+     "color": "#2f6fde",
+     "image": "/img/mi-producto.jpg",
+     "featured": true,
      "badge": "Nuevo",
      "features": ["Punto 1", "Punto 2", "Punto 3"]
    }
@@ -23,7 +25,10 @@ description: Añadir, editar o retirar un producto digital de la tienda (precio,
    - `slug`: único, minúsculas y guiones. No cambiarlo después de vender (las compras lo guardan en Stripe).
    - `price`: **en céntimos** (25 € = 2500).
    - `file`: nombre del objeto en R2.
-   - `badge` (opcional): etiqueta naranja sobre el título, estilo Apple ("Nuevo", "Oferta"). Úsala solo en uno o dos productos.
+   - `color`: fondo de la portada si no hay imagen. Usa `#2f6fde` (azul) o `#0f2340` (marino).
+   - `image` (opcional): portada real, 4:3, en `public/img/`. Mejor que la portada de color.
+   - `featured` (opcional): sale en la portada de la web. Solo uno.
+   - `badge` (opcional): texto corto sobre el nombre ("Nuevo"). Solo en uno o dos productos.
 2. Sube el archivo al bucket privado:
    `npx wrangler r2 object put tienda-digital-files/mi-producto.pdf --file ./ruta/mi-producto.pdf`
 3. Despliega (`npm run deploy`) o haz push si hay despliegue automático.
