@@ -1,0 +1,4 @@
+# Cloudflare Pages: sitio estático sin build
+name = "web-marca"
+pages_build_output_dir = "public"
+compatibility_date = "2026-10-01"
