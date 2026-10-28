@@ -95,7 +95,7 @@ p { margin: 0; text-wrap: pretty; }
 
 /* ---------- Hero ---------- */
 .hero { padding: clamp(56px, 9vh, 112px) 0 48px; overflow: hidden; }
-.hero-grid { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1.22fr 0.78fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
 .hero h1 { font-size: clamp(48px, 6.6vw, 98px); line-height: 0.96; letter-spacing: -0.014em; }
 .hero-sub { margin-top: clamp(24px, 4vh, 40px); font-size: clamp(19px, 1.6vw, 22px); line-height: 1.38; color: var(--ink-2); max-width: 29em; letter-spacing: -0.005em; }
 .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 32px; }
@@ -117,6 +117,13 @@ p { margin: 0; text-wrap: pretty; }
   animation: bob var(--dur) ease-in-out infinite alternate; animation-delay: var(--delay);
 }
 .blk i { position: absolute; inset: 0; border-radius: var(--r, 24%); transform: translateZ(calc(var(--k) * -3px)); }
+/* Posición, giro y ritmo de cada pieza */
+.b1 { --x:14%; --y:20%; --w:46%; --rx:58deg; --ry:-8deg; --rz:-24deg; --dur:7s; --delay:-2s; }
+.b2 { --x:60%; --y:6%; --w:26%; --rx:52deg; --ry:14deg; --rz:-38deg; --dur:8.5s; --delay:-5s; }
+.b3 { --x:66%; --y:40%; --w:28%; --rx:60deg; --ry:6deg; --rz:-14deg; --dur:9s; --delay:-4s; }
+.b4 { --x:40%; --y:66%; --w:44%; --h:14%; --rx:56deg; --ry:-10deg; --rz:-18deg; --dur:6.5s; --delay:-1s; }
+.b5 { --x:4%; --y:62%; --w:20%; --rx:48deg; --ry:20deg; --rz:-30deg; --dur:7.5s; --delay:-6s; }
+.b6 { --x:36%; --y:2%; --w:13%; --rx:50deg; --ry:-18deg; --rz:-40deg; --dur:6s; --delay:-3s; }
 .blk-pill { --r: 999px; }
 .blk-ring { --r: 30%; }
 .blk i:nth-child(1) { --k: 0; }
