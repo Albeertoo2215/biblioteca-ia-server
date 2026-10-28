@@ -94,18 +94,72 @@ p { margin: 0; text-wrap: pretty; }
 @media (max-width: 860px) { .top-nav { display: none; } .top-row .btn { margin-left: auto; } }
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(72px, 12vh, 136px) 0 56px; }
-.hero h1 {
-  font-size: clamp(50px, 8.2vw, 120px); line-height: 0.96; letter-spacing: -0.022em;
-  max-width: 11.5em;
-}
-.hero-row { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: end; margin-top: clamp(32px, 5vh, 56px); }
-.hero-sub { font-size: clamp(19px, 1.7vw, 23px); line-height: 1.35; color: var(--ink-2); max-width: 30em; letter-spacing: -0.005em; }
-.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; justify-self: end; }
+.hero { padding: clamp(56px, 9vh, 112px) 0 48px; overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
+.hero h1 { font-size: clamp(48px, 6.6vw, 98px); line-height: 0.96; letter-spacing: -0.014em; }
+.hero-sub { margin-top: clamp(24px, 4vh, 40px); font-size: clamp(19px, 1.6vw, 22px); line-height: 1.38; color: var(--ink-2); max-width: 29em; letter-spacing: -0.005em; }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 32px; }
 .hero-note { flex-basis: 100%; font-size: 14px; color: var(--ink-3); letter-spacing: 0.01em; }
+
+/* Piezas 3D: losas redondeadas extruidas por capas que flotan de forma continua */
+.hero-visual { position: relative; aspect-ratio: 1 / 1; perspective: 1400px; perspective-origin: 50% 30%; }
+.hero-glow { position: absolute; inset: 6%; border-radius: 50%; background: radial-gradient(closest-side, #fdedea 0%, rgba(253, 237, 234, 0.6) 55%, rgba(253, 237, 234, 0) 100%); }
+.hero-floor {
+  position: absolute; left: 14%; right: 14%; bottom: 3%; height: 9%;
+  background: radial-gradient(closest-side, rgba(247, 59, 32, 0.22), rgba(247, 59, 32, 0));
+  filter: blur(8px); animation: floor 9s ease-in-out infinite alternate;
+}
+.cluster { position: absolute; inset: 0; transform-style: preserve-3d; animation: sway 12s ease-in-out infinite alternate; }
+.blk {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h, var(--w));
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz));
+  animation: bob var(--dur) ease-in-out infinite alternate; animation-delay: var(--delay);
+}
+.blk i { position: absolute; inset: 0; border-radius: var(--r, 24%); transform: translateZ(calc(var(--k) * -3px)); }
+.blk-pill { --r: 999px; }
+.blk-ring { --r: 30%; }
+.blk i:nth-child(1) { --k: 0; }
+.blk i:nth-child(2) { --k: 1; background: #ffc2ad; }
+.blk i:nth-child(3) { --k: 2; background: #f9846a; }
+.blk i:nth-child(4) { --k: 3; background: #f0573c; }
+.blk i:nth-child(5) { --k: 4; background: #e44529; }
+.blk i:nth-child(6) { --k: 5; background: #d63b20; }
+.blk i:nth-child(7) { --k: 6; background: #c8331a; }
+.blk i:nth-child(8) { --k: 7; background: #b92c15; }
+.blk i:nth-child(9) { --k: 8; background: #a92611; }
+/* Cara superior con luz */
+.blk i:first-child {
+  background:
+    radial-gradient(90% 90% at 28% 22%, rgba(255, 196, 176, 0.95) 0%, rgba(255, 196, 176, 0) 55%),
+    linear-gradient(155deg, #ff7454 0%, #f73b20 55%, #e5321a 100%);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 226, 214, 0.6), inset 0 -10px 24px rgba(150, 30, 10, 0.18);
+}
+/* Anillo: solo el borde, con el mismo grosor por capas */
+.blk-ring i { background: transparent !important; border: 16px solid #d63b20; box-sizing: border-box; }
+.blk-ring i:nth-child(2) { border-color: #ffc2ad; }
+.blk-ring i:nth-child(3) { border-color: #f9846a; }
+.blk-ring i:nth-child(n+4) { border-color: #d23a1f; }
+.blk-ring i:first-child { border-color: #ff6a4a; box-shadow: none; }
+
+@keyframes bob {
+  from { transform: translate3d(0, 0, 0) rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz)); }
+  to { transform: translate3d(0, -36px, 48px) rotateX(calc(var(--rx) + 14deg)) rotateY(calc(var(--ry) - 22deg)) rotateZ(calc(var(--rz) + 26deg)); }
+}
+@keyframes sway {
+  from { transform: rotateY(-16deg) rotateX(6deg); }
+  to { transform: rotateY(18deg) rotateX(-6deg); }
+}
+@keyframes floor {
+  from { transform: scaleX(0.92); opacity: 0.8; }
+  to { transform: scaleX(1.05); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .cluster, .blk, .hero-floor { animation: none; } }
+
 @media (max-width: 860px) {
-  .hero-row { grid-template-columns: 1fr; gap: 28px; }
-  .hero-cta { justify-self: start; }
+  .hero-grid { grid-template-columns: 1fr; gap: 8px; }
+  .hero-visual { width: min(100%, 420px); margin: 0 auto; order: 2; }
+  .blk-ring i { border-width: 11px; }
 }
 
 /* ---------- Escena: de la hoja de cálculo a la aplicación ---------- */
