@@ -5,139 +5,196 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>[MARCA] · Aplicaciones a medida para empresas</title>
   <meta name="description" content="Diseñamos y desarrollamos aplicaciones web a medida para empresas: herramientas internas, portales para clientes y automatizaciones.">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#171721">
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
-  <header class="top">
-    <div class="wrap nav">
+  <header class="top" id="top">
+    <div class="nav">
       <a href="#" class="logo" aria-label="[MARCA], inicio">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8052ff"/><stop offset="1" stop-color="#15846e"/></linearGradient></defs><path d="M12 2 22 20H2Z" fill="url(#lg)"/></svg>
-        [MARCA]
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 19H3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9.5 16.2 17H7.8Z" fill="currentColor"/></svg>
+        <span>[MARCA]</span>
       </a>
-      <nav aria-label="Principal">
-        <a href="#que-hacemos" class="hide-sm">Qué hacemos</a>
-        <a href="#como-trabajamos" class="hide-sm">Cómo trabajamos</a>
-        <a href="#contacto" class="btn btn-sm">Contacto</a>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#que-hacemos">Qué hacemos</a>
+        <a href="#como-trabajamos">Cómo trabajamos</a>
+        <a href="#privacidad">Privacidad</a>
       </nav>
+      <div class="nav-actions">
+        <a href="mailto:[CORREO]" class="nav-text">Escríbenos</a>
+        <a href="#contacto" class="btn btn-primary">Cuéntanos tu proyecto</a>
+      </div>
     </div>
   </header>
 
-  <canvas class="particles" id="particles" aria-hidden="true"></canvas>
-
   <main>
-    <section class="story hero" data-shape="brain" data-x="0.48" data-ry="0.35" data-scale="0.92">
-      <div class="wrap story-grid">
-        <div class="content">
-          <h1>Software hecho a la medida de tu empresa.</h1>
-          <div class="body">
-            <span class="label">Aplicaciones a medida</span>
-            <p>Diseñamos y desarrollamos aplicaciones web para empresas que trabajan con hojas de cálculo, papel o herramientas que no encajan con su forma de trabajar.</p>
-          </div>
-          <div class="hero-actions">
-            <a href="#contacto" class="btn">Cuéntanos tu proyecto</a>
-            <a href="#como-trabajamos" class="link-ghost">Cómo trabajamos →</a>
-          </div>
-        </div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <svg class="landscape" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3a4157"/>
+              <stop offset="0.38" stop-color="#8d8fa3"/>
+              <stop offset="0.6" stop-color="#d9b9a2"/>
+              <stop offset="0.72" stop-color="#e9cdb4"/>
+              <stop offset="1" stop-color="#9aa1ad"/>
+            </linearGradient>
+            <radialGradient id="glow" cx="0.5" cy="0.62" r="0.45">
+              <stop offset="0" stop-color="#fbe3c8" stop-opacity="0.95"/>
+              <stop offset="0.5" stop-color="#f0c9a8" stop-opacity="0.35"/>
+              <stop offset="1" stop-color="#f0c9a8" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#171721" stop-opacity="0"/>
+              <stop offset="0.7" stop-color="#171721" stop-opacity="0.35"/>
+              <stop offset="1" stop-color="#171721" stop-opacity="1"/>
+            </linearGradient>
+            <filter id="blur-lg"><feGaussianBlur stdDeviation="28"/></filter>
+            <filter id="blur-md"><feGaussianBlur stdDeviation="14"/></filter>
+            <filter id="blur-sm"><feGaussianBlur stdDeviation="2.5"/></filter>
+          </defs>
+
+          <rect width="1600" height="1000" fill="url(#sky)"/>
+          <rect width="1600" height="1000" fill="url(#glow)"/>
+
+          <g class="layer" data-depth="0.06">
+            <path filter="url(#blur-sm)" fill="#a7a6b3" d="M0 610 L120 560 L210 585 L320 520 L430 570 L540 530 L640 575 L760 545 L840 590 L960 540 L1080 575 L1180 520 L1300 565 L1400 530 L1500 570 L1600 545 V1000 H0Z"/>
+          </g>
+          <g class="layer fog" data-depth="0.1">
+            <ellipse cx="420" cy="600" rx="420" ry="40" fill="#f1e6dc" opacity="0.55" filter="url(#blur-lg)"/>
+            <ellipse cx="1220" cy="590" rx="460" ry="44" fill="#f1e6dc" opacity="0.5" filter="url(#blur-lg)"/>
+          </g>
+          <g class="layer" data-depth="0.12">
+            <path filter="url(#blur-sm)" fill="#7b8189" d="M0 660 L90 620 L180 650 L300 585 L380 625 L470 600 L560 650 L640 640 L720 668 L800 660 L880 670 L960 655 L1040 625 L1140 600 L1230 640 L1330 590 L1430 630 L1520 610 L1600 640 V1000 H0Z"/>
+          </g>
+          <g class="layer fog" data-depth="0.16">
+            <ellipse cx="200" cy="690" rx="360" ry="46" fill="#e8e3df" opacity="0.6" filter="url(#blur-md)"/>
+            <ellipse cx="1420" cy="680" rx="380" ry="50" fill="#e8e3df" opacity="0.55" filter="url(#blur-md)"/>
+          </g>
+          <g class="layer" data-depth="0.2">
+            <path fill="#4b5a52" d="M0 700 C120 660 210 640 330 690 C410 720 470 700 560 745 C620 772 680 760 740 780 L760 790 C820 770 880 776 940 760 C1040 730 1120 700 1220 690 C1330 676 1440 700 1600 650 V1000 H0Z"/>
+          </g>
+          <g class="layer" data-depth="0.28">
+            <path fill="#34433b" d="M0 760 C140 720 260 735 360 780 C450 820 560 830 660 840 C760 850 860 846 960 830 C1080 810 1170 770 1290 760 C1400 750 1500 770 1600 740 V1000 H0Z"/>
+            <path fill="#2b3831" opacity="0.9" d="M1180 790 l14 -60 l14 60 l10 -44 l12 44 l14 -70 l14 70 l10 -38 l12 38 l14 -56 l14 56 l12 -48 l12 48 l14 -64 l14 64 l10 -40 l12 40 l14 -60 l14 60 l10 -34 l12 34 l14 -50 l14 50 l12 -42 l12 42 l14 -58 l14 58 l10 -36 l12 36 l14 -60 l14 60 l10 -40 l12 40 l14 -52 l14 52 V1000 H1180Z"/>
+            <path fill="#2b3831" opacity="0.9" d="M0 800 l12 -46 l12 46 l14 -62 l14 62 l10 -38 l12 38 l14 -56 l14 56 l12 -44 l12 44 l14 -66 l14 66 l10 -40 l12 40 l14 -54 l14 54 l12 -36 l12 36 l14 -48 l14 48 V1000 H0Z"/>
+          </g>
+          <g class="layer" data-depth="0.36">
+            <path fill="#232a24" d="M0 880 C220 830 420 800 620 806 C820 812 980 840 1160 860 C1320 878 1460 870 1600 850 V1000 H0Z"/>
+          </g>
+          <rect width="1600" height="1000" fill="url(#fade)"/>
+        </svg>
+        <div class="hero-overlay"></div>
       </div>
+
+      <div class="hero-content">
+        <h1 id="hero-title">Software hecho a la medida de tu empresa</h1>
+        <p class="hero-sub">Diseñamos y desarrollamos aplicaciones web para empresas que trabajan con hojas de cálculo, papel o herramientas que no encajan con su forma de trabajar.</p>
+        <form class="capture" id="hero-capture" novalidate>
+          <label class="sr-only" for="hero-email">Tu correo electrónico</label>
+          <input id="hero-email" type="email" placeholder="Tu correo electrónico" autocomplete="email">
+          <button class="btn btn-primary" type="submit">Empezar</button>
+        </form>
+      </div>
+
+      <p class="disclaimer">Cada proyecto es distinto: el presupuesto lo preparamos contigo una vez nos pongamos en contacto.</p>
     </section>
 
-    <section id="que-hacemos" class="story" data-shape="brain" data-x="-0.6" data-ry="-0.2" data-scale="1.35">
-      <div class="wrap story-grid">
-        <div class="content right">
+    <section id="que-hacemos" class="section">
+      <div class="wrap">
+        <div class="section-head">
           <h2>Qué hacemos</h2>
-          <ul class="list">
-            <li>
-              <h3>Herramientas internas</h3>
-              <p>Aplicaciones para gestionar clientes, pedidos, trabajos, inventario, turnos o cualquier proceso que hoy se lleva a mano o en varias hojas de cálculo.</p>
-            </li>
-            <li>
-              <h3>Portales para tus clientes</h3>
-              <p>Espacios web donde tus clientes pueden hacer solicitudes, reservar, consultar el estado de un pedido o descargar documentos.</p>
-            </li>
-            <li>
-              <h3>Automatizaciones e integraciones</h3>
-              <p>Conectamos las herramientas que ya usas para que los datos no se copien a mano de un sitio a otro, siempre que esas herramientas lo permitan.</p>
-            </li>
-            <li>
-              <h3>Mantenimiento y evolución</h3>
-              <p>Después de la entrega podemos encargarnos del alojamiento, las copias de seguridad, las actualizaciones y los cambios que vayas necesitando.</p>
-            </li>
-          </ul>
+          <p class="lead">Creamos aplicaciones pensadas para tu forma de trabajar, no al revés.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg>
+            <h3>Herramientas internas</h3>
+            <p>Aplicaciones para gestionar clientes, pedidos, trabajos, inventario, turnos o cualquier proceso que hoy se lleva a mano o en varias hojas de cálculo.</p>
+          </article>
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg>
+            <h3>Portales para tus clientes</h3>
+            <p>Espacios web donde tus clientes pueden hacer solicitudes, reservar, consultar el estado de un pedido o descargar documentos.</p>
+          </article>
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7h8a4 4 0 0 1 0 8h-1M16 17H8a4 4 0 0 1 0-8h1"/></svg>
+            <h3>Automatizaciones e integraciones</h3>
+            <p>Conectamos las herramientas que ya usas para que los datos no se copien a mano de un sitio a otro, siempre que esas herramientas lo permitan.</p>
+          </article>
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5"/><circle cx="12" cy="12" r="3.5"/></svg>
+            <h3>Mantenimiento y evolución</h3>
+            <p>Después de la entrega podemos encargarnos del alojamiento, las copias de seguridad, las actualizaciones y los cambios que vayas necesitando.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="story center" data-shape="scatter" data-x="0" data-ry="0" data-scale="1">
-      <div class="wrap">
-        <div class="content statement">
-          <p>Información repartida entre hojas de cálculo, correos, papeles y mensajes.</p>
-          <p>Datos que se copian a mano de un sitio a otro. Procesos que dependen de que nadie se olvide de nada.</p>
-          <p class="accent">Una aplicación pensada para tu forma de trabajar lo pone todo en un mismo sitio.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="como-trabajamos" class="story" data-shape="bulb" data-x="-0.55" data-ry="0.3" data-scale="1.1">
-      <div class="wrap story-grid">
-        <div class="content right">
+    <section id="como-trabajamos" class="section">
+      <div class="wrap split">
+        <div class="section-head">
           <h2>Cómo trabajamos</h2>
-          <ol class="list steps">
-            <li>
-              <h3>Nos cuentas qué necesitas</h3>
-              <p>Rellenas el formulario y hablamos para entender cómo trabajáis hoy y qué queréis mejorar.</p>
-            </li>
-            <li>
-              <h3>Te enviamos una propuesta</h3>
-              <p>Con el alcance, las fases y el presupuesto de tu proyecto. Cada proyecto es distinto, por eso el precio lo vemos contigo una vez nos pongamos en contacto.</p>
-            </li>
-            <li>
-              <h3>Desarrollo por fases</h3>
-              <p>Construimos la aplicación por partes y te la enseñamos en cada fase para que puedas revisarla antes de seguir.</p>
-            </li>
-            <li>
-              <h3>Entrega y acompañamiento</h3>
-              <p>Ponemos la aplicación en marcha, os enseñamos a usarla y, si lo deseas, nos ocupamos de su mantenimiento.</p>
-            </li>
-          </ol>
+          <p class="lead">Un proceso claro, por fases, para que veas el avance desde el principio.</p>
+          <a href="#contacto" class="btn btn-ghost">Cuéntanos tu proyecto</a>
         </div>
+        <ol class="steps">
+          <li>
+            <span class="step-n">01</span>
+            <div><h3>Nos cuentas qué necesitas</h3><p>Rellenas el formulario y hablamos para entender cómo trabajáis hoy y qué queréis mejorar.</p></div>
+          </li>
+          <li>
+            <span class="step-n">02</span>
+            <div><h3>Te enviamos una propuesta</h3><p>Con el alcance, las fases y el presupuesto de tu proyecto. Cada proyecto es distinto, por eso el precio lo vemos contigo una vez nos pongamos en contacto.</p></div>
+          </li>
+          <li>
+            <span class="step-n">03</span>
+            <div><h3>Desarrollo por fases</h3><p>Construimos la aplicación por partes y te la enseñamos en cada fase para que puedas revisarla antes de seguir.</p></div>
+          </li>
+          <li>
+            <span class="step-n">04</span>
+            <div><h3>Entrega y acompañamiento</h3><p>Ponemos la aplicación en marcha, os enseñamos a usarla y, si lo deseas, nos ocupamos de su mantenimiento.</p></div>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <section class="story" data-shape="sphere" data-x="0.55" data-ry="0" data-scale="1.15">
-      <div class="wrap story-grid">
-        <div class="content">
-          <h2>Tus datos, tus reglas</h2>
-          <div class="body">
-            <span class="label">Privacidad desde el diseño</span>
-            <p>Cada proyecto se desarrolla en un entorno propio y separado del resto de clientes.</p>
-            <p>Aplicamos la normativa de protección de datos desde el inicio: recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento que exige el RGPD.</p>
-            <p>Usamos herramientas de inteligencia artificial para desarrollar con más agilidad, y revisamos todo el código antes de entregarlo.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="block contact" data-shape="scatter" data-x="0" data-ry="0" data-scale="1" data-dim="0.35">
+    <section id="privacidad" class="section">
       <div class="wrap">
-        <div class="split">
-          <h2>Cuéntanos tu proyecto.</h2>
-          <div class="body">
-            <p>Cuanto más detalle nos des, mejor podremos entender lo que necesitas. Los campos marcados con * son obligatorios; el resto, rellénalos solo si quieres.</p>
+        <div class="card card-wide">
+          <div class="split">
+            <div>
+              <span class="eyebrow">Privacidad desde el diseño</span>
+              <h2>Tus datos, tus reglas</h2>
+            </div>
+            <div class="stack">
+              <p>Cada proyecto se desarrolla en un entorno propio y separado del resto de clientes.</p>
+              <p>Aplicamos la normativa de protección de datos desde el inicio: recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento que exige el RGPD.</p>
+              <p>Usamos herramientas de inteligencia artificial para desarrollar con más agilidad, y revisamos todo el código antes de entregarlo.</p>
+            </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <div class="wrap">
+        <div class="section-head center">
+          <h2>Cuéntanos tu proyecto</h2>
+          <p class="lead">Cuanto más detalle nos des, mejor podremos entender lo que necesitas. Los campos marcados con * son obligatorios.</p>
         </div>
 
         <!-- Pendiente: sustituir FORM_ENDPOINT por el servicio de formularios elegido (ver README) -->
         <form class="form" id="contact-form" action="FORM_ENDPOINT" method="POST" novalidate>
-          <fieldset>
+          <fieldset class="card">
             <legend>Tus datos</legend>
             <div class="fields">
               <label class="field"><span>Nombre y apellidos *</span><input type="text" name="nombre" required autocomplete="name" maxlength="120"></label>
               <label class="field"><span>Empresa *</span><input type="text" name="empresa" required autocomplete="organization" maxlength="160"></label>
               <label class="field"><span>Cargo <em>(opcional)</em></span><input type="text" name="cargo" autocomplete="organization-title" maxlength="120"></label>
-              <label class="field"><span>Correo electrónico *</span><input type="email" name="email" required autocomplete="email" maxlength="160"></label>
+              <label class="field"><span>Correo electrónico *</span><input type="email" name="email" id="form-email" required autocomplete="email" maxlength="160"></label>
               <label class="field"><span>Teléfono <em>(opcional)</em></span><input type="tel" name="telefono" autocomplete="tel" maxlength="30"></label>
               <label class="field"><span>Web de la empresa <em>(opcional)</em></span><input type="url" name="web" autocomplete="url" placeholder="https://" maxlength="200"></label>
               <label class="field"><span>Sector o actividad *</span><input type="text" name="sector" required maxlength="160"></label>
@@ -162,12 +219,12 @@
             </div>
           </fieldset>
 
-          <fieldset>
+          <fieldset class="card">
             <legend>Qué necesitas<small>Explícalo con tus palabras, sin tecnicismos.</small></legend>
             <div class="fields">
               <div class="field full">
-                <span class="group-title">Tipo de proyecto *</span>
-                <div class="checks" role="group" aria-label="Tipo de proyecto">
+                <span>Tipo de proyecto *</span>
+                <div class="chips" role="group" aria-label="Tipo de proyecto">
                   <label class="chip"><input type="radio" name="tipo" value="Aplicación nueva" required><span>Aplicación nueva</span></label>
                   <label class="chip"><input type="radio" name="tipo" value="Mejorar una aplicación existente"><span>Mejorar una existente</span></label>
                   <label class="chip"><input type="radio" name="tipo" value="Automatizar un proceso"><span>Automatizar un proceso</span></label>
@@ -189,8 +246,8 @@
               </label>
 
               <div class="field full">
-                <span class="group-title">Funciones que podrías necesitar <em>(marca las que apliquen)</em></span>
-                <div class="checks" role="group" aria-label="Funciones">
+                <span>Funciones que podrías necesitar <em>(marca las que apliquen)</em></span>
+                <div class="chips" role="group" aria-label="Funciones">
                   <label class="chip"><input type="checkbox" name="funciones" value="Usuarios y permisos"><span>Usuarios y permisos</span></label>
                   <label class="chip"><input type="checkbox" name="funciones" value="Gestión de clientes"><span>Gestión de clientes</span></label>
                   <label class="chip"><input type="checkbox" name="funciones" value="Agenda o reservas"><span>Agenda o reservas</span></label>
@@ -228,8 +285,8 @@
               </label>
 
               <div class="field full">
-                <span class="group-title">¿Desde dónde se usará?</span>
-                <div class="checks" role="group" aria-label="Dispositivos">
+                <span>¿Desde dónde se usará?</span>
+                <div class="chips" role="group" aria-label="Dispositivos">
                   <label class="chip"><input type="checkbox" name="dispositivos" value="Ordenador"><span>Ordenador</span></label>
                   <label class="chip"><input type="checkbox" name="dispositivos" value="Móvil"><span>Móvil</span></label>
                   <label class="chip"><input type="checkbox" name="dispositivos" value="Tablet"><span>Tablet</span></label>
@@ -242,8 +299,8 @@
               </label>
 
               <div class="field full">
-                <span class="group-title">¿Qué tipo de datos manejará? <em>(nos ayuda a aplicar las medidas de protección adecuadas)</em></span>
-                <div class="checks" role="group" aria-label="Tipo de datos">
+                <span>¿Qué tipo de datos manejará? <em>(nos ayuda a aplicar las medidas de protección adecuadas)</em></span>
+                <div class="chips" role="group" aria-label="Tipo de datos">
                   <label class="chip"><input type="checkbox" name="datos" value="Datos de contacto de personas"><span>Datos de contacto</span></label>
                   <label class="chip"><input type="checkbox" name="datos" value="Datos económicos o bancarios"><span>Económicos o bancarios</span></label>
                   <label class="chip"><input type="checkbox" name="datos" value="Datos de salud u otros especialmente protegidos"><span>Salud u otros sensibles</span></label>
@@ -284,15 +341,15 @@
           <!-- Campo trampa para bots: debe quedar vacío -->
           <label class="hp" aria-hidden="true">No rellenar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
 
-          <div class="fields">
-            <div class="legal-note full">
+          <div class="card submit-card">
+            <div class="legal-note">
               <p><strong>Información básica sobre protección de datos.</strong> Responsable: <span class="ph">[NOMBRE O RAZÓN SOCIAL]</span>. Finalidad: atender tu solicitud y, en su caso, preparar una propuesta. Legitimación: tu consentimiento y la aplicación de medidas precontractuales a petición tuya. Destinatarios: no se ceden datos a terceros salvo obligación legal; los proveedores que nos prestan servicios técnicos actúan como encargados del tratamiento. Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad. Más información en la <a href="privacidad.html">política de privacidad</a>.</p>
               <p>Te pedimos que no incluyas en el formulario datos personales de terceros ni datos especialmente protegidos (salud, ideología, etc.). Basta con que nos indiques el tipo de datos que manejará la aplicación.</p>
             </div>
-            <label class="consent full"><input type="checkbox" name="acepta_privacidad" value="si" required> <span>He leído la <a href="privacidad.html">política de privacidad</a> y consiento el tratamiento de mis datos para atender esta solicitud. *</span></label>
-            <label class="consent full"><input type="checkbox" name="acepta_comunicaciones" value="si"> <span>Quiero recibir ocasionalmente información sobre vuestros servicios. Puedo retirar este consentimiento en cualquier momento. <em class="muted">(opcional)</em></span></label>
-            <div class="full">
-              <button class="btn" type="submit">Enviar solicitud</button>
+            <label class="consent"><input type="checkbox" name="acepta_privacidad" value="si" required> <span>He leído la <a href="privacidad.html">política de privacidad</a> y consiento el tratamiento de mis datos para atender esta solicitud. *</span></label>
+            <label class="consent"><input type="checkbox" name="acepta_comunicaciones" value="si"> <span>Quiero recibir ocasionalmente información sobre vuestros servicios. Puedo retirar este consentimiento en cualquier momento. <em>(opcional)</em></span></label>
+            <div class="submit-row">
+              <button class="btn btn-primary btn-lg" type="submit">Enviar solicitud</button>
               <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
             </div>
           </div>
@@ -303,13 +360,18 @@
 
   <footer class="foot">
     <div class="wrap foot-row">
-      <p>© <span id="year">2026</span> [MARCA] · <a href="mailto:[CORREO]">[CORREO]</a></p>
+      <a href="#" class="logo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 19H3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9.5 16.2 17H7.8Z" fill="currentColor"/></svg>
+        <span>[MARCA]</span>
+      </a>
       <nav aria-label="Legal">
         <a href="aviso-legal.html">Aviso legal</a>
         <a href="privacidad.html">Privacidad</a>
         <a href="cookies.html">Cookies</a>
+        <a href="mailto:[CORREO]">[CORREO]</a>
       </nav>
     </div>
+    <p class="wrap foot-note">© <span id="year">2026</span> [MARCA]. La información de esta web es orientativa y no constituye una oferta vinculante.</p>
   </footer>
 
   <script src="main.js" defer></script>

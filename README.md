@@ -7,7 +7,8 @@ Herramientas internas, portales para clientes y automatizaciones que sustituyen 
 ## Estructura
 - `public/index.html`: web de una sola página (HTML/CSS/JS, sin framework) con formulario de contacto detallado.
 - `public/aviso-legal.html`, `privacidad.html`, `cookies.html`: textos legales (LSSI-CE, RGPD/LOPDGDD).
-- `public/main.js`: animación del hero y envío del formulario.
+- `public/main.js`: navegación, parallax del paisaje del hero y envío del formulario.
+- El paisaje del hero es un SVG propio; se puede sustituir por una foto con licencia (p. ej. Unsplash) si se prefiere.
 - `public/fonts/`: tipografía Inter autoalojada (sin peticiones a Google Fonts).
 - `public/_headers`: cabeceras de seguridad para Cloudflare Pages.
 - `wrangler.toml`: configuración de Cloudflare Pages.
