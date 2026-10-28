@@ -25,10 +25,12 @@
     </div>
   </header>
 
+  <canvas class="particles" id="particles" aria-hidden="true"></canvas>
+
   <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-text">
+    <section class="story hero" data-shape="brain" data-x="0.48" data-ry="0.35" data-scale="0.92">
+      <div class="wrap story-grid">
+        <div class="content">
           <h1>Software hecho a la medida de tu empresa.</h1>
           <div class="body">
             <span class="label">Aplicaciones a medida</span>
@@ -39,14 +41,13 @@
             <a href="#como-trabajamos" class="link-ghost">Cómo trabajamos →</a>
           </div>
         </div>
-        <canvas class="constellation" id="constellation" aria-hidden="true"></canvas>
       </div>
     </section>
 
-    <section id="que-hacemos" class="block">
-      <div class="wrap split">
-        <h2>Qué hacemos.</h2>
-        <div>
+    <section id="que-hacemos" class="story" data-shape="brain" data-x="-0.6" data-ry="-0.2" data-scale="1.35">
+      <div class="wrap story-grid">
+        <div class="content right">
+          <h2>Qué hacemos</h2>
           <ul class="list">
             <li>
               <h3>Herramientas internas</h3>
@@ -69,10 +70,20 @@
       </div>
     </section>
 
-    <section id="como-trabajamos" class="block">
-      <div class="wrap split">
-        <h2>Cómo trabajamos.</h2>
-        <div>
+    <section class="story center" data-shape="scatter" data-x="0" data-ry="0" data-scale="1">
+      <div class="wrap">
+        <div class="content statement">
+          <p>Información repartida entre hojas de cálculo, correos, papeles y mensajes.</p>
+          <p>Datos que se copian a mano de un sitio a otro. Procesos que dependen de que nadie se olvide de nada.</p>
+          <p class="accent">Una aplicación pensada para tu forma de trabajar lo pone todo en un mismo sitio.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-trabajamos" class="story" data-shape="bulb" data-x="-0.55" data-ry="0.3" data-scale="1.1">
+      <div class="wrap story-grid">
+        <div class="content right">
+          <h2>Cómo trabajamos</h2>
           <ol class="list steps">
             <li>
               <h3>Nos cuentas qué necesitas</h3>
@@ -95,19 +106,21 @@
       </div>
     </section>
 
-    <section class="block">
-      <div class="wrap split">
-        <h2>Tus datos, tus reglas.</h2>
-        <div class="body">
-          <span class="label">Privacidad desde el diseño</span>
-          <p>Cada proyecto se desarrolla en un entorno propio y separado del resto de clientes.</p>
-          <p>Aplicamos la normativa de protección de datos desde el inicio: recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento que exige el RGPD.</p>
-          <p>Usamos herramientas de inteligencia artificial para desarrollar con más agilidad, y revisamos todo el código antes de entregarlo.</p>
+    <section class="story" data-shape="sphere" data-x="0.55" data-ry="0" data-scale="1.15">
+      <div class="wrap story-grid">
+        <div class="content">
+          <h2>Tus datos, tus reglas</h2>
+          <div class="body">
+            <span class="label">Privacidad desde el diseño</span>
+            <p>Cada proyecto se desarrolla en un entorno propio y separado del resto de clientes.</p>
+            <p>Aplicamos la normativa de protección de datos desde el inicio: recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento que exige el RGPD.</p>
+            <p>Usamos herramientas de inteligencia artificial para desarrollar con más agilidad, y revisamos todo el código antes de entregarlo.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contacto" class="block">
+    <section id="contacto" class="block contact" data-shape="scatter" data-x="0" data-ry="0" data-scale="1" data-dim="0.35">
       <div class="wrap">
         <div class="split">
           <h2>Cuéntanos tu proyecto.</h2>

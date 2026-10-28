@@ -97,30 +97,43 @@ h3 { font-size: 24px; line-height: 1.25; letter-spacing: -0.02em; margin-bottom:
 .body p { margin: 0 0 18px; }
 .muted { color: var(--ash); font-size: 15px; }
 
-/* ---------- Hero ---------- */
-.hero { position: relative; overflow: hidden; }
-.hero-grid {
-  display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center;
-  gap: 36px; min-height: min(86vh, 860px); padding-top: 36px; padding-bottom: 96px;
+/* ---------- Partículas de fondo ---------- */
+.particles {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  z-index: 0; pointer-events: none; display: block;
 }
-.hero-text .body { margin: 30px 0 36px; }
-.hero-actions { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
-.constellation { width: 100%; aspect-ratio: 1; display: block; }
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; min-height: 0; padding-bottom: 60px; }
-  .constellation { max-width: 420px; margin: 0 auto; order: -1; }
-}
+.top, main, .foot { position: relative; z-index: 1; }
 
-/* ---------- Secciones a dos columnas ---------- */
+/* ---------- Secciones narrativas (las partículas cambian de forma en cada una) ---------- */
+.story { min-height: 100vh; display: flex; align-items: center; padding: 96px 0; }
+.story.hero { min-height: calc(100vh - 84px); padding-top: 24px; }
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; }
+.story .content { max-width: 560px; }
+.story .content.right { grid-column: 2; }
+.story h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 36px; }
+.hero h1 { font-size: clamp(48px, 7.4vw, 104px); }
+.hero .body { margin: 30px 0 36px; }
+.hero-actions { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+
+.story.center .wrap { width: 100%; }
+.statement { max-width: 760px; margin: 0 auto; text-align: center; }
+.statement p { font-size: clamp(20px, 2.2vw, 27px); font-weight: 300; line-height: 1.45; margin: 0 0 30px; color: var(--white); }
+.statement .accent { color: var(--saffron); }
+
 section.block { padding: 96px 0; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .split .body { padding-top: 12px; }
+
 @media (max-width: 900px) {
+  .story { min-height: 90vh; padding: 60px 0; }
+  .story-grid { grid-template-columns: 1fr; }
+  .story .content.right { grid-column: 1; }
+  .story .content { background: radial-gradient(closest-side, rgba(0,0,0,0.75), rgba(0,0,0,0.35) 70%, transparent); }
   section.block { padding: 60px 0; }
   .split { grid-template-columns: 1fr; gap: 30px; }
 }
 
-.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 36px; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 30px; }
 .list li { max-width: 520px; }
 .list p { margin: 0; color: var(--silver); }
 
@@ -131,6 +144,9 @@ section.block { padding: 96px 0; }
   position: absolute; left: 0; top: 2px;
   color: var(--iris); font-size: 14px; font-weight: 600; letter-spacing: 0.025em;
 }
+
+/* El formulario necesita un fondo opaco para leerse sobre las partículas */
+.contact .form fieldset, .contact .form > .fields { background: rgba(0, 0, 0, 0.72); border-radius: var(--radius); }
 
 /* ---------- Formulario ---------- */
 .form { display: grid; gap: 60px; margin-top: 60px; }
