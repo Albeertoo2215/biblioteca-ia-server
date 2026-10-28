@@ -3,149 +3,231 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>[MARCA] · Aplicaciones a medida para empresas</title>
-  <meta name="description" content="Diseñamos y desarrollamos aplicaciones web a medida para empresas: herramientas internas, portales para clientes y automatizaciones.">
+  <title>[MARCA] · Aplicaciones web a medida para pymes</title>
+  <meta name="description" content="Hacemos aplicaciones web a medida para pymes: pedidos, clientes, trabajos y presupuestos, pensadas para cómo trabaja tu equipo.">
   <meta name="theme-color" content="#ffffff">
-  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
-  <main>
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="hero-panel" id="hero-panel">
-        <div class="discs" id="discs" aria-hidden="true">
-          <div class="disc-wrap" style="--x:-6%;--y:58%;--s:40vw;--rx:58deg;--rz:-28deg;--d:0.9"><div class="disc"></div></div>
-          <div class="disc-wrap" style="--x:4%;--y:30%;--s:30vw;--rx:56deg;--rz:-34deg;--d:0.6"><div class="disc"></div></div>
-          <div class="disc-wrap" style="--x:10%;--y:4%;--s:26vw;--rx:52deg;--rz:-38deg;--d:0.45"><div class="disc"></div></div>
-          <div class="disc-wrap" style="--x:30%;--y:-24%;--s:34vw;--rx:48deg;--rz:-20deg;--d:0.7"><div class="disc"></div></div>
-          <div class="disc-wrap" style="--x:66%;--y:-30%;--s:30vw;--rx:54deg;--rz:-44deg;--d:0.5"><div class="disc disc-ring"></div></div>
-          <div class="disc-wrap" style="--x:80%;--y:16%;--s:12vw;--rx:50deg;--rz:-30deg;--d:1.1"><div class="disc"></div></div>
-        </div>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
 
-        <header class="top">
-          <a href="#inicio" class="logo" aria-label="[MARCA], inicio">[MARCA]</a>
-          <div class="top-actions">
-            <a href="mailto:[CORREO]" class="btn btn-glass">Escríbenos</a>
-            <a href="#contacto" class="btn btn-white">Cuéntanos tu proyecto</a>
+  <header class="top" id="top">
+    <div class="wrap top-row">
+      <a href="#" class="logo">[MARCA]</a>
+      <nav class="top-nav" aria-label="Principal">
+        <a href="#que-hacemos">Qué hacemos</a>
+        <a href="#como-trabajamos">Cómo trabajamos</a>
+        <a href="#privacidad">Privacidad</a>
+      </nav>
+      <a href="#contacto" class="btn btn-primary">Contar mi proyecto</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <h1 id="hero-title">Tu empresa no cabe en una hoja de cálculo.</h1>
+        <div class="hero-row">
+          <p class="hero-sub">Hacemos aplicaciones web a medida para pymes: pedidos, clientes, trabajos, presupuestos. Pensadas para cómo trabaja tu equipo, no al revés.</p>
+          <div class="hero-cta">
+            <a href="#contacto" class="btn btn-primary btn-lg">Contar mi proyecto</a>
+            <a href="#como-trabajamos" class="link-arrow">Ver cómo trabajamos <span aria-hidden="true">→</span></a>
+            <p class="hero-note">Presupuesto por escrito antes de empezar.</p>
           </div>
-        </header>
+        </div>
+      </div>
+    </section>
 
-        <div class="hero-bottom">
-          <h1 id="hero-title" class="hero-title">Software a&nbsp;la medida de tu empresa</h1>
-          <div class="hero-side">
-            <p>Diseñamos y desarrollamos aplicaciones web para empresas que trabajan con hojas de cálculo, papel o herramientas que no encajan con su forma de trabajar.</p>
-            <div class="hero-actions">
-              <a href="#contacto" class="btn btn-white">Cuéntanos tu proyecto</a>
-              <a href="#como-trabajamos" class="btn btn-glass">Cómo trabajamos</a>
+    <section class="scene" id="escena" data-stage="1" aria-label="De la hoja de cálculo a una aplicación">
+      <div class="scene-sticky">
+        <div class="wrap scene-grid">
+          <div class="scene-copy">
+            <ol class="scene-steps">
+              <li class="scene-step" data-i="0">
+                <span class="scene-n">01</span>
+                <h2>Así suele empezar</h2>
+                <p>Una hoja compartida, tres versiones del mismo archivo y pedidos que llegan por correo y por WhatsApp.</p>
+              </li>
+              <li class="scene-step" data-i="1">
+                <span class="scene-n">02</span>
+                <h2>Lo ordenamos</h2>
+                <p>Cada pedido entra una sola vez. Todo el equipo ve lo mismo, desde el ordenador o el móvil.</p>
+              </li>
+              <li class="scene-step" data-i="2">
+                <span class="scene-n">03</span>
+                <h2>Y quitamos el trabajo repetido</h2>
+                <p>Avisos al cliente, presupuestos en PDF e informes del mes, sin copiar datos a mano.</p>
+              </li>
+            </ol>
+            <div class="scene-progress" aria-hidden="true"><span></span></div>
+          </div>
+
+          <figure class="scene-stage">
+            <div class="device" aria-hidden="true">
+              <div class="device-bar">
+                <span class="dots"><i></i><i></i><i></i></span>
+                <span class="device-title" data-t0="pedidos_FINAL_v3 (2).xlsx" data-t1="Pedidos · Tu aplicación" data-t2="Pedidos · Tu aplicación">pedidos_FINAL_v3 (2).xlsx</span>
+              </div>
+
+              <!-- Estado 1: hoja de cálculo -->
+              <div class="sheet">
+                <div class="sheet-head"><span></span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span></div>
+                <div class="sheet-row"><span>1</span><span><b>Nº</b></span><span><b>Cliente</b></span><span><b>Estado</b></span><span><b>Fecha</b></span><span><b>Notas</b></span></div>
+                <div class="sheet-row"><span>2</span><span>1041</span><span>Cliente A</span><span class="hl-y">pte llamar??</span><span>12/03</span><span>ver correo</span></div>
+                <div class="sheet-row"><span>3</span><span>1042</span><span>Cliente B</span><span>hecho</span><span>13/3</span><span></span></div>
+                <div class="sheet-row dup"><span>4</span><span>1042</span><span>Cliente B</span><span>HECHO</span><span>13/03</span><span class="hl-r">¿duplicado?</span></div>
+                <div class="sheet-row"><span>5</span><span>1043</span><span>Cliente C</span><span class="hl-y">en curso</span><span>14-03</span><span>lo lleva Ana</span></div>
+                <div class="sheet-row"><span>6</span><span>1044</span><span>Cliente D</span><span></span><span>?</span><span class="hl-r">falta precio</span></div>
+                <div class="sheet-row"><span>7</span><span>1045</span><span>Cliente E</span><span>pendiente</span><span>15/03</span><span>pedido por WhatsApp</span></div>
+                <div class="sheet-row"><span>8</span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="sheet-tabs"><span class="on">Pedidos</span><span>Pedidos (copia)</span><span>NO TOCAR</span></div>
+              </div>
+
+              <!-- Estados 2 y 3: aplicación -->
+              <div class="app">
+                <aside class="app-side">
+                  <span class="app-brand">Tu empresa</span>
+                  <span class="app-link on">Pedidos</span>
+                  <span class="app-link">Clientes</span>
+                  <span class="app-link">Presupuestos</span>
+                  <span class="app-link">Informes</span>
+                </aside>
+                <div class="app-main">
+                  <div class="app-head">
+                    <span class="app-h">Pedidos</span>
+                    <span class="app-filter">Esta semana</span>
+                    <span class="app-new">Nuevo pedido</span>
+                  </div>
+                  <div class="app-table">
+                    <div class="app-tr th"><span>Pedido</span><span>Cliente</span><span>Responsable</span><span>Estado</span></div>
+                    <div class="app-tr"><span>#1041</span><span>Cliente A</span><span>Ana</span><span class="st st-wait">Pendiente</span></div>
+                    <div class="app-tr"><span>#1042</span><span>Cliente B</span><span>Luis</span><span class="st st-ok">Entregado</span></div>
+                    <div class="app-tr"><span>#1043</span><span>Cliente C</span><span>Ana</span><span class="st st-run">En curso</span></div>
+                    <div class="app-tr"><span>#1044</span><span>Cliente D</span><span>Marta</span><span class="st st-wait">Pendiente</span></div>
+                    <div class="app-tr"><span>#1045</span><span>Cliente E</span><span>Luis</span><span class="st st-run">En curso</span></div>
+                  </div>
+                  <div class="app-auto">
+                    <div class="toast t1"><b>Aviso enviado</b> Cliente B: «Tu pedido #1042 está listo».</div>
+                    <div class="toast t2"><b>Presupuesto generado</b> presupuesto_1044.pdf</div>
+                    <div class="toast t3"><b>Informe de marzo</b> listo para descargar</div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+            <figcaption>Ejemplo ilustrativo. Cada aplicación se diseña para el proceso real de cada empresa.</figcaption>
+          </figure>
         </div>
-        <a href="#manifiesto" class="scroll-chip"><span aria-hidden="true">↓</span> Scroll</a>
       </div>
     </section>
 
-    <section class="manifesto" id="manifiesto">
+    <section class="section" id="que-hacemos" aria-labelledby="qh-title">
       <div class="wrap">
-        <p class="manifesto-text" id="manifesto-text">Creamos aplicaciones pensadas para <em>tu forma de trabajar</em>, no al revés. Herramientas que sustituyen hojas de cálculo, papeles y mensajes sueltos por <em>un solo sitio</em> donde todo está en orden.</p>
-      </div>
-    </section>
-
-    <section class="section" id="que-hacemos">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="kicker">Qué hacemos</span>
-          <h2>Cuatro formas de ayudarte</h2>
-        </div>
-        <div class="cats">
-          <article class="cat cat-orange reveal">
-            <span class="cat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M9 9v11"/></svg></span>
+        <h2 id="qh-title" class="section-title">Qué hacemos</h2>
+        <ol class="services">
+          <li>
+            <span class="num">01</span>
             <h3>Herramientas internas</h3>
-            <p>Aplicaciones para gestionar clientes, pedidos, trabajos, inventario, turnos o cualquier proceso que hoy se lleva a mano o en varias hojas de cálculo.</p>
-          </article>
-          <article class="cat cat-blue reveal">
-            <span class="cat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></span>
-            <h3>Portales para tus clientes</h3>
-            <p>Espacios web donde tus clientes pueden hacer solicitudes, reservar, consultar el estado de un pedido o descargar documentos.</p>
-          </article>
-          <article class="cat cat-green reveal">
-            <span class="cat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7h8a4 4 0 0 1 0 8h-1M16 17H8a4 4 0 0 1 0-8h1"/></svg></span>
-            <h3>Automatizaciones e integraciones</h3>
-            <p>Conectamos las herramientas que ya usas para que los datos no se copien a mano de un sitio a otro, siempre que esas herramientas lo permitan.</p>
-          </article>
-          <article class="cat cat-coral reveal">
-            <span class="cat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5"/><circle cx="12" cy="12" r="3.5"/></svg></span>
-            <h3>Mantenimiento y evolución</h3>
-            <p>Después de la entrega podemos encargarnos del alojamiento, las copias de seguridad, las actualizaciones y los cambios que vayas necesitando.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="como-trabajamos">
-      <div class="wrap process">
-        <div class="process-side">
-          <span class="kicker">Cómo trabajamos</span>
-          <h2>Un proceso claro, por fases</h2>
-          <ol class="indicator" aria-hidden="true">
-            <li class="on"><span>01</span>Nos cuentas qué necesitas</li>
-            <li><span>02</span>Te enviamos una propuesta</li>
-            <li><span>03</span>Desarrollo por fases</li>
-            <li><span>04</span>Entrega y acompañamiento</li>
-          </ol>
-        </div>
-        <ol class="steps">
-          <li class="step" data-step="0">
-            <span class="step-n">01</span>
-            <h3>Nos cuentas qué necesitas</h3>
-            <p>Rellenas el formulario y hablamos para entender cómo trabajáis hoy y qué queréis mejorar.</p>
+            <div>
+              <p>Para lo que hoy vive en hojas de cálculo, papeles o la cabeza de alguien.</p>
+              <p class="eg"><span>Por ejemplo</span>Pedidos, inventario, partes de trabajo, turnos, fichas de clientes.</p>
+            </div>
           </li>
-          <li class="step" data-step="1">
-            <span class="step-n">02</span>
-            <h3>Te enviamos una propuesta</h3>
-            <p>Con el alcance, las fases y el presupuesto de tu proyecto. Cada proyecto es distinto, por eso el precio lo vemos contigo una vez nos pongamos en contacto.</p>
+          <li>
+            <span class="num">02</span>
+            <h3>Portales para clientes</h3>
+            <div>
+              <p>Un sitio donde tus clientes piden, reservan o descargan sus documentos sin tener que llamarte.</p>
+              <p class="eg"><span>Por ejemplo</span>Reservas, seguimiento de pedidos, área privada con documentos.</p>
+            </div>
           </li>
-          <li class="step" data-step="2">
-            <span class="step-n">03</span>
-            <h3>Desarrollo por fases</h3>
-            <p>Construimos la aplicación por partes y te la enseñamos en cada fase para que puedas revisarla antes de seguir.</p>
+          <li>
+            <span class="num">03</span>
+            <h3>Automatizaciones</h3>
+            <div>
+              <p>Conectamos los programas que ya usas para que nadie copie datos de uno a otro, siempre que esos programas lo permitan.</p>
+              <p class="eg"><span>Por ejemplo</span>Avisos por correo, presupuestos en PDF, informes mensuales.</p>
+            </div>
           </li>
-          <li class="step" data-step="3">
-            <span class="step-n">04</span>
-            <h3>Entrega y acompañamiento</h3>
-            <p>Ponemos la aplicación en marcha, os enseñamos a usarla y, si lo deseas, nos ocupamos de su mantenimiento.</p>
+          <li>
+            <span class="num">04</span>
+            <h3>Mantenimiento</h3>
+            <div>
+              <p>Después de la entrega podemos ocuparnos del alojamiento, las copias de seguridad, las actualizaciones y los cambios que vayas necesitando.</p>
+            </div>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="section" id="privacidad">
-      <div class="wrap">
-        <div class="privacy reveal">
-          <div>
-            <span class="kicker">Privacidad desde el diseño</span>
-            <h2>Tus datos, tus reglas</h2>
-          </div>
-          <div class="privacy-list">
-            <p>Cada proyecto se desarrolla en un entorno propio y separado del resto de clientes.</p>
-            <p>Aplicamos la normativa de protección de datos desde el inicio: recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento que exige el RGPD.</p>
-            <p>Usamos herramientas de inteligencia artificial para desarrollar con más agilidad, y revisamos todo el código antes de entregarlo.</p>
-          </div>
+    <section class="section" id="como-trabajamos" aria-labelledby="ct-title">
+      <div class="wrap process">
+        <div class="process-side">
+          <h2 id="ct-title" class="section-title">Cómo trabajamos</h2>
+          <ol class="indicator" aria-hidden="true">
+            <li class="on"><span>01</span>Hablamos</li>
+            <li><span>02</span>Propuesta</li>
+            <li><span>03</span>Desarrollo por fases</li>
+            <li><span>04</span>Entrega</li>
+          </ol>
         </div>
+        <ol class="steps">
+          <li class="step" data-step="0">
+            <span class="step-n">01</span>
+            <h3>Hablamos</h3>
+            <p>Nos cuentas qué hacéis hoy y qué os quita tiempo. Preguntamos mucho antes de proponer nada.</p>
+            <p class="gets"><span>Recibes</span>Una primera conversación centrada en tu problema, no en tecnología.</p>
+          </li>
+          <li class="step" data-step="1">
+            <span class="step-n">02</span>
+            <h3>Propuesta</h3>
+            <p>Alcance, fases, plazos y presupuesto por escrito. Cada proyecto es distinto, por eso el precio lo vemos contigo una vez nos pongamos en contacto.</p>
+            <p class="gets"><span>Recibes</span>Un documento con qué se hace, en qué orden y cuánto cuesta.</p>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step-n">03</span>
+            <h3>Desarrollo por fases</h3>
+            <p>Construimos la aplicación por partes y te enseñamos cada fase antes de seguir con la siguiente.</p>
+            <p class="gets"><span>Recibes</span>Una versión que puedes probar al final de cada fase.</p>
+          </li>
+          <li class="step" data-step="3">
+            <span class="step-n">04</span>
+            <h3>Entrega</h3>
+            <p>Ponemos la aplicación en marcha y enseñamos a tu equipo a usarla. Si quieres, seguimos a cargo del mantenimiento.</p>
+            <p class="gets"><span>Recibes</span>La aplicación funcionando y a tu equipo usándola.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <section class="section" id="contacto">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="kicker">Contacto</span>
-          <h2>Cuéntanos tu proyecto</h2>
-          <p class="lead">Cuanto más detalle nos des, mejor podremos entender lo que necesitas. El presupuesto lo preparamos contigo una vez nos pongamos en contacto. Los campos marcados con * son obligatorios.</p>
+    <section class="section" id="privacidad" aria-labelledby="pr-title">
+      <div class="wrap privacy">
+        <h2 id="pr-title" class="section-title">Privacidad desde el primer día</h2>
+        <dl class="facts">
+          <div><dt>Un entorno por cliente</dt><dd>Cada proyecto se desarrolla separado del resto de clientes.</dd></div>
+          <div><dt>RGPD desde el inicio</dt><dd>Recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento.</dd></div>
+          <div><dt>Código revisado</dt><dd>Usamos herramientas de inteligencia artificial para desarrollar más rápido y revisamos todo el código antes de entregarlo.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section contact" id="contacto" aria-labelledby="co-title">
+      <div class="wrap contact-grid">
+        <div class="contact-side">
+          <h2 id="co-title" class="section-title">Cuéntanos qué necesitas</h2>
+          <p class="contact-lead">Con tus palabras, sin tecnicismos. Cuanto más concreto, mejor podremos ayudarte.</p>
+          <ol class="next">
+            <li><span>1</span>Leemos tu solicitud.</li>
+            <li><span>2</span>Te escribimos para hablar.</li>
+            <li><span>3</span>Te enviamos una propuesta por escrito.</li>
+          </ol>
+          <p class="contact-alt">¿Prefieres escribir directamente? <a href="mailto:[CORREO]">[CORREO]</a></p>
         </div>
 
         <!-- Pendiente: sustituir FORM_ENDPOINT por el servicio de formularios elegido (ver README) -->
         <form class="form" id="contact-form" action="FORM_ENDPOINT" method="POST" novalidate>
-          <fieldset class="card reveal">
+          <fieldset class="form-part">
             <legend>Tus datos</legend>
             <div class="fields">
               <label class="field"><span>Nombre y apellidos *</span><input type="text" name="nombre" required autocomplete="name" maxlength="120"></label>
@@ -176,11 +258,11 @@
             </div>
           </fieldset>
 
-          <fieldset class="card reveal">
-            <legend>Qué necesitas<small>Explícalo con tus palabras, sin tecnicismos.</small></legend>
+          <fieldset class="form-part">
+            <legend>Tu proyecto</legend>
             <div class="fields">
               <div class="field full">
-                <span>Tipo de proyecto *</span>
+                <span class="label">Tipo de proyecto *</span>
                 <div class="chips" role="group" aria-label="Tipo de proyecto">
                   <label class="chip"><input type="radio" name="tipo" value="Aplicación nueva" required><span>Aplicación nueva</span></label>
                   <label class="chip"><input type="radio" name="tipo" value="Mejorar una aplicación existente"><span>Mejorar una existente</span></label>
@@ -203,7 +285,7 @@
               </label>
 
               <div class="field full">
-                <span>Funciones que podrías necesitar <em>(marca las que apliquen)</em></span>
+                <span class="label">Funciones que podrías necesitar <em>(marca las que apliquen)</em></span>
                 <div class="chips" role="group" aria-label="Funciones">
                   <label class="chip"><input type="checkbox" name="funciones" value="Usuarios y permisos"><span>Usuarios y permisos</span></label>
                   <label class="chip"><input type="checkbox" name="funciones" value="Gestión de clientes"><span>Gestión de clientes</span></label>
@@ -242,7 +324,7 @@
               </label>
 
               <div class="field full">
-                <span>¿Desde dónde se usará?</span>
+                <span class="label">¿Desde dónde se usará?</span>
                 <div class="chips" role="group" aria-label="Dispositivos">
                   <label class="chip"><input type="checkbox" name="dispositivos" value="Ordenador"><span>Ordenador</span></label>
                   <label class="chip"><input type="checkbox" name="dispositivos" value="Móvil"><span>Móvil</span></label>
@@ -256,7 +338,7 @@
               </label>
 
               <div class="field full">
-                <span>¿Qué tipo de datos manejará? <em>(nos ayuda a aplicar las medidas de protección adecuadas)</em></span>
+                <span class="label">¿Qué tipo de datos manejará? <em>(nos ayuda a aplicar las medidas de protección adecuadas)</em></span>
                 <div class="chips" role="group" aria-label="Tipo de datos">
                   <label class="chip"><input type="checkbox" name="datos" value="Datos de contacto de personas"><span>Datos de contacto</span></label>
                   <label class="chip"><input type="checkbox" name="datos" value="Datos económicos o bancarios"><span>Económicos o bancarios</span></label>
@@ -298,7 +380,7 @@
           <!-- Campo trampa para bots: debe quedar vacío -->
           <label class="hp" aria-hidden="true">No rellenar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
 
-          <div class="card submit-card reveal">
+          <div class="form-part form-submit">
             <div class="legal-note">
               <p><strong>Información básica sobre protección de datos.</strong> Responsable: <span class="ph">[NOMBRE O RAZÓN SOCIAL]</span>. Finalidad: atender tu solicitud y, en su caso, preparar una propuesta. Legitimación: tu consentimiento y la aplicación de medidas precontractuales a petición tuya. Destinatarios: no se ceden datos a terceros salvo obligación legal; los proveedores que nos prestan servicios técnicos actúan como encargados del tratamiento. Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad. Más información en la <a href="privacidad.html">política de privacidad</a>.</p>
               <p>Te pedimos que no incluyas en el formulario datos personales de terceros ni datos especialmente protegidos (salud, ideología, etc.). Basta con que nos indiques el tipo de datos que manejará la aplicación.</p>
@@ -317,9 +399,8 @@
 
   <footer class="foot">
     <div class="wrap">
-      <p class="foot-mark">[MARCA]</p>
       <div class="foot-row">
-        <p>© <span id="year">2026</span> [MARCA]. La información de esta web es orientativa y no constituye una oferta vinculante.</p>
+        <a href="#" class="logo">[MARCA]</a>
         <nav aria-label="Legal">
           <a href="aviso-legal.html">Aviso legal</a>
           <a href="privacidad.html">Privacidad</a>
@@ -327,15 +408,9 @@
           <a href="mailto:[CORREO]">[CORREO]</a>
         </nav>
       </div>
+      <p class="foot-note">© <span id="year">2026</span> [MARCA]. Aplicaciones web a medida. La información de esta web es orientativa y no constituye una oferta vinculante.</p>
     </div>
   </footer>
-
-  <nav class="dock" aria-label="Secciones">
-    <a href="#inicio" class="dock-home" aria-label="Inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg></a>
-    <a href="#que-hacemos">Servicios</a>
-    <a href="#como-trabajamos">Proceso</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
 
   <script src="main.js" defer></script>
 </body>
