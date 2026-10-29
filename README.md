@@ -1,6 +1,6 @@
-# Folza — web
+# Folzia — web
 
-Web del negocio Folza: **aplicaciones a medida para pymes**, construidas con Claude Code.
+Web del negocio Folzia: **aplicaciones a medida para pymes**, construidas con Claude Code.
 
 Herramientas internas, portales para clientes y automatizaciones que sustituyen hojas de cálculo y tareas manuales, con presupuesto por escrito antes de empezar y entregas por fases.
 
