@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Folzia · Aplicaciones web a medida para pymes</title>
+  <meta name="description" content="Hacemos aplicaciones web a medida para pymes: pedidos, clientes, trabajos y presupuestos, pensadas para cómo trabaja tu equipo.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="top" id="top">
+    <div class="wrap top-row">
+      <a href="#" class="logo" aria-label="Folzia, inicio">f<i class="logo-o"></i>lzia<span class="logo-dot">.</span></a>
+      <nav class="top-nav" aria-label="Principal">
+        <a href="#que-hacemos">Qué hacemos</a>
+        <a href="#como-trabajamos">Cómo trabajamos</a>
+        <a href="#privacidad">Privacidad</a>
+      </nav>
+      <a href="#contacto" class="btn btn-primary">Contar mi proyecto</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <h1 id="hero-title">Tu empresa no cabe en una hoja de cálculo.</h1>
+          <p class="hero-sub">Hacemos aplicaciones web a medida para pymes: pedidos, clientes, trabajos, presupuestos. Pensadas para cómo trabaja tu equipo, no al revés.</p>
+          <div class="hero-cta">
+            <a href="#contacto" class="btn btn-primary btn-lg">Contar mi proyecto</a>
+            <a href="#como-trabajamos" class="link-arrow">Ver cómo trabajamos <span aria-hidden="true">→</span></a>
+            <p class="hero-note">Presupuesto por escrito antes de empezar.</p>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-glow"></div>
+          <div class="cluster">
+            <div class="blk blk-tile b1"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="blk blk-tile b2"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="blk blk-ring b3"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="blk blk-pill b4"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="blk blk-tile b5"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="blk blk-tile b6"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="hero-floor"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene" id="escena" data-stage="1" aria-label="De la hoja de cálculo a una aplicación">
+      <div class="scene-sticky">
+        <div class="wrap scene-grid">
+          <div class="scene-copy">
+            <ol class="scene-steps">
+              <li class="scene-step" data-i="0">
+                <span class="scene-n">01</span>
+                <h2>Así suele empezar</h2>
+                <p>Una hoja compartida, tres versiones del mismo archivo y pedidos que llegan por correo y por WhatsApp.</p>
+              </li>
+              <li class="scene-step" data-i="1">
+                <span class="scene-n">02</span>
+                <h2>Lo ordenamos</h2>
+                <p>Cada pedido entra una sola vez. Todo el equipo ve lo mismo, desde el ordenador o el móvil.</p>
+              </li>
+              <li class="scene-step" data-i="2">
+                <span class="scene-n">03</span>
+                <h2>Y quitamos el trabajo repetido</h2>
+                <p>Avisos al cliente, presupuestos en PDF e informes del mes, sin copiar datos a mano.</p>
+              </li>
+            </ol>
+            <div class="scene-progress" aria-hidden="true"><span></span></div>
+          </div>
+
+          <figure class="scene-stage">
+            <div class="device" aria-hidden="true">
+              <div class="device-bar">
+                <span class="dots"><i></i><i></i><i></i></span>
+                <span class="device-title" data-t0="pedidos_FINAL_v3 (2).xlsx" data-t1="Pedidos · Tu aplicación" data-t2="Pedidos · Tu aplicación">pedidos_FINAL_v3 (2).xlsx</span>
+              </div>
+
+              <!-- Estado 1: hoja de cálculo -->
+              <div class="sheet">
+                <div class="sheet-head"><span></span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span></div>
+                <div class="sheet-row"><span>1</span><span><b>Nº</b></span><span><b>Cliente</b></span><span><b>Estado</b></span><span><b>Fecha</b></span><span><b>Notas</b></span></div>
+                <div class="sheet-row"><span>2</span><span>1041</span><span>Cliente A</span><span class="hl-y">pte llamar??</span><span>12/03</span><span>ver correo</span></div>
+                <div class="sheet-row"><span>3</span><span>1042</span><span>Cliente B</span><span>hecho</span><span>13/3</span><span></span></div>
+                <div class="sheet-row dup"><span>4</span><span>1042</span><span>Cliente B</span><span>HECHO</span><span>13/03</span><span class="hl-r">¿duplicado?</span></div>
+                <div class="sheet-row"><span>5</span><span>1043</span><span>Cliente C</span><span class="hl-y">en curso</span><span>14-03</span><span>lo lleva Ana</span></div>
+                <div class="sheet-row"><span>6</span><span>1044</span><span>Cliente D</span><span></span><span>?</span><span class="hl-r">falta precio</span></div>
+                <div class="sheet-row"><span>7</span><span>1045</span><span>Cliente E</span><span>pendiente</span><span>15/03</span><span>pedido por WhatsApp</span></div>
+                <div class="sheet-row"><span>8</span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="sheet-tabs"><span class="on">Pedidos</span><span>Pedidos (copia)</span><span>NO TOCAR</span></div>
+              </div>
+
+              <!-- Estados 2 y 3: aplicación -->
+              <div class="app">
+                <aside class="app-side">
+                  <span class="app-brand">Tu empresa</span>
+                  <span class="app-link on">Pedidos</span>
+                  <span class="app-link">Clientes</span>
+                  <span class="app-link">Presupuestos</span>
+                  <span class="app-link">Informes</span>
+                </aside>
+                <div class="app-main">
+                  <div class="app-head">
+                    <span class="app-h">Pedidos</span>
+                    <span class="app-filter">Esta semana</span>
+                    <span class="app-new">Nuevo pedido</span>
+                  </div>
+                  <div class="app-table">
+                    <div class="app-tr th"><span>Pedido</span><span>Cliente</span><span>Responsable</span><span>Estado</span></div>
+                    <div class="app-tr"><span>#1041</span><span>Cliente A</span><span>Ana</span><span class="st st-wait">Pendiente</span></div>
+                    <div class="app-tr"><span>#1042</span><span>Cliente B</span><span>Luis</span><span class="st st-ok">Entregado</span></div>
+                    <div class="app-tr"><span>#1043</span><span>Cliente C</span><span>Ana</span><span class="st st-run">En curso</span></div>
+                    <div class="app-tr"><span>#1044</span><span>Cliente D</span><span>Marta</span><span class="st st-wait">Pendiente</span></div>
+                    <div class="app-tr"><span>#1045</span><span>Cliente E</span><span>Luis</span><span class="st st-run">En curso</span></div>
+                  </div>
+                  <div class="app-auto">
+                    <div class="toast t1"><b>Aviso enviado</b> Cliente B: «Tu pedido #1042 está listo».</div>
+                    <div class="toast t2"><b>Presupuesto generado</b> presupuesto_1044.pdf</div>
+                    <div class="toast t3"><b>Informe de marzo</b> listo para descargar</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption>Ejemplo ilustrativo. Cada aplicación se diseña para el proceso real de cada empresa.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="que-hacemos" aria-labelledby="qh-title">
+      <div class="wrap">
+        <h2 id="qh-title" class="section-title">Qué hacemos</h2>
+        <ol class="services">
+          <li>
+            <span class="num">01</span>
+            <h3>Herramientas internas</h3>
+            <div>
+              <p>Para lo que hoy vive en hojas de cálculo, papeles o la cabeza de alguien.</p>
+              <p class="eg"><span>Por ejemplo</span>Pedidos, inventario, partes de trabajo, turnos, fichas de clientes.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <h3>Portales para clientes</h3>
+            <div>
+              <p>Un sitio donde tus clientes piden, reservan o descargan sus documentos sin tener que llamarte.</p>
+              <p class="eg"><span>Por ejemplo</span>Reservas, seguimiento de pedidos, área privada con documentos.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <h3>Automatizaciones</h3>
+            <div>
+              <p>Conectamos los programas que ya usas para que nadie copie datos de uno a otro, siempre que esos programas lo permitan.</p>
+              <p class="eg"><span>Por ejemplo</span>Avisos por correo, presupuestos en PDF, informes mensuales.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <h3>Mantenimiento</h3>
+            <div>
+              <p>Después de la entrega podemos ocuparnos del alojamiento, las copias de seguridad, las actualizaciones y los cambios que vayas necesitando.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="como-trabajamos" aria-labelledby="ct-title">
+      <div class="wrap process">
+        <div class="process-side">
+          <h2 id="ct-title" class="section-title">Cómo trabajamos</h2>
+          <ol class="indicator" aria-hidden="true">
+            <li class="on"><span>01</span>Hablamos</li>
+            <li><span>02</span>Propuesta</li>
+            <li><span>03</span>Desarrollo por fases</li>
+            <li><span>04</span>Entrega</li>
+          </ol>
+        </div>
+        <ol class="steps">
+          <li class="step" data-step="0">
+            <span class="step-n">01</span>
+            <h3>Hablamos</h3>
+            <p>Nos cuentas qué hacéis hoy y qué os quita tiempo. Preguntamos mucho antes de proponer nada.</p>
+            <p class="gets"><span>Recibes</span>Una primera conversación centrada en tu problema, no en tecnología.</p>
+          </li>
+          <li class="step" data-step="1">
+            <span class="step-n">02</span>
+            <h3>Propuesta</h3>
+            <p>Alcance, fases, plazos y presupuesto por escrito. Cada proyecto es distinto, por eso el precio lo vemos contigo una vez nos pongamos en contacto.</p>
+            <p class="gets"><span>Recibes</span>Un documento con qué se hace, en qué orden y cuánto cuesta.</p>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step-n">03</span>
+            <h3>Desarrollo por fases</h3>
+            <p>Construimos la aplicación por partes y te enseñamos cada fase antes de seguir con la siguiente.</p>
+            <p class="gets"><span>Recibes</span>Una versión que puedes probar al final de cada fase.</p>
+          </li>
+          <li class="step" data-step="3">
+            <span class="step-n">04</span>
+            <h3>Entrega</h3>
+            <p>Ponemos la aplicación en marcha y enseñamos a tu equipo a usarla. Si quieres, seguimos a cargo del mantenimiento.</p>
+            <p class="gets"><span>Recibes</span>La aplicación funcionando y a tu equipo usándola.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="privacidad" aria-labelledby="pr-title">
+      <div class="wrap privacy">
+        <h2 id="pr-title" class="section-title">Privacidad desde el primer día</h2>
+        <dl class="facts">
+          <div><dt>Un entorno por cliente</dt><dd>Cada proyecto se desarrolla separado del resto de clientes.</dd></div>
+          <div><dt>RGPD desde el inicio</dt><dd>Recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento.</dd></div>
+          <div><dt>Código revisado</dt><dd>Usamos herramientas de inteligencia artificial para desarrollar más rápido y revisamos todo el código antes de entregarlo.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section contact" id="contacto" aria-labelledby="co-title">
+      <div class="wrap contact-grid">
+        <div class="contact-side">
+          <h2 id="co-title" class="section-title">Cuéntanos qué necesitas</h2>
+          <p class="contact-lead">Con tus palabras, sin tecnicismos. Cuanto más concreto, mejor podremos ayudarte.</p>
+          <ol class="next">
+            <li><span>1</span>Leemos tu solicitud.</li>
+            <li><span>2</span>Te escribimos para hablar.</li>
+            <li><span>3</span>Te enviamos una propuesta por escrito.</li>
+          </ol>
+          <p class="contact-alt">¿Prefieres escribir directamente? <a href="mailto:[CORREO]">[CORREO]</a></p>
+        </div>
+
+        <!-- Pendiente: sustituir FORM_ENDPOINT por el servicio de formularios elegido (ver README) -->
+        <form class="form" id="contact-form" action="FORM_ENDPOINT" method="POST" novalidate>
+          <fieldset class="form-part">
+            <legend>Tus datos</legend>
+            <div class="fields">
+              <label class="field"><span>Nombre y apellidos *</span><input type="text" name="nombre" required autocomplete="name" maxlength="120"></label>
+              <label class="field"><span>Empresa *</span><input type="text" name="empresa" required autocomplete="organization" maxlength="160"></label>
+              <label class="field"><span>Cargo <em>(opcional)</em></span><input type="text" name="cargo" autocomplete="organization-title" maxlength="120"></label>
+              <label class="field"><span>Correo electrónico *</span><input type="email" name="email" id="form-email" required autocomplete="email" maxlength="160"></label>
+              <label class="field"><span>Teléfono <em>(opcional)</em></span><input type="tel" name="telefono" autocomplete="tel" maxlength="30"></label>
+              <label class="field"><span>Web de la empresa <em>(opcional)</em></span><input type="url" name="web" autocomplete="url" placeholder="https://" maxlength="200"></label>
+              <label class="field"><span>Sector o actividad *</span><input type="text" name="sector" required maxlength="160"></label>
+              <label class="field"><span>Tamaño de la empresa *</span>
+                <select name="tamano" required>
+                  <option value="">Selecciona una opción</option>
+                  <option>Solo yo</option>
+                  <option>2 a 10 personas</option>
+                  <option>11 a 50 personas</option>
+                  <option>51 a 250 personas</option>
+                  <option>Más de 250 personas</option>
+                </select>
+              </label>
+              <label class="field"><span>Provincia o país <em>(opcional)</em></span><input type="text" name="ubicacion" autocomplete="address-level1" maxlength="120"></label>
+              <label class="field"><span>¿Cómo prefieres que te contactemos?</span>
+                <select name="preferencia_contacto">
+                  <option>Correo electrónico</option>
+                  <option>Teléfono</option>
+                  <option>Videollamada</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-part">
+            <legend>Tu proyecto</legend>
+            <div class="fields">
+              <div class="field full">
+                <span class="label">Tipo de proyecto *</span>
+                <div class="chips" role="group" aria-label="Tipo de proyecto">
+                  <label class="chip"><input type="radio" name="tipo" value="Aplicación nueva" required><span>Aplicación nueva</span></label>
+                  <label class="chip"><input type="radio" name="tipo" value="Mejorar una aplicación existente"><span>Mejorar una existente</span></label>
+                  <label class="chip"><input type="radio" name="tipo" value="Automatizar un proceso"><span>Automatizar un proceso</span></label>
+                  <label class="chip"><input type="radio" name="tipo" value="Conectar herramientas"><span>Conectar herramientas</span></label>
+                  <label class="chip"><input type="radio" name="tipo" value="No lo tengo claro"><span>No lo tengo claro</span></label>
+                </div>
+              </div>
+
+              <label class="field full"><span>¿Qué problema quieres resolver? *</span>
+                <textarea name="problema" required rows="5" maxlength="4000" placeholder="Ej.: perdemos mucho tiempo pasando los pedidos del correo a una hoja de cálculo y a veces se nos olvida alguno."></textarea>
+              </label>
+
+              <label class="field full"><span>¿Cómo lo hacéis hoy? <em>(opcional)</em></span>
+                <textarea name="situacion_actual" rows="4" maxlength="4000" placeholder="Pasos que seguís, quién los hace, qué herramientas usáis (Excel, papel, WhatsApp, algún programa…)."></textarea>
+              </label>
+
+              <label class="field full"><span>¿Qué te gustaría que hiciera la aplicación? *</span>
+                <textarea name="funcionalidades" required rows="6" maxlength="6000" placeholder="Describe las funciones que imaginas. Ej.: que los clientes hagan el pedido desde una web, que nos llegue un aviso, que podamos ver el estado de cada pedido y sacar un informe mensual."></textarea>
+              </label>
+
+              <div class="field full">
+                <span class="label">Funciones que podrías necesitar <em>(marca las que apliquen)</em></span>
+                <div class="chips" role="group" aria-label="Funciones">
+                  <label class="chip"><input type="checkbox" name="funciones" value="Usuarios y permisos"><span>Usuarios y permisos</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Gestión de clientes"><span>Gestión de clientes</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Agenda o reservas"><span>Agenda o reservas</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Presupuestos o documentos PDF"><span>Presupuestos o PDF</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Pedidos o inventario"><span>Pedidos o inventario</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Formularios"><span>Formularios</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Avisos por correo"><span>Avisos por correo</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Informes y estadísticas"><span>Informes y estadísticas</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Subida de fotos o archivos"><span>Fotos o archivos</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Firma en pantalla"><span>Firma en pantalla</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Pagos online"><span>Pagos online</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Área privada para clientes"><span>Área para clientes</span></label>
+                  <label class="chip"><input type="checkbox" name="funciones" value="Importar datos de Excel"><span>Importar desde Excel</span></label>
+                </div>
+              </div>
+
+              <label class="field"><span>¿Quién la va a usar? *</span>
+                <select name="usuarios_tipo" required>
+                  <option value="">Selecciona una opción</option>
+                  <option>Solo mi equipo</option>
+                  <option>Solo mis clientes</option>
+                  <option>Mi equipo y mis clientes</option>
+                  <option>No lo sé todavía</option>
+                </select>
+              </label>
+              <label class="field"><span>¿Cuántas personas la usarían? <em>(aprox.)</em></span>
+                <select name="usuarios_numero">
+                  <option value="">Selecciona una opción</option>
+                  <option>1 a 5</option>
+                  <option>6 a 20</option>
+                  <option>21 a 100</option>
+                  <option>Más de 100</option>
+                  <option>No lo sé</option>
+                </select>
+              </label>
+
+              <div class="field full">
+                <span class="label">¿Desde dónde se usará?</span>
+                <div class="chips" role="group" aria-label="Dispositivos">
+                  <label class="chip"><input type="checkbox" name="dispositivos" value="Ordenador"><span>Ordenador</span></label>
+                  <label class="chip"><input type="checkbox" name="dispositivos" value="Móvil"><span>Móvil</span></label>
+                  <label class="chip"><input type="checkbox" name="dispositivos" value="Tablet"><span>Tablet</span></label>
+                  <label class="chip"><input type="checkbox" name="dispositivos" value="Sin conexión a internet a veces"><span>A veces sin conexión</span></label>
+                </div>
+              </div>
+
+              <label class="field full"><span>Herramientas con las que debería conectarse <em>(opcional)</em></span>
+                <input type="text" name="integraciones" maxlength="500" placeholder="Ej.: programa de facturación, Google Calendar, tienda online, correo…">
+              </label>
+
+              <div class="field full">
+                <span class="label">¿Qué tipo de datos manejará? <em>(nos ayuda a aplicar las medidas de protección adecuadas)</em></span>
+                <div class="chips" role="group" aria-label="Tipo de datos">
+                  <label class="chip"><input type="checkbox" name="datos" value="Datos de contacto de personas"><span>Datos de contacto</span></label>
+                  <label class="chip"><input type="checkbox" name="datos" value="Datos económicos o bancarios"><span>Económicos o bancarios</span></label>
+                  <label class="chip"><input type="checkbox" name="datos" value="Datos de salud u otros especialmente protegidos"><span>Salud u otros sensibles</span></label>
+                  <label class="chip"><input type="checkbox" name="datos" value="Datos de menores"><span>Datos de menores</span></label>
+                  <label class="chip"><input type="checkbox" name="datos" value="Solo datos de la empresa"><span>Solo datos de empresa</span></label>
+                  <label class="chip"><input type="checkbox" name="datos" value="No lo sé"><span>No lo sé</span></label>
+                </div>
+              </div>
+
+              <label class="field"><span>¿Tienes ya algo hecho? <em>(opcional)</em></span>
+                <select name="punto_partida">
+                  <option value="">Selecciona una opción</option>
+                  <option>Partimos de cero</option>
+                  <option>Tengo bocetos o una idea escrita</option>
+                  <option>Tengo una aplicación que quiero mejorar o sustituir</option>
+                </select>
+              </label>
+              <label class="field"><span>¿Para cuándo lo necesitarías?</span>
+                <select name="plazo">
+                  <option value="">Selecciona una opción</option>
+                  <option>Lo antes posible</option>
+                  <option>En 1 a 3 meses</option>
+                  <option>En 3 a 6 meses</option>
+                  <option>Sin fecha concreta</option>
+                </select>
+              </label>
+
+              <label class="field full"><span>¿Algo más que debamos saber? <em>(opcional)</em></span>
+                <textarea name="comentarios" rows="4" maxlength="4000" placeholder="Referencias de aplicaciones que te gusten, dudas, limitaciones…"></textarea>
+              </label>
+
+              <label class="field full"><span>¿Cómo nos has conocido? <em>(opcional)</em></span>
+                <input type="text" name="origen" maxlength="200">
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Campo trampa para bots: debe quedar vacío -->
+          <label class="hp" aria-hidden="true">No rellenar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+
+          <div class="form-part form-submit">
+            <div class="legal-note">
+              <p><strong>Información básica sobre protección de datos.</strong> Responsable: <span class="ph">[NOMBRE O RAZÓN SOCIAL]</span>. Finalidad: atender tu solicitud y, en su caso, preparar una propuesta. Legitimación: tu consentimiento y la aplicación de medidas precontractuales a petición tuya. Destinatarios: no se ceden datos a terceros salvo obligación legal; los proveedores que nos prestan servicios técnicos actúan como encargados del tratamiento. Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad. Más información en la <a href="privacidad.html">política de privacidad</a>.</p>
+              <p>Te pedimos que no incluyas en el formulario datos personales de terceros ni datos especialmente protegidos (salud, ideología, etc.). Basta con que nos indiques el tipo de datos que manejará la aplicación.</p>
+            </div>
+            <label class="consent"><input type="checkbox" name="acepta_privacidad" value="si" required> <span>He leído la <a href="privacidad.html">política de privacidad</a> y consiento el tratamiento de mis datos para atender esta solicitud. *</span></label>
+            <label class="consent"><input type="checkbox" name="acepta_comunicaciones" value="si"> <span>Quiero recibir ocasionalmente información sobre vuestros servicios. Puedo retirar este consentimiento en cualquier momento. <em>(opcional)</em></span></label>
+            <div class="submit-row">
+              <button class="btn btn-primary btn-lg" type="submit">Enviar solicitud</button>
+              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-row">
+        <a href="#" class="logo" aria-label="Folzia, inicio">f<i class="logo-o"></i>lzia<span class="logo-dot">.</span></a>
+        <nav aria-label="Legal">
+          <a href="aviso-legal.html">Aviso legal</a>
+          <a href="privacidad.html">Privacidad</a>
+          <a href="cookies.html">Cookies</a>
+          <a href="mailto:[CORREO]">[CORREO]</a>
+        </nav>
+      </div>
+      <p class="foot-note">© <span id="year">2026</span> Folzia. Aplicaciones web a medida. La información de esta web es orientativa y no constituye una oferta vinculante.</p>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
