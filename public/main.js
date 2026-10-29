@@ -10,6 +10,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
   window.addEventListener('scroll', update, { passive: true });
 })();
 
+// Pausa las piezas 3D del hero cuando salen de pantalla
+(function () {
+  const v = document.querySelector('.hero-visual');
+  if (!v || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([e]) => v.classList.toggle('paused', !e.isIntersecting)).observe(v);
+})();
+
 // Escena: la hoja de cálculo pasa a aplicación y luego a automatización según el scroll
 (function () {
   const scene = document.getElementById('escena');
