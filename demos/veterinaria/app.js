@@ -55,22 +55,30 @@ const estado = { cita: null, tab: 'consulta', lineas: [], factura: 1043 };
 function pintarAgenda() {
   const horas = []; for (let m = INI; m <= FIN; m += 60) horas.push(m);
   $('#ag').innerHTML = `
-    <div class="ag-head"><div></div>${VETS.map((v) => `<div class="vh"><b>${v.n}</b><span>${v.rol}</span></div>`).join('')}</div>
+    <div class="ag-head"><div></div>${VETS.map((v) => { const min = CITAS.filter((c) => c.v === v.id).reduce((a, c) => a + c.dur, 0); return `<div class="vh"><span class="av c-${v.id}">${v.n.replace(/^(Dra?\.) /, '').split(' ').map((w) => w[0]).join('')}</span><div><b>${v.n}</b><span>${v.rol}</span><div class="occ"><i data-w="${(min / 480) * 100}"></i></div><small>${Math.floor(min / 60)} h ${min % 60 ? (min % 60) + ' min ' : ''}de 8 h</small></div></div>`; }).join('')}</div>
     <div class="ag-grid" id="grid">
       <div class="ruler">${horas.map((m) => `<span data-top="${(m - INI) * PX}">${hhmm(m)}</span>`).join('')}</div>
       ${VETS.map((v) => `<div class="col" data-v="${v.id}">${horas.map((m) => `<i class="line" data-top="${(m - INI) * PX}"></i>`).join('')}${CITAS.filter((c) => c.v === v.id).map((c) => {
         const p = PETS[c.p];
         return `<button type="button" class="ap t-${c.t} s-${c.s}" data-c="${c.id}" data-top="${(c.ini - INI) * PX}" data-h="${c.dur * PX - 3}">
-          <span class="ap-top"><b>${p.n}</b><em>${hhmm(c.ini)}</em></span><span class="ap-m">${c.m}</span>${c.dur >= 30 ? `<span class="ap-o">${p.raza !== '—' ? p.raza : p.esp} · ${p.duena}</span>` : ''}
+          <span class="ap-top"><span class="pet"><svg><use href="#i-paw"/></svg></span><b>${p.n}</b><em>${hhmm(c.ini)}–${hhmm(c.ini + c.dur)}</em></span><span class="ap-m">${c.m}</span>${c.dur >= 30 ? `<span class="ap-o">${p.raza !== '—' ? p.raza : p.esp} · ${p.duena}</span>` : ''}
           ${c.s === 'sala' ? '<i class="tag">En sala</i>' : c.s === 'cobrada' ? '<i class="tag ok">Cobrada</i>' : ''}</button>`;
       }).join('')}</div>`).join('')}
       <div class="now" data-top="${(ahoraMin - INI) * PX}"><span>${hhmm(ahoraMin)}</span></div>
     </div>`;
   document.querySelectorAll('#ag [data-top]').forEach((el) => { el.style.top = el.dataset.top + 'px'; if (el.dataset.h) el.style.height = el.dataset.h + 'px'; });
+  document.querySelectorAll('#ag [data-w]').forEach((el) => { el.style.width = el.dataset.w + '%'; });
   $('#grid').style.height = (FIN - INI) * PX + 'px';
 
   const hoy = CITAS.length, hechas = CITAS.filter((c) => c.s === 'hecha' || c.s === 'cobrada').length;
-  $('#sum').innerHTML = `<h2>Hoy</h2><dl><div><dt>Citas</dt><dd>${hoy}</dd></div><div><dt>Atendidas</dt><dd>${hechas}</dd></div><div><dt>Cirugías</dt><dd>${CITAS.filter((c) => c.t === 'cirugia').length}</dd></div></dl>`;
+  $('#sum').innerHTML = `<h2>Hoy</h2><dl><div><dt>Citas</dt><dd>${hoy}</dd></div><div><dt>Atendidas</dt><dd>${hechas}</dd></div><div><dt>Ocupación</dt><dd>${Math.round((CITAS.reduce((a, c) => a + c.dur, 0) / (3 * 480)) * 100)} %</dd></div></dl>`;
+  const caja = 412.3 + CITAS.filter((c) => c.s === 'cobrada').length * 124.63;
+  const semana = [1840, 2210, 1960, 2480, 2105, 1320, caja];
+  $('#rev').innerHTML = `<h2>Caja de hoy</h2><p class="rev-n">${eur(caja)}<em>${CITAS.filter((c) => c.s === 'hecha' || c.s === 'cobrada').length} cobros · día en curso</em></p><div class="bars7">${semana.map((v, i) => `<span class="${i === 6 ? 'now' : ''}" data-h="${(v / 2600) * 100}"><i>${['M', 'X', 'J', 'V', 'S', 'L', 'M'][i]}</i></span>`).join('')}</div>`;
+  document.querySelectorAll('#rev [data-h]').forEach((el) => { el.style.height = el.dataset.h + '%'; });
+  $('#rem').innerHTML = [['Luna', 'Trivalente felina vence el 2 nov', 'WhatsApp'], ['Rocky', 'Antirrábica vence el 1 dic', 'SMS'], ['Kiwi', 'Revisión dental pendiente', 'Correo']].map(([n, t, v]) => `<li><svg><use href="#i-syringe"/></svg><div><b>${n}</b><span>${t}</span></div><em>${v}</em></li>`).join('');
+  $('#types').innerHTML = Object.entries(TIPOS).map(([k, n]) => `<li><i class="t-${k}"></i>${n}</li>`).join('');
+  $('#ag-dia').textContent = AHORA.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
   const sala = CITAS.filter((c) => c.s === 'sala');
   const proximas = CITAS.filter((c) => c.s === 'pend' && c.ini >= ahoraMin).sort((a, b) => a.ini - b.ini).slice(0, 3);
   $('#wait').innerHTML = sala.map((c) => `<li class="w-in"><button type="button" data-c="${c.id}"><b>${PETS[c.p].n}</b><span>${PETS[c.p].raza} · con ${VETS.find((v) => v.id === c.v).n.split(' ').slice(0, 2).join(' ')}</span><em>Llegó ${hhmm(LLEGADAS[c.id])} · espera ${ahoraMin - LLEGADAS[c.id]} min</em></button></li>`).join('')

@@ -161,7 +161,36 @@ document.getElementById('year').textContent = new Date().getFullYear();
         p.x += (1.0 - k) * r.y * 0.12;
         glow = 1.0 - k;
       }
-      if (uMode > 3.5 && uProg < 1.0) {
+      if (uMode > 4.5 && uMode < 5.5 && uProg < 1.0) {
+        // Hiperespacio: túnel de estrellas que viene hacia la cámara y frena formando el logo
+        float a = atan(r.y, r.x) * 2.0 + r.z * 3.0, R = 0.3 + fract(r.z * 7.13 + r.w * 3.71) * 1.7;
+        float z = mod(fract(r.x * 13.1 + r.y * 7.7 + r.w * 2.3) * 11.0 + uRot, 11.0) - 8.5;
+        vec3 wp = vec3(cos(a) * R * 1.6, sin(a) * R, z);
+        float k = clamp((uProg - 0.55 - r.w * 0.2) / 0.25, 0.0, 1.0); k = 1.0 - pow(1.0 - k, 3.0);
+        p = mix(wp, p, k);
+        glow = (1.0 - k) * smoothstep(-8.5, 2.0, z);
+      }
+      if (uMode > 5.5 && uMode < 6.5 && uProg < 1.0) {
+        // Doble hélice que gira y se abre de izquierda a derecha
+        float x = fract(r.w * 17.3) * 3.6 - 1.8;
+        float strand = step(0.5, fract(r.w * 7.7));
+        float ang = x * 3.2 + uRot + strand * 3.14159;
+        vec3 hp = vec3(x, cos(ang) * 0.38, sin(ang) * 0.38);
+        if (fract(r.w * 3.3) < 0.18) { float t2 = fract(r.w * 91.0) * 2.0 - 1.0; float xr = floor(x * 4.0) / 4.0; float a2 = xr * 3.2 + uRot; hp = vec3(xr, cos(a2) * 0.38 * t2, sin(a2) * 0.38 * t2); }
+        float k = clamp(uProg * 2.6 - (x + 1.8) / 3.6 - 0.8, 0.0, 1.0); k = k * k * (3.0 - 2.0 * k);
+        p = mix(hp, p, k);
+        glow = (1.0 - k) * strand;
+      }
+      if (uMode > 6.5 && uProg < 1.0) {
+        // Mar de partículas ondulante del que emerge el logo
+        float gx = fract(r.x * 7.31 + r.w * 3.1) * 5.0 - 2.5, gz = fract(r.z * 5.17 + r.y * 2.3) * 4.0 - 3.2;
+        float wy = sin(gx * 2.2 + uRot * 2.4) * 0.14 + cos(gz * 2.7 + uRot * 1.9) * 0.12 + sin((gx + gz) * 4.0 + uRot * 3.0) * 0.04;
+        vec3 sp = vec3(gx * (1.0 - gz * 0.12), wy - 0.35 - gz * 0.42, gz * 0.4);
+        float k = clamp((uProg - 0.45 - fract(r.w * 5.3) * 0.25) / 0.3, 0.0, 1.0); k = 1.0 - pow(1.0 - k, 3.0);
+        p = mix(sp, p + vec3(0.0, 0.0, 0.0), k);
+        glow = (1.0 - k) * smoothstep(-0.2, 0.25, wy);
+      }
+      if (uMode > 3.5 && uMode < 4.5 && uProg < 1.0) {
         float u = fract(r.w * 13.7) * 2.0 - 1.0, v = fract(r.w * 71.3) * 2.0 - 1.0;
         if (fract(r.w * 5.1) < 0.5) u = sign(u);
         float f = floor(fract(r.w * 37.9) * 6.0);
@@ -182,6 +211,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       vec2 s = q.xy * persp * uScale;
       gl_Position = vec4(s.x / uAspect + uOffX, s.y + uOffY, 0.0, 1.0);
       gl_PointSize = uSize * (0.6 + r.w * 0.9) * persp * (1.0 + uFlash * 2.2);
+      if (uMode > 4.5 && uMode < 5.5 && uProg < 1.0) gl_PointSize *= 0.55 + glow * 1.1;
       vec3 orange = vec3(0.969, 0.231, 0.125);
       vec3 ink = vec3(0.09, 0.067, 0.059);
       vec3 onWhite = r.w > 0.82 ? ink : (r.w > 0.55 ? vec3(1.0, 0.55, 0.42) : orange);
@@ -324,6 +354,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
         if (MODO === 2) { modo = 2; prog = clamp01((t - 0.25) / 1.7); }
         else if (MODO === 3) { modo = 3; prog = clamp01((t - 0.1) / 2.0); }
         else if (MODO === 4) { modo = 4; rot = t * 1.2 + t * t * 0.9; prog = clamp01((t - 1.2) / 1.2); }
+        else if (MODO === 5) { modo = 5; prog = clamp01(t / 2.4); const v = Math.max(0, 1 - Math.max(0, t - 1.0) / 1.0); rot += 0; rot = t * 7 - Math.max(0, t - 1.0) * Math.max(0, t - 1.0) * 3.2; }
+        else if (MODO === 6) { modo = 6; rot = t * 2.4; prog = clamp01((t - 0.6) / 1.8); }
+        else if (MODO === 7) { modo = 7; rot = t; prog = clamp01((t - 0.2) / 2.2); }
         else if (t < T_VORT) {
           // Las partículas llegan girando en espiral y se comprimen hacia el centro
           const k = t / T_VORT, e = k * k * (3 - 2 * k);

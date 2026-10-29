@@ -281,3 +281,10 @@ body.with-panel .progress { width: 300px; }
 body.with-panel .kpis { grid-template-columns: 1.3fr 1fr 1fr; }
 body.with-panel .kpi:nth-child(4) { display: none; }
 body.with-panel .cert { display: none; }
+.matrix tbody .cl-in b { font-family: var(--sans); font-weight: 600; font-size: 13.5px; }
+.matrix tbody .cl-in > span:last-child { font-family: var(--sans); }
+.matrix tbody .cl-in > span:last-child > span { font-family: var(--mono); }
+.matrix .cl, .matrix tbody .cl { width: 250px; max-width: 250px; }
+.matrix { min-width: 0; table-layout: fixed; }
+.matrix .g { width: 60px; }
+.matrix tbody .cl-in .av { font-family: var(--sans); }

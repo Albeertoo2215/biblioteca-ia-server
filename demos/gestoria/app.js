@@ -11,6 +11,7 @@ const ESTADOS = {
   presentado: { n: 'Presentado', c: 'ok' },
 };
 const ORDEN = ['docs', 'revision', 'listo', 'presentado'];
+const CORTO = { docs: 'Faltan docs', revision: 'En revisión', listo: 'Listo', presentado: 'Presentado' };
 const CLIENTES = [
   ['Panadería Esteve, S.L.', 'B·····412', 'Sociedad', 'IC', '303 111 115', 'Iván Esteve'],
   ['Laura Martín Cid', '·····318K', 'Autónoma', 'IC', '303 130', 'Laura Martín'],
@@ -92,7 +93,7 @@ function pintarMatriz() {
         if (!c[4].split(' ').includes(m.id)) return '<td class="na">—</td>';
         const e = db.exp[`${i}|${m.id}`]; const k = `${i}|${m.id}`;
         const dim = estado.filtro && e.est !== estado.filtro ? ' dim' : '';
-        return `<td><button type="button" class="cell s-${ESTADOS[e.est].c}${estado.sel === k ? ' sel' : ''}${dim}" data-k="${k}" aria-label="${c[0]}, modelo ${m.id}: ${ESTADOS[e.est].n}">${e.est === 'presentado' ? '<svg><use href="#i-check"/></svg>' : ''}<span>${ESTADOS[e.est].n}</span>${e.est === 'presentado' || e.est === 'listo' ? `<em class="amt">${e.importe < 0 ? '−' : ''}${Math.abs(Math.round(e.importe)).toLocaleString('es-ES', { useGrouping: 'always' })} €</em>` : ''}${e.pedido && e.est === 'docs' ? '<i class="req">pedido</i>' : ''}</button></td>`;
+        return `<td><button type="button" class="cell s-${ESTADOS[e.est].c}${estado.sel === k ? ' sel' : ''}${dim}" data-k="${k}" aria-label="${c[0]}, modelo ${m.id}: ${ESTADOS[e.est].n}">${e.est === 'presentado' ? '<svg><use href="#i-check"/></svg>' : ''}<span>${CORTO[e.est]}</span>${e.est === 'presentado' || e.est === 'listo' ? `<em class="amt">${e.importe < 0 ? '−' : ''}${Math.abs(Math.round(e.importe)).toLocaleString('es-ES', { useGrouping: 'always' })} €</em>` : ''}${e.pedido && e.est === 'docs' ? '<i class="req">pedido</i>' : ''}</button></td>`;
       }).join('')}
       <td class="g"><span class="av sm">${c[3]}</span></td></tr>`).join('')}
     </tbody>`;
