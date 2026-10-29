@@ -124,7 +124,10 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 .desk { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 4vw, 56px); align-items: center; margin-top: 40px; }
 .laptop { min-width: 0; }
 .screen { background: #111; border-radius: 16px 16px 0 0; padding: 12px 12px 14px; box-shadow: 0 0 0 1.5px #2b2b2b; }
-.screen .vid { display: block; width: 100%; aspect-ratio: 1280 / 800; object-fit: cover; object-position: top; border-radius: 3px; background: #fafaf7; }
+/* Los tres vídeos van apilados en la misma celda y se cambia de uno a otro con un fundido */
+.screen { display: grid; }
+.screen .vid { grid-area: 1 / 1; display: block; width: 100%; aspect-ratio: 1280 / 800; object-fit: cover; object-position: top; border-radius: 3px; background: #fafaf7; opacity: 0; transition: opacity 450ms var(--ease); }
+.screen .vid.on { opacity: 1; }
 .laptop-base { position: relative; height: 16px; margin: 0 -6%; border-radius: 0 0 14px 14px; background: linear-gradient(#d9d6d3, #b9b5b1); box-shadow: 0 30px 50px -26px rgba(23, 17, 15, 0.6); }
 .laptop-base::before { content: ""; position: absolute; top: 0; left: 50%; width: 16%; height: 6px; margin-left: -8%; border-radius: 0 0 8px 8px; background: #a9a5a1; }
 .desk-tabs { display: grid; gap: 4px; }

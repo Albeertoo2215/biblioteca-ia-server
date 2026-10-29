@@ -57,7 +57,7 @@
         <h2 id="s1">Apps web</h2>
         <p>Funcionan en cualquier navegador y se instalan en el móvil como una app, sin pasar por tiendas.</p>
         <ul class="tags"><li>Reservas</li><li>Pedidos</li><li>Fidelización</li><li>Áreas de cliente</li></ul>
-        <a href="#ejemplos" class="link more">Prueba tres de ejemplo <span aria-hidden="true">↓</span></a>
+        <a href="#ejemplos" class="link more">Mira algunas de ejemplo <span aria-hidden="true">↓</span></a>
       </div></div>
     </section>
 
@@ -100,52 +100,52 @@
     <section class="block examples" id="ejemplos" data-shape="0" data-x="0" data-bg="0" data-dim="0.08" aria-labelledby="ej">
       <div class="wrap">
         <div class="examples-head">
-          <h2 id="ej">Pruébalas.</h2>
-          <p>Apps de ejemplo, cada una con su marca. Los negocios son inventados; las apps funcionan de verdad.</p>
+          <h2 id="ej">Míralas en marcha.</h2>
+          <p>Apps de ejemplo, cada una con su marca. Los negocios son inventados; las apps, reales.</p>
         </div>
 
         <p class="ex-group">En el móvil</p>
         <ul class="examples-list">
           <li>
-            <a class="example" href="/demos/reservas/">
+            <div class="example">
               <span class="phone-frame"><video class="vid" poster="img/poster-reservas.webp" muted loop playsinline preload="none" aria-label="Vídeo: reserva de una cita en la app de alba fisioterapia"><source src="video/reservas.webm" type="video/webm"><source src="video/reservas.mp4" type="video/mp4"></video></span>
               <span class="ex-kind">Reservas</span>
               <span class="ex-title">alba fisioterapia</span>
               <span class="ex-text">Reserva, confirmación y cita en el calendario.</span>
-              <span class="ex-go">Probar <span aria-hidden="true">→</span></span>
-            </a>
+            </div>
           </li>
           <li>
-            <a class="example" href="/demos/pedidos/?mesa=4">
+            <div class="example">
               <span class="phone-frame"><video class="vid" poster="img/poster-pedidos.webp" muted loop playsinline preload="none" aria-label="Vídeo: pedido desde la mesa en Lúa café y comanda en barra"><source src="video/pedidos.webm" type="video/webm"><source src="video/pedidos.mp4" type="video/mp4"></video></span>
               <span class="ex-kind">Pedidos</span>
               <span class="ex-title">Lúa café</span>
               <span class="ex-text">Se pide desde la mesa y la comanda entra en barra.</span>
-              <span class="ex-go">Probar <span aria-hidden="true">→</span></span>
-            </a>
+            </div>
           </li>
           <li>
-            <a class="example" href="/demos/presupuestos/">
+            <div class="example">
               <span class="phone-frame"><video class="vid" poster="img/poster-presupuestos.webp" muted loop playsinline preload="none" aria-label="Vídeo: cálculo del precio de una reforma en TRAMO"><source src="video/presupuestos.webm" type="video/webm"><source src="video/presupuestos.mp4" type="video/mp4"></video></span>
               <span class="ex-kind">Presupuestos</span>
               <span class="ex-title">TRAMO reformas</span>
               <span class="ex-text">Precio de la obra al instante, con PDF.</span>
-              <span class="ex-go">Probar <span aria-hidden="true">→</span></span>
-            </a>
+            </div>
           </li>
         </ul>
 
         <p class="ex-group">En el ordenador</p>
         <div class="desk" id="desk">
           <div class="laptop">
-            <div class="screen"><video class="vid" id="desk-video" src="video/inventario.mp4" poster="img/poster-inventario.webp" muted playsinline preload="none" aria-label="Vídeo: la app de escritorio seleccionada en uso"></video></div>
+            <div class="screen">
+              <video class="vid desk-vid on" data-n="inventario" poster="img/poster-inventario.webp" muted playsinline preload="none" aria-label="Vídeo: Grano, inventario de almacén, en uso"><source src="video/inventario.webm" type="video/webm"><source src="video/inventario.mp4" type="video/mp4"></video>
+              <video class="vid desk-vid" data-n="turnos" poster="img/poster-turnos.webp" muted playsinline preload="none" aria-label="Vídeo: Marea, cuadrante de turnos de hotel, en uso"><source src="video/turnos.webm" type="video/webm"><source src="video/turnos.mp4" type="video/mp4"></video>
+              <video class="vid desk-vid" data-n="proyectos" poster="img/poster-proyectos.webp" muted playsinline preload="none" aria-label="Vídeo: Quilla, planificación de obras, en uso"><source src="video/proyectos.webm" type="video/webm"><source src="video/proyectos.mp4" type="video/mp4"></video>
+            </div>
             <div class="laptop-base" aria-hidden="true"></div>
           </div>
           <div class="desk-tabs" role="tablist" aria-label="Apps de escritorio">
             <button type="button" role="tab" aria-selected="true" data-n="inventario"><span class="ex-kind">Inventario</span><b>Grano</b><span class="ex-text">Stock, alertas de mínimos y pedidos a proveedores.</span><i class="bar"><i></i></i></button>
             <button type="button" role="tab" aria-selected="false" data-n="turnos"><span class="ex-kind">Turnos</span><b>Marea</b><span class="ex-text">Cuadrante del hotel con avisos de horas y descansos.</span><i class="bar"><i></i></i></button>
             <button type="button" role="tab" aria-selected="false" data-n="proyectos"><span class="ex-kind">Proyectos</span><b>Quilla</b><span class="ex-text">Fases, plazos y avance de cada obra del estudio.</span><i class="bar"><i></i></i></button>
-            <a class="ex-go" id="desk-link" href="/demos/inventario/">Probar Grano <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>

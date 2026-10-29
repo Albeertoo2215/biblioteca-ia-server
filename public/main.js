@@ -307,38 +307,45 @@ document.getElementById('year').textContent = new Date().getFullYear();
   requestAnimationFrame(frame);
 })();
 
-// Vídeos de las apps: solo se reproducen a la vista; el portátil va pasando de una app a otra
+// Vídeos de las apps: solo se reproducen a la vista. En el portátil se encadenan las tres apps con un fundido.
 (function () {
-  const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const vids = [...document.querySelectorAll('.vid')];
-  if (!vids.length || reducir || !('IntersectionObserver' in window)) return;
-  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
-    const v = e.target;
-    if (e.isIntersecting) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
-  }), { threshold: 0.35 });
-  vids.forEach((v) => io.observe(v));
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const play = (v) => { const p = v.play(); if (p) p.catch(() => {}); };
 
-  const video = document.getElementById('desk-video');
+  // Teléfonos: cada vídeo en bucle mientras se ve
+  const moviles = [...document.querySelectorAll('.phone-frame .vid')];
+  const ioMovil = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.preload = 'auto'; play(e.target); } else e.target.pause();
+  }), { threshold: 0.35 });
+  moviles.forEach((v) => ioMovil.observe(v));
+
+  // Portátil
+  const desk = document.getElementById('desk');
+  const vids = [...document.querySelectorAll('.desk-vid')];
   const tabs = [...document.querySelectorAll('.desk-tabs [data-n]')];
-  const link = document.getElementById('desk-link');
-  if (!video || !tabs.length) return;
-  let actual = 0;
-  // WebM donde se pueda (Chrome, Firefox); MP4 en el resto (Safari antiguo)
-  const formato = video.canPlayType('video/webm; codecs="vp9"') ? 'webm' : 'mp4';
-  video.src = `video/${tabs[0].dataset.n}.${formato}`;
-  const elegir = (i, reproducir) => {
+  if (!desk || !vids.length) return;
+  let actual = 0, visible = false;
+  const barra = (i) => tabs[i].querySelector('.bar i');
+  function mostrar(i) {
+    const antes = vids[actual];
     actual = i;
-    const n = tabs[i].dataset.n;
-    tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.querySelector('.bar i').style.width = '0'; });
-    video.src = `video/${n}.${formato}`; video.poster = `img/poster-${n}.webp`;
-    link.href = `/demos/${n}/`;
-    link.firstChild.textContent = `Probar ${tabs[i].querySelector('b').textContent} `;
-    if (reproducir) video.play().catch(() => {});
-  };
-  tabs.forEach((t, i) => t.addEventListener('click', () => elegir(i, true)));
-  video.addEventListener('ended', () => elegir((actual + 1) % tabs.length, true));
-  // Barra de progreso bajo la pestaña activa
-  video.addEventListener('timeupdate', () => { if (video.duration) tabs[actual].querySelector('.bar i').style.width = `${(video.currentTime / video.duration) * 100}%`; });
+    const v = vids[i];
+    v.currentTime = 0;
+    if (visible) play(v);
+    vids.forEach((x) => x.classList.toggle('on', x === v));
+    tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); barra(k).style.width = '0'; });
+    // El anterior se para cuando ya se ha fundido
+    if (antes !== v) setTimeout(() => { if (vids[actual] !== antes) antes.pause(); }, 500);
+  }
+  vids.forEach((v, i) => {
+    v.addEventListener('ended', () => { if (i === actual) mostrar((i + 1) % vids.length); });
+    v.addEventListener('timeupdate', () => { if (i === actual && v.duration) barra(i).style.width = `${(v.currentTime / v.duration) * 100}%`; });
+  });
+  tabs.forEach((t, i) => t.addEventListener('click', () => mostrar(i)));
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible) { vids.forEach((v) => { v.preload = 'auto'; }); play(vids[actual]); } else vids[actual].pause();
+  }, { threshold: 0.3 }).observe(desk);
 })();
 
 // Formulario de contacto
