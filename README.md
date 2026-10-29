@@ -23,7 +23,6 @@ npx serve public
 
 ## Pendiente antes de publicar
 - Buscar y sustituir todos los marcadores entre corchetes: `grep -rn "\[" public/*.html` (`[NIF]`, `[DOMICILIO COMPLETO]`, `[FECHA]`, proveedores...).
-- Conectar el formulario: sustituir `FORM_ENDPOINT` en `public/index.html` por el endpoint del servicio elegido (Formspree, Web3Forms...) y añadir ese proveedor en la tabla de encargados de `privacidad.html`.
 - Revisar los textos legales con un profesional antes de publicar.
 - Quitar la línea `X-Robots-Tag: noindex` de `public/_headers` para que los buscadores indexen la web.
 

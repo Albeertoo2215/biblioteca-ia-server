@@ -247,8 +247,11 @@
           <p class="contact-alt">¿Prefieres escribir directamente? <a href="mailto:contacto@folzia.com">contacto@folzia.com</a></p>
         </div>
 
-        <!-- Pendiente: sustituir FORM_ENDPOINT por el servicio de formularios elegido (ver README) -->
-        <form class="form" id="contact-form" action="FORM_ENDPOINT" method="POST" novalidate>
+        <form class="form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <!-- Clave pública de Web3Forms: solo permite enviar este formulario a contacto@folzia.com -->
+          <input type="hidden" name="access_key" value="b2581a52-ea24-449a-ae54-1e13a8e56586">
+          <input type="hidden" name="subject" value="Nueva solicitud desde folzia.com">
+          <input type="hidden" name="from_name" value="Web Folzia">
           <fieldset class="form-part">
             <legend>Tus datos</legend>
             <div class="fields">
@@ -400,7 +403,7 @@
           </fieldset>
 
           <!-- Campo trampa para bots: debe quedar vacío -->
-          <label class="hp" aria-hidden="true">No rellenar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+          <label class="hp" aria-hidden="true">No rellenar<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
 
           <div class="form-part form-submit">
             <div class="legal-note">

@@ -60,6 +60,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
 })();
 
 // Formulario de contacto
+// Une en una sola línea los campos con varias opciones marcadas (funciones, dispositivos, datos)
+function toObject(data) {
+  const out = {};
+  for (const [k, v] of data.entries()) out[k] = k in out ? out[k] + ', ' + v : v;
+  return out;
+}
+
 (function () {
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
@@ -72,7 +79,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       return;
     }
     const endpoint = form.getAttribute('action');
-    if (!endpoint || endpoint === 'FORM_ENDPOINT') {
+    if (!endpoint) {
       status.textContent = 'El formulario todavía no está conectado. Escríbenos directamente por correo, por favor.';
       return;
     }
@@ -82,8 +89,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
+        body: JSON.stringify(toObject(new FormData(form))),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       });
       if (!res.ok) throw new Error(res.status);
       form.reset();
