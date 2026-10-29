@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cuadra · Tus cuentas</title>
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="fonts/onest.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 28 28"><rect x="2" y="2" width="24" height="24" rx="2" fill="#2341e0"/><rect x="8" y="8" width="12" height="12" fill="#fff"/><rect x="14" y="14" width="6" height="6" fill="#2341e0"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6zM9 10h6M9 14h6M9 18h3"/></symbol>
+    <symbol id="i-tax" viewBox="0 0 24 24"><path d="M5 4h14v16H5zM9 9l6 6M9.5 15h.01M14.5 9h.01"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  </svg>
+  <div class="app">
+    <header class="top"><a class="brand" href="./"><svg><use href="#logo"/></svg>cuadra</a><button type="button" class="q" id="q">3T 2026</button><span class="av">CM</span></header>
+    <main id="main"></main>
+    <nav class="tabbar" aria-label="Secciones">
+      <button type="button" data-view="resumen" aria-current="page"><svg><use href="#i-home"/></svg>Resumen</button>
+      <button type="button" data-view="movs"><svg><use href="#i-list"/></svg>Movimientos</button>
+      <button type="button" data-view="facturar"><svg><use href="#i-doc"/></svg>Facturar</button>
+      <button type="button" data-view="impuestos"><svg><use href="#i-tax"/></svg>Impuestos</button>
+    </nav>
+  </div>
+  <div class="sheet" id="sheet" hidden><div class="sheet-bg" data-close></div><div class="sheet-in" id="sheet-in" role="dialog" aria-modal="true"></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

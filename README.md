@@ -10,6 +10,8 @@ Herramientas internas, portales para clientes y automatizaciones que sustituyen 
 - `public/main.js`: fondo de partículas en WebGL (intro con el logo, figuras por sección y fondos alternos blanco/naranja) y envío del formulario.
 - `public/fonts/`: tipografía Archivo autoalojada (sin peticiones a Google Fonts).
 - `demos/`: código de las apps de ejemplo (negocios ficticios). **No se publica**: solo sirve para grabar los vídeos de la galería.
+  - Móvil: `tecnico` (Frigo Norte), `finanzas` (Cuadra), `reservas` (alba), `pedidos` (Lúa) y `presupuestos` (TRAMO).
+  - Escritorio: `gestoria` (Vértice), `veterinaria` (Arce), `proyectos` (Quilla), `turnos` (Marea) e `inventario` (Grano).
 - `public/video/` y `public/img/`: vídeos cortos de las apps de ejemplo (WebM y MP4 para Safari, 60 fps) y sus portadas, para la galería.
 - `public/_headers`: cabeceras de seguridad para Cloudflare Pages.
 - `wrangler.toml`: configuración de Cloudflare Workers (recursos estáticos de `public/`).

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arce · Clínica veterinaria</title>
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 30 30"><path d="M15 2.5l2.4 5.6 4.4-2.2-.9 5.6 5.6-.6-3 4.2 3.6 2.4-5.3 1.4.9 3.9-4.6-1.6-1.6 5.3h-1L14.3 21l-4.6 1.6.9-3.9-5.3-1.4 3.6-2.4-3-4.2 5.6.6-.9-5.6 4.4 2.2z" fill="#b4472b"/><path d="M15 12v15.5" stroke="#fff" stroke-width="1.6"/></symbol>
+    <symbol id="i-l" viewBox="0 0 20 20"><path d="m12 4-6 6 6 6"/></symbol>
+    <symbol id="i-r" viewBox="0 0 20 20"><path d="m8 4 6 6-6 6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 20 20"><path d="M10 3 18 17H2zM10 8v4M10 14.5v.2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 20 20"><path d="m4.5 10.5 3.5 3.5 7.5-8"/></symbol>
+    <symbol id="i-x" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></symbol>
+  </svg>
+
+  <header class="top">
+    <a class="brand" href="./"><svg><use href="#logo"/></svg><span>arce<small>clínica veterinaria</small></span></a>
+    <nav class="tabs" aria-label="Secciones">
+      <button type="button" data-view="agenda" aria-current="page">Agenda</button>
+      <button type="button" data-view="ficha" id="tab-ficha" hidden></button>
+    </nav>
+    <div class="clock"><b id="hora"></b><span id="fecha"></span></div>
+    <div class="me"><span class="av">LP</span>Dra. Lucía Peral</div>
+  </header>
+
+  <main>
+    <section class="view" id="agenda">
+      <div class="ag-wrap">
+        <div class="ag" id="ag"></div>
+        <aside class="side">
+          <section class="day-sum" id="sum"></section>
+          <section>
+            <h2>Sala de espera</h2>
+            <ul class="wait" id="wait"></ul>
+          </section>
+          <p class="demo">Demo de Folzia · clínica y pacientes ficticios.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view" id="ficha" hidden></section>
+  </main>
+
+  <div class="modal" id="cobro" hidden>
+    <div class="modal-bg" data-close-modal></div>
+    <div class="modal-in" role="dialog" aria-modal="true" aria-labelledby="cobro-t">
+      <h2 id="cobro-t">Cobrar consulta</h2>
+      <p class="m-total" id="m-total"></p>
+      <div class="pay" id="pay">
+        <label><input type="radio" name="pago" value="Tarjeta" checked><span>Tarjeta</span></label>
+        <label><input type="radio" name="pago" value="Efectivo"><span>Efectivo</span></label>
+        <label><input type="radio" name="pago" value="Bizum"><span>Bizum</span></label>
+      </div>
+      <label class="mail"><input type="checkbox" checked> Enviar factura por correo a la propietaria</label>
+      <div class="m-acts"><button type="button" class="btn ghost" data-close-modal>Cancelar</button><button type="button" class="btn" id="cobrar">Cobrar</button></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

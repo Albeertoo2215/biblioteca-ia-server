@@ -122,10 +122,24 @@ document.getElementById('year').textContent = new Date().getFullYear();
     uniform float w0; uniform float w1; uniform float w2; uniform float w3; uniform float w4; uniform float w5; uniform float w6;
     uniform float uTime; uniform float uBurst; uniform float uRotY; uniform float uRotX; uniform float uBg;
     uniform float uAspect; uniform float uScale; uniform float uOffX; uniform float uOffY; uniform float uSize; uniform float uDim;
+    uniform float uTwist; uniform float uCollapse; uniform float uFlash; uniform float uGalaxy; uniform float uSpin;
     varying vec3 vColor; varying float vAlpha;
     void main() {
       vec3 p = p0*w0 + p1*w1 + p2*w2 + p3*w3 + p4*w4 + p5*w5 + p6*w6;
       p += r.xyz * uBurst * (0.8 + r.w * 1.6);
+      // Intro: vórtice (giro que crece con la distancia al centro) y colapso hacia un punto
+      p *= 1.0 - uCollapse * 0.955;
+      float ang = uTwist * (0.35 + length(p.xy)) * (0.6 + r.w);
+      float ca = cos(ang), sa = sin(ang);
+      p.xy = vec2(p.x * ca - p.y * sa, p.x * sa + p.y * ca);
+      // Galaxia de tres brazos que gira y se contrae hacia el centro
+      if (uGalaxy > 0.0) {
+        float arm = floor(r.w * 3.0);
+        float rad = (0.1 + 2.3 * fract(r.w * 7.31 + r.x * 0.13)) * (1.0 - uCollapse * 0.97);
+        float a = rad * 2.8 + arm * 2.0944 + uSpin / (0.35 + rad) + r.y * 0.32;
+        vec3 g = vec3(cos(a) * rad, sin(a) * rad * 0.6, r.z * 0.07);
+        p = mix(p, g, uGalaxy);
+      }
       p += vec3(sin(uTime*0.7 + r.w*40.0), cos(uTime*0.6 + r.w*31.0), sin(uTime*0.5 + r.w*17.0)) * 0.012 * (1.0 - w6);
       float cy = cos(uRotY), sy = sin(uRotY), cx = cos(uRotX), sx = sin(uRotX);
       vec3 q = vec3(p.x*cy + p.z*sy, p.y, -p.x*sy + p.z*cy);
@@ -133,7 +147,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       float persp = 3.2 / max(3.2 - q.z, 1.6);
       vec2 s = q.xy * persp * uScale;
       gl_Position = vec4(s.x / uAspect + uOffX, s.y + uOffY, 0.0, 1.0);
-      gl_PointSize = uSize * (0.6 + r.w * 0.9) * persp;
+      gl_PointSize = uSize * (0.6 + r.w * 0.9) * persp * (1.0 + uFlash * 2.2);
       vec3 orange = vec3(0.969, 0.231, 0.125);
       vec3 ink = vec3(0.09, 0.067, 0.059);
       vec3 onWhite = r.w > 0.82 ? ink : (r.w > 0.55 ? vec3(1.0, 0.55, 0.42) : orange);
@@ -169,7 +183,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   attr('r', rand, 4);
   attr('lc', logoCol, 1);
   const U = {};
-  ['w0', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'uTime', 'uBurst', 'uRotY', 'uRotX', 'uBg', 'uAspect', 'uScale', 'uOffX', 'uOffY', 'uSize', 'uDim'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
+  ['w0', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'uTime', 'uBurst', 'uRotY', 'uRotX', 'uBg', 'uAspect', 'uScale', 'uOffX', 'uOffY', 'uSize', 'uDim', 'uTwist', 'uCollapse', 'uFlash', 'uGalaxy', 'uSpin'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
 
   gl.disable(gl.DEPTH_TEST);
   gl.enable(gl.BLEND);
@@ -223,10 +237,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
     readAnchors();
   }
 
-  // ---------- Intro: dispersión → logo → planeta ----------
+  // ---------- Intro: vórtice → singularidad → explosión en el logo → primera figura ----------
   let introDone = reduced || scrollY > 10;
   try { if (sessionStorage.getItem('folziaIntro')) introDone = true; } catch (e) { /* sin almacenamiento */ }
-  const T_IN = 1.3, T_HOLD = 2.3, T_OUT = 3.3;
+  // Tiempos (s): giro hacia el centro, destello, explosión en el logo, pausa y salida
+  const T_VORT = 0.7, T_FLASH = 0.82, T_LOGO = 1.22, T_HOLD = 1.55, T_OUT = 2.05;
   let introStart = null;
   const finishIntro = () => { if (introDone) return; introDone = true; ready(); try { sessionStorage.setItem('folziaIntro', '1'); } catch (e) { /* nada */ } };
   ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, finishIntro, { passive: true, once: true }));
@@ -258,23 +273,39 @@ document.getElementById('year').textContent = new Date().getFullYear();
     let burst = A.shape === B.shape || reduced ? 0 : Math.sin(Math.PI * k) * 0.9;
     let offX = lerp(A.x, B.x, k), offY = lerp(A.y, B.y, k), bg = lerp(A.bg, B.bg, k), dim = lerp(A.dim, B.dim, k);
     let scale = mobile ? 0.34 : 0.46;
+    let twist = 0, collapse = 0, flash = 0, galaxy = 0, spin = 0;
 
     // La intro manda durante los primeros segundos
     if (!introDone) {
       if (introStart === null) introStart = time;
       const t = time - introStart;
       w.fill(0);
+      const easeOutBack = (x) => 1 + 2.4 * Math.pow(x - 1, 3) + 1.4 * Math.pow(x - 1, 2);
+      offX = 0; offY = 0;
       if (t < T_HOLD) {
-        w[LOGO] = 1;
-        burst = t < T_IN ? Math.pow(1 - sm(t / T_IN), 2) * 3.2 : 0;
-        offX = 0; offY = 0; scale = mobile ? 0.3 : 0.42;
+        w[LOGO] = 1; scale = mobile ? 0.3 : 0.42;
+        if (t < T_VORT) {
+          // Las partículas llegan girando en espiral y se comprimen hacia el centro
+          const k = t / T_VORT, e = k * k * (3 - 2 * k);
+          galaxy = 1; spin = k * 4.2; collapse = Math.pow(e, 1.5); twist = 0.5 * e;
+        } else if (t < T_FLASH) {
+          // Singularidad: todo en un punto que destella
+          const k = (t - T_VORT) / (T_FLASH - T_VORT);
+          collapse = 1; twist = 0.5; flash = Math.sin(Math.PI * k);
+        } else {
+          // Onda expansiva: el logo aparece con un pequeño rebote
+          const k = clamp01((t - T_FLASH) / (T_LOGO - T_FLASH));
+          collapse = 1 - easeOutBack(k); twist = 0.5 * (1 - k) * (1 - k) * (1 - k); flash = Math.max(0, 1 - k * 3) * 0.6;
+          burst = Math.sin(Math.PI * k) * 0.12;
+        }
       } else {
         const m = sm(clamp01((t - T_HOLD) / (T_OUT - T_HOLD)));
         w[LOGO] = 1 - m; w[A.shape] += m;
-        burst = Math.sin(Math.PI * m) * 1.1;
-        offX = lerp(0, offX, m); offY = lerp(0, offY, m);
-        scale = lerp(mobile ? 0.3 : 0.42, scale, m);
-        if (t > T_HOLD + 0.35) ready();
+        burst = Math.sin(Math.PI * m) * 0.7;
+        twist = -Math.sin(Math.PI * m) * 1.1;
+        offX = lerp(0, A.x, m); offY = lerp(0, A.y, m);
+        scale = lerp(mobile ? 0.3 : 0.42, mobile ? 0.34 : 0.46, m);
+        if (t > T_HOLD + 0.2) ready();
         if (t >= T_OUT) finishIntro();
       }
     }
@@ -292,6 +323,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
     gl.uniform1f(U.uOffY, offY);
     gl.uniform1f(U.uSize, (mobile ? 3.0 : 3.4) * dpr);
     gl.uniform1f(U.uDim, dim);
+    gl.uniform1f(U.uTwist, twist);
+    gl.uniform1f(U.uCollapse, collapse);
+    gl.uniform1f(U.uFlash, flash);
+    gl.uniform1f(U.uGalaxy, galaxy);
+    gl.uniform1f(U.uSpin, spin);
 
     const r = lerp(1, ORANGE[0], bg), g = lerp(1, ORANGE[1], bg), b = lerp(1, ORANGE[2], bg);
     gl.clearColor(r, g, b, 1);

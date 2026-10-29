@@ -109,13 +109,11 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 /* Teléfono: marco negro; dentro, el vídeo real de la app */
 .phone-frame { display: block; position: relative; aspect-ratio: 560 / 1212; border-radius: 44px; background: #111; padding: 9px; box-shadow: 0 0 0 1.5px #2b2b2b, 0 40px 70px -36px rgba(23, 17, 15, 0.55); margin-bottom: 20px; transition: transform 400ms var(--ease); }
 .phone-frame .vid { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 35px; background: #f4f1ef; }
-@media (hover: hover) { .example:hover .phone-frame { transform: translateY(-6px); } }
 .ex-kind { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--orange); }
 .ex-title { font-weight: 800; font-stretch: 108%; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.05; letter-spacing: -0.02em; }
 .ex-text { color: var(--ink-2); font-size: 17px; }
 .ex-go { margin-top: 8px; font-weight: 700; font-size: 16px; }
 .ex-go span { display: inline-block; transition: transform var(--fast) var(--ease); }
-.example:hover .ex-go span { transform: translateX(4px); }
 .example:focus-visible { outline-offset: 8px; border-radius: 28px; }
 .ex-group { margin: 56px 0 0; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .ex-group + .examples-list { margin-top: 36px; }
@@ -232,3 +230,16 @@ select { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor
 .legal-page .logo { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; text-decoration: none; display: inline-flex; align-items: baseline; }
 .legal-page .logo-dot { color: var(--orange); }
 @media (max-width: 640px) { .legal, .legal-page .top .nav { padding-left: 20px; padding-right: 20px; } }
+
+/* Cinco teléfonos en fila, escalonados */
+.examples-list.five { grid-template-columns: repeat(5, 1fr); gap: clamp(14px, 2vw, 28px); }
+.examples-list.five li:nth-child(2) { margin-top: 0; }
+.examples-list.five li:nth-child(even) { margin-top: 56px; }
+.examples-list.five .ex-title { font-size: clamp(19px, 1.6vw, 23px); }
+.examples-list.five .ex-text { font-size: 15px; }
+.examples-list.five .phone-frame { border-radius: 34px; padding: 7px; }
+.examples-list.five .phone-frame .vid { border-radius: 28px; }
+.desk-tabs button { padding: 10px 0 12px; }
+.desk-tabs b { font-size: 22px; }
+.desk-tabs .ex-text { font-size: 14.5px; }
+@media (max-width: 900px) { .examples-list.five li:nth-child(even) { margin-top: 0; } .desk-tabs { grid-template-columns: 1fr 1fr; } }

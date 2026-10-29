@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vértice asesores · Trimestre</title>
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 28 28"><rect width="28" height="28" rx="3" fill="#7b1e2c"/><path d="M7 8h3.4L14 17.6 17.6 8H21l-5.4 13h-3.2z" fill="#fff"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 20 20"><path d="M3 3h6v6H3zM11 3h6v6h-6zM3 11h6v6H3zM11 11h6v6h-6z"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 20 20"><path d="M3 11l2-7h10l2 7v5H3zM3 11h4l1 2h4l1-2h4"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 20 20"><path d="M3 5h14v12H3zM3 9h14M7 3v4M13 3v4"/></symbol>
+    <symbol id="i-search" viewBox="0 0 20 20"><circle cx="9" cy="9" r="5.5"/><path d="m13 13 4 4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 20 20"><path d="m4.5 10.5 3.5 3.5 7.5-8"/></symbol>
+    <symbol id="i-x" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 20 20"><path d="M5 2.5h7l3 3v12H5zM12 2.5v3h3M7.5 9.5h5M7.5 12.5h5"/></symbol>
+    <symbol id="i-img" viewBox="0 0 20 20"><path d="M3 4h14v12H3zM3 13l4-4 4 4 2-2 4 4"/><circle cx="13" cy="7.5" r="1.3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 20 20"><path d="M3 5h14v10H3zM3 5l7 6 7-6"/></symbol>
+  </svg>
+
+  <header class="top">
+    <a class="brand" href="./"><svg><use href="#logo"/></svg><span>Vértice<small>asesores</small></span></a>
+    <label class="search"><svg><use href="#i-search"/></svg><input id="q" type="search" placeholder="Buscar cliente o NIF" autocomplete="off"><kbd>/</kbd></label>
+    <div class="period"><span>Periodo</span><b id="periodo"></b></div>
+    <div class="today" id="hoy"></div>
+    <div class="me"><span class="av">IC</span><span>Inés Calvo<small>Fiscal</small></span></div>
+  </header>
+
+  <div class="body">
+    <nav class="nav" aria-label="Secciones">
+      <button type="button" data-view="trimestre" aria-current="page"><svg><use href="#i-grid"/></svg>Trimestre</button>
+      <button type="button" data-view="bandeja"><svg><use href="#i-inbox"/></svg>Bandeja <b id="n-bandeja"></b></button>
+      <button type="button" data-view="calendario"><svg><use href="#i-cal"/></svg>Calendario</button>
+      <p class="nav-foot">Demo · despacho y clientes ficticios</p>
+    </nav>
+
+    <main class="main">
+      <section class="view" id="trimestre">
+        <div class="headline">
+          <div>
+            <h1>Tercer trimestre</h1>
+            <p class="sub" id="plazo"></p>
+          </div>
+          <div class="progress">
+            <p><b id="pct"></b> presentado <span id="pct-det"></span></p>
+            <div class="stack" id="stack"></div>
+            <ul class="leg" id="leg"></ul>
+          </div>
+        </div>
+        <div class="tools">
+          <div class="chips" id="f-estado"></div>
+          <select id="f-gestor" aria-label="Gestor"><option value="">Todos los gestores</option><option>IC</option><option>RM</option><option>AP</option></select>
+        </div>
+        <table class="matrix" id="matrix"></table>
+      </section>
+
+      <section class="view" id="bandeja" hidden>
+        <div class="split">
+          <div class="inbox">
+            <div class="headline sm"><h1>Bandeja de entrada</h1><p class="sub">Documentos que envían los clientes por correo o desde su área privada.</p></div>
+            <ul class="docs" id="docs"></ul>
+          </div>
+          <div class="preview" id="preview"></div>
+        </div>
+      </section>
+
+      <section class="view" id="calendario" hidden>
+        <div class="headline sm"><h1 id="cal-title"></h1><p class="sub">Plazos de presentación y citas con clientes.</p></div>
+        <div class="cal" id="cal"></div>
+      </section>
+    </main>
+
+    <aside class="panel" id="panel" hidden></aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
