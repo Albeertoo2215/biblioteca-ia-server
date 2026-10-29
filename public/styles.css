@@ -87,7 +87,9 @@ p { margin: 0; text-wrap: pretty; }
 }
 .top.scrolled { border-bottom-color: var(--sand); }
 .top-row { height: 72px; display: flex; align-items: center; gap: 32px; }
-.logo { color: var(--ink); text-decoration: none; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+.logo { color: var(--ink); text-decoration: none; font-size: 24px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; display: inline-flex; align-items: baseline; }
+.logo-o { display: inline-block; width: 0.46em; height: 0.46em; border: 0.1em solid var(--orange); border-radius: 0.15em; box-sizing: border-box; margin: 0 0.02em; }
+.logo-dot { color: var(--orange); }
 .top-nav { display: flex; gap: 28px; margin-left: auto; }
 .top-nav a { color: var(--ink-2); text-decoration: none; font-size: 15px; letter-spacing: 0.01em; transition: color var(--fast) var(--ease-out); }
 .top-nav a:hover { color: var(--ink); }
