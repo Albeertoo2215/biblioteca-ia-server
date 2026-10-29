@@ -9,6 +9,8 @@ Herramientas internas, portales para clientes y automatizaciones que sustituyen 
 - `public/aviso-legal.html`, `privacidad.html`, `cookies.html`: textos legales (LSSI-CE, RGPD/LOPDGDD).
 - `public/main.js`: fondo de partículas en WebGL (intro con el logo, figuras por sección y fondos alternos blanco/naranja) y envío del formulario.
 - `public/fonts/`: tipografía Archivo autoalojada (sin peticiones a Google Fonts).
+- `public/demos/`: tres apps web de ejemplo (reservas, pedidos en mesa y presupuestador) con negocios ficticios. Instalables (manifest + service worker) y sin servidor: los datos se guardan solo en el navegador de quien las prueba.
+- `public/img/`: capturas de las demos que se muestran en la web.
 - `public/_headers`: cabeceras de seguridad para Cloudflare Pages.
 - `wrangler.toml`: configuración de Cloudflare Workers (recursos estáticos de `public/`).
 

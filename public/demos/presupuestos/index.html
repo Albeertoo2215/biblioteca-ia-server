@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TRAMO reformas · Calcula tu obra (demo)</title>
+  <meta name="theme-color" content="#111111">
+  <meta name="robots" content="noindex">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="preload" href="fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 48 48"><rect width="48" height="48" fill="#ffd21f"/><path d="M9 11h30v8H28v20h-8V19H9z" fill="#111"/><path d="M9 43h30" stroke="#111" stroke-width="2.5" stroke-dasharray="3 3"/></symbol>
+    <symbol id="i-bano" viewBox="0 0 48 48"><path d="M6 24h36v5a9 9 0 0 1-9 9H15a9 9 0 0 1-9-9zM12 38l-2 4M36 38l2 4M10 24V11a4 4 0 0 1 7.5-2"/><path d="M16 12l3 3"/></symbol>
+    <symbol id="i-cocina" viewBox="0 0 48 48"><rect x="7" y="16" width="34" height="26"/><path d="M7 25h34M24 16v26M13 9h8M27 9h8M15 30v4M31 30v4"/></symbol>
+    <symbol id="i-pintura" viewBox="0 0 48 48"><rect x="8" y="7" width="28" height="12" rx="2"/><path d="M36 13h4v10H22v6"/><rect x="18.5" y="29" width="7" height="13"/></symbol>
+    <symbol id="i-suelos" viewBox="0 0 48 48"><path d="M5 37l10-20h28L33 37zM9.5 28h28.5M20 17l-5 20M30 17l-5 20"/></symbol>
+    <symbol id="i-integral" viewBox="0 0 48 48"><path d="M6 22L24 7l18 15M11 18v23h26V18"/><path d="M20 41V29h8v12"/></symbol>
+  </svg>
+
+  <header class="top">
+    <a class="brand" href="./" aria-label="TRAMO reformas"><svg class="brand-mark"><use href="#logo"/></svg><span class="brand-name">TRAMO</span><span class="brand-sub">reformas<br>llave en mano</span></a>
+    <nav class="tabs" aria-label="Secciones">
+      <button type="button" data-view="calcular" aria-current="page">Calcular</button>
+      <button type="button" data-view="guardados">Guardados <b id="count">0</b></button>
+    </nav>
+  </header>
+  <div class="hazard" aria-hidden="true"></div>
+
+  <main>
+    <section class="view" id="calcular" aria-labelledby="titulo">
+      <div class="intro">
+        <h1 id="titulo">¿Cuánto cuesta<br>tu reforma?</h1>
+        <p>Cuatro preguntas y te damos una cifra al momento. Sin llamadas ni esperas.</p>
+      </div>
+
+      <form class="sheet" id="calc">
+        <div class="rows">
+          <fieldset class="row">
+            <legend><i>A</i>Tipo de obra</legend>
+            <div class="types" id="types"></div>
+          </fieldset>
+          <fieldset class="row">
+            <legend><i>B</i>Metros cuadrados</legend>
+            <div class="tape-wrap">
+              <output id="m2-out" for="m2"><b>5</b><span>m²</span></output>
+              <div class="tape">
+                <input type="range" id="m2" name="m2" min="2" max="15" value="5" aria-describedby="m2-help">
+                <div class="ticks" id="ticks" aria-hidden="true"></div>
+              </div>
+            </div>
+            <p class="help" id="m2-help"></p>
+          </fieldset>
+          <fieldset class="row">
+            <legend><i>C</i>Acabados</legend>
+            <div class="swatches" id="quality"></div>
+          </fieldset>
+          <fieldset class="row">
+            <legend><i>D</i>Extras</legend>
+            <div class="extras" id="extras"></div>
+          </fieldset>
+        </div>
+
+        <aside class="price" id="precio" aria-live="polite">
+          <p class="price-label">Tu obra sale entre</p>
+          <p class="price-big"><span id="p-min">—</span><small>y</small><span id="p-max">—</span></p>
+          <p class="price-vat">euros · IVA no incluido</p>
+          <div class="stack" id="stack" aria-hidden="true"></div>
+          <ul class="legend" id="legend"></ul>
+          <div class="weeks"><span>Duración</span><div class="weeks-bar" id="weeks"></div><strong id="duration"></strong></div>
+          <div class="actions">
+            <button type="button" class="b-main" id="save">Guardar presupuesto</button>
+            <button type="button" class="b-alt" id="print">Descargar PDF</button>
+          </div>
+          <p class="fine">Cifra orientativa con precios de ejemplo. El presupuesto cerrado se da tras visitar la obra.</p>
+        </aside>
+      </form>
+    </section>
+
+    <section class="view" id="guardados" hidden aria-labelledby="t-guardados">
+      <div class="intro"><h1 id="t-guardados">Mis presupuestos</h1></div>
+      <ul class="files" id="saved"></ul>
+    </section>
+  </main>
+
+  <a class="mini" id="mini" href="#precio"><span>Tu obra</span><strong id="mini-price">—</strong><em>Ver desglose</em></a>
+
+  <footer class="foot">Demo de <a href="/">Folzia</a>. TRAMO es una empresa inventada: los precios son de ejemplo y los datos se guardan solo en tu navegador.</footer>
+
+  <!-- Documento que se imprime (o se guarda como PDF) -->
+  <article class="doc" id="doc" aria-hidden="true"></article>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -96,6 +96,34 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
   .copy { max-width: none; }
 }
 
+/* Apps de ejemplo: capturas reales de las demos, en galería escalonada */
+.examples { padding-bottom: clamp(48px, 8vh, 96px); }
+.examples-head { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; align-items: end; }
+.examples-head p { font-size: clamp(18px, 1.5vw, 21px); color: var(--ink-2); max-width: 28em; }
+.examples-list { list-style: none; margin: 64px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 48px); align-items: start; }
+.examples-list li:nth-child(2) { margin-top: 72px; }
+.example { display: grid; gap: 6px; text-decoration: none; color: var(--ink); }
+.shot { display: block; border-radius: 28px; overflow: hidden; background: #f4f1ef; box-shadow: 0 0 0 1px rgba(23, 17, 15, 0.08), 0 30px 60px -30px rgba(23, 17, 15, 0.35); margin-bottom: 18px; transition: transform 400ms var(--ease), box-shadow 400ms var(--ease); }
+.shot img { width: 100%; aspect-ratio: 1 / 2; object-fit: cover; object-position: top; }
+.example:hover .shot { transform: translateY(-8px) rotate(-0.6deg); box-shadow: 0 0 0 1px rgba(23, 17, 15, 0.1), 0 44px 70px -30px rgba(23, 17, 15, 0.42); }
+.ex-kind { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--orange); }
+.ex-title { font-weight: 800; font-stretch: 108%; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.05; letter-spacing: -0.02em; }
+.ex-text { color: var(--ink-2); font-size: 17px; }
+.ex-go { margin-top: 8px; font-weight: 700; font-size: 16px; }
+.ex-go span { display: inline-block; transition: transform var(--fast) var(--ease); }
+.example:hover .ex-go span { transform: translateX(4px); }
+.example:focus-visible { outline-offset: 8px; border-radius: 28px; }
+@media (max-width: 900px) {
+  .examples-head { grid-template-columns: 1fr; }
+  /* En móvil y tableta, carrusel horizontal con imán */
+  .examples-list { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; margin: 40px -20px 0; padding: 0 20px 12px; scrollbar-width: none; }
+  .examples-list::-webkit-scrollbar { display: none; }
+  .examples-list li { flex: 0 0 min(76%, 340px); scroll-snap-align: center; }
+  .examples-list li:nth-child(2) { margin-top: 0; }
+}
+@media (max-width: 900px) and (min-width: 641px) { .examples-list { margin: 40px -40px 0; padding: 0 40px 12px; } }
+.more { display: inline-block; margin-top: 26px; }
+
 /* Bloques normales */
 .block { padding: clamp(96px, 14vh, 160px) 0; }
 .block h2 { font-size: clamp(40px, 5vw, 76px); }
