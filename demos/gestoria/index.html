@@ -20,13 +20,23 @@
     <symbol id="i-doc" viewBox="0 0 20 20"><path d="M5 2.5h7l3 3v12H5zM12 2.5v3h3M7.5 9.5h5M7.5 12.5h5"/></symbol>
     <symbol id="i-img" viewBox="0 0 20 20"><path d="M3 4h14v12H3zM3 13l4-4 4 4 2-2 4 4"/><circle cx="13" cy="7.5" r="1.3"/></symbol>
     <symbol id="i-mail" viewBox="0 0 20 20"><path d="M3 5h14v10H3zM3 5l7 6 7-6"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 20 20"><path d="M5 14V9a5 5 0 0 1 10 0v5l1.5 1.5h-13zM8.5 17.5h3"/></symbol>
+    <symbol id="i-help" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><path d="M8 8a2 2 0 1 1 3 1.7c-.7.4-1 .8-1 1.6M10 14v.2"/></symbol>
+    <symbol id="i-users" viewBox="0 0 20 20"><circle cx="7.5" cy="7" r="2.8"/><path d="M2.5 16a5 5 0 0 1 10 0M13 4.5a2.8 2.8 0 0 1 0 5.2M14.5 11.5a5 5 0 0 1 3 4.5"/></symbol>
+    <symbol id="i-euro" viewBox="0 0 20 20"><path d="M15 5.5a5.5 5.5 0 1 0 0 9M3.5 8.5h8M3.5 11.5h8"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 20 20"><path d="M3 17h14M5.5 14V9M9.5 14V5M13.5 14v-3"/></symbol>
+    <symbol id="i-down" viewBox="0 0 20 20"><path d="M10 3v10M6 9l4 4 4-4M4 17h12"/></symbol>
+    <symbol id="i-send" viewBox="0 0 20 20"><path d="M3 10 17 3l-4 14-3-6zM10 11l7-8"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 20 20"><rect x="4.5" y="9" width="11" height="8" rx="1.5"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9"/></symbol>
   </svg>
 
   <header class="top">
     <a class="brand" href="./"><svg><use href="#logo"/></svg><span>Vértice<small>asesores</small></span></a>
     <label class="search"><svg><use href="#i-search"/></svg><input id="q" type="search" placeholder="Buscar cliente o NIF" autocomplete="off"><kbd>/</kbd></label>
+    <span class="cert"><svg><use href="#i-lock"/></svg>Certificado digital del despacho · válido hasta mar 2027</span>
     <div class="period"><span>Periodo</span><b id="periodo"></b></div>
-    <div class="today" id="hoy"></div>
+    <button type="button" class="ib" aria-label="Avisos"><svg><use href="#i-bell"/></svg><i class="dot"></i></button>
+    <button type="button" class="ib" aria-label="Ayuda"><svg><use href="#i-help"/></svg></button>
     <div class="me"><span class="av">IC</span><span>Inés Calvo<small>Fiscal</small></span></div>
   </header>
 
@@ -35,6 +45,11 @@
       <button type="button" data-view="trimestre" aria-current="page"><svg><use href="#i-grid"/></svg>Trimestre</button>
       <button type="button" data-view="bandeja"><svg><use href="#i-inbox"/></svg>Bandeja <b id="n-bandeja"></b></button>
       <button type="button" data-view="calendario"><svg><use href="#i-cal"/></svg>Calendario</button>
+      <p class="nav-h">Despacho</p>
+      <button type="button" class="soon"><svg><use href="#i-users"/></svg>Clientes <em>64</em></button>
+      <button type="button" class="soon"><svg><use href="#i-euro"/></svg>Honorarios</button>
+      <button type="button" class="soon"><svg><use href="#i-chart"/></svg>Informes</button>
+      <div class="ws"><div class="avs"><span class="av xs c1">IC</span><span class="av xs c2">RM</span><span class="av xs c3">AP</span><span class="av xs c4">+1</span></div><p><b>Vértice asesores</b>4 personas · Valencia</p></div>
       <p class="nav-foot">Demo · despacho y clientes ficticios</p>
     </nav>
 
@@ -42,20 +57,19 @@
       <section class="view" id="trimestre">
         <div class="headline">
           <div>
-            <h1>Tercer trimestre</h1>
+            <p class="crumb">Despacho <span>/</span> Impuestos trimestrales</p>
+            <h1>Tercer trimestre 2026</h1>
             <p class="sub" id="plazo"></p>
           </div>
-          <div class="progress">
-            <p><b id="pct"></b> presentado <span id="pct-det"></span></p>
-            <div class="stack" id="stack"></div>
-            <ul class="leg" id="leg"></ul>
-          </div>
+          <div class="h-acts"><button type="button" class="btn ghost"><svg><use href="#i-down"/></svg>Exportar</button><button type="button" class="btn brand"><svg><use href="#i-send"/></svg>Presentar listos</button></div>
         </div>
+        <div class="kpis" id="kpis"></div>
         <div class="tools">
           <div class="chips" id="f-estado"></div>
           <select id="f-gestor" aria-label="Gestor"><option value="">Todos los gestores</option><option>IC</option><option>RM</option><option>AP</option></select>
         </div>
         <table class="matrix" id="matrix"></table>
+        <p class="tfoot" id="tfoot"></p>
       </section>
 
       <section class="view" id="bandeja" hidden>

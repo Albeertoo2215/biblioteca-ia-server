@@ -56,16 +56,27 @@ function cuenta() {
   Object.values(db.exp).forEach((e) => { c[e.est]++; });
   return c;
 }
+const COLORES = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+const iniciales = (n) => n.replace(/,.*$/, '').split(' ').filter((w) => w.length > 2 || /^[A-ZÁÉ]/.test(w)).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+const color = (n) => COLORES[h(n) % COLORES.length];
+const anillo = (pct) => { const r = 22, c = 2 * Math.PI * r; return `<svg class="ring" viewBox="0 0 54 54"><circle cx="27" cy="27" r="${r}" class="r-bg"/><circle cx="27" cy="27" r="${r}" class="r-fg" stroke-dasharray="${(pct / 100) * c} ${c}" transform="rotate(-90 27 27)"/><text x="27" y="31" text-anchor="middle">${pct}%</text></svg>`; };
+function chispa(vals) { const max = Math.max(...vals), min = Math.min(...vals); const pts = vals.map((v, i) => `${(i / (vals.length - 1)) * 120},${34 - ((v - min) / (max - min || 1)) * 30}`); return `<svg class="spark" viewBox="0 0 120 36" preserveAspectRatio="none"><polygon points="0,36 ${pts.join(' ')} 120,36" class="sp-a"/><polyline points="${pts.join(' ')}" class="sp-l"/><circle cx="${pts[pts.length - 1].split(',')[0]}" cy="${pts[pts.length - 1].split(',')[1]}" r="2.6" class="sp-d"/></svg>`; }
 function pintarCabecera() {
-  const dias = Math.round((PLAZO - new Date(HOY.getFullYear(), HOY.getMonth(), HOY.getDate())) / 864e5);
-  $('#plazo').innerHTML = `Plazo general: <b>1–20 de octubre</b> · quedan <b class="${dias <= 7 ? 'hot' : ''}">${dias} días</b>`;
+  const hoyD = new Date(HOY.getFullYear(), HOY.getMonth(), HOY.getDate());
+  const dias = Math.round((PLAZO - hoyD) / 864e5);
+  $('#plazo').innerHTML = `Plazo general del <b>1 al 20 de octubre</b> · quedan <b class="${dias <= 7 ? 'hot' : ''}">${dias} días</b> · 3 gestores`;
   const c = cuenta(); const tot = Object.values(c).reduce((a, b) => a + b, 0);
-  $('#pct').textContent = Math.round((c.presentado / tot) * 100) + ' %';
-  $('#pct-det').textContent = `· ${c.presentado} de ${tot} modelos`;
-  $('#stack').innerHTML = ['presentado', 'listo', 'revision', 'docs'].map((k) => `<i class="s-${ESTADOS[k].c}" data-w="${(c[k] / tot) * 100}"></i>`).join('');
-  document.querySelectorAll('#stack i').forEach((i) => { i.style.width = i.dataset.w + '%'; });
-  $('#leg').innerHTML = ['presentado', 'listo', 'revision', 'docs'].map((k) => `<li><i class="s-${ESTADOS[k].c}"></i>${ESTADOS[k].n} <b>${c[k]}</b></li>`).join('');
-  $('#f-estado').innerHTML = [['', 'Todos'], ...ORDEN.map((k) => [k, ESTADOS[k].n])].map(([k, n]) => `<button type="button" data-f="${k}" aria-pressed="${estado.filtro === k}">${n}${k ? ` <span>${c[k]}</span>` : ''}</button>`).join('');
+  const pct = Math.round((c.presentado / tot) * 100);
+  const ingresar = Object.values(db.exp).filter((e) => e.importe > 0).reduce((a, e) => a + e.importe, 0);
+  const pendientes = CLIENTES.filter((cl, i) => cl[4].split(' ').some((m) => db.exp[`${i}|${m}`].est === 'docs'));
+  $('#kpis').innerHTML = `
+    <div class="kpi"><div class="k-top"><span>Modelos presentados</span></div><div class="k-row">${anillo(pct)}<div><b>${c.presentado}<small> / ${tot}</small></b><div class="stack" id="stack">${['presentado', 'listo', 'revision', 'docs'].map((k) => `<i class="s-${ESTADOS[k].c}" data-w="${(c[k] / tot) * 100}"></i>`).join('')}</div><ul class="leg">${['listo', 'revision', 'docs'].map((k) => `<li><i class="s-${ESTADOS[k].c}"></i>${c[k]} ${ESTADOS[k].n.toLowerCase()}</li>`).join('')}</ul></div></div></div>
+    <div class="kpi"><div class="k-top"><span>A ingresar por los clientes</span><em class="up">+8,2 % vs 2T</em></div><b class="k-big">${eur(ingresar).replace(/,\d\d €/, ' €')}</b>${chispa([31200, 35800, 33100, 39400, 41900, 44600, ingresar])}</div>
+    <div class="kpi"><div class="k-top"><span>Documentación pendiente</span></div><b class="k-big">${pendientes.length} <small>clientes</small></b><div class="avs">${pendientes.slice(0, 6).map((cl) => `<span class="av xs ${color(cl[0])}" title="${cl[0]}">${iniciales(cl[0])}</span>`).join('')}</div></div>
+    <div class="kpi"><div class="k-top"><span>Plazo</span><em class="${dias <= 7 ? 'hot' : ''}">${dias} días</em></div><b class="k-big">20 oct</b><div class="tl-bar"><i data-w="${Math.min(((20 - dias) / 20) * 100, 100)}"></i></div><p class="k-foot"><span>1 oct</span><span>hoy</span><span>20 oct</span></p></div>`;
+  document.querySelectorAll('#kpis [data-w]').forEach((i) => { i.style.width = i.dataset.w + '%'; });
+  $('#f-estado').innerHTML = [['', 'Todos'], ...ORDEN.map((k) => [k, ESTADOS[k].n])].map(([k, n]) => `<button type="button" data-f="${k}" aria-pressed="${estado.filtro === k}">${k ? `<i class="d s-${ESTADOS[k].c}"></i>` : ''}${n}${k ? ` <span>${c[k]}</span>` : ''}</button>`).join('');
+  $('#tfoot').innerHTML = `${CLIENTES.length} clientes · ${tot} modelos <span>Sincronizado con la sede electrónica de la AEAT hace 2 min</span>`;
 }
 function pintarMatriz() {
   const q = estado.q.toLowerCase();
@@ -76,12 +87,12 @@ function pintarMatriz() {
   $('#matrix').innerHTML = `
     <thead><tr><th class="cl">Cliente</th>${MODELOS.map((m) => `<th><b>${m.id}</b><span>${m.n}</span></th>`).join('')}<th class="g">Gestor</th></tr></thead>
     <tbody>${filas.map(({ c, i }) => `<tr>
-      <th class="cl"><b>${c[0]}</b><span>${c[2]} · ${c[1]}</span></th>
+      <th class="cl"><span class="cl-in"><span class="av sq ${color(c[0])}">${iniciales(c[0])}</span><span><b>${c[0]}</b><span>${c[2]} · ${c[1]}</span></span></span></th>
       ${MODELOS.map((m) => {
         if (!c[4].split(' ').includes(m.id)) return '<td class="na">—</td>';
         const e = db.exp[`${i}|${m.id}`]; const k = `${i}|${m.id}`;
         const dim = estado.filtro && e.est !== estado.filtro ? ' dim' : '';
-        return `<td><button type="button" class="cell s-${ESTADOS[e.est].c}${estado.sel === k ? ' sel' : ''}${dim}" data-k="${k}" aria-label="${c[0]}, modelo ${m.id}: ${ESTADOS[e.est].n}">${e.est === 'presentado' ? '<svg><use href="#i-check"/></svg>' : ''}<span>${ESTADOS[e.est].n}</span>${e.pedido && e.est === 'docs' ? '<i class="req">pedido</i>' : ''}</button></td>`;
+        return `<td><button type="button" class="cell s-${ESTADOS[e.est].c}${estado.sel === k ? ' sel' : ''}${dim}" data-k="${k}" aria-label="${c[0]}, modelo ${m.id}: ${ESTADOS[e.est].n}">${e.est === 'presentado' ? '<svg><use href="#i-check"/></svg>' : ''}<span>${ESTADOS[e.est].n}</span>${e.est === 'presentado' || e.est === 'listo' ? `<em class="amt">${e.importe < 0 ? '−' : ''}${Math.abs(Math.round(e.importe)).toLocaleString('es-ES', { useGrouping: 'always' })} €</em>` : ''}${e.pedido && e.est === 'docs' ? '<i class="req">pedido</i>' : ''}</button></td>`;
       }).join('')}
       <td class="g"><span class="av sm">${c[3]}</span></td></tr>`).join('')}
     </tbody>`;
@@ -111,7 +122,19 @@ function pintarPanel() {
       ${e.est === 'docs' ? `<button type="button" class="btn ghost" data-act="pedir" ${e.pedido ? 'disabled' : ''}><svg><use href="#i-mail"/></svg>${e.pedido ? 'Documentación pedida' : 'Pedir documentación'}</button><button type="button" class="btn" data-act="avanzar">Pasar a revisión</button>` : ''}
       ${e.est === 'revision' ? '<button type="button" class="btn" data-act="avanzar">Marcar como revisado</button>' : ''}
       ${e.est === 'listo' ? '<button type="button" class="btn brand" data-act="presentar">Presentar en la AEAT</button>' : ''}
-    </div>`;
+    </div>
+    <h3 class="act-h">Actividad</h3>
+    <ol class="activity">${actividad(c, e, m).map(([av, col, txt, t]) => `<li><span class="av xs ${col}">${av}</span><p>${txt}<time>${t}</time></p></li>`).join('')}</ol>`;
+}
+
+function actividad(c, e, m) {
+  const l = [];
+  if (e.just) l.push(['IC', 'c1', `Modelo ${m} presentado. Justificante <b>${e.just}</b>`, 'ahora']);
+  if (['listo', 'presentado'].includes(e.est)) l.push(['IC', 'c1', 'Revisado y cuadrado con los libros', 'hoy 09:12']);
+  if (e.pedido) l.push(['IC', 'c1', `Se pidió la documentación a ${c[5]}`, 'hoy']);
+  l.push([iniciales(c[5]), color(c[5]), `${c[5]} subió ${h(c[0]) % 9 + 3} documentos desde su área privada`, 'ayer 18:40']);
+  l.push(['RM', 'c2', 'Expediente del trimestre abierto', '1 oct']);
+  return l;
 }
 
 // ---------- Bandeja ----------
@@ -211,5 +234,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 $('#periodo').textContent = '3T 2026';
-$('#hoy').textContent = HOY.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
 pintarTodo();
