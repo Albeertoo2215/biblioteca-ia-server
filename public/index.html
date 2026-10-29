@@ -3,266 +3,116 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Folzia · Software a medida para negocios</title>
-  <meta name="description" content="Hacemos el software que tu negocio no encuentra: herramientas internas, apps para tus clientes, automatizaciones y productos digitales a medida.">
+  <title>Folzia · Software a medida</title>
+  <meta name="description" content="Estudio de software a medida: apps web, webs y tiendas online, herramientas para empresas e inteligencia artificial.">
   <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Folzia">
-  <meta property="og:title" content="Folzia · Hacemos el software que tu negocio no encuentra">
-  <meta property="og:description" content="Herramientas internas, apps para tus clientes, automatizaciones y productos digitales, hechos a medida.">
+  <meta property="og:title" content="Folzia · Si se puede imaginar, lo programamos">
+  <meta property="og:description" content="Apps, webs, herramientas e inteligencia artificial, hechas a medida.">
   <meta property="og:url" content="https://folzia.com/">
   <meta property="og:image" content="https://folzia.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
+  <canvas id="gl" aria-hidden="true"></canvas>
 
-  <header class="top" id="top">
-    <div class="wrap top-row">
-      <a href="#" class="logo" aria-label="Folzia, inicio">f<i class="logo-o"></i>lzia<span class="logo-dot">.</span></a>
+  <header class="top">
+    <div class="top-pill">
+      <a href="#" class="logo" aria-label="Folzia, inicio"><img src="logo.png" alt="Folzia" width="139" height="64"></a>
       <nav class="top-nav" aria-label="Principal">
-        <a href="#que-hacemos">Qué hacemos</a>
+        <a href="#apps">Qué hacemos</a>
         <a href="#como-trabajamos">Cómo trabajamos</a>
-        <a href="#privacidad">Privacidad</a>
       </nav>
-      <a href="#contacto" class="btn btn-primary">Contar mi proyecto</a>
+      <a href="#contacto" class="btn btn-sm">Cuéntanos tu idea</a>
     </div>
   </header>
 
   <main id="contenido">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-grid">
-        <div class="hero-text">
-          <h1 id="hero-title">Hacemos el software que tu negocio no encuentra.</h1>
-          <p class="hero-sub">Herramientas para tu equipo, apps para tus clientes o esa idea que llevas tiempo queriendo lanzar. Nos cuentas qué necesitas y lo convertimos en una aplicación que funciona en el ordenador y en el móvil.</p>
-          <div class="hero-cta">
-            <a href="#contacto" class="btn btn-primary btn-lg">Contar mi proyecto</a>
-            <a href="#como-trabajamos" class="link-arrow">Ver cómo trabajamos <span aria-hidden="true">→</span></a>
-            <p class="hero-note">Sin compromiso. Presupuesto por escrito antes de empezar.</p>
-          </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-glow"></div>
-          <div class="cluster">
-            <div class="blk blk-tile b1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="blk blk-tile b2"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="blk blk-ring b3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="blk blk-pill b4"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="blk blk-tile b5"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="blk blk-tile b6"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="hero-floor"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="que-hacemos" aria-labelledby="qh-title">
+    <section class="panel hero" data-shape="0" data-x="0.5" data-bg="0">
       <div class="wrap">
-        <div class="section-intro"><h2 id="qh-title" class="section-title">Qué podemos construir</h2><p class="section-lead">Si lo puedes explicar, probablemente podamos construirlo.</p></div>
-        <ol class="services">
-          <li>
-            <span class="num">01</span>
-            <h3>Herramientas para tu equipo</h3>
-            <div>
-              <p>Para lo que hoy vive en hojas de cálculo, papeles, mensajes sueltos o la cabeza de alguien.</p>
-              <p class="eg"><span>Por ejemplo</span>Gestión de pedidos, inventario, partes de trabajo, turnos, fichas de clientes, cuadros de mando.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">02</span>
-            <h3>Apps para tus clientes</h3>
-            <div>
-              <p>Que tus clientes reserven, pidan, paguen o consulten sus cosas sin tener que llamarte.</p>
-              <p class="eg"><span>Por ejemplo</span>Reservas y citas, seguimiento de pedidos, áreas privadas, tarjetas de socio, pedidos online.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">03</span>
-            <h3>Automatizaciones</h3>
-            <div>
-              <p>Conectamos los programas que ya usas para que nadie copie datos de uno a otro, siempre que esos programas lo permitan.</p>
-              <p class="eg"><span>Por ejemplo</span>Avisos automáticos, presupuestos y facturas en PDF, informes que se hacen solos.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">04</span>
-            <h3>Tu propio producto digital</h3>
-            <div>
-              <p>¿Tienes una idea de app o plataforma? Construimos una primera versión para que la pruebes con usuarios reales cuanto antes.</p>
-              <p class="eg"><span>Por ejemplo</span>Plataformas de reservas, marketplaces pequeños, herramientas para un sector concreto.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">05</span>
-            <h3>Webs que hacen cosas</h3>
-            <div>
-              <p>Más allá de una web de presentación: webs con formularios inteligentes, pagos, zonas privadas o calculadoras.</p>
-              <p class="eg"><span>Por ejemplo</span>Presupuestadores online, inscripciones con pago, catálogos con pedidos.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">06</span>
-            <h3>Mantenimiento</h3>
-            <div>
-              <p>Después de la entrega podemos ocuparnos del alojamiento, las copias de seguridad, las actualizaciones y los cambios que vayas necesitando.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="scene" id="escena" data-stage="1" aria-label="Un ejemplo: de la hoja de cálculo a una aplicación">
-      <div class="scene-sticky">
-        <div class="wrap scene-grid">
-          <div class="scene-copy">
-            <p class="scene-kicker">Un ejemplo de lo que hacemos</p>
-            <ol class="scene-steps">
-              <li class="scene-step" data-i="0">
-                <span class="scene-n">01</span>
-                <h2>Así suele empezar</h2>
-                <p>Una hoja compartida, tres versiones del mismo archivo y pedidos que llegan por correo y por WhatsApp.</p>
-              </li>
-              <li class="scene-step" data-i="1">
-                <span class="scene-n">02</span>
-                <h2>Lo ordenamos</h2>
-                <p>Cada pedido entra una sola vez. Todo el equipo ve lo mismo, desde el ordenador o el móvil.</p>
-              </li>
-              <li class="scene-step" data-i="2">
-                <span class="scene-n">03</span>
-                <h2>Y quitamos el trabajo repetido</h2>
-                <p>Avisos al cliente, presupuestos en PDF e informes del mes, sin copiar datos a mano.</p>
-              </li>
-            </ol>
-            <div class="scene-progress" aria-hidden="true"><span></span></div>
+        <div class="copy">
+          <p class="kicker reveal">Estudio de software a medida</p>
+          <h1 class="reveal">Si se puede imaginar, lo programamos.</h1>
+          <p class="lead reveal">Apps, webs, herramientas e inteligencia artificial. Hechas a medida para tu negocio o tu idea.</p>
+          <div class="cta reveal">
+            <a href="#contacto" class="btn">Cuéntanos tu idea</a>
+            <a href="#apps" class="link">Ver qué hacemos <span aria-hidden="true">↓</span></a>
           </div>
-
-          <figure class="scene-stage">
-            <div class="device" aria-hidden="true">
-              <div class="device-bar">
-                <span class="dots"><i></i><i></i><i></i></span>
-                <span class="device-title" data-t0="pedidos_FINAL_v3 (2).xlsx" data-t1="Pedidos · Tu aplicación" data-t2="Pedidos · Tu aplicación">pedidos_FINAL_v3 (2).xlsx</span>
-              </div>
-
-              <!-- Estado 1: hoja de cálculo -->
-              <div class="sheet">
-                <div class="sheet-head"><span></span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span></div>
-                <div class="sheet-row"><span>1</span><span><b>Nº</b></span><span><b>Cliente</b></span><span><b>Estado</b></span><span><b>Fecha</b></span><span><b>Notas</b></span></div>
-                <div class="sheet-row"><span>2</span><span>1041</span><span>Cliente A</span><span class="hl-y">pte llamar??</span><span>12/03</span><span>ver correo</span></div>
-                <div class="sheet-row"><span>3</span><span>1042</span><span>Cliente B</span><span>hecho</span><span>13/3</span><span></span></div>
-                <div class="sheet-row dup"><span>4</span><span>1042</span><span>Cliente B</span><span>HECHO</span><span>13/03</span><span class="hl-r">¿duplicado?</span></div>
-                <div class="sheet-row"><span>5</span><span>1043</span><span>Cliente C</span><span class="hl-y">en curso</span><span>14-03</span><span>lo lleva Ana</span></div>
-                <div class="sheet-row"><span>6</span><span>1044</span><span>Cliente D</span><span></span><span>?</span><span class="hl-r">falta precio</span></div>
-                <div class="sheet-row"><span>7</span><span>1045</span><span>Cliente E</span><span>pendiente</span><span>15/03</span><span>pedido por WhatsApp</span></div>
-                <div class="sheet-row"><span>8</span><span></span><span></span><span></span><span></span><span></span></div>
-                <div class="sheet-tabs"><span class="on">Pedidos</span><span>Pedidos (copia)</span><span>NO TOCAR</span></div>
-              </div>
-
-              <!-- Estados 2 y 3: aplicación -->
-              <div class="app">
-                <aside class="app-side">
-                  <span class="app-brand">Tu empresa</span>
-                  <span class="app-link on">Pedidos</span>
-                  <span class="app-link">Clientes</span>
-                  <span class="app-link">Presupuestos</span>
-                  <span class="app-link">Informes</span>
-                </aside>
-                <div class="app-main">
-                  <div class="app-head">
-                    <span class="app-h">Pedidos</span>
-                    <span class="app-filter">Esta semana</span>
-                    <span class="app-new">Nuevo pedido</span>
-                  </div>
-                  <div class="app-table">
-                    <div class="app-tr th"><span>Pedido</span><span>Cliente</span><span>Responsable</span><span>Estado</span></div>
-                    <div class="app-tr"><span>#1041</span><span>Cliente A</span><span>Ana</span><span class="st st-wait">Pendiente</span></div>
-                    <div class="app-tr"><span>#1042</span><span>Cliente B</span><span>Luis</span><span class="st st-ok">Entregado</span></div>
-                    <div class="app-tr"><span>#1043</span><span>Cliente C</span><span>Ana</span><span class="st st-run">En curso</span></div>
-                    <div class="app-tr"><span>#1044</span><span>Cliente D</span><span>Marta</span><span class="st st-wait">Pendiente</span></div>
-                    <div class="app-tr"><span>#1045</span><span>Cliente E</span><span>Luis</span><span class="st st-run">En curso</span></div>
-                  </div>
-                  <div class="app-auto">
-                    <div class="toast t1"><b>Aviso enviado</b> Cliente B: «Tu pedido #1042 está listo».</div>
-                    <div class="toast t2"><b>Presupuesto generado</b> presupuesto_1044.pdf</div>
-                    <div class="toast t3"><b>Informe de marzo</b> listo para descargar</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <figcaption>Ejemplo ilustrativo. Cada aplicación se diseña para el proceso real de cada empresa.</figcaption>
-          </figure>
         </div>
       </div>
     </section>
 
+    <section class="panel" id="apps" data-shape="1" data-x="0.5" data-bg="1" aria-labelledby="s1">
+      <div class="wrap"><div class="copy">
+        <span class="n">01</span>
+        <h2 id="s1">Apps web</h2>
+        <p>Funcionan en cualquier navegador y se instalan en el móvil como una app, sin pasar por tiendas.</p>
+        <ul class="tags"><li>Reservas</li><li>Pedidos</li><li>Fidelización</li><li>Áreas de cliente</li></ul>
+      </div></div>
+    </section>
 
-    <section class="section" id="como-trabajamos" aria-labelledby="ct-title">
-      <div class="wrap process">
-        <div class="process-side">
-          <h2 id="ct-title" class="section-title">Cómo trabajamos</h2>
-          <ol class="indicator" aria-hidden="true">
-            <li class="on"><span>01</span>Hablamos</li>
-            <li><span>02</span>Propuesta</li>
-            <li><span>03</span>Desarrollo por fases</li>
-            <li><span>04</span>Entrega</li>
-          </ol>
-        </div>
+    <section class="panel" data-shape="2" data-x="0.5" data-bg="0" aria-labelledby="s2">
+      <div class="wrap"><div class="copy">
+        <span class="n">02</span>
+        <h2 id="s2">Webs y tiendas online</h2>
+        <p>Webs que venden, reservan y cobran solas.</p>
+        <ul class="tags"><li>Tiendas</li><li>Reservas con pago</li><li>Configuradores</li></ul>
+      </div></div>
+    </section>
+
+    <section class="panel" data-shape="3" data-x="0.5" data-bg="1" aria-labelledby="s3">
+      <div class="wrap"><div class="copy">
+        <span class="n">03</span>
+        <h2 id="s3">Herramientas para empresas</h2>
+        <p>El programa exacto que tu equipo necesita.</p>
+        <ul class="tags"><li>Paneles</li><li>Gestión</li><li>Automatizaciones</li></ul>
+      </div></div>
+    </section>
+
+    <section class="panel" data-shape="4" data-x="0.5" data-bg="0" aria-labelledby="s4">
+      <div class="wrap"><div class="copy">
+        <span class="n">04</span>
+        <h2 id="s4">Inteligencia artificial</h2>
+        <p>Asistentes que entienden tus documentos y a tus clientes.</p>
+        <ul class="tags"><li>Chatbots</li><li>Asistentes internos</li><li>Resumir y clasificar</li></ul>
+      </div></div>
+    </section>
+
+    <section class="panel" data-shape="5" data-x="0.5" data-bg="1" aria-labelledby="s5">
+      <div class="wrap"><div class="copy">
+        <span class="n">05</span>
+        <h2 id="s5">Tu propia idea</h2>
+        <p>Construimos la primera versión para que la lances.</p>
+        <ul class="tags"><li>Prototipos</li><li>Primera versión</li><li>Lanzamiento</li></ul>
+      </div></div>
+    </section>
+
+    <section class="block" id="como-trabajamos" data-shape="0" data-x="0" data-bg="0" data-dim="0.12" aria-labelledby="ct">
+      <div class="wrap">
+        <h2 id="ct">Cómo trabajamos</h2>
         <ol class="steps">
-          <li class="step" data-step="0">
-            <span class="step-n">01</span>
-            <h3>Hablamos</h3>
-            <p>Nos cuentas qué hacéis hoy y qué os quita tiempo. Preguntamos mucho antes de proponer nada.</p>
-            <p class="gets"><span>Recibes</span>Una primera conversación centrada en tu problema, no en tecnología.</p>
-          </li>
-          <li class="step" data-step="1">
-            <span class="step-n">02</span>
-            <h3>Propuesta</h3>
-            <p>Alcance, fases, plazos y presupuesto por escrito. Cada proyecto es distinto, por eso el precio lo vemos contigo una vez nos pongamos en contacto.</p>
-            <p class="gets"><span>Recibes</span>Un documento con qué se hace, en qué orden y cuánto cuesta.</p>
-          </li>
-          <li class="step" data-step="2">
-            <span class="step-n">03</span>
-            <h3>Desarrollo por fases</h3>
-            <p>Construimos la aplicación por partes y te enseñamos cada fase antes de seguir con la siguiente.</p>
-            <p class="gets"><span>Recibes</span>Una versión que puedes probar al final de cada fase.</p>
-          </li>
-          <li class="step" data-step="3">
-            <span class="step-n">04</span>
-            <h3>Entrega</h3>
-            <p>Ponemos la aplicación en marcha y enseñamos a tu equipo a usarla. Si quieres, seguimos a cargo del mantenimiento.</p>
-            <p class="gets"><span>Recibes</span>La aplicación funcionando y a tu equipo usándola.</p>
-          </li>
+          <li><span>1</span><h3>Hablamos</h3><p>Nos cuentas tu idea o tu problema.</p></li>
+          <li><span>2</span><h3>Propuesta</h3><p>Alcance, plazos y presupuesto por escrito.</p></li>
+          <li><span>3</span><h3>Construimos</h3><p>Por fases, y lo pruebas en cada una.</p></li>
+          <li><span>4</span><h3>Lanzamos</h3><p>Y si quieres, lo mantenemos.</p></li>
         </ol>
       </div>
     </section>
 
-    <section class="section" id="privacidad" aria-labelledby="pr-title">
-      <div class="wrap privacy">
-        <h2 id="pr-title" class="section-title">Privacidad desde el primer día</h2>
-        <dl class="facts">
-          <div><dt>Un entorno por cliente</dt><dd>Cada proyecto se desarrolla separado del resto de clientes.</dd></div>
-          <div><dt>RGPD desde el inicio</dt><dd>Recogemos solo los datos necesarios y firmamos contigo el contrato de encargo del tratamiento.</dd></div>
-          <div><dt>Código revisado</dt><dd>Usamos herramientas de inteligencia artificial para desarrollar más rápido y revisamos todo el código antes de entregarlo.</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="section contact" id="contacto" aria-labelledby="co-title">
+    <section class="block contact" id="contacto" data-shape="0" data-x="0" data-bg="1" data-dim="0.25" aria-labelledby="co">
       <div class="wrap contact-grid">
         <div class="contact-side">
-          <h2 id="co-title" class="section-title">Cuéntanos tu idea</h2>
-          <p class="contact-lead">No hace falta saber de tecnología: explícalo como se lo contarías a un compañero. Nosotros nos encargamos del resto.</p>
-          <ol class="next">
-            <li><span>1</span>Leemos tu solicitud.</li>
-            <li><span>2</span>Te escribimos para hablar.</li>
-            <li><span>3</span>Te enviamos una propuesta por escrito.</li>
-          </ol>
-          <p class="contact-alt">¿Prefieres escribir directamente? <a href="mailto:contacto@folzia.com">contacto@folzia.com</a></p>
+          <h2 id="co">¿Hablamos?</h2>
+          <p>Cuéntanos qué tienes en mente, con tus palabras. Te respondemos con una propuesta por escrito.</p>
+          <p class="mail">O escríbenos a <a href="mailto:contacto@folzia.com">contacto@folzia.com</a></p>
         </div>
 
         <form class="form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
@@ -441,18 +291,16 @@
   </main>
 
   <footer class="foot">
-    <div class="wrap">
-      <div class="foot-row">
-        <a href="#" class="logo" aria-label="Folzia, inicio">f<i class="logo-o"></i>lzia<span class="logo-dot">.</span></a>
-        <nav aria-label="Legal">
-          <a href="aviso-legal.html">Aviso legal</a>
-          <a href="privacidad.html">Privacidad</a>
-          <a href="cookies.html">Cookies</a>
-          <a href="mailto:contacto@folzia.com">contacto@folzia.com</a>
-        </nav>
-      </div>
-      <p class="foot-note">© <span id="year">2026</span> Folzia. Aplicaciones web a medida. La información de esta web es orientativa y no constituye una oferta vinculante.</p>
+    <div class="wrap foot-row">
+      <img src="logo-blanco.png" alt="Folzia" width="139" height="64" class="foot-logo">
+      <nav aria-label="Legal">
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="mailto:contacto@folzia.com">contacto@folzia.com</a>
+      </nav>
     </div>
+    <p class="wrap foot-note">© <span id="year">2026</span> Folzia. La información de esta web es orientativa y no constituye una oferta vinculante.</p>
   </footer>
 
   <script src="main.js" defer></script>
