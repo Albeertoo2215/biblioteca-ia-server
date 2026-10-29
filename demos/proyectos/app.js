@@ -44,8 +44,42 @@ function pintarLista() {
   document.querySelectorAll('.pl-bar i').forEach((i) => { i.style.width = i.dataset.w + '%'; });
 }
 
+const HON = { 'Q-2026-014': [38400, 0.46, 0.41], 'Q-2026-009': [16800, 0.7, 0.66], 'Q-2025-031': [64200, 0.82, 0.71], 'Q-2026-021': [52000, 0.12, 0.08], 'Q-2026-018': [7900, 0.55, 0.62] };
+function pintarDinero(p) {
+  const [hon, fact, horas] = HON[p.id];
+  const e = (n) => n.toLocaleString('es-ES', { maximumFractionDigits: 0, useGrouping: 'always' }) + ' €';
+  const desvio = horas - fact;
+  $('#money').innerHTML = `
+    <div><span>Honorarios</span><b>${e(hon)}</b></div>
+    <div class="m-bar"><span>Facturado <b>${Math.round(fact * 100)} %</b> · ${e(hon * fact)}</span><i class="m-track"><i class="m-fill" data-w="${fact * 100}"></i><i class="m-mark" data-l="${horas * 100}"></i></i><small>Horas consumidas ${Math.round(horas * 100)} % del presupuesto${desvio > 0.04 ? ' · <em class="bad">por encima de lo facturado</em>' : ' · <em>en línea</em>'}</small></div>
+    <div><span>Próxima visita de obra</span><b>jue 16 oct · 9:30</b></div>`;
+  document.querySelectorAll('#money [data-w]').forEach((x) => { x.style.width = x.dataset.w + '%'; });
+  document.querySelectorAll('#money [data-l]').forEach((x) => { x.style.left = x.dataset.l + '%'; });
+  $('#crumb-p').textContent = p.n;
+  const ids = [...new Set(p.fases.map((f) => f.resp))];
+  $('#team').innerHTML = ids.map((r) => `<span class="av t-${r}" title="${EQUIPO[r]}">${r}</span>`).join('');
+}
+function flechas(root, p) {
+  // Dependencias: cada fase arranca cuando termina la anterior que la precede
+  const g = root.querySelector('.g'); if (!g) return;
+  const gr = g.getBoundingClientRect();
+  let svg = '';
+  const orden = p.fases.slice().sort((a, b) => a.ini - b.ini);
+  for (let i = 1; i < orden.length; i++) {
+    const a = root.querySelector(`[data-f="${orden[i - 1].i}"].bar, [data-f="${orden[i - 1].i}"].ms`), b = root.querySelector(`[data-f="${orden[i].i}"].bar, [data-f="${orden[i].i}"].ms`);
+    if (!a || !b) continue;
+    const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+    // Sale por debajo del final de la fase anterior y entra por la izquierda de la siguiente
+    const xa = Math.min(ra.right - gr.left - 6, rb.left - gr.left - 8), y1 = ra.bottom - gr.top, x2 = rb.left - gr.left, y2 = rb.top + rb.height / 2 - gr.top;
+    svg += `<path d="M${xa} ${y1} V${y2} H${x2 - 3}" class="dep"/><path d="M${x2 - 7} ${y2 - 4} L${x2 - 2} ${y2} L${x2 - 7} ${y2 + 4}" class="dep-h"/>`;
+  }
+  let ov = g.querySelector('.deps');
+  if (!ov) { ov = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); ov.setAttribute('class', 'deps'); g.appendChild(ov); }
+  ov.setAttribute('width', gr.width); ov.setAttribute('height', gr.height); ov.innerHTML = svg;
+}
 function pintarGantt() {
   const p = proyectos().find((x) => x.id === estado.p);
+  pintarDinero(p);
   $('#p-code').textContent = p.id;
   $('#p-name').textContent = p.n;
   $('#p-meta').textContent = `${p.tipo} · ${p.cliente}`;
@@ -66,11 +100,12 @@ function pintarGantt() {
     const etiqueta = `<button type="button" class="row-l ${sel ? 'sel' : ''}" data-f="${f.i}" data-r="${r + 3}"><b>${TIPOS[f.t]}</b><span>${EQUIPO[f.resp]}</span></button>`;
     const barra = f.dur === 0
       ? `<button type="button" class="ms ${sel ? 'sel' : ''}" data-f="${f.i}" data-r="${r + 3}" data-c="${f.ini + 2}" aria-label="${TIPOS[f.t]}, ${corta(fechaSemana(f.ini))}"><i></i><span>${corta(fechaSemana(f.ini))}</span></button>`
-      : `<button type="button" class="bar t-${f.t} ${sel ? 'sel' : ''} ${f.prog === 100 ? 'done' : ''}" data-f="${f.i}" data-r="${r + 3}" data-c="${f.ini + 2}" data-e="${f.ini + f.dur + 2}" data-prog="${f.prog}" aria-label="${TIPOS[f.t]}: ${f.prog} %"><i></i><span>${f.prog} %</span></button>`;
+      : `<button type="button" class="bar t-${f.t} ${sel ? 'sel' : ''} ${f.prog === 100 ? 'done' : ''}" data-f="${f.i}" data-r="${r + 3}" data-c="${f.ini + 2}" data-e="${f.ini + f.dur + 2}" data-prog="${f.prog}" aria-label="${TIPOS[f.t]}: ${f.prog} %"><i></i><em class="who t-${f.resp}">${f.resp}</em><span>${f.prog} %</span></button>`;
     return etiqueta + barra;
   }).join('');
   $('#gantt').innerHTML = `<div class="g">${meses}${semanas}<span class="corner" data-c="1"></span>${filas}<span class="today" aria-hidden="true"></span>${Array.from({ length: p.fases.length }, (_, r) => `<span class="lane" data-r="${r + 3}"></span>`).join('')}</div>`;
   colocar($('#gantt'), p.fases.length);
+  requestAnimationFrame(() => flechas($('#gantt'), p));
 }
 
 // Coloca cada pieza en la rejilla por CSSOM (compatible con la CSP)

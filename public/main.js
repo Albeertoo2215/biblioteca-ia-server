@@ -177,7 +177,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
         float ang = x * 3.2 + uRot + strand * 3.14159;
         vec3 hp = vec3(x, cos(ang) * 0.38, sin(ang) * 0.38);
         if (fract(r.w * 3.3) < 0.18) { float t2 = fract(r.w * 91.0) * 2.0 - 1.0; float xr = floor(x * 4.0) / 4.0; float a2 = xr * 3.2 + uRot; hp = vec3(xr, cos(a2) * 0.38 * t2, sin(a2) * 0.38 * t2); }
-        float k = clamp(uProg * 2.6 - (x + 1.8) / 3.6 - 0.8, 0.0, 1.0); k = k * k * (3.0 - 2.0 * k);
+        float k = clamp(uProg * 1.6 - (x + 1.8) / 3.6 * 0.6, 0.0, 1.0); k = k * k * (3.0 - 2.0 * k);
         p = mix(hp, p, k);
         glow = (1.0 - k) * strand;
       }
@@ -306,9 +306,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
   try { if (sessionStorage.getItem('folziaIntro')) introDone = true; } catch (e) { /* sin almacenamiento */ }
   // Tiempos (s): giro hacia el centro, destello, explosión en el logo, pausa y salida
   const T_VORT = 1.6, T_FLASH = 1.85, T_LOGO = 2.45;
-  // Variante de intro: 1 galaxia, 2 escáner, 3 lluvia magnética, 4 cubo (se puede probar con ?intro=N)
-  const MODO = +(new URLSearchParams(location.search).get('intro') || 1);
-  const T_HOLD = MODO === 1 ? 3.25 : 3.0, T_OUT = T_HOLD + 0.7;
+  // Variante de intro (por defecto 6, ADN): 1 galaxia, 2 escáner, 3 lluvia, 4 cubo, 5 hiperespacio, 6 ADN, 7 mar (?intro=N)
+  const MODO = +(new URLSearchParams(location.search).get('intro') || 6);
+  const T_HOLD = MODO === 1 ? 3.25 : MODO === 6 ? 2.45 : 3.0, T_OUT = T_HOLD + 0.7;
   let introStart = null;
   const finishIntro = () => { if (introDone) return; introDone = true; ready(); try { sessionStorage.setItem('folziaIntro', '1'); } catch (e) { /* nada */ } };
   ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, finishIntro, { passive: true, once: true }));
@@ -355,7 +355,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
         else if (MODO === 3) { modo = 3; prog = clamp01((t - 0.1) / 2.0); }
         else if (MODO === 4) { modo = 4; rot = t * 1.2 + t * t * 0.9; prog = clamp01((t - 1.2) / 1.2); }
         else if (MODO === 5) { modo = 5; prog = clamp01(t / 2.4); const v = Math.max(0, 1 - Math.max(0, t - 1.0) / 1.0); rot += 0; rot = t * 7 - Math.max(0, t - 1.0) * Math.max(0, t - 1.0) * 3.2; }
-        else if (MODO === 6) { modo = 6; rot = t * 2.4; prog = clamp01((t - 0.6) / 1.8); }
+        else if (MODO === 6) { modo = 6; rot = t * 2.4; prog = clamp01((t - 1.0) / 0.8); }
         else if (MODO === 7) { modo = 7; rot = t; prog = clamp01((t - 0.2) / 2.2); }
         else if (t < T_VORT) {
           // Las partículas llegan girando en espiral y se comprimen hacia el centro
