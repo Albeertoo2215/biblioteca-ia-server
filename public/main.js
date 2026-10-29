@@ -133,12 +133,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
       float ca = cos(ang), sa = sin(ang);
       p.xy = vec2(p.x * ca - p.y * sa, p.x * sa + p.y * ca);
       // Galaxia de tres brazos que gira y se contrae hacia el centro
+      float core = 0.0;
       if (uGalaxy > 0.0) {
         float arm = floor(r.w * 3.0);
         float rad = (0.1 + 2.3 * fract(r.w * 7.31 + r.x * 0.13)) * (1.0 - uCollapse * 0.97);
         float a = rad * 2.8 + arm * 2.0944 + uSpin / (0.35 + rad) + r.y * 0.32;
         vec3 g = vec3(cos(a) * rad, sin(a) * rad * 0.6, r.z * 0.07);
         p = mix(p, g, uGalaxy);
+        core = uGalaxy * (1.0 - smoothstep(0.0, 1.4, rad / max(1.0 - uCollapse * 0.97, 0.05)));
       }
       p += vec3(sin(uTime*0.7 + r.w*40.0), cos(uTime*0.6 + r.w*31.0), sin(uTime*0.5 + r.w*17.0)) * 0.012 * (1.0 - w6);
       float cy = cos(uRotY), sy = sin(uRotY), cx = cos(uRotX), sx = sin(uRotX);
@@ -154,7 +156,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       vec3 onOrange = r.w > 0.82 ? ink : (r.w > 0.55 ? vec3(1.0, 0.82, 0.74) : vec3(1.0));
       vec3 c = mix(onWhite, onOrange, uBg);
       vec3 logoC = lc > 0.5 ? mix(orange, vec3(1.0), uBg) : ink;
-      vColor = mix(c, logoC, w6);
+      vColor = mix(mix(c, logoC, w6), orange, core * 0.85);
       vAlpha = clamp(0.45 + (persp - 0.8) * 1.2, 0.25, 1.0) * uDim;
     }`;
   const fs = `
@@ -241,7 +243,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   let introDone = reduced || scrollY > 10;
   try { if (sessionStorage.getItem('folziaIntro')) introDone = true; } catch (e) { /* sin almacenamiento */ }
   // Tiempos (s): giro hacia el centro, destello, explosión en el logo, pausa y salida
-  const T_VORT = 0.7, T_FLASH = 0.82, T_LOGO = 1.22, T_HOLD = 1.55, T_OUT = 2.05;
+  const T_VORT = 1.6, T_FLASH = 1.85, T_LOGO = 2.45, T_HOLD = 3.25, T_OUT = 3.95;
   let introStart = null;
   const finishIntro = () => { if (introDone) return; introDone = true; ready(); try { sessionStorage.setItem('folziaIntro', '1'); } catch (e) { /* nada */ } };
   ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, finishIntro, { passive: true, once: true }));
@@ -287,7 +289,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
         if (t < T_VORT) {
           // Las partículas llegan girando en espiral y se comprimen hacia el centro
           const k = t / T_VORT, e = k * k * (3 - 2 * k);
-          galaxy = 1; spin = k * 4.2; collapse = Math.pow(e, 1.5); twist = 0.5 * e;
+          // Primero gira despacio a tamaño completo; al contraerse acelera, como un remolino
+          galaxy = 1; spin = k * 1.6 + k * k * k * 6.5; collapse = Math.pow(e, 2.3); twist = 0.5 * e;
         } else if (t < T_FLASH) {
           // Singularidad: todo en un punto que destella
           const k = (t - T_VORT) / (T_FLASH - T_VORT);
