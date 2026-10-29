@@ -9,7 +9,12 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const canvas = document.getElementById('gl');
   const gl = canvas && (canvas.getContext('webgl', { antialias: false, alpha: false, premultipliedAlpha: false }) || canvas.getContext('experimental-webgl'));
   const ready = () => root.classList.add('ready');
-  if (!gl) { ready(); return; }
+  // Sin WebGL (o si falla el arranque) se muestra todo igual, con los fondos naranjas pintados por CSS
+  const sinGL = () => { root.classList.add('no-gl'); ready(); };
+  if (!gl) { sinGL(); return; }
+  setTimeout(ready, 5000);
+  // Safari puede perder el contexto gráfico al volver de segundo plano: se pasa al modo CSS
+  canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); sinGL(); });
 
   const mobile = matchMedia('(max-width: 900px)').matches;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -300,6 +305,40 @@ document.getElementById('year').textContent = new Date().getFullYear();
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 120); });
   addEventListener('load', readAnchors);
   requestAnimationFrame(frame);
+})();
+
+// Vídeos de las apps: solo se reproducen a la vista; el portátil va pasando de una app a otra
+(function () {
+  const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const vids = [...document.querySelectorAll('.vid')];
+  if (!vids.length || reducir || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause();
+  }), { threshold: 0.35 });
+  vids.forEach((v) => io.observe(v));
+
+  const video = document.getElementById('desk-video');
+  const tabs = [...document.querySelectorAll('.desk-tabs [data-n]')];
+  const link = document.getElementById('desk-link');
+  if (!video || !tabs.length) return;
+  let actual = 0;
+  // WebM donde se pueda (Chrome, Firefox); MP4 en el resto (Safari antiguo)
+  const formato = video.canPlayType('video/webm; codecs="vp9"') ? 'webm' : 'mp4';
+  video.src = `video/${tabs[0].dataset.n}.${formato}`;
+  const elegir = (i, reproducir) => {
+    actual = i;
+    const n = tabs[i].dataset.n;
+    tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.querySelector('.bar i').style.width = '0'; });
+    video.src = `video/${n}.${formato}`; video.poster = `img/poster-${n}.webp`;
+    link.href = `/demos/${n}/`;
+    link.firstChild.textContent = `Probar ${tabs[i].querySelector('b').textContent} `;
+    if (reproducir) video.play().catch(() => {});
+  };
+  tabs.forEach((t, i) => t.addEventListener('click', () => elegir(i, true)));
+  video.addEventListener('ended', () => elegir((actual + 1) % tabs.length, true));
+  // Barra de progreso bajo la pestaña activa
+  video.addEventListener('timeupdate', () => { if (video.duration) tabs[actual].querySelector('.bar i').style.width = `${(video.currentTime / video.duration) * 100}%`; });
 })();
 
 // Formulario de contacto

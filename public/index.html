@@ -101,37 +101,53 @@
       <div class="wrap">
         <div class="examples-head">
           <h2 id="ej">Pruébalas.</h2>
-          <p>Tres apps web de ejemplo, cada una con su marca. Los negocios son inventados; las apps funcionan de verdad. Ábrelas en el móvil.</p>
+          <p>Apps de ejemplo, cada una con su marca. Los negocios son inventados; las apps funcionan de verdad.</p>
         </div>
+
+        <p class="ex-group">En el móvil</p>
         <ul class="examples-list">
           <li>
             <a class="example" href="/demos/reservas/">
-              <span class="shot"><img src="img/demo-reservas.webp" alt="App de reservas de alba fisioterapia: elección de tratamiento y hora de la cita" width="600" height="1200" loading="lazy"></span>
-              <span class="ex-kind">App de reservas</span>
+              <span class="phone-frame"><video class="vid" poster="img/poster-reservas.webp" muted loop playsinline preload="none" aria-label="Vídeo: reserva de una cita en la app de alba fisioterapia"><source src="video/reservas.webm" type="video/webm"><source src="video/reservas.mp4" type="video/mp4"></video></span>
+              <span class="ex-kind">Reservas</span>
               <span class="ex-title">alba fisioterapia</span>
-              <span class="ex-text">El paciente reserva, se la apunta en su calendario y cancela solo. La clínica ve su agenda del día.</span>
-              <span class="ex-go">Probar la demo <span aria-hidden="true">→</span></span>
+              <span class="ex-text">Reserva, confirmación y cita en el calendario.</span>
+              <span class="ex-go">Probar <span aria-hidden="true">→</span></span>
             </a>
           </li>
           <li>
             <a class="example" href="/demos/pedidos/?mesa=4">
-              <span class="shot"><img src="img/demo-pedidos.webp" alt="App de Lúa café: carta de la mesa 4 con el estado del pedido" width="600" height="1200" loading="lazy"></span>
-              <span class="ex-kind">App de pedidos</span>
+              <span class="phone-frame"><video class="vid" poster="img/poster-pedidos.webp" muted loop playsinline preload="none" aria-label="Vídeo: pedido desde la mesa en Lúa café y comanda en barra"><source src="video/pedidos.webm" type="video/webm"><source src="video/pedidos.mp4" type="video/mp4"></video></span>
+              <span class="ex-kind">Pedidos</span>
               <span class="ex-title">Lúa café</span>
-              <span class="ex-text">Escanean el QR de la mesa, piden y siguen su pedido. En la barra entra la comanda al momento.</span>
-              <span class="ex-go">Probar la demo <span aria-hidden="true">→</span></span>
+              <span class="ex-text">Se pide desde la mesa y la comanda entra en barra.</span>
+              <span class="ex-go">Probar <span aria-hidden="true">→</span></span>
             </a>
           </li>
           <li>
             <a class="example" href="/demos/presupuestos/">
-              <span class="shot"><img src="img/demo-presupuestos.webp" alt="App de TRAMO reformas: calculadora del precio de una reforma" width="600" height="1200" loading="lazy"></span>
-              <span class="ex-kind">Presupuestador</span>
+              <span class="phone-frame"><video class="vid" poster="img/poster-presupuestos.webp" muted loop playsinline preload="none" aria-label="Vídeo: cálculo del precio de una reforma en TRAMO"><source src="video/presupuestos.webm" type="video/webm"><source src="video/presupuestos.mp4" type="video/mp4"></video></span>
+              <span class="ex-kind">Presupuestos</span>
               <span class="ex-title">TRAMO reformas</span>
-              <span class="ex-text">El cliente elige obra, metros y acabados, ve el precio al instante y se lleva el PDF.</span>
-              <span class="ex-go">Probar la demo <span aria-hidden="true">→</span></span>
+              <span class="ex-text">Precio de la obra al instante, con PDF.</span>
+              <span class="ex-go">Probar <span aria-hidden="true">→</span></span>
             </a>
           </li>
         </ul>
+
+        <p class="ex-group">En el ordenador</p>
+        <div class="desk" id="desk">
+          <div class="laptop">
+            <div class="screen"><video class="vid" id="desk-video" src="video/inventario.mp4" poster="img/poster-inventario.webp" muted playsinline preload="none" aria-label="Vídeo: la app de escritorio seleccionada en uso"></video></div>
+            <div class="laptop-base" aria-hidden="true"></div>
+          </div>
+          <div class="desk-tabs" role="tablist" aria-label="Apps de escritorio">
+            <button type="button" role="tab" aria-selected="true" data-n="inventario"><span class="ex-kind">Inventario</span><b>Grano</b><span class="ex-text">Stock, alertas de mínimos y pedidos a proveedores.</span><i class="bar"><i></i></i></button>
+            <button type="button" role="tab" aria-selected="false" data-n="turnos"><span class="ex-kind">Turnos</span><b>Marea</b><span class="ex-text">Cuadrante del hotel con avisos de horas y descansos.</span><i class="bar"><i></i></i></button>
+            <button type="button" role="tab" aria-selected="false" data-n="proyectos"><span class="ex-kind">Proyectos</span><b>Quilla</b><span class="ex-text">Fases, plazos y avance de cada obra del estudio.</span><i class="bar"><i></i></i></button>
+            <a class="ex-go" id="desk-link" href="/demos/inventario/">Probar Grano <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
       </div>
     </section>
 

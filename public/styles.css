@@ -43,7 +43,10 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .skip:focus { top: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-#gl { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; }
+#gl { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; z-index: 0; }
+/* Sin WebGL: se oculta el lienzo y las secciones naranjas se pintan con CSS */
+.no-gl #gl { display: none; }
+.no-gl [data-bg="1"] { background: var(--orange); }
 main, .foot { position: relative; z-index: 1; }
 
 /* Botones */
@@ -103,9 +106,10 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 .examples-list { list-style: none; margin: 64px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 48px); align-items: start; }
 .examples-list li:nth-child(2) { margin-top: 72px; }
 .example { display: grid; gap: 6px; text-decoration: none; color: var(--ink); }
-.shot { display: block; border-radius: 28px; overflow: hidden; background: #f4f1ef; box-shadow: 0 0 0 1px rgba(23, 17, 15, 0.08), 0 30px 60px -30px rgba(23, 17, 15, 0.35); margin-bottom: 18px; transition: transform 400ms var(--ease), box-shadow 400ms var(--ease); }
-.shot img { width: 100%; aspect-ratio: 1 / 2; object-fit: cover; object-position: top; }
-.example:hover .shot { transform: translateY(-8px) rotate(-0.6deg); box-shadow: 0 0 0 1px rgba(23, 17, 15, 0.1), 0 44px 70px -30px rgba(23, 17, 15, 0.42); }
+/* Teléfono: marco negro; dentro, el vídeo real de la app */
+.phone-frame { display: block; position: relative; aspect-ratio: 560 / 1212; border-radius: 44px; background: #111; padding: 9px; box-shadow: 0 0 0 1.5px #2b2b2b, 0 40px 70px -36px rgba(23, 17, 15, 0.55); margin-bottom: 20px; transition: transform 400ms var(--ease); }
+.phone-frame .vid { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 35px; background: #f4f1ef; }
+@media (hover: hover) { .example:hover .phone-frame { transform: translateY(-6px); } }
 .ex-kind { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--orange); }
 .ex-title { font-weight: 800; font-stretch: 108%; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.05; letter-spacing: -0.02em; }
 .ex-text { color: var(--ink-2); font-size: 17px; }
@@ -113,6 +117,25 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 .ex-go span { display: inline-block; transition: transform var(--fast) var(--ease); }
 .example:hover .ex-go span { transform: translateX(4px); }
 .example:focus-visible { outline-offset: 8px; border-radius: 28px; }
+.ex-group { margin: 56px 0 0; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.ex-group + .examples-list { margin-top: 36px; }
+
+/* Portátil con las apps de escritorio, que se suceden solas */
+.desk { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 4vw, 56px); align-items: center; margin-top: 40px; }
+.laptop { min-width: 0; }
+.screen { background: #111; border-radius: 16px 16px 0 0; padding: 12px 12px 14px; box-shadow: 0 0 0 1.5px #2b2b2b; }
+.screen .vid { display: block; width: 100%; aspect-ratio: 1280 / 800; object-fit: cover; object-position: top; border-radius: 3px; background: #fafaf7; }
+.laptop-base { position: relative; height: 16px; margin: 0 -6%; border-radius: 0 0 14px 14px; background: linear-gradient(#d9d6d3, #b9b5b1); box-shadow: 0 30px 50px -26px rgba(23, 17, 15, 0.6); }
+.laptop-base::before { content: ""; position: absolute; top: 0; left: 50%; width: 16%; height: 6px; margin-left: -8%; border-radius: 0 0 8px 8px; background: #a9a5a1; }
+.desk-tabs { display: grid; gap: 4px; }
+.desk-tabs button { display: grid; gap: 2px; text-align: left; border: 0; background: none; padding: 14px 0 16px; position: relative; opacity: 0.45; transition: opacity 200ms var(--ease); }
+.desk-tabs button:hover, .desk-tabs button[aria-selected="true"] { opacity: 1; }
+.desk-tabs b { font-weight: 800; font-stretch: 108%; font-size: 28px; line-height: 1.05; letter-spacing: -0.02em; }
+.desk-tabs .ex-text { font-size: 16px; }
+.desk-tabs .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--line); }
+.desk-tabs .bar i { display: block; height: 100%; width: 0; background: var(--ink); }
+.desk-tabs .ex-go { margin-top: 14px; text-decoration: none; color: var(--ink); }
+@media (max-width: 900px) { .desk { grid-template-columns: 1fr; } .desk-tabs { grid-template-columns: repeat(3, 1fr); gap: 12px; } .desk-tabs .ex-text { display: none; } .desk-tabs b { font-size: 20px; } .desk-tabs .ex-go { grid-column: 1 / -1; } .laptop-base { margin: 0 -3%; } }
 @media (max-width: 900px) {
   .examples-head { grid-template-columns: 1fr; }
   /* En móvil y tableta, carrusel horizontal con imán */
@@ -156,7 +179,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], s
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px var(--orange-pale); }
 input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: #c4321c; }
 textarea { resize: vertical; min-height: 116px; }
-select { appearance: none; padding-right: 44px; cursor: pointer; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%2317110f' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") right 16px center/12px no-repeat; }
+select { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor: pointer; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%2317110f' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") right 16px center/12px no-repeat; }
 ::placeholder { color: #b1aaa7; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { position: relative; }

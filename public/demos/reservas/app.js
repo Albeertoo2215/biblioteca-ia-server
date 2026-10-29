@@ -164,6 +164,6 @@ $('#mine').addEventListener('click', (e) => {
 document.querySelector('.tabbar').addEventListener('click', (e) => { const t = e.target.closest('[data-view]'); if (t) ir(t.dataset.view); });
 
 const h = new Date().getHours();
-$('#hola').textContent = h < 14 ? 'Buenos días.' : h < 21 ? 'Buenas tardes.' : 'Buenas noches.';
+$('#hola').textContent = h < 14 ? 'Buenos días' : h < 21 ? 'Buenas tardes' : 'Buenas noches';
 pintarServicios(); pintarSemana($('#days'), null, elegirDia); pintarHoras(); pintarResumen(); pintarMias();
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});

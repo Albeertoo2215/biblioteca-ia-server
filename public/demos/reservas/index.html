@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>alba fisioterapia · Pide tu cita (demo)</title>
-  <meta name="theme-color" content="#1f3d34">
+  <meta name="theme-color" content="#0086c9">
   <meta name="robots" content="noindex">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="preload" href="fonts/young-serif.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/familjen-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
   <svg class="sprite" aria-hidden="true">
-    <symbol id="logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="13" fill="#1f3d34"/><path d="M11 25a9 9 0 0 1 18 0z" fill="#e09f3e"/><path d="M20 9.5v3M10.2 13.6l2.1 2.1M29.8 13.6l-2.1 2.1" stroke="#e09f3e" stroke-width="2.2" stroke-linecap="round"/><path d="M7.5 25.5h25M12 30h16" stroke="#f3ece2" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="logo" viewBox="0 0 40 40"><rect x="3" y="14.5" width="34" height="11" rx="5.5" fill="#0086c9"/><rect x="14.5" y="3" width="11" height="34" rx="5.5" fill="#ff4f8b"/><path d="M8 20h3M29 20h3M20 8v3M20 29v3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></symbol>
     <symbol id="i-espalda" viewBox="0 0 24 24"><path d="M12 2.5v19M9 5.5h6M8.2 9.5h7.6M8.6 13.5h6.8M9.6 17.5h4.8"/></symbol>
     <symbol id="i-osteo" viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="3.2"/><path d="M4.5 21v-2.5a7.5 7.5 0 0 1 15 0V21"/></symbol>
     <symbol id="i-deporte" viewBox="0 0 24 24"><path d="M6.5 7.5v9M17.5 7.5v9M3.5 10v4M20.5 10v4M6.5 12h11"/></symbol>
@@ -30,13 +30,13 @@
     <aside class="side" aria-hidden="true">
       <div class="side-in">
         <svg class="side-logo"><use href="#logo"/></svg>
-        <p class="side-claim">Moverte sin dolor empieza con una cita.</p>
+        <p class="side-claim">Muévete sin dolor.</p>
         <dl class="side-info">
           <div><dt>Horario</dt><dd>Lunes a viernes, 9 a 20 h<br>Sábados, 9 a 14 h</dd></div>
           <div><dt>Equipo</dt><dd>Fisioterapia, osteopatía y readaptación deportiva</dd></div>
         </dl>
       </div>
-      <div class="side-sun"></div>
+      <div class="side-tape"><span></span><span></span><span></span></div>
     </aside>
 
     <div class="phone">
@@ -47,7 +47,8 @@
 
       <main>
         <section class="view" id="reservar" aria-labelledby="saludo">
-          <h1 class="greet" id="saludo"><span id="hola">Hola.</span> ¿Qué te trae hoy?</h1>
+          <p class="hello" id="hola">Hola</p>
+          <h1 class="greet" id="saludo">¿Qué te trae hoy?</h1>
           <ul class="svcs" id="services" role="list"></ul>
 
           <div class="block">
@@ -91,7 +92,7 @@
   </div>
 
   <div class="done" id="done" hidden role="dialog" aria-modal="true" aria-labelledby="done-title">
-    <div class="done-sun"></div>
+    <div class="done-tape"><span></span><span></span></div>
     <div class="done-in">
       <p class="done-kicker">Cita reservada</p>
       <h2 id="done-title">Te esperamos.</h2>

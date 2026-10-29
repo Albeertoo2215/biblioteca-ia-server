@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quilla · Planificación de proyectos (demo)</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="preload" href="fonts/overpass.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" fill="#191919"/><path d="M5 23 16 8l11 15z" fill="none" stroke="#c8f031" stroke-width="2.2" stroke-linejoin="miter"/><path d="M5 26.5h22" stroke="#fafaf7" stroke-width="2"/></symbol>
+  </svg>
+
+  <div class="app">
+    <aside class="list">
+      <a class="brand" href="./"><svg><use href="#logo"/></svg><span><b>QUILLA</b><small>arquitectura</small></span></a>
+      <p class="list-h">Proyectos activos</p>
+      <ul id="projects"></ul>
+      <p class="demo">Demo de <a href="/">Folzia</a>. Estudio y proyectos inventados; los cambios se guardan en tu navegador.</p>
+    </aside>
+
+    <main class="main">
+      <header class="head">
+        <div>
+          <p class="code" id="p-code"></p>
+          <h1 id="p-name"></h1>
+          <p class="meta" id="p-meta"></p>
+        </div>
+        <dl class="figures" id="figures"></dl>
+      </header>
+
+      <div class="gantt" id="gantt"></div>
+
+      <section class="portfolio">
+        <h2>Cartera del estudio</h2>
+        <div class="overview" id="overview"></div>
+      </section>
+    </main>
+
+    <aside class="inspector" id="inspector"></aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

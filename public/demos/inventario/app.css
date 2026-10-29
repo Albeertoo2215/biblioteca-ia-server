@@ -1,0 +1,162 @@
+@font-face { font-family: "Plex Cond"; src: url("fonts/plex-condensed-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Plex Cond"; src: url("fonts/plex-condensed-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Plex Cond"; src: url("fonts/plex-condensed-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Plex Cond"; src: url("fonts/plex-condensed-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Plex Mono"; src: url("fonts/plex-mono-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+/* Grano: herramienta de almacén. Densa, en claro, con el verde de la marca solo para acciones y selección;
+   ámbar y rojo reservados para "bajo mínimo" y "agotado". */
+:root {
+  --ink: #171717; --ink-2: #4a4a48; --mute: #85837d; --rule: #e4e2dc; --rule-2: #efede8; --canvas: #ffffff; --rail: #f6f5f1;
+  --green: #0f6b3f; --green-pale: #e6f1eb; --amber: #a35c00; --amber-pale: #fdf0dc; --red: #c0271d; --red-pale: #fbe6e4;
+  --sans: "Plex Cond", "Arial Narrow", sans-serif; --mono: "Plex Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; background: var(--canvas); color: var(--ink); font: 400 15px/1.4 var(--sans); -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 1px; }
+
+.shell { display: grid; grid-template-columns: 232px minmax(0, 1fr); min-height: 100vh; }
+.rail { background: var(--rail); border-right: 1px solid var(--rule); padding: 18px 12px; display: flex; flex-direction: column; gap: 2px; position: sticky; top: 0; height: 100vh; }
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 8px 22px; text-decoration: none; color: var(--ink); }
+.brand svg { width: 32px; height: 32px; }
+.brand span { font-weight: 700; font-size: 21px; letter-spacing: -0.01em; line-height: 1; }
+.brand small { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); margin-top: 3px; }
+.rail button { display: flex; align-items: center; gap: 10px; border: 0; background: none; border-radius: 6px; padding: 9px 10px; text-align: left; font-weight: 500; color: var(--ink-2); }
+.rail button svg, .search svg, .close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.rail button:hover { background: #ecebe6; }
+.rail button[aria-current] { background: var(--canvas); color: var(--ink); box-shadow: 0 0 0 1px var(--rule); }
+.rail button[aria-current] svg { color: var(--green); }
+.rail button b { margin-left: auto; background: var(--green); color: #fff; border-radius: 9px; font-size: 11.5px; min-width: 20px; padding: 1px 6px; text-align: center; }
+.rail-foot { margin: auto 10px 10px; font-size: 12.5px; color: var(--mute); line-height: 1.5; }
+.demo { margin: 0 10px; font-size: 11.5px; color: var(--mute); }
+
+.work { min-width: 0; }
+.bar { display: flex; align-items: center; gap: 20px; padding: 14px 28px; border-bottom: 1px solid var(--rule); position: sticky; top: 0; background: var(--canvas); z-index: 3; }
+.bar h1 { font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -0.01em; min-width: 190px; }
+.search { flex: 1; max-width: 440px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--rule); border-radius: 6px; padding: 0 10px; color: var(--mute); background: var(--canvas); }
+.search:focus-within { border-color: var(--green); }
+.search input { -webkit-appearance: none; appearance: none; border: 0; outline: none; padding: 8px 0; width: 100%; color: var(--ink); background: transparent; }
+.user { margin-left: auto; font-size: 13.5px; color: var(--mute); }
+.user b { color: var(--ink); font-weight: 600; }
+
+.view { padding: 0 28px 40px; }
+/* Indicadores en una fila con separadores, no en tarjetas */
+.kpis { display: flex; margin: 0; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+.kpis div { padding: 0 28px; border-left: 1px solid var(--rule); }
+.kpis div:first-child { padding-left: 0; border-left: 0; }
+.kpis dt { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); }
+.kpis dd { margin: 2px 0 0; font-size: 30px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.kpis .warn dd { color: var(--amber); }
+.kpis .bad dd { color: var(--red); }
+
+.filters { display: flex; align-items: center; gap: 4px; padding: 14px 0; }
+.filters button { border: 1px solid transparent; background: none; border-radius: 6px; padding: 6px 12px; font-weight: 500; color: var(--ink-2); }
+.filters button:hover { background: var(--rail); }
+.filters button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); }
+.sep { width: 1px; height: 20px; background: var(--rule); margin: 0 8px; }
+.filters select { -webkit-appearance: menulist;  border: 1px solid var(--rule); border-radius: 6px; padding: 6px 10px; background: var(--canvas); }
+
+/* Tabla densa */
+.grid { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.grid th { position: sticky; top: 63px; background: var(--canvas); text-align: left; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); padding: 8px 12px; border-bottom: 1px solid var(--ink); white-space: nowrap; z-index: 1; }
+.grid td { padding: 9px 12px; border-bottom: 1px solid var(--rule-2); white-space: nowrap; }
+.grid tbody tr[data-sku] { cursor: pointer; }
+.grid tbody tr:hover td { background: #faf9f6; }
+.grid tr.sel td { background: var(--green-pale) !important; }
+.grid tr.sel td:first-child { box-shadow: inset 3px 0 0 var(--green); }
+.grid .num { text-align: right; }
+.grid th.num { text-align: right; }
+.mono { font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+.strong { font-weight: 500; }
+.muted { color: var(--mute); }
+td.num.bajo { color: var(--amber); font-weight: 600; }
+td.num.agotado { color: var(--red); font-weight: 600; }
+.meter { display: inline-block; vertical-align: middle; width: 72px; height: 6px; background: var(--rule-2); border-radius: 3px; overflow: hidden; margin-right: 10px; }
+.meter i { display: block; height: 100%; background: var(--green); }
+.meter.bajo i { background: var(--amber); }
+.lvl { font-size: 13px; color: var(--mute); }
+.lvl.bajo { color: var(--amber); }
+.lvl.agotado { color: var(--red); font-weight: 600; }
+.act { text-align: right; }
+.link { border: 0; background: none; padding: 0; color: var(--green); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.tag { font-size: 12.5px; color: var(--green); background: var(--green-pale); padding: 2px 8px; border-radius: 4px; }
+.empty { text-align: center; color: var(--mute); padding: 40px 0 !important; }
+.kind { font-size: 12.5px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+.kind.entrada { background: var(--green-pale); color: var(--green); }
+.kind.salida { background: var(--rule-2); color: var(--ink-2); }
+#movs .grid, #pedido { margin-top: 18px; }
+
+/* Pedido agrupado por proveedor */
+.supplier { margin-top: 26px; }
+.supplier header { display: flex; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
+.supplier h2 { font-size: 18px; font-weight: 600; margin: 0; }
+.supplier header span { color: var(--mute); font-size: 13.5px; }
+.supplier header .btn { margin-left: auto; }
+.supplier input { width: 80px; text-align: right; border: 1px solid var(--rule); border-radius: 5px; padding: 4px 8px; }
+.empty-big { font-size: 20px; font-weight: 500; padding: 60px 0; margin: 0; }
+.empty-big span { font-size: 15px; color: var(--mute); font-weight: 400; }
+
+.btn { border: 0; border-radius: 6px; background: var(--green); color: #fff; font-weight: 600; padding: 9px 16px; }
+.btn:hover { background: #0b5a34; }
+.btn.sm { padding: 6px 12px; font-size: 14px; }
+
+/* Ficha lateral */
+/* La ficha ocupa su propia columna: la tabla se estrecha en vez de quedar tapada */
+.shell.open { grid-template-columns: 232px minmax(0, 1fr) 360px; }
+.drawer { position: sticky; top: 0; height: 100vh; background: var(--canvas); border-left: 1px solid var(--rule); padding: 20px 24px; overflow: auto; z-index: 5; }
+.drawer header { display: flex; justify-content: space-between; gap: 12px; }
+.drawer small { font-family: var(--mono); font-size: 12.5px; color: var(--mute); }
+.drawer h2 { font-size: 22px; font-weight: 600; margin: 2px 0 0; line-height: 1.15; }
+.close { border: 0; background: none; padding: 4px; height: 30px; border-radius: 5px; color: var(--mute); }
+.close:hover { background: var(--rail); color: var(--ink); }
+.d-facts { display: grid; grid-template-columns: auto auto 1fr; margin: 20px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.d-facts div { padding: 12px 16px 12px 0; }
+.d-facts div + div { padding-left: 16px; border-left: 1px solid var(--rule); }
+.d-facts dt { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); }
+.d-facts dd { margin: 2px 0 0; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.d-facts dd.small { font-size: 14.5px; font-weight: 500; padding-top: 6px; }
+.d-facts dd.bajo { color: var(--amber); } .d-facts dd.agotado { color: var(--red); }
+.drawer h3 { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); margin: 0 0 8px; }
+.spark { width: 100%; height: 76px; margin-bottom: 22px; overflow: visible; }
+.sp-line { fill: none; stroke: var(--ink); stroke-width: 1.6; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.sp-min { stroke: var(--amber); stroke-dasharray: 4 4; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.d-form { display: grid; gap: 12px; border-top: 1px solid var(--rule); padding-top: 18px; }
+.d-form h3 { margin: 0; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.seg span { display: block; text-align: center; padding: 8px; font-weight: 500; }
+.seg label + label span { border-left: 1px solid var(--rule); }
+.seg input:checked + span { background: var(--ink); color: #fff; }
+.fld { display: grid; gap: 4px; font-size: 13px; color: var(--mute); }
+.fld input { border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; color: var(--ink); font-size: 15px; }
+.fld input:focus { outline: none; border-color: var(--green); }
+
+.toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 6px; font-weight: 500; transition: all 0.2s; pointer-events: none; z-index: 20; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* En pantallas pequeñas avisa de que es una herramienta de escritorio y deja usarla igualmente */
+@media (max-width: 860px) {
+  .shell { grid-template-columns: 1fr; }
+  .rail { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .brand { padding-bottom: 0; margin-right: auto; }
+  .rail-foot, .demo { display: none; }
+  .work { overflow-x: auto; }
+  .bar h1 { min-width: 0; }
+  .user { display: none; }
+  .kpis { flex-wrap: wrap; gap: 12px 0; }
+  .shell.open { grid-template-columns: 1fr; }
+  .drawer { position: fixed; inset: 0; height: auto; }
+}
+
+/* Con la ficha abierta se ocultan columnas secundarias para que la tabla quepa */
+.work { overflow-x: auto; }
+.shell.open #stock .grid th:nth-child(3), .shell.open #stock .grid td:nth-child(3),
+.shell.open #stock .grid th:nth-child(7), .shell.open #stock .grid td:nth-child(7) { display: none; }
+.shell.open .kpis div { padding: 0 18px; }
+.shell.open .kpis div:first-child { padding-left: 0; }

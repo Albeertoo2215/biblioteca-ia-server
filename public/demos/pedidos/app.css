@@ -31,8 +31,8 @@ body.night .stamp, body.night .stamp select { color: var(--butter); border-color
 
 .switch { max-width: 1120px; margin: 0 auto; padding: 4px 20px 0; display: flex; gap: 22px; }
 .switch button { border: 0; background: none; padding: 6px 0; font-weight: 700; font-size: 16px; color: var(--mute); text-underline-offset: 7px; }
-.switch [aria-current] { color: inherit; text-decoration: underline wavy var(--tomato) 2px; }
-body.night .switch [aria-current] { text-decoration-color: var(--butter); }
+.switch [aria-current] { color: inherit; -webkit-text-decoration-line: underline; text-decoration-line: underline; -webkit-text-decoration-style: wavy; text-decoration-style: wavy; -webkit-text-decoration-color: var(--tomato); text-decoration-color: var(--tomato); text-decoration-thickness: 2px; }
+body.night .switch [aria-current] { -webkit-text-decoration-color: var(--butter); text-decoration-color: var(--butter); }
 .switch b { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: rgba(28, 37, 65, 0.1); font-size: 12px; margin-left: 4px; }
 .switch b.hot { background: var(--tomato); color: #fff; }
 
@@ -65,7 +65,7 @@ main { max-width: 1120px; margin: 0 auto; padding: 0 20px 130px; }
 .tile-wrap { position: relative; }
 .tile { width: 100%; height: 100%; min-height: 176px; border: 0; border-radius: 28px; padding: 16px 14px 14px; text-align: left; display: flex; flex-direction: column; align-items: flex-start; background: var(--c0); color: var(--night); transition: transform 0.15s, box-shadow 0.15s; }
 .c1 .tile { background: var(--c1); } .c2 .tile { background: var(--c2); } .c3 .tile { background: var(--c3); }
-.tile:hover { transform: translateY(-2px) rotate(-0.6deg); }
+@media (hover: hover) { .tile:hover { transform: translateY(-2px) rotate(-0.6deg); } }
 .tile:active { transform: scale(0.97); }
 .tile-ico { width: 46px; height: 46px; fill: none; stroke: var(--night); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; margin-bottom: auto; }
 .tile strong { margin-top: 14px; font-size: 17px; line-height: 1.15; font-weight: 700; }
