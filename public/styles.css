@@ -118,12 +118,12 @@ p { margin: 0; text-wrap: pretty; }
   transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz));
   animation: bob var(--dur) ease-in-out infinite alternate; animation-delay: var(--delay);
 }
-.blk i { position: absolute; inset: 0; border-radius: var(--r, 24%); transform: translateZ(calc(var(--k) * -3px)); }
+.blk i { position: absolute; inset: 0; border-radius: var(--r, 24%); transform: translateZ(calc(var(--k) * -1.6px)); }
 /* Posición, giro y ritmo de cada pieza */
-.b1 { --x:16%; --y:24%; --w:36%; --rx:58deg; --ry:-8deg; --rz:-24deg; --dur:7s; --delay:-2s; }
+.b1 { --x:18%; --y:25%; --w:33%; --rx:58deg; --ry:-8deg; --rz:-24deg; --dur:7s; --delay:-2s; }
 .b2 { --x:62%; --y:8%; --w:22%; --rx:52deg; --ry:10deg; --rz:-34deg; --dur:8.5s; --delay:-5s; }
 .b3 { --x:66%; --y:46%; --w:21%; --rx:60deg; --ry:6deg; --rz:-14deg; --dur:9s; --delay:-4s; }
-.b4 { --x:28%; --y:72%; --w:36%; --h:12%; --rx:56deg; --ry:-8deg; --rz:-18deg; --dur:6.5s; --delay:-1s; }
+.b4 { --x:30%; --y:74%; --w:33%; --h:11%; --rx:56deg; --ry:-8deg; --rz:-18deg; --dur:6.5s; --delay:-1s; }
 .b5 { --x:2%; --y:62%; --w:16%; --rx:48deg; --ry:14deg; --rz:-28deg; --dur:7.5s; --delay:-6s; }
 .b6 { --x:38%; --y:4%; --w:11%; --rx:50deg; --ry:-12deg; --rz:-36deg; --dur:6s; --delay:-3s; }
 .blk-pill { --r: 999px; }
@@ -145,7 +145,7 @@ p { margin: 0; text-wrap: pretty; }
   box-shadow: inset 0 0 0 1.5px rgba(255, 226, 214, 0.6), inset 0 -10px 24px rgba(150, 30, 10, 0.18);
 }
 /* Anillo: solo el borde, con el mismo grosor por capas */
-.blk-ring i { background: transparent !important; border: 16px solid #d63b20; box-sizing: border-box; }
+.blk-ring i { background: transparent !important; border: 10px solid #d63b20; box-sizing: border-box; }
 .blk-ring i:nth-child(2) { border-color: #ffc2ad; }
 .blk-ring i:nth-child(3) { border-color: #f9846a; }
 .blk-ring i:nth-child(n+4) { border-color: #d23a1f; }
@@ -153,11 +153,11 @@ p { margin: 0; text-wrap: pretty; }
 
 @keyframes bob {
   from { transform: translate3d(0, 0, 0) rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz)); }
-  to { transform: translate3d(0, -14px, 20px) rotateX(calc(var(--rx) + 6deg)) rotateY(calc(var(--ry) - 8deg)) rotateZ(calc(var(--rz) + 8deg)); }
+  to { transform: translate3d(0, -26px, 30px) rotateX(calc(var(--rx) + 12deg)) rotateY(calc(var(--ry) - 18deg)) rotateZ(calc(var(--rz) + 24deg)); }
 }
 @keyframes sway {
-  from { transform: rotateY(-7deg) rotateX(3deg); }
-  to { transform: rotateY(7deg) rotateX(-3deg); }
+  from { transform: rotateY(-12deg) rotateX(5deg); }
+  to { transform: rotateY(12deg) rotateX(-5deg); }
 }
 @keyframes floor {
   from { transform: scaleX(0.92); opacity: 0.8; }
@@ -168,7 +168,7 @@ p { margin: 0; text-wrap: pretty; }
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; gap: 8px; }
   .hero-visual { width: min(88%, 420px); margin: 40px auto 0; order: 2; }
-  .blk-ring i { border-width: 11px; }
+  .blk-ring i { border-width: 7px; }
 }
 
 /* ---------- Escena: de la hoja de cálculo a la aplicación ---------- */
