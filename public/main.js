@@ -306,7 +306,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
         x: mobile ? 0 : parseFloat(el.dataset.x || 0),
         y: mobile ? 0.42 : 0,
         bg: +(el.dataset.bg || 0),
-        dim: parseFloat(el.dataset.dim || 1),
+        dim: Math.min(parseFloat(el.dataset.dim || 1), mobile ? 0.5 : 1), // en el móvil el texto pasa sobre la figura: más tenue
       };
     });
   }

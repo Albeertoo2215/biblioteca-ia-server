@@ -318,3 +318,15 @@ fieldset { min-width: 0; }
 @media (max-width: 760px) { .quien-grid { grid-template-columns: 1fr; justify-items: start; } .foto { width: 168px; } }
 .quien-datos .li { display: inline-flex; align-items: center; gap: 6px; }
 .quien-datos .li svg { width: 15px; height: 15px; fill: #0a66c2; }
+
+/* Servicios: qué incluye y para quién */
+.inc-h { margin-top: 30px; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
+.incluye { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; max-width: 34em; }
+.incluye li { position: relative; padding-left: 26px; font-size: 16.5px; line-height: 1.35; }
+.incluye li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 15px; height: 8px; border-left: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(-45deg) scale(0.8); transform-origin: left bottom; }
+.para { margin-top: 22px; font-size: 16px; color: var(--ink-2); max-width: 34em; }
+.para b { color: var(--ink); font-weight: 700; }
+@media (max-width: 760px) { .incluye { grid-template-columns: 1fr; gap: 8px; } .incluye li { font-size: 16px; } .inc-h { margin-top: 24px; } }
+@media (max-width: 760px) { .panel { align-items: flex-start; padding: 50svh 0 12vh; } }
+/* Móvil: la figura queda fija y el texto pasa por encima; halo del color del fondo para que siempre se lea */
+@media (max-width: 760px) { .panel .copy > * { text-shadow: 0 0 2px var(--page-bg, #fff), 0 0 6px var(--page-bg, #fff), 0 0 12px var(--page-bg, #fff), 0 0 18px var(--page-bg, #fff); } }
