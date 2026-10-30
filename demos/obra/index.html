@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hormigo · Parte de obra</title>
+  <meta name="theme-color" content="#161616">
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#f5c400"/><path d="M8 7h4.4v7.3h7.2V7H24v18h-4.4v-7.3h-7.2V25H8z" fill="#161616"/><path d="M6 14.3h20" stroke="#161616" stroke-width="1.2"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+    <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 15a4 4 0 0 1-.4-8A5.5 5.5 0 0 1 17 8a3.5 3.5 0 0 1 .5 7zM8 18l-1 2.5M12 18l-1 2.5M16 18l-1 2.5"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3.5V16h-7M7 18.5a1.5 1.5 0 1 0 0-.01M17 18.5a1.5 1.5 0 1 0 0-.01"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-5 16-3.5-6.5zM11.5 13.5 20 4"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4 2.8 19.5h18.4zM12 10v4.5M12 17v.1"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6zM9 10h6M9 14h6M9 18h3"/></symbol>
+  </svg>
+  <div id="app"></div>
+  <div class="sheet" id="sheet" hidden><div class="sheet-bg" data-close></div><div class="sheet-in" id="sheet-in" role="dialog" aria-modal="true"></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

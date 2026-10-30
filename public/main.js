@@ -482,7 +482,7 @@ function toObject(data) {
     }
     const endpoint = form.getAttribute('action');
     if (!endpoint) {
-      status.textContent = 'El formulario todavía no está conectado. Escríbenos directamente por correo, por favor.';
+      status.textContent = 'El formulario todavía no está conectado. Escríbeme directamente por correo, por favor.';
       return;
     }
     const button = form.querySelector('button[type="submit"]');
@@ -498,7 +498,7 @@ function toObject(data) {
       form.reset();
       status.textContent = 'Recibido. Te escribiremos para hablar de tu proyecto.';
     } catch (err) {
-      status.textContent = 'No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo, o escríbenos por correo.';
+      status.textContent = 'No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo, o escríbeme por correo.';
     } finally {
       button.disabled = false;
     }

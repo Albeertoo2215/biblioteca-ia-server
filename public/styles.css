@@ -243,3 +243,4 @@ select { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor
 .desk-tabs b { font-size: 22px; }
 .desk-tabs .ex-text { font-size: 14.5px; }
 @media (max-width: 900px) { .examples-list.five li:nth-child(even) { margin-top: 0; } .desk-tabs { grid-template-columns: 1fr 1fr; } }
+.intro-yo { margin-top: 18px; max-width: 46ch; color: var(--ink-2); font-size: 19px; line-height: 1.5; }
