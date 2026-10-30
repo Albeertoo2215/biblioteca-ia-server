@@ -346,7 +346,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (!running) return;
     const time = now / 1000;
     sy += (scrollY - sy) * (reduced ? 1 : 0.12);
-    smx += (mx - smx) * 0.05; smy += (my - smy) * 0.05;
+    if (!window.folziaQuieto()) { smx += (mx - smx) * 0.05; smy += (my - smy) * 0.05; } // en pausa, la figura tampoco sigue al ratón
 
     // Estado según el scroll
     let i = 0;
