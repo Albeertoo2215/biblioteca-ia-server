@@ -166,7 +166,7 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 /* Contacto (sección naranja) */
 .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
 .contact-side { position: sticky; top: 120px; }
-.contact-side h2 { font-size: clamp(48px, 6vw, 96px); }
+.contact-side h2 { font-size: clamp(44px, 4.6vw, 72px); }
 .contact-side p { margin-top: 20px; font-size: 20px; max-width: 22em; }
 .contact-side .mail { font-size: 17px; }
 .contact-side .mail a { font-weight: 700; }
@@ -349,3 +349,6 @@ fieldset { min-width: 0; }
 .wa-flot:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 @media (max-width: 760px) { .wa-flot { width: 56px; padding: 0; justify-content: center; } .wa-flot span { display: none; } }
 @media (prefers-reduced-motion: reduce) { .wa-flot { transition: none; } }
+/* El botón flotante se oculta en la portada y en el contacto, donde ya hay botones de WhatsApp */
+.wa-flot { transition: transform 160ms var(--ease), background-color 160ms var(--ease), opacity 220ms var(--ease), visibility 0s linear 0s; }
+.wa-flot.oculto { opacity: 0; visibility: hidden; transform: translateY(14px); transition: opacity 220ms var(--ease), transform 220ms var(--ease), visibility 0s linear 220ms; }

@@ -567,3 +567,17 @@ function toObject(data) {
     }
   });
 })();
+
+// Botón flotante de WhatsApp: solo aparece fuera de la portada y del contacto, para no tapar texto ni repetir botones
+(function () {
+  const b = document.querySelector('.wa-flot');
+  const zonas = [document.querySelector('.hero'), document.getElementById('contacto')].filter(Boolean);
+  if (!b || !zonas.length || !('IntersectionObserver' in window)) return;
+  const visibles = new Set();
+  b.classList.add('oculto');
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => (e.isIntersecting ? visibles.add(e.target) : visibles.delete(e.target)));
+    b.classList.toggle('oculto', visibles.size > 0);
+  }, { rootMargin: '0px 0px -25% 0px' });
+  zonas.forEach((z) => io.observe(z));
+})();
