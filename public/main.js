@@ -328,7 +328,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const T_HOLD = MODO === 1 ? 3.25 : MODO === 6 ? 1.85 : 3.0, T_OUT = T_HOLD + 0.7;
   let introStart = null;
   const finishIntro = () => { if (introDone) return; introDone = true; ready(); try { sessionStorage.setItem('folziaIntro', '1'); } catch (e) { /* nada */ } };
-  ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, finishIntro, { passive: true, once: true }));
+  // La intro se ve entera aunque toques, hagas scroll o pulses una tecla; solo el botón de pausa la detiene
   if (window.folziaQuieto()) introDone = true;
   // El contenido se ve desde el principio: la intro ocurre detrás, donde luego queda la figura de la portada
   ready();
