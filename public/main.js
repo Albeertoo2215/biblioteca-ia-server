@@ -330,7 +330,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const finishIntro = () => { if (introDone) return; introDone = true; ready(); try { sessionStorage.setItem('folziaIntro', '1'); } catch (e) { /* nada */ } };
   ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, finishIntro, { passive: true, once: true }));
   if (window.folziaQuieto()) introDone = true;
-  if (introDone) ready();
+  // El contenido se ve desde el principio: la intro ocurre detrás, donde luego queda la figura de la portada
+  ready();
   document.addEventListener('folzia:movimiento', finishIntro);
 
   // ---------- Bucle ----------
@@ -371,7 +372,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       const t = time - introStart;
       w.fill(0);
       const easeOutBack = (x) => 1 + 2.4 * Math.pow(x - 1, 3) + 1.4 * Math.pow(x - 1, 2);
-      offX = 0; offY = 0;
+      offX = A.x; offY = A.y;
       if (t < T_HOLD) {
         w[LOGO] = 1; scale = mobile ? 0.3 : 0.42;
         if (MODO === 2) { modo = 2; prog = clamp01((t - 0.25) / 1.7); }

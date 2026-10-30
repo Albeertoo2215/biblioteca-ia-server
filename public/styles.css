@@ -88,13 +88,14 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 [data-bg="1"] .tags li { border-color: rgba(23, 17, 15, 0.32); }
 [data-bg="1"] h2 + p, .contact-side p { color: var(--ink); }
 
-/* Intro: el contenido del hero aparece cuando el logo de partículas se convierte en el planeta */
-.js .hero .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
-.js.ready .hero .reveal { opacity: 1; transform: none; }
-.js.ready .hero .reveal:nth-child(2) { transition-delay: 90ms; }
-.js.ready .hero .reveal:nth-child(3) { transition-delay: 180ms; }
-.js.ready .hero .reveal:nth-child(4) { transition-delay: 270ms; }
-.js:not(.ready) .top { opacity: 0; transform: translateY(-12px); }
+/* El texto de portada aparece solo, con una entrada suave, sin esperar a que arranquen las partículas */
+@keyframes entra { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.hero .reveal { animation: entra 600ms var(--ease) both; }
+.hero .reveal:nth-child(2) { animation-delay: 70ms; }
+.hero .reveal:nth-child(3) { animation-delay: 140ms; }
+.hero .reveal:nth-child(4) { animation-delay: 210ms; }
+.hero h1.reveal { animation: none; } /* el título se pinta al instante: es lo primero que se lee */
+@media (prefers-reduced-motion: reduce) { .hero .reveal { animation: none; } }
 
 @media (max-width: 900px) {
   .panel { align-items: flex-end; padding: 96px 0 9vh; }
@@ -333,3 +334,24 @@ fieldset { min-width: 0; }
   .panel:not(.hero)[data-bg="0"] .copy > * { text-shadow: 0 0 3px #fff, 0 0 10px #fff, 0 0 18px #fff; }
   .panel:not(.hero)[data-bg="1"] .copy > * { text-shadow: 0 0 3px #f73b20, 0 0 10px #f73b20, 0 0 18px #f73b20; }
 }
+
+/* Preguntas frecuentes */
+.faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+.faq-list { border-top: 1.5px solid var(--line); }
+.faq-i { border-bottom: 1.5px solid var(--line); background: rgba(255, 255, 255, 0.86); }
+.faq-i summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 4px; font-weight: 700; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.3; }
+.faq-i summary::-webkit-details-marker { display: none; }
+.faq-i summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-weight: 500; font-size: 20px; transition: transform 200ms var(--ease), background-color 200ms var(--ease); }
+.faq-i[open] summary::after { content: "−"; background: var(--ink); color: #fff; border-color: var(--ink); }
+.faq-i summary:hover::after { border-color: var(--ink); }
+.faq-i p { margin: 0; padding: 0 52px 24px 4px; color: var(--ink-2); font-size: 17px; max-width: 40em; }
+@media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+
+/* Botón flotante de WhatsApp (verde oscuro: el texto blanco cumple 4,5 a 1) */
+.wa-flot { position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); z-index: 40; display: inline-flex; align-items: center; gap: 9px; height: 56px; padding: 0 22px 0 18px; border-radius: 999px; background: #0c8442; color: #fff; font: 650 16px/1 var(--font); text-decoration: none; box-shadow: 0 12px 28px -10px rgba(10, 60, 30, 0.55); transition: transform 160ms var(--ease), background-color 160ms var(--ease); }
+.wa-flot:hover { background: #096e37; transform: translateY(-2px); }
+.wa-flot svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
+.wa-flot svg .lleno { fill: currentColor; stroke: none; }
+.wa-flot:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (max-width: 760px) { .wa-flot { width: 56px; padding: 0; justify-content: center; } .wa-flot span { display: none; } }
+@media (prefers-reduced-motion: reduce) { .wa-flot { transition: none; } }
