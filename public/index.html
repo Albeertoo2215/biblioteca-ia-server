@@ -32,6 +32,7 @@
         <a href="#ejemplos">Ejemplos</a>
         <a href="#como-trabajo">Cómo trabajo</a>
       </nav>
+      <button type="button" class="mov" id="mov" aria-pressed="false" aria-label="Pausar movimiento" title="Pausar movimiento"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pausa" d="M9 6v12M15 6v12"/><path class="i-play" d="M8 5.5v13l10.5-6.5z"/></svg></button>
       <a href="#contacto" class="btn btn-sm">Cuéntame tu idea</a>
     </div>
   </header>
@@ -105,7 +106,7 @@
         </div>
 
         <p class="ex-group">En el móvil</p>
-        <ul class="examples-list">
+        <ul class="examples-list" tabindex="0" aria-label="Apps de ejemplo para móvil (desliza para ver más)">
           <li class="example">
             <span class="phone-frame"><video class="vid" data-n="fisio" poster="img/poster-fisio.webp" muted loop playsinline preload="none" aria-label="Vídeo: una paciente de Eje hace su ejercicio y se lo envía a su fisioterapeuta"><source src="video/fisio.webm" type="video/webm"><source src="video/fisio.mp4" type="video/mp4"></video></span>
             <span class="ex-kind">Fisioterapia</span>
@@ -155,6 +156,18 @@
           <li><span>3</span><h3>Construyo</h3><p>Por fases, y lo pruebas en cada una.</p></li>
           <li><span>4</span><h3>Lanzamos</h3><p>Y si quieres, lo mantengo.</p></li>
         </ol>
+        <div class="garantias">
+          <h3 class="g-h">Incluido en cada proyecto</h3>
+          <div class="g-item">
+            <h4>Accesible, como pide la ley</h4>
+            <p>Diseño tus apps para cumplir las pautas WCAG 2.2 nivel AA, las que exige la Ley 11/2023 a tiendas online, reservas con pago y otros servicios desde junio de 2025. Te entrego la declaración de accesibilidad redactada.</p>
+            <a href="accesibilidad.html">Así lo aplico en esta web</a>
+          </div>
+          <div class="g-item">
+            <h4>Datos protegidos (RGPD)</h4>
+            <p>Solo se guardan los datos necesarios, en servidores de la UE siempre que se pueda y sin cookies de seguimiento sin permiso. Firmamos el contrato de encargado del tratamiento que exige el RGPD y la app permite exportar y borrar los datos de cada usuario.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -171,6 +184,7 @@
           <input type="hidden" name="access_key" value="b2581a52-ea24-449a-ae54-1e13a8e56586">
           <input type="hidden" name="subject" value="Nueva solicitud desde folzia.com">
           <input type="hidden" name="from_name" value="Web Folzia">
+          <p class="req-note">Los campos marcados con * son obligatorios.</p>
           <fieldset class="form-part">
             <legend>Tus datos</legend>
             <div class="fields">
@@ -330,7 +344,7 @@
               <p>Te pido que no incluyas en el formulario datos personales de terceros ni datos especialmente protegidos (salud, ideología, etc.). Basta con que me indiques el tipo de datos que manejará la aplicación.</p>
             </div>
             <label class="consent"><input type="checkbox" name="acepta_privacidad" value="si" required> <span>He leído la <a href="privacidad.html">política de privacidad</a> y consiento el tratamiento de mis datos para atender esta solicitud. *</span></label>
-            <label class="consent"><input type="checkbox" name="acepta_comunicaciones" value="si"> <span>Quiero recibir ocasionalmente información sobre mis servicios. Puedo retirar este consentimiento en cualquier momento. <em>(opcional)</em></span></label>
+            <label class="consent"><input type="checkbox" name="acepta_comunicaciones" value="si"> <span>Quiero recibir ocasionalmente información sobre los servicios de Folzia. Puedo retirar este consentimiento en cualquier momento. <em>(opcional)</em></span></label>
             <div class="submit-row">
               <button class="btn btn-primary btn-lg" type="submit">Enviar solicitud</button>
               <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -348,6 +362,7 @@
         <a href="aviso-legal.html">Aviso legal</a>
         <a href="privacidad.html">Privacidad</a>
         <a href="cookies.html">Cookies</a>
+        <a href="accesibilidad.html">Accesibilidad</a>
         <a href="mailto:contacto@folzia.com">contacto@folzia.com</a>
       </nav>
     </div>

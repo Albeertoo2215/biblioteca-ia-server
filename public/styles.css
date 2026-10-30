@@ -11,14 +11,16 @@
 
 :root {
   --orange: #f73b20;
-  --orange-press: #d92f16;
+  --orange-press: #b8250d;
+  /* Naranja para texto y botones: 4,98:1 sobre blanco (WCAG AA). El vivo queda para lo decorativo */
+  --orange-text: #d42f17;
   --ink: #17110f;
   --ink-2: rgba(23, 17, 15, 0.74);
   --ink-3: rgba(23, 17, 15, 0.5);
   --line: rgba(23, 17, 15, 0.14);
   --white: #ffffff;
   --body: #4b4542;
-  --mute: #8b8481;
+  --mute: #716a67;
   --orange-pale: #ffe0d6;
   --font: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --max: 1280px;
@@ -50,7 +52,7 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 main, .foot { position: relative; z-index: 1; }
 
 /* Botones */
-.btn { display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 28px; border-radius: 999px; background: var(--orange); color: var(--white); font: 650 16px/1 var(--font); text-decoration: none; border: 0; cursor: pointer; white-space: nowrap; transition: background-color var(--fast) var(--ease), transform 90ms var(--ease); }
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 28px; border-radius: 999px; background: var(--orange-text); color: var(--white); font: 650 16px/1 var(--font); text-decoration: none; border: 0; cursor: pointer; white-space: nowrap; transition: background-color var(--fast) var(--ease), transform 90ms var(--ease); }
 .btn:hover { background: var(--orange-press); }
 .btn:active { transform: scale(0.98); }
 .btn-sm { height: 42px; padding: 0 20px; font-size: 15px; }
@@ -72,12 +74,12 @@ main, .foot { position: relative; z-index: 1; }
 .panel { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 120px 0; }
 .panel .wrap { width: 100%; }
 .copy { max-width: 560px; }
-.kicker { font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--orange); margin-bottom: 22px; }
+.kicker { font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--orange-text); margin-bottom: 22px; }
 h1 { font-weight: 800; font-stretch: 110%; font-size: clamp(46px, 6vw, 92px); line-height: 0.94; letter-spacing: -0.035em; }
 h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); line-height: 0.96; letter-spacing: -0.035em; }
 .lead { margin-top: 26px; font-size: clamp(18px, 1.5vw, 21px); color: var(--ink-2); max-width: 28em; }
 .cta { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; margin-top: 34px; }
-.panel .n { display: block; font-size: 15px; font-weight: 700; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 14px; }
+.panel .n { display: block; font-size: 15px; font-weight: 700; letter-spacing: 0.1em; color: var(--orange-text); margin-bottom: 14px; }
 .panel h2 + p { margin-top: 18px; font-size: clamp(19px, 1.7vw, 24px); color: var(--ink-2); }
 .tags { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .tags li { padding: 8px 15px; border-radius: 999px; border: 1.5px solid var(--line); font-size: 14px; font-weight: 550; }
@@ -109,7 +111,7 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 /* Teléfono: marco negro; dentro, el vídeo real de la app */
 .phone-frame { display: block; position: relative; aspect-ratio: 560 / 1212; border-radius: 44px; background: #111; padding: 9px; box-shadow: 0 0 0 1.5px #2b2b2b, 0 40px 70px -36px rgba(23, 17, 15, 0.55); margin-bottom: 20px; transition: transform 400ms var(--ease); }
 .phone-frame .vid { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 35px; background: #f4f1ef; }
-.ex-kind { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--orange); }
+.ex-kind { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--orange-text); }
 .ex-title { font-weight: 800; font-stretch: 108%; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.05; letter-spacing: -0.02em; }
 .ex-text { color: var(--ink-2); font-size: 17px; }
 .ex-go { margin-top: 8px; font-weight: 700; font-size: 16px; }
@@ -129,8 +131,11 @@ h2 { font-weight: 800; font-stretch: 110%; font-size: clamp(40px, 5.2vw, 80px); 
 .laptop-base { position: relative; height: 16px; margin: 0 -6%; border-radius: 0 0 14px 14px; background: linear-gradient(#d9d6d3, #b9b5b1); box-shadow: 0 30px 50px -26px rgba(23, 17, 15, 0.6); }
 .laptop-base::before { content: ""; position: absolute; top: 0; left: 50%; width: 16%; height: 6px; margin-left: -8%; border-radius: 0 0 8px 8px; background: #a9a5a1; }
 .desk-tabs { display: grid; gap: 4px; }
-.desk-tabs button { display: grid; gap: 2px; text-align: left; border: 0; background: none; padding: 14px 0 16px; position: relative; opacity: 0.45; transition: opacity 200ms var(--ease); }
-.desk-tabs button:hover, .desk-tabs button[aria-selected="true"] { opacity: 1; }
+.desk-tabs button { display: grid; gap: 2px; text-align: left; border: 0; background: none; padding: 14px 0 16px; position: relative; }
+.desk-tabs button:not([aria-selected="true"]) b { color: var(--ink-3); transition: color 200ms var(--ease); }
+.desk-tabs button:not([aria-selected="true"]) .ex-kind { color: var(--mute); }
+.desk-tabs button:not([aria-selected="true"]):hover b { color: var(--ink); }
+
 .desk-tabs b { font-weight: 800; font-stretch: 108%; font-size: 28px; line-height: 1.05; letter-spacing: -0.02em; }
 .desk-tabs .ex-text { font-size: 16px; }
 .desk-tabs .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--line); }
@@ -191,14 +196,14 @@ select { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor
 .chip input:focus-visible + span { outline: 3px solid var(--orange); outline-offset: 2px; }
 .form-submit { display: grid; gap: 16px; }
 .legal-note { font-size: 12.5px; line-height: 1.55; color: var(--body); display: grid; gap: 8px; }
-.legal-note a { color: var(--orange); }
+.legal-note a { color: var(--orange-text); }
 .consent { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; }
-.consent a { color: var(--orange); }
+.consent a { color: var(--orange-text); }
 .consent input { margin-top: 2px; width: 18px; height: 18px; accent-color: var(--orange); flex: none; }
 .submit-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 6px; }
 .form-status { font-size: 14px; font-weight: 600; }
 .hp { position: absolute; left: -9999px; }
-.ph { color: var(--orange); }
+.ph { color: var(--orange-text); }
 
 /* Pie */
 .foot { background: var(--ink); color: #d9d1ce; padding: 56px 0 40px; }
@@ -218,7 +223,7 @@ select { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor
 .legal p { margin: 0 0 12px; }
 .legal p, .legal li { color: var(--body); line-height: 1.65; }
 .legal ul { padding-left: 20px; } .legal li { margin-bottom: 6px; }
-.legal a { color: var(--orange); }
+.legal a { color: var(--orange-text); }
 .legal table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 8px 0 16px; }
 .legal th, .legal td { text-align: left; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--body); }
 .legal th { color: var(--ink); font-weight: 700; }
@@ -244,3 +249,38 @@ select { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor
 .desk-tabs .ex-text { font-size: 14.5px; }
 @media (max-width: 900px) { .examples-list.five li:nth-child(even) { margin-top: 0; } .desk-tabs { grid-template-columns: 1fr 1fr; } }
 .intro-yo { margin-top: 18px; max-width: 46ch; color: var(--ink-2); font-size: 19px; line-height: 1.5; }
+.examples-list:focus-visible { outline-offset: 6px; }
+
+/* Botón para pausar el movimiento (partículas y vídeos) */
+.mov { width: 42px; height: 42px; margin-left: auto; margin-right: 8px; border: 1.5px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; }
+.top-nav + .mov { margin-left: 18px; }
+.mov:hover { border-color: var(--ink); }
+.mov svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.mov .i-play { display: none; fill: currentColor; stroke: none; }
+.mov[aria-pressed="true"] .i-pausa { display: none; }
+.mov[aria-pressed="true"] .i-play { display: block; }
+/* En el móvil la figura de partículas queda detrás del texto de portada: halo blanco para mantener el contraste */
+@media (max-width: 760px) { .hero .kicker, .hero h1, .hero .lead { text-shadow: 0 0 2px #fff, 0 0 8px #fff, 0 0 16px #fff; } .top-pill .mov { margin-left: auto; } .top-pill .btn { margin-left: 0; } }
+
+/* Errores del formulario */
+.req-note { margin: 0 0 18px; font-size: 14px; color: var(--ink-2); }
+.err { display: block; margin: 2px 0 0; font-size: 14px; font-weight: 650; color: #b3261e; }
+.err::before { content: "! "; font-weight: 800; }
+[aria-invalid="true"]:not([type="radio"]):not([type="checkbox"]) { border-color: #b3261e !important; box-shadow: 0 0 0 1px #b3261e; }
+.consent .err { flex-basis: 100%; }
+.consent:has(.err) { flex-wrap: wrap; }
+
+/* Garantías incluidas en cada proyecto */
+.garantias { margin-top: 72px; padding-top: 40px; border-top: 1.5px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; }
+.g-h { grid-column: 1 / -1; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--ink); }
+.g-item h4 { margin: 0 0 10px; font-weight: 750; font-stretch: 106%; font-size: 24px; margin-bottom: 10px; }
+.g-item p { margin: 0; color: var(--ink-2); font-size: 17px; max-width: 38em; }
+.g-item a { display: inline-block; margin-top: 12px; color: var(--ink); font-weight: 650; text-underline-offset: 4px; }
+@media (max-width: 760px) { .garantias { grid-template-columns: 1fr; margin-top: 56px; } }
+/* Ajuste a 320 px (WCAG 1.4.10): los fieldset y la rejilla de contacto no imponen ancho mínimo */
+fieldset { min-width: 0; }
+.contact-grid > *, .form { min-width: 0; }
+.legal table { width: 100%; table-layout: fixed; overflow-wrap: anywhere; }
+@media (max-width: 480px) { .legal table { font-size: 14px; } .legal th, .legal td { padding-left: 6px; padding-right: 6px; } }
+.examples { overflow-x: clip; }
+@media (max-width: 400px) { h2, .block h2 { font-size: clamp(30px, 10.5vw, 40px); } }

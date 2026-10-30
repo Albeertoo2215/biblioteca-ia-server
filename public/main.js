@@ -1,3 +1,19 @@
+// «Pausar movimiento» (WCAG 2.2.2): un botón para parar partículas y vídeos; se recuerda en este navegador
+(function () {
+  let quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { if (localStorage.getItem('folziaQuieto') === '1') quieto = true; } catch (e) { /* sin almacenamiento */ }
+  window.folziaQuieto = () => quieto;
+  const b = document.getElementById('mov');
+  if (!b) return;
+  const pinta = () => { b.setAttribute('aria-pressed', String(quieto)); const t = quieto ? 'Reanudar movimiento' : 'Pausar movimiento'; b.setAttribute('aria-label', t); b.title = t; };
+  pinta();
+  b.addEventListener('click', () => {
+    quieto = !quieto; pinta();
+    try { localStorage.setItem('folziaQuieto', quieto ? '1' : '0'); } catch (e) { /* nada */ }
+    document.dispatchEvent(new CustomEvent('folzia:movimiento', { detail: { quieto } }));
+  });
+})();
+
 document.documentElement.classList.replace('no-js', 'js');
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -18,6 +34,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   const mobile = matchMedia('(max-width: 900px)').matches;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const N = mobile ? 6500 : 13000;
   const LOGO = 6;
 
@@ -312,7 +329,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
   let introStart = null;
   const finishIntro = () => { if (introDone) return; introDone = true; ready(); try { sessionStorage.setItem('folziaIntro', '1'); } catch (e) { /* nada */ } };
   ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, finishIntro, { passive: true, once: true }));
+  if (window.folziaQuieto()) introDone = true;
   if (introDone) ready();
+  document.addEventListener('folzia:movimiento', finishIntro);
 
   // ---------- Bucle ----------
   let mx = 0, my = 0, smx = 0, smy = 0, sy = scrollY, running = true;
@@ -386,10 +405,10 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
     for (let j = 0; j < 7; j++) gl.uniform1f(U['w' + j], w[j]);
     const logoW = w[LOGO];
-    gl.uniform1f(U.uTime, reduced ? 0 : time);
+    gl.uniform1f(U.uTime, reduced || window.folziaQuieto() ? 0 : time);
     gl.uniform1f(U.uBurst, burst);
-    gl.uniform1f(U.uRotY, ((reduced ? 0 : Math.sin(time * 0.25) * 0.35) + smx * 0.6) * (1 - logoW));
-    gl.uniform1f(U.uRotX, ((reduced ? 0 : Math.sin(time * 0.2) * 0.08) - smy * 0.3) * (1 - logoW));
+    gl.uniform1f(U.uRotY, ((reduced || window.folziaQuieto() ? 0 : Math.sin(time * 0.25) * 0.35) + smx * 0.6) * (1 - logoW));
+    gl.uniform1f(U.uRotX, ((reduced || window.folziaQuieto() ? 0 : Math.sin(time * 0.2) * 0.08) - smy * 0.3) * (1 - logoW));
     gl.uniform1f(U.uBg, bg);
     gl.uniform1f(U.uAspect, W / H);
     gl.uniform1f(U.uScale, scale);
@@ -423,13 +442,19 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Vídeos de las apps: solo se reproducen a la vista. En el portátil se encadenan las tres apps con un fundido.
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-  const play = (v) => { const p = v.play(); if (p) p.catch(() => {}); };
+  const quieto = () => (window.folziaQuieto ? window.folziaQuieto() : false);
+  const play = (v) => { if (quieto()) return; const p = v.play(); if (p) p.catch(() => {}); };
+  const enVista = new Set();
 
   // Teléfonos: cada vídeo en bucle mientras se ve
   const moviles = [...document.querySelectorAll('.phone-frame .vid')];
   const ioMovil = new IntersectionObserver((entries) => entries.forEach((e) => {
-    if (e.isIntersecting) { e.target.preload = 'auto'; play(e.target); } else e.target.pause();
+    if (e.isIntersecting) { enVista.add(e.target); e.target.preload = 'auto'; play(e.target); } else { enVista.delete(e.target); e.target.pause(); }
   }), { threshold: 0.35 });
+  document.addEventListener('folzia:movimiento', (e) => {
+    if (e.detail.quieto) document.querySelectorAll('video').forEach((v) => v.pause());
+    else enVista.forEach(play);
+  });
   moviles.forEach((v) => ioMovil.observe(v));
 
   // Portátil
@@ -455,6 +480,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     v.addEventListener('timeupdate', () => { if (i === actual && v.duration) barra(i).style.width = `${(v.currentTime / v.duration) * 100}%`; });
   });
   tabs.forEach((t, i) => t.addEventListener('click', () => mostrar(i)));
+  document.addEventListener('folzia:movimiento', (e) => { if (!e.detail.quieto && visible) play(vids[actual]); });
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
     if (visible) { vids.forEach((v) => { v.preload = 'auto'; }); play(vids[actual]); } else vids[actual].pause();
@@ -474,10 +500,40 @@ function toObject(data) {
   const status = document.getElementById('form-status');
   if (!form) return;
 
+  // Errores junto a cada campo (WCAG 3.3.1): se anuncian y se quitan en cuanto el campo es válido
+  const contenedor = (el) => el.closest('.field, .consent');
+  const mensaje = (el) => {
+    const v = el.validity;
+    if (el.type === 'checkbox') return 'Necesito tu consentimiento para poder responderte.';
+    if (el.type === 'radio' || el.tagName === 'SELECT') return v.valueMissing ? 'Elige una opción.' : '';
+    if (v.valueMissing) return 'Este campo es obligatorio.';
+    if (v.typeMismatch && el.type === 'email') return 'Escribe un correo válido, por ejemplo nombre@empresa.com.';
+    if (v.tooLong) return 'El texto es demasiado largo.';
+    return 'Revisa este campo.';
+  };
+  const grupo = (el) => (el.type === 'radio' ? [...form.querySelectorAll(`input[name="${el.name}"]`)] : [el]);
+  function quitarError(el) {
+    const c = contenedor(el); const p = c && c.querySelector('.err');
+    if (p) p.remove();
+    grupo(el).forEach((x) => { x.removeAttribute('aria-invalid'); x.removeAttribute('aria-describedby'); });
+  }
+  function ponerError(el) {
+    const c = contenedor(el); if (!c) return;
+    quitarError(el);
+    const p = document.createElement('span'); p.className = 'err'; p.id = 'err-' + el.name; p.textContent = mensaje(el);
+    c.appendChild(p);
+    grupo(el).forEach((x) => { x.setAttribute('aria-invalid', 'true'); x.setAttribute('aria-describedby', p.id); });
+  }
+  form.addEventListener('input', (e) => { if (e.target.name && e.target.validity && e.target.validity.valid) quitarError(e.target); });
+  form.addEventListener('change', (e) => { if (e.target.name && e.target.validity && e.target.validity.valid) quitarError(e.target); });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
-      form.reportValidity();
+      const vistos = new Set(); const malos = [];
+      [...form.elements].forEach((el) => { if (!el.name || vistos.has(el.name) || !el.willValidate) return; vistos.add(el.name); if (!el.validity.valid) { ponerError(el); malos.push(el); } else quitarError(el); });
+      status.textContent = malos.length === 1 ? 'Revisa el campo marcado.' : `Revisa los ${malos.length} campos marcados.`;
+      if (malos[0]) malos[0].focus();
       return;
     }
     const endpoint = form.getAttribute('action');
@@ -496,7 +552,7 @@ function toObject(data) {
       });
       if (!res.ok) throw new Error(res.status);
       form.reset();
-      status.textContent = 'Recibido. Te escribiremos para hablar de tu proyecto.';
+      status.textContent = 'Recibido. Te escribiré para hablar de tu proyecto.';
     } catch (err) {
       status.textContent = 'No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo, o escríbeme por correo.';
     } finally {
