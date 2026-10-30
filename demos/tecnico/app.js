@@ -27,24 +27,40 @@ const num = (v) => parseFloat(String(v).replace(',', '.'));
 const eur = (n) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
 const st = { vista: 'hoy', aviso: null, tab: 'revision', llegada: null, checks: {}, lect: {}, mat: {}, obs: '', firmado: false, firmante: '', reloj: 0 };
 
-// ---------- Mapa de la ruta (dibujado en SVG, sin servicios externos) ----------
-const PUNTOS = [[62, 112], [150, 66], [235, 100], [300, 40], [350, 122]];
+// ---------- Mapa de la ruta: calles y edificios reales (OpenStreetMap, ver mapa-osm.js) ----------
+const linea = (pts) => 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L');
+function partir(pts, t) {
+  const L = pts.slice(1).reduce((a, p, i) => a + Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1]), 0);
+  let falta = L * t;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i], l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    if (falta <= l) { const q = [a[0] + (b[0] - a[0]) * (falta / l), a[1] + (b[1] - a[1]) * (falta / l)]; return [[...pts.slice(0, i), q], [q, ...pts.slice(i)], q, Math.atan2(b[1] - a[1], b[0] - a[0])]; }
+    falta -= l;
+  }
+  return [pts, [pts[pts.length - 1]], pts[pts.length - 1], 0];
+}
+const AVANCE = 0.45; // parte del tramo actual ya recorrida por la furgoneta
 function mapa() {
-  const W = 390, H = 210;
-  let s = `<rect width="${W}" height="${H}" fill="#e8edee" stroke="none"/>`;
-  s += `<path d="M-10 185 C 80 160, 120 205, 210 178 S 330 120, 400 135" stroke="#c8dce4" stroke-width="22" fill="none"/>`;
-  s += `<path d="M250 0 L320 0 L335 40 L270 52 Z" fill="#d7e6d3" stroke="none"/><path d="M20 20 h60 v40 h-60z" fill="#d7e6d3" stroke="none"/>`;
-  for (let y = 30; y < H; y += 46) s += `<path d="M0 ${y} H${W}" stroke="#fff" stroke-width="${y === 122 ? 9 : 4}"/>`;
-  for (let x = 30; x < W; x += 54) s += `<path d="M${x} 0 V${H}" stroke="#fff" stroke-width="${x === 192 ? 9 : 4}"/>`;
-  s += `<path d="M0 210 L390 10" stroke="#fff" stroke-width="7"/>`;
-  // Ruta: tramo hecho en ámbar, resto en petróleo
-  const ruta = (a, b) => `M${a[0]} ${a[1]} H${b[0]} V${b[1]}`;
-  const hechos = AVISOS.filter((x) => x.est === 'hecho').length;
-  PUNTOS.slice(1).forEach((p, i) => { s += `<path d="${ruta(PUNTOS[i], p)}" stroke="${i < hechos ? '#f2a900' : '#0b3c49'}" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" ${i < hechos ? '' : 'stroke-dasharray="1 7"'}/>`; });
-  PUNTOS.forEach((p, i) => { const a = AVISOS[i]; s += `<g><circle cx="${p[0]}" cy="${p[1]}" r="11" fill="${a.est === 'hecho' ? '#f2a900' : a.urg ? '#c2321f' : '#0b3c49'}" stroke="#fff" stroke-width="2.5"/><text x="${p[0]}" y="${p[1] + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="${a.est === 'hecho' ? '#0b3c49' : '#fff'}">${i + 1}</text></g>`; });
-  const v = [108, 112];
-  s += `<g><circle cx="${v[0]}" cy="${v[1]}" r="15" fill="rgba(11,60,73,.15)"/><circle cx="${v[0]}" cy="${v[1]}" r="8" fill="#0b3c49" stroke="#fff" stroke-width="2.5"/><path d="M${v[0] - 3} ${v[1] + 3} L${v[0]} ${v[1] - 4} L${v[0] + 3} ${v[1] + 3}" fill="#fff"/></g>`;
+  const { W, H } = MAPA;
+  const trazo = (d, c, w, extra = '') => `<path d="${d}" stroke="${c}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round" ${extra}/>`;
+  const hechos = Math.max(AVISOS.filter((x) => x.est === 'hecho').length, 1);
+  const [hecho, resto, v, rumbo] = partir(MAPA.tramos[hechos - 1], AVANCE);
+  let s = MAPA.base;
+  MAPA.tramos.slice(0, hechos - 1).concat([hecho]).forEach((t) => { s += trazo(linea(t), '#fff', 6) + trazo(linea(t), '#f2a900', 3.5); });
+  MAPA.tramos.slice(hechos).forEach((t) => { s += trazo(linea(t), '#0b3c49', 2.6, 'stroke-opacity=".6" stroke-dasharray=".5 5.5"'); });
+  s += trazo(linea(resto), '#062a33', 7.5) + trazo(linea(resto), '#14707f', 4.5);
+  s += MAPA.rotulos;
+  MAPA.paradas.forEach((p, i) => { const a = AVISOS[i]; s += `<g><circle cx="${p[0]}" cy="${p[1]}" r="9.5" fill="${a.est === 'hecho' ? '#f2a900' : a.urg ? '#c2321f' : '#0b3c49'}" stroke="#fff" stroke-width="2.2"/><text x="${p[0]}" y="${p[1] + 3.6}" text-anchor="middle" font-size="10" font-weight="700" fill="${a.est === 'hecho' ? '#0b3c49' : '#fff'}">${i + 1}</text></g>`; });
+  const g = (rumbo * 180) / Math.PI + 90;
+  s += `<g transform="translate(${v[0].toFixed(1)} ${v[1].toFixed(1)})"><circle r="14" fill="#0b3c49" fill-opacity=".14" stroke="none"/><g transform="rotate(${g.toFixed(0)})"><circle r="8" fill="#0b3c49" stroke="#fff" stroke-width="2.4"/><path d="M-3.2 3 L0 -4.2 L3.2 3 L0 1.4Z" fill="#fff" stroke="none"/></g></g>`;
+  s += `<text x="${W - 6}" y="12" text-anchor="end" font-size="7" fill="#6b7a7d" class="lbl">© OpenStreetMap</text>`;
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Mapa de la ruta del día">${s}</svg>`;
+}
+// Distancia y tiempo que le quedan a la furgoneta hasta el siguiente aviso
+function falta() {
+  const i = Math.max(AVISOS.filter((x) => x.est === 'hecho').length, 1) - 1;
+  const m = MAPA.metros[i] * (1 - AVANCE);
+  return `${(m / 1000).toFixed(1).replace('.', ',')} km · ${Math.max(1, Math.round(m / 220))} min por ${MAPA.vias[i]}`;
 }
 
 // Temperatura de la cámara en las últimas 24 h (sonda conectada): se ve cuándo empezó la avería
@@ -68,7 +84,7 @@ function hoy() {
     <h1>${HOY.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}</h1>
     <div class="dayprog"><div class="dp-bar">${AVISOS.map((a) => `<i class="${a.est}"></i>`).join('')}</div><span>${hechos} de ${AVISOS.length} avisos</span></div>
   </header>
-  <div class="map">${mapa()}<div class="map-card"><b>Siguiente: Restaurante Mareas</b><span>1,8 km · 7 min por Av. del Puerto</span></div></div>
+  <div class="map">${mapa()}<div class="map-card"><b>Siguiente: Restaurante Mareas</b><span>${falta()}</span></div></div>
   <ol class="jobs">${AVISOS.map((a) => `
     <li><button type="button" class="job ${a.est} ${a.urg ? 'urg' : ''}" data-aviso="${a.id}">
       <span class="j-time">${a.h.replace('–', '<br>')}</span>
