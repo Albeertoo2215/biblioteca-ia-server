@@ -67,12 +67,46 @@ function resumen() {
     <ul class="kv"><li><span><i></i>IVA · modelo 303</span><b>${eur(c.iva)}</b></li><li><span><i class="b"></i>IRPF · modelo 130</span><b>${eur(c.r130)}</b></li></ul>
     <p class="due">Presentar antes del 20 de octubre · quedan ${dias} días</p>
   </section>
+  <section class="bank"><span class="bk">B</span><div><b>Cuenta de empresa ·· 4471</b><span>Sincronizada hace 3 min</span></div><strong>${eur(saldoFinal())}</strong></section>
   <section class="chart">
-    <p class="lbl">Mes a mes</p>
-    <div class="bars">${meses.map((m) => `<div class="mo"><div class="cols"><i class="in" data-h="${(m.i / max) * 100}"></i><i class="out" data-h="${(m.g / max) * 100}"></i></div><span>${m.n}</span></div>`).join('')}</div>
-    <p class="legend"><span><i class="in"></i>Ingresos</span><span><i class="out"></i>Gastos</span></p>
+    <div class="ch-top"><p class="lbl">Saldo de la cuenta</p><em>+${eur0(saldoFinal() - SALDO0)} en el trimestre</em></div>
+    ${grafSaldo()}
   </section>
+  <section class="cats-sec">
+    <p class="lbl">Gastos por categoría</p>
+    ${porCategoria()}
+  </section>
+  <section class="pend"><p class="lbl">Por cobrar</p><ul>${[['Grupo Hostelero Bahía, S.L.', '2026-043', 1200 * 1.06, 'vence en 6 días'], ['Asociación Cultural Faro', '2026-044', 640 * 1.06, 'vence en 24 días']].map(([n, f, x, v]) => `<li><span class="ini">${n.split(' ').slice(0, 2).map((w) => w[0]).join('')}</span><div><b>${n}</b><small>Factura ${f} · ${v}</small></div><strong>${eur(x)}</strong></li>`).join('')}</ul></section>
   <p class="foot">Demo de Folzia · persona y cifras ficticias.</p>`;
+}
+
+// Saldo diario reconstruido a partir de los movimientos (con IVA incluido)
+const SALDO0 = 9840;
+function serieSaldo() {
+  const dias = []; let s = SALDO0;
+  for (let d = new Date(2026, 6, 1); d <= new Date(2026, 8, 30); d.setDate(d.getDate() + 1)) {
+    const f = `2026-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    MOVS.filter((m) => m.f === f).forEach((m) => { const tot = m.base * (1 + m.iva / 100) - (m.t === 'i' && CLIENTES[m.cli].ret ? m.base * 0.15 : 0); s += m.t === 'i' ? tot : -tot; });
+    if (f === '2026-07-20') s -= 1630; // 303 y 130 del 2T
+    dias.push(s);
+  }
+  return dias;
+}
+const saldoFinal = () => { const s = serieSaldo(); return s[s.length - 1]; };
+function grafSaldo() {
+  const s = serieSaldo(); const min = Math.min(...s) * 0.95, max = Math.max(...s) * 1.03;
+  const X = (i) => (i / (s.length - 1)) * 340 + 10, Y = (v) => 120 - ((v - min) / (max - min)) * 108;
+  const pts = s.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  return `<svg class="saldo" viewBox="0 0 360 140" preserveAspectRatio="none"><defs><linearGradient id="gs" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2341e0" stop-opacity=".18"/><stop offset="1" stop-color="#2341e0" stop-opacity="0"/></linearGradient></defs>
+    ${[0, 1, 2].map((k) => `<line x1="10" x2="350" y1="${12 + k * 54}" y2="${12 + k * 54}" class="gl"/>`).join('')}
+    <polygon points="10,120 ${pts} 350,120" fill="url(#gs)" stroke="none"/><polyline points="${pts}" class="ln"/>
+    <circle cx="${X(s.length - 1)}" cy="${Y(s[s.length - 1])}" r="4" class="dot"/>
+    ${['jul', 'ago', 'sep'].map((m, k) => `<text x="${10 + k * 113 + 4}" y="136" class="tx">${m}</text>`).join('')}</svg>`;
+}
+function porCategoria() {
+  const g = {}; MOVS.filter((m) => m.t === 'g').forEach((m) => { g[m.cat] = (g[m.cat] || 0) + m.base; });
+  const l = Object.entries(g).sort((a, b) => b[1] - a[1]); const max = l[0][1];
+  return `<ul class="cbars">${l.map(([n, v]) => `<li><span>${n}</span><i><i data-w="${(v / max) * 100}"></i></i><b>${eur0(v)}</b></li>`).join('')}</ul>`;
 }
 
 // ---------- Movimientos ----------

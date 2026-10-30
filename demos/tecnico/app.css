@@ -143,3 +143,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round
 .map-card { position: absolute; left: 12px; right: 12px; bottom: 12px; background: var(--card); border-radius: 10px; padding: 9px 12px; box-shadow: 0 8px 20px -10px rgba(11, 60, 73, 0.45); display: grid; }
 .map-card b { font-size: 14.5px; font-weight: 700; }
 .map-card span { font-size: 12.5px; color: var(--ink-2); }
+.temp { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.t-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--ink-2); }
+.t-top b { color: var(--bad); font-size: 18px; }
+.temp svg { width: 100%; height: 96px; display: block; margin-top: 4px; }
+.temp .tl { font-size: 10px; fill: var(--ok); stroke: none; font-family: var(--font); font-weight: 600; }
+.temp .tl.red { fill: var(--bad); }
+.t-x { display: flex; justify-content: space-between; font-size: 11px; color: var(--mute); }

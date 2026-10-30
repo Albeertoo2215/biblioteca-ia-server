@@ -28,12 +28,12 @@ const eur = (n) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximum
 const st = { vista: 'hoy', aviso: null, tab: 'revision', llegada: null, checks: {}, lect: {}, mat: {}, obs: '', firmado: false, firmante: '', reloj: 0 };
 
 // ---------- Mapa de la ruta (dibujado en SVG, sin servicios externos) ----------
-const PUNTOS = [[70, 150], [150, 95], [235, 140], [300, 70], [345, 165]];
+const PUNTOS = [[62, 112], [150, 66], [235, 100], [300, 40], [350, 122]];
 function mapa() {
   const W = 390, H = 210;
-  let s = `<rect width="${W}" height="${H}" fill="#e8edee"/>`;
+  let s = `<rect width="${W}" height="${H}" fill="#e8edee" stroke="none"/>`;
   s += `<path d="M-10 185 C 80 160, 120 205, 210 178 S 330 120, 400 135" stroke="#c8dce4" stroke-width="22" fill="none"/>`;
-  s += `<path d="M250 0 L320 0 L335 40 L270 52 Z" fill="#d7e6d3"/><path d="M20 20 h60 v40 h-60z" fill="#d7e6d3"/>`;
+  s += `<path d="M250 0 L320 0 L335 40 L270 52 Z" fill="#d7e6d3" stroke="none"/><path d="M20 20 h60 v40 h-60z" fill="#d7e6d3" stroke="none"/>`;
   for (let y = 30; y < H; y += 46) s += `<path d="M0 ${y} H${W}" stroke="#fff" stroke-width="${y === 122 ? 9 : 4}"/>`;
   for (let x = 30; x < W; x += 54) s += `<path d="M${x} 0 V${H}" stroke="#fff" stroke-width="${x === 192 ? 9 : 4}"/>`;
   s += `<path d="M0 210 L390 10" stroke="#fff" stroke-width="7"/>`;
@@ -42,9 +42,21 @@ function mapa() {
   const hechos = AVISOS.filter((x) => x.est === 'hecho').length;
   PUNTOS.slice(1).forEach((p, i) => { s += `<path d="${ruta(PUNTOS[i], p)}" stroke="${i < hechos ? '#f2a900' : '#0b3c49'}" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" ${i < hechos ? '' : 'stroke-dasharray="1 7"'}/>`; });
   PUNTOS.forEach((p, i) => { const a = AVISOS[i]; s += `<g><circle cx="${p[0]}" cy="${p[1]}" r="11" fill="${a.est === 'hecho' ? '#f2a900' : a.urg ? '#c2321f' : '#0b3c49'}" stroke="#fff" stroke-width="2.5"/><text x="${p[0]}" y="${p[1] + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="${a.est === 'hecho' ? '#0b3c49' : '#fff'}">${i + 1}</text></g>`; });
-  const v = [110, 150];
+  const v = [108, 112];
   s += `<g><circle cx="${v[0]}" cy="${v[1]}" r="15" fill="rgba(11,60,73,.15)"/><circle cx="${v[0]}" cy="${v[1]}" r="8" fill="#0b3c49" stroke="#fff" stroke-width="2.5"/><path d="M${v[0] - 3} ${v[1] + 3} L${v[0]} ${v[1] - 4} L${v[0] + 3} ${v[1] + 3}" fill="#fff"/></g>`;
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Mapa de la ruta del día">${s}</svg>`;
+}
+
+// Temperatura de la cámara en las últimas 24 h (sonda conectada): se ve cuándo empezó la avería
+function grafTemp() {
+  const v = [2.1, 2.3, 2.0, 2.4, 2.2, 2.6, 2.3, 2.5, 2.4, 2.8, 3.4, 4.6, 5.9, 6.8, 7.4, 8.1, 8.5, 8.9, 9.1, 9.0, 9.3, 9.2, 9.4, 9.1];
+  const X = (i) => (i / 23) * 340 + 10, Y = (t) => 92 - (t / 11) * 82;
+  const lin = v.map((t, i) => `${X(i)},${Y(t)}`).join(' ');
+  return `<div class="temp"><div class="t-top"><span>Temperatura de cámara · 24 h</span><b>9,1 °C</b></div>
+    <svg viewBox="0 0 360 100" preserveAspectRatio="none"><rect x="10" y="${Y(4)}" width="340" height="${Y(0) - Y(4)}" fill="#e3f2e9" stroke="none"/><text x="14" y="${Y(0) - 4}" class="tl">Rango correcto 0–4 °C</text>
+    <polyline points="${lin}" fill="none" stroke="#c2321f" stroke-width="2.4" stroke-linejoin="round"/><circle cx="${X(23)}" cy="${Y(9.1)}" r="4" fill="#c2321f" stroke="#fff" stroke-width="2"/>
+    <line x1="${X(10)}" x2="${X(10)}" y1="6" y2="92" stroke="#c2321f" stroke-dasharray="3 3" stroke-width="1"/><text x="${X(10) + 4}" y="14" class="tl red">Alarma 22:40</text></svg>
+    <div class="t-x"><span>ayer 10:00</span><span>ahora</span></div></div>`;
 }
 
 // ---------- Hoy ----------
@@ -79,6 +91,7 @@ function aviso() {
     <p class="addr"><svg><use href="#i-phone"/></svg>${a.contacto || 'Contacto en recepción'}</p>
     ${a.nota ? `<p class="note"><svg><use href="#i-warn"/></svg>${a.nota}</p>` : ''}
     <div class="equip"><svg><use href="#i-unit"/></svg><div><b>${a.eq}</b><span>N.º de serie ${a.serie || '—'} · ${a.ult || 'Sin visitas previas'}</span></div></div>
+    ${a.nota ? grafTemp() : ''}
   </section>
   ${st.llegada ? `
   <nav class="seg" aria-label="Pasos">${[['revision', 'Revisión'], ['material', 'Material'], ['cierre', 'Cierre']].map(([k, n]) => `<button type="button" data-tab="${k}" aria-current="${st.tab === k}">${n}${k === 'revision' ? ` <small>${Object.keys(st.checks).length + Object.keys(st.lect).filter((x) => st.lect[x] !== '').length}/${CHECKS.length + LECTURAS.length}</small>` : ''}</button>`).join('')}</nav>
