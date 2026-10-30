@@ -329,4 +329,4 @@ fieldset { min-width: 0; }
 @media (max-width: 760px) { .incluye { grid-template-columns: 1fr; gap: 8px; } .incluye li { font-size: 16px; } .inc-h { margin-top: 24px; } }
 @media (max-width: 760px) { .panel { align-items: flex-start; padding: 50svh 0 12vh; } }
 /* Móvil: la figura queda fija y el texto pasa por encima; halo del color del fondo para que siempre se lea */
-@media (max-width: 760px) { .panel .copy > * { text-shadow: 0 0 2px var(--page-bg, #fff), 0 0 6px var(--page-bg, #fff), 0 0 12px var(--page-bg, #fff), 0 0 18px var(--page-bg, #fff); } }
+@media (max-width: 760px) { .panel:not(.hero) .copy > * { text-shadow: 0 0 2px var(--page-bg, #fff), 0 0 6px var(--page-bg, #fff), 0 0 12px var(--page-bg, #fff), 0 0 18px var(--page-bg, #fff); } }
