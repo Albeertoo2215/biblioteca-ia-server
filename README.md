@@ -10,9 +10,7 @@ Herramientas internas, portales para clientes y automatizaciones que sustituyen 
 - `public/main.js`: fondo de partículas en WebGL (intro con el logo, figuras por sección y fondos alternos blanco/naranja) y envío del formulario.
 - `public/fonts/`: tipografía Archivo autoalojada (sin peticiones a Google Fonts).
 - `demos/`: código de las apps de ejemplo (negocios ficticios). **No se publica**: solo sirve para grabar los vídeos de la galería.
-  Los mapas de Frigo Norte y VÍA usan geometría real de © OpenStreetMap (ODbL) con calles rebautizadas; el código de barras de VÍA se genera con JsBarcode (MIT).
-  - En la galería: móvil `tecnico` (Frigo Norte), `finanzas` (Cuadra), `reparto` (VÍA); escritorio `gestoria` (Vértice), `veterinaria` (Arce), `proyectos` (Quilla).
-  - Fuera de la galería (versiones anteriores): `reservas`, `pedidos`, `presupuestos`, `inventario`, `turnos`.
+  - En la galería: móvil `fisio` (Eje), `finanzas` (Cuadra), `obra` (Hormigo); escritorio `gestoria` (Vértice), `veterinaria` (Arce), `proyectos` (Quilla).
 - `public/video/` y `public/img/`: vídeos cortos de las apps de ejemplo (WebM y MP4 para Safari, 60 fps) y sus portadas, para la galería.
 - `public/_headers`: cabeceras de seguridad para Cloudflare Pages.
 - `wrangler.toml`: configuración de Cloudflare Workers (recursos estáticos de `public/`).
