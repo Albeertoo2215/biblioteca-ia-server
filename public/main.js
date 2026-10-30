@@ -125,7 +125,10 @@ document.getElementById('year').textContent = new Date().getFullYear();
     ]),
   ];
 
-  const shapes = shapeFns.map((fn) => { const a = new Float32Array(N * 3); for (let i = 0; i < N; i++) a.set(fn(), i * 3); return a; });
+  // Solo el planeta se calcula al arrancar; las demás figuras empiezan como copia y se calculan después, en ratos libres
+  const genera = (fn) => { const a = new Float32Array(N * 3); for (let i = 0; i < N; i++) a.set(fn(), i * 3); return a; };
+  const shapes = [genera(shapeFns[0])];
+  for (let i = 1; i < shapeFns.length; i++) shapes.push(new Float32Array(shapes[0]));
   // 6 · Logo: se rellena al cargar la imagen; mientras tanto, una copia del planeta
   const logoPos = new Float32Array(shapes[0]);
   const logoCol = new Float32Array(N);
@@ -263,6 +266,15 @@ document.getElementById('year').textContent = new Date().getFullYear();
   attr('p6', logoPos, 3);
   attr('r', rand, 4);
   attr('lc', logoCol, 1);
+  const libre = window.requestIdleCallback ? (f) => requestIdleCallback(f, { timeout: 400 }) : (f) => setTimeout(f, 50);
+  let pendiente = 1;
+  const siguiente = () => {
+    if (pendiente >= shapeFns.length) return;
+    const i = pendiente++; shapes[i] = genera(shapeFns[i]);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers['p' + i]); gl.bufferData(gl.ARRAY_BUFFER, shapes[i], gl.STATIC_DRAW);
+    libre(siguiente);
+  };
+  libre(siguiente);
   const U = {};
   ['w0', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'uTime', 'uBurst', 'uRotY', 'uRotX', 'uBg', 'uAspect', 'uScale', 'uOffX', 'uOffY', 'uSize', 'uDim', 'uTwist', 'uCollapse', 'uFlash', 'uGalaxy', 'uSpin', 'uMode', 'uProg', 'uRot'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
 
@@ -276,18 +288,19 @@ document.getElementById('year').textContent = new Date().getFullYear();
     try {
       const c = document.createElement('canvas'); const s = 2;
       c.width = img.naturalWidth * s; c.height = img.naturalHeight * s;
-      const x = c.getContext('2d'); x.drawImage(img, 0, 0, c.width, c.height);
+      const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(img, 0, 0, c.width, c.height);
       const d = x.getImageData(0, 0, c.width, c.height).data;
-      const pts = [];
+      // Puntos opacos del logo en arrays planos (x, y, color) para no crear miles de objetos
+      const pts = new Int32Array(((c.width * c.height) / 4 + 1) * 3); let n = 0;
       for (let y = 0; y < c.height; y += 2) for (let xx = 0; xx < c.width; xx += 2) {
-        const k = (y * c.width + xx) * 4; if (d[k + 3] > 140) pts.push([xx, y, d[k] > 180 && d[k + 1] < 140 ? 1 : 0]);
+        const k = (y * c.width + xx) * 4; if (d[k + 3] > 140) { pts[n * 3] = xx; pts[n * 3 + 1] = y; pts[n * 3 + 2] = d[k] > 180 && d[k + 1] < 140 ? 1 : 0; n++; }
       }
-      if (!pts.length) return;
+      if (!n) return;
       const w = c.width, h = c.height, sc = 3.0 / w;
       for (let i = 0; i < N; i++) {
-        const [px, py, o] = pts[(rnd() * pts.length) | 0];
-        logoPos.set([(px - w / 2) * sc + jit(0.004), (h / 2 - py) * sc + jit(0.004), jit(0.02)], i * 3);
-        logoCol[i] = o;
+        const j = ((rnd() * n) | 0) * 3;
+        logoPos[i * 3] = (pts[j] - w / 2) * sc + jit(0.004); logoPos[i * 3 + 1] = (h / 2 - pts[j + 1]) * sc + jit(0.004); logoPos[i * 3 + 2] = jit(0.02);
+        logoCol[i] = pts[j + 2];
       }
       gl.bindBuffer(gl.ARRAY_BUFFER, buffers.p6); gl.bufferData(gl.ARRAY_BUFFER, logoPos, gl.STATIC_DRAW);
       gl.bindBuffer(gl.ARRAY_BUFFER, buffers.lc); gl.bufferData(gl.ARRAY_BUFFER, logoCol, gl.STATIC_DRAW);

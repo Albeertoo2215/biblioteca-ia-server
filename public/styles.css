@@ -352,3 +352,10 @@ fieldset { min-width: 0; }
 /* El botón flotante se oculta en la portada y en el contacto, donde ya hay botones de WhatsApp */
 .wa-flot { transition: transform 160ms var(--ease), background-color 160ms var(--ease), opacity 220ms var(--ease), visibility 0s linear 0s; }
 .wa-flot.oculto { opacity: 0; visibility: hidden; transform: translateY(14px); transition: opacity 220ms var(--ease), transform 220ms var(--ease), visibility 0s linear 220ms; }
+
+/* Página 404 */
+.nf { min-height: 70vh; padding-top: 150px; padding-bottom: 96px; }
+.nf-n { font-weight: 900; font-stretch: 112%; font-size: clamp(96px, 18vw, 220px); line-height: 0.85; letter-spacing: -0.05em; color: var(--orange); margin-bottom: 18px; }
+.nf h1 { font-size: clamp(36px, 5vw, 64px); }
+.nf-t { margin-top: 18px; max-width: 32em; font-size: 19px; color: var(--ink-2); }
+.nf-acc { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
