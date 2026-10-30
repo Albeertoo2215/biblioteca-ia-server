@@ -316,3 +316,5 @@ fieldset { min-width: 0; }
 .quien-datos li { padding: 8px 15px; border-radius: 999px; border: 1.5px solid var(--line); font-size: 14px; font-weight: 600; background: rgba(255, 255, 255, 0.8); }
 .quien-datos a { color: var(--ink); text-underline-offset: 3px; }
 @media (max-width: 760px) { .quien-grid { grid-template-columns: 1fr; justify-items: start; } .foto { width: 168px; } }
+.quien-datos .li { display: inline-flex; align-items: center; gap: 6px; }
+.quien-datos .li svg { width: 15px; height: 15px; fill: #0a66c2; }
