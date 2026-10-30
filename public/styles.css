@@ -252,13 +252,13 @@ select { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor
 .examples-list:focus-visible { outline-offset: 6px; }
 
 /* Botón para pausar el movimiento (partículas y vídeos) */
-.mov { width: 42px; height: 42px; margin-left: auto; margin-right: 8px; border: 1.5px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; }
+.mov { height: 42px; padding: 0 14px 0 11px; gap: 7px; margin-left: auto; margin-right: 8px; border: 1.5px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); display: inline-flex; align-items: center; font: 600 14px/1 var(--font); cursor: pointer; flex: none; white-space: nowrap; }
 .top-nav + .mov { margin-left: 18px; }
 .mov:hover { border-color: var(--ink); }
-.mov svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.mov svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .mov .i-play { display: none; fill: currentColor; stroke: none; }
-.mov[aria-pressed="true"] .i-pausa { display: none; }
-.mov[aria-pressed="true"] .i-play { display: block; }
+.mov[data-quieto="true"] .i-pausa { display: none; }
+.mov[data-quieto="true"] .i-play { display: block; }
 /* En el móvil la figura de partículas queda detrás del texto de portada: halo blanco para mantener el contraste */
 @media (max-width: 760px) { .hero .kicker, .hero h1, .hero .lead { text-shadow: 0 0 2px #fff, 0 0 8px #fff, 0 0 16px #fff; } .top-pill .mov { margin-left: auto; } .top-pill .btn { margin-left: 0; } }
 
@@ -284,3 +284,6 @@ fieldset { min-width: 0; }
 @media (max-width: 480px) { .legal table { font-size: 14px; } .legal th, .legal td { padding-left: 6px; padding-right: 6px; } }
 .examples { overflow-x: clip; }
 @media (max-width: 400px) { h2, .block h2 { font-size: clamp(30px, 10.5vw, 40px); } }
+@media (max-width: 760px) { .mov-x { display: none; } .mov { padding: 0 12px 0 10px; } }
+.top-pill .logo { flex: none; }
+@media (max-width: 420px) { .top-pill { gap: 6px; padding: 0 6px 0 12px; } .top-pill .logo img { height: 20px; width: auto; } .mov { height: 38px; padding: 0 10px 0 9px; gap: 5px; font-size: 13px; margin-right: 0; } .top-pill .btn-sm { height: 38px; padding: 0 13px; font-size: 13.5px; } }

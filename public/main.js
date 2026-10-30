@@ -5,7 +5,7 @@
   window.folziaQuieto = () => quieto;
   const b = document.getElementById('mov');
   if (!b) return;
-  const pinta = () => { b.setAttribute('aria-pressed', String(quieto)); const t = quieto ? 'Reanudar movimiento' : 'Pausar movimiento'; b.setAttribute('aria-label', t); b.title = t; };
+  const pinta = () => { b.dataset.quieto = String(quieto); b.querySelector('.mov-t').textContent = quieto ? 'Reanudar' : 'Pausar'; };
   pinta();
   b.addEventListener('click', () => {
     quieto = !quieto; pinta();
