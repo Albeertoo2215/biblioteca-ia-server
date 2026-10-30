@@ -306,7 +306,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
         x: mobile ? 0 : parseFloat(el.dataset.x || 0),
         y: mobile ? 0.42 : 0,
         bg: +(el.dataset.bg || 0),
-        dim: Math.min(parseFloat(el.dataset.dim || 1), mobile ? 0.5 : 1), // en el móvil el texto pasa sobre la figura: más tenue
+        dim: Math.min(parseFloat(el.dataset.dim || 1), mobile ? 0.7 : 1), // en el móvil el texto pasa sobre la figura: algo más tenue
       };
     });
   }
@@ -342,6 +342,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const lerp = (a, b, t) => a + (b - a) * t;
   const ORANGE = [0.969, 0.231, 0.125];
 
+  let ultimoFondo = '';
   function frame(now) {
     if (!running) return;
     const time = now / 1000;
@@ -356,8 +357,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
     const k = sm(clamp01(((span > 0 ? (sy - A.at) / span : 0) - 0.3) / 0.5));
     const w = [0, 0, 0, 0, 0, 0, 0];
     w[A.shape] += 1 - k; w[B.shape] += k;
-    let burst = A.shape === B.shape || reduced ? 0 : Math.sin(Math.PI * k) * 0.9;
-    let offX = lerp(A.x, B.x, k), offY = lerp(A.y, B.y, k), bg = lerp(A.bg, B.bg, k), dim = lerp(A.dim, B.dim, k);
+    // Morfado continuo: las partículas viajan de una figura a otra con una dispersión ligera
+    let burst = A.shape === B.shape || reduced ? 0 : Math.sin(Math.PI * k) * 0.22;
+    // El fondo cambia en un tramo corto del scroll para no quedarse en tonos intermedios
+    const kb = sm(clamp01((k - 0.38) / 0.24));
+    let offX = lerp(A.x, B.x, k), offY = lerp(A.y, B.y, k), bg = lerp(A.bg, B.bg, kb), dim = lerp(A.dim, B.dim, k);
     let scale = mobile ? 0.34 : 0.46;
     let twist = 0, collapse = 0, flash = 0, galaxy = 0, spin = 0, modo = 1, prog = 1, rot = 0;
 
@@ -427,7 +431,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
     const r = lerp(1, ORANGE[0], bg), g = lerp(1, ORANGE[1], bg), b = lerp(1, ORANGE[2], bg);
     gl.clearColor(r, g, b, 1);
-    root.style.setProperty('--page-bg', `rgb(${(r * 255) | 0}, ${(g * 255) | 0}, ${(b * 255) | 0})`);
+    // Solo se toca el estilo cuando el color cambia: evita recalcular la página en cada fotograma
+    const fondo = `rgb(${(r * 255) | 0}, ${(g * 255) | 0}, ${(b * 255) | 0})`;
+    if (fondo !== ultimoFondo) { root.style.setProperty('--page-bg', fondo); ultimoFondo = fondo; }
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS, 0, N);
     requestAnimationFrame(frame);
