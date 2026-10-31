@@ -603,3 +603,13 @@ function toObject(data) {
   }, { rootMargin: '0px 0px -25% 0px' });
   zonas.forEach((z) => io.observe(z));
 })();
+
+// Aparición suave de secciones al bajar; no se aplica con «reducir movimiento» ni con la animación en pausa
+(function () {
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.folziaQuieto && window.folziaQuieto()) return;
+  const els = document.querySelectorAll('.block h2, .examples-head p, .ex-group, .steps li, .garantias .g-item, .calidad li, .faq-list, .quien-grid > *');
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  els.forEach((el, i) => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('aparece'); io.observe(el); } });
+  document.addEventListener('folzia:movimiento', (e) => { if (e.detail.quieto) document.querySelectorAll('.aparece').forEach((el) => el.classList.add('vis')); });
+})();
