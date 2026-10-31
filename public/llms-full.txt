@@ -16,6 +16,12 @@ No adapto tu negocio a un programa, hago el programa para tu negocio. Apps para 
  Cuéntame tu idea
  Ver qué hago ↓
 
+- Hablas conmigo de principio a fin
+
+- Propuesta por escrito
+
+- Cumple RGPD y accesibilidad
+
  01
 
 ## Apps web
@@ -25,6 +31,8 @@ Aplicaciones que tu equipo o tus clientes usan desde el navegador o instaladas e
 Si hoy llevas algo a mano, en papel o repartido entre varios programas, lo convierto en una app pensada para tu forma de trabajar. Tú me cuentas qué necesitas y yo la diseño, la programo y la dejo lista para usar.
  Más sobre apps web →
  Mira algunas de ejemplo ↓
+
+Pruébalo con esta misma web. Instálala como app
 
  02
 
@@ -64,24 +72,29 @@ En el móvil
  Fisioterapia
  Eje
  La clínica graba sus ejercicios y se los envía a cada paciente. En casa, el paciente los sigue con ese vídeo y la fisio ve cómo evoluciona el dolor.
+ Cómo está pensada →
 
 - 
 
  Finanzas
  Cuadra
  Una autónoma llevaba facturas y gastos en hojas sueltas. Ahora factura desde el móvil y sabe cuánto apartar para Hacienda cada trimestre.
+ Cómo está pensada →
 
 - 
 
  Construcción
  Hormigo
  El encargado apuntaba las horas en papel y la oficina veía las desviaciones a fin de mes. Ahora las ve el mismo día, partida a partida.
+ Cómo está pensada →
 
 En el ordenador
 
  GestoríaVértice asesoresUna gestoría seguía los modelos de cada cliente en hojas de cálculo. Ahora ve de un vistazo qué falta, qué está listo y qué vence.
  Clínica veterinariaArceLa clínica tenía la agenda, las fichas y los cobros en sitios distintos. Ahora está todo en una pantalla, por veterinario.
  ArquitecturaQuillaUn estudio de arquitectura controlaba a mano las fases y los honorarios de cada obra. Ahora ve el avance y lo cobrado de cada proyecto.
+
+ Cómo están pensadas estas apps →
 
 ## Quién soy
 
@@ -130,7 +143,21 @@ Diseño tus apps para cumplir las pautas WCAG 2.2 nivel AA, las que exige la Ley
 
 Solo se guardan los datos necesarios, en servidores de la UE siempre que se pueda y sin cookies de seguimiento sin permiso. Firmamos el contrato de encargado del tratamiento que exige el RGPD y la app permite exportar y borrar los datos de cada usuario.
 
+### Lo que aplico a tus apps, aplicado en esta web
+
+- 100/100Accesibilidad en Lighthouse, la herramienta de Google
+
+- 100/100Buenas prácticas en Lighthouse
+
+- AANivel de las pautas de accesibilidad WCAG 2.2
+
+- 0Cookies de seguimiento
+
 ## Preguntas frecuentes
+
+¿Me conviene un programa a medida o uno ya hecho?
+
+Depende. Si hay un programa ya hecho que encaja con tu forma de trabajar, suele salir más a cuenta empezar con él. Lo a medida compensa cuando ninguno se adapta o tienes que usar varios a la vez. Lo comparo en esta guía.
 
 ¿Cuánto cuesta?
 
@@ -436,6 +463,7 @@ Cuéntame qué tienes en mente, con tus palabras. Te respondo yo mismo con una p
 
 ## Guías relacionadas
 
+- ¿Programa de serie o a medida? Cómo decidir
 - Cómo dejar el Excel y el papel en tu negocio, paso a paso
 - Qué tiene que cumplir tu app con el RGPD
 
@@ -530,6 +558,381 @@ Cuéntame qué tienes en mente, con tus palabras. Te respondo yo mismo con una p
 - Apps web
 - Webs y tiendas online
 - Herramientas para empresas
+
+---
+
+Fuente: https://folzia.com/ejemplos/arce.html
+
+Clínica veterinaria
+
+# Cómo está pensada Arce
+
+Programa de una clínica veterinaria. Agenda por profesional, sala de espera y ficha clínica con la consulta y el cobro.
+
+Es una app de ejemplo: el negocio es inventado, pero la app funciona de verdad.
+
+## El problema que resuelve
+
+La clínica tenía la agenda, las fichas y los cobros en sitios distintos. Ahora está todo en una pantalla, por veterinario.
+
+## Decisiones de diseño
+
+- 
+
+### Un color por tipo de cita
+
+Consulta, vacunación, cirugía o urgencia tienen siempre el mismo color, en la agenda y en la ficha.
+- 
+
+### Una agenda a escala
+
+Cada cita ocupa el espacio de su duración y una línea marca la hora real, así se ven los huecos de un vistazo.
+- 
+
+### Columnas por profesional
+
+Cada veterinario tiene su columna, con la sala de espera al lado.
+- 
+
+### El color de la marca, con función
+
+El teja marca el momento actual, las urgencias y la acción de cobrar.
+
+## Colores y tipografía
+
+- Teja#b4472b
+- Verde#1d6040
+- Tinta#1d1f1c
+- Fondo#f8f8f5
+
+Hanken Grotesk, cercana y muy legible en pantallas densas.
+
+## ¿Quieres algo así para tu negocio?
+
+Cuéntame cómo trabajáis hoy y te propongo cómo lo haría, por escrito.
+ WhatsApp606 430 834Formulario
+
+## Otros ejemplos
+- Eje Fisioterapia
+- Cuadra Finanzas
+- Hormigo Construcción
+- Vértice asesores Gestoría
+- Quilla Arquitectura
+
+---
+
+Fuente: https://folzia.com/ejemplos/cuadra.html
+
+Finanzas
+
+# Cómo está pensada Cuadra
+
+App de cuentas para autónomos. Resumen del trimestre, movimientos, facturas con IVA y retención, y borrador de los modelos 303 y 130.
+
+Es una app de ejemplo: el negocio es inventado, pero la app funciona de verdad.
+
+## El problema que resuelve
+
+Una autónoma llevaba facturas y gastos en hojas sueltas. Ahora factura desde el móvil y sabe cuánto apartar para Hacienda cada trimestre.
+
+## Decisiones de diseño
+
+- 
+
+### Es una app de cifras
+
+Números grandes y de ancho fijo, para que las columnas cuadren y se comparen de un vistazo.
+- 
+
+### Lo de Hacienda, siempre a la vista
+
+La cantidad que conviene apartar para Hacienda aparece en el resumen, para que no haya sustos al final del trimestre.
+- 
+
+### Cada color significa algo
+
+Verde para los ingresos y rojo para los gastos. El azul cobalto de la marca solo aparece en las acciones y en la parte de Hacienda.
+- 
+
+### Las cuentas las hace la app
+
+Al emitir una factura, el IVA y la retención se calculan al momento, y los modelos trimestrales salen ya en borrador.
+
+## Colores y tipografía
+
+- Cobalto#2341e0
+- Ingresos#0f7a4a
+- Gastos#c23b2a
+- Tinta#111318
+
+Onest, una tipografía clara con cifras tabulares.
+
+## ¿Quieres algo así para tu negocio?
+
+Cuéntame cómo trabajáis hoy y te propongo cómo lo haría, por escrito.
+ WhatsApp606 430 834Formulario
+
+## Otros ejemplos
+- Eje Fisioterapia
+- Hormigo Construcción
+- Vértice asesores Gestoría
+- Arce Clínica veterinaria
+- Quilla Arquitectura
+
+---
+
+Fuente: https://folzia.com/ejemplos/eje.html
+
+Fisioterapia
+
+# Cómo está pensada Eje
+
+App del paciente de una clínica de fisioterapia. La clínica le envía los vídeos de sus ejercicios, el paciente los hace guiado en casa y la fisio ve cómo evoluciona.
+
+Es una app de ejemplo: el negocio es inventado, pero la app funciona de verdad.
+
+## El problema que resuelve
+
+La clínica graba sus ejercicios y se los envía a cada paciente. En casa, el paciente los sigue con ese vídeo y la fisio ve cómo evoluciona el dolor.
+
+## Decisiones de diseño
+
+- 
+
+### Letra pensada para leer sin esfuerzo
+
+Uso Atkinson Hyperlegible, una tipografía diseñada para personas con baja visión, y tamaños grandes. Muchos pacientes de fisioterapia son personas mayores.
+- 
+
+### Los vídeos son de la propia clínica
+
+La fisio graba cada ejercicio y se lo envía a sus pacientes. Ven a su clínica explicándolo, no un dibujo genérico.
+- 
+
+### El ritmo lo marca la app
+
+La barra «Sube, Mantén, Baja» marca el tempo y cuenta las repeticiones, así el paciente se concentra en hacerlo bien y no en contar.
+- 
+
+### El dolor, en una escala que se entiende
+
+Del 0 al 10, con colores y una frase que explica qué significa cada valor. Si es alto, la fisio recibe un aviso.
+- 
+
+### Privacidad por defecto
+
+El vídeo que sube el paciente solo lo ve su fisioterapeuta y se borra a los 30 días.
+- 
+
+### Color con intención
+
+El verde es el de la clínica. El coral se reserva para el dolor y para lo que pide atención.
+
+## Colores y tipografía
+
+- Verde clínica#24453c
+- Verde suave#e4ece7
+- Coral#d9653b
+- Fondo#f7f5f0
+
+Atkinson Hyperlegible para los textos e IBM Plex Mono para las cifras.
+
+## ¿Quieres algo así para tu negocio?
+
+Cuéntame cómo trabajáis hoy y te propongo cómo lo haría, por escrito.
+ WhatsApp606 430 834Formulario
+
+## Otros ejemplos
+- Cuadra Finanzas
+- Hormigo Construcción
+- Vértice asesores Gestoría
+- Arce Clínica veterinaria
+- Quilla Arquitectura
+
+---
+
+Fuente: https://folzia.com/ejemplos/hormigo.html
+
+Construcción
+
+# Cómo está pensada Hormigo
+
+Parte diario del encargado de obra. Reparte las horas de la cuadrilla por partida, imputa los albaranes y ve la desviación de cada partida al momento.
+
+Es una app de ejemplo: el negocio es inventado, pero la app funciona de verdad.
+
+## El problema que resuelve
+
+El encargado apuntaba las horas en papel y la oficina veía las desviaciones a fin de mes. Ahora las ve el mismo día, partida a partida.
+
+## Decisiones de diseño
+
+- 
+
+### Pensada para el sol y los guantes
+
+Negro y amarillo de seguridad para que se lea a pleno sol, y botones de 44 píxeles como mínimo para pulsarlos con guantes.
+- 
+
+### Rótulos condensados
+
+Los nombres de las partidas son largos. Una tipografía condensada hace que quepan sin cortarse.
+- 
+
+### La desviación se ve sin leer números
+
+La marca negra de cada barra es el avance real de la obra. Si la barra la pasa, se está gastando más de lo que se avanza.
+- 
+
+### El rojo solo para lo que importa
+
+Solo las desviaciones van en rojo, para que una alerta se tome como alerta.
+- 
+
+### Como se trabaja en obra
+
+Las horas se apuntan en medias horas, y el parte no se envía hasta que todas están repartidas y los albaranes imputados.
+
+## Colores y tipografía
+
+- Amarillo seguridad#f5c400
+- Negro#161616
+- Hormigón#ebe9e4
+- Desviación#d0341c
+
+Archivo en su versión condensada, para que quepan los nombres largos.
+
+## ¿Quieres algo así para tu negocio?
+
+Cuéntame cómo trabajáis hoy y te propongo cómo lo haría, por escrito.
+ WhatsApp606 430 834Formulario
+
+## Otros ejemplos
+- Eje Fisioterapia
+- Cuadra Finanzas
+- Vértice asesores Gestoría
+- Arce Clínica veterinaria
+- Quilla Arquitectura
+
+---
+
+Fuente: https://folzia.com/ejemplos/quilla.html
+
+Arquitectura
+
+# Cómo está pensada Quilla
+
+Planificación de un estudio de arquitectura. Fases, dependencias, honorarios y avance de cada proyecto en un diagrama de Gantt.
+
+Es una app de ejemplo: el negocio es inventado, pero la app funciona de verdad.
+
+## El problema que resuelve
+
+Un estudio de arquitectura controlaba a mano las fases y los honorarios de cada obra. Ahora ve el avance y lo cobrado de cada proyecto.
+
+## Decisiones de diseño
+
+- 
+
+### Como un plano
+
+Papel blanco y tinta negra. La lima solo marca «hoy» y lo que tienes seleccionado.
+- 
+
+### Lo que no depende de ti, distinto
+
+La licencia va rayada porque depende del ayuntamiento, no del estudio.
+- 
+
+### Las dependencias se ven
+
+Cada fase muestra de qué depende, así se entiende qué se retrasa si algo se mueve.
+- 
+
+### Fechas y cifras alineadas
+
+Fechas y honorarios en letra monoespaciada, para leerlos en columna.
+
+## Colores y tipografía
+
+- Lima#c8f031
+- Tinta#191919
+- Papel#fafaf7
+- Barras#dcdfe3
+
+Overpass para los textos y Overpass Mono para fechas y cifras.
+
+## ¿Quieres algo así para tu negocio?
+
+Cuéntame cómo trabajáis hoy y te propongo cómo lo haría, por escrito.
+ WhatsApp606 430 834Formulario
+
+## Otros ejemplos
+- Eje Fisioterapia
+- Cuadra Finanzas
+- Hormigo Construcción
+- Vértice asesores Gestoría
+- Arce Clínica veterinaria
+
+---
+
+Fuente: https://folzia.com/ejemplos/vertice.html
+
+Gestoría
+
+# Cómo está pensada Vértice asesores
+
+Programa de un despacho de asesoría. Seguimiento de los modelos trimestrales de cada cliente, bandeja de documentos y calendario fiscal.
+
+Es una app de ejemplo: el negocio es inventado, pero la app funciona de verdad.
+
+## El problema que resuelve
+
+Una gestoría seguía los modelos de cada cliente en hojas de cálculo. Ahora ve de un vistazo qué falta, qué está listo y qué vence.
+
+## Decisiones de diseño
+
+- 
+
+### Cada estado tiene su color
+
+Faltan documentos, en revisión, listo para presentar y presentado. Cada uno con su color y siempre el mismo en toda la app.
+- 
+
+### El granate se gana su sitio
+
+El color de la marca solo aparece en el logo y en la acción de presentar, que es la más delicada.
+- 
+
+### Cifras sin errores de lectura
+
+Importes, NIF y casillas van en letra monoespaciada, donde cada carácter ocupa lo mismo y no se confunden.
+- 
+
+### El plazo, siempre presente
+
+El plazo general y los días que quedan están arriba, en todas las pantallas.
+
+## Colores y tipografía
+
+- Granate#7b1e2c
+- Presentado#17633f
+- Listo#1f4f99
+- En revisión#8a5300
+
+Public Sans para los textos y JetBrains Mono para cifras y NIF.
+
+## ¿Quieres algo así para tu negocio?
+
+Cuéntame cómo trabajáis hoy y te propongo cómo lo haría, por escrito.
+ WhatsApp606 430 834Formulario
+
+## Otros ejemplos
+- Eje Fisioterapia
+- Cuadra Finanzas
+- Hormigo Construcción
+- Arce Clínica veterinaria
+- Quilla Arquitectura
 
 ---
 
@@ -732,6 +1135,61 @@ Es lo que hago en cada proyecto. Puedes ver cómo lo aplico en esta misma web.
 - Fieldfisher, claves de la transposición española
 - Legálitas, qué es la European Accessibility Act
 - Maldita, obligaciones de accesibilidad en España
+
+## ¿Hablamos?
+
+Cuéntame qué tienes en mente, con tus palabras. Te respondo yo mismo con una propuesta por escrito.
+ WhatsApp606 430 834Formulario
+
+---
+
+Fuente: https://folzia.com/guias/programa-de-serie-o-a-medida.html
+
+Guía
+
+# ¿Programa de serie o a medida? Cómo decidir
+
+Por Alberto García Marcos, 31 de octubre de 2026
+
+Antes de encargar un programa a medida, merece la pena preguntarse si ya existe uno que te sirva. A veces sí, y te lo digo aunque me dedique a hacerlos a medida.
+
+## Qué es un programa de serie
+
+Es un programa ya hecho que usan muchas empresas a la vez y que normalmente se paga con una cuota mensual. Los hay para facturar, para la agenda, para montar una tienda online y para casi todo.
+
+## Cuándo te conviene uno de serie
+
+- Tu forma de trabajar es parecida a la de la mayoría de negocios de tu sector.
+- Hay uno que hace casi todo lo que necesitas.
+- Necesitas empezar ya.
+
+## Cuándo compensa hacerlo a medida
+
+- Ningún programa se adapta a cómo trabajáis y te obliga a cambiar lo que funciona.
+- Usas varios programas que no se hablan entre sí y pasas datos de uno a otro a mano.
+- Pagas por usuarios o funciones que no usas.
+- Quieres que tus clientes usen una app con tu marca.
+- Manejas datos delicados y quieres decidir dónde se guardan.
+
+## Las diferencias, de un vistazo
+
+ | De serie | A medida | 
+
+Puesta en marcha | Rápida, a veces el mismo día | Por fases, con una primera versión | 
+
+Encaje con tu forma de trabajar | Te adaptas tú al programa | El programa se adapta a ti | 
+
+Coste | Cuota mensual, que suele crecer con los usuarios | Desarrollo inicial y después mantenimiento | 
+
+Cambios | Dependes de lo que decida el proveedor | Se hacen cuando los necesitas | 
+
+Tus datos | En los servidores del proveedor | Donde decidas | 
+
+## Lo que suelo aconsejar
+
+Prueba primero lo que ya existe. Si encaja, perfecto. Si no, lo a medida no tiene por qué sustituirlo todo: muchas veces basta con una herramienta que haga lo que te falta y se conecte con lo que ya usas, como tu programa de facturación.
+
+Si tienes dudas con tu caso, cuéntamelo y te digo con sinceridad qué haría.
 
 ## ¿Hablamos?
 

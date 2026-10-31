@@ -31,3 +31,10 @@ npx serve public
 - Quitar la línea `X-Robots-Tag: noindex` de `public/_headers` para que los buscadores indexen la web.
 
 La versión anterior (Biblioteca IA) está en la rama `archive/bibliotecaia-old`.
+
+## Herramientas
+
+- `tools/servicios.py`, `tools/guias.py` y `tools/ejemplos.py` generan las páginas de servicio, las guías y los ejemplos explicados a partir de los textos de la portada. Después de cambiar la portada o una guía, ejecútalos con `python3`.
+- `tools/llms_full.py` regenera `public/llms-full.txt`, el texto completo para asistentes de IA.
+- `docs/guias-pendientes.md` es la lista de temas de la guía mensual.
+- `docs/kit-perfiles.md` tiene los textos para darse de alta en buscadores y directorios.

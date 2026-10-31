@@ -507,3 +507,5 @@ fieldset { min-width: 0; }
 .steps li.aparece:nth-child(4), .calidad li.aparece:nth-child(4) { transition-delay: 240ms; }
 .garantias .g-item, .example .phone-frame { transition: transform 300ms var(--ease); }
 .example:hover .phone-frame { transform: translateY(-6px); }
+.instalar { margin-top: 18px; font-size: 16px; color: var(--ink-2); }
+.instalar .ex-mas { margin-top: 0; background: none; border-left: 0; border-right: 0; border-top: 0; padding: 0 0 1px; font: inherit; font-weight: 650; cursor: pointer; }

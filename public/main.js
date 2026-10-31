@@ -20,7 +20,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Fondo de partículas en WebGL.
 // Las partículas forman figuras (planeta, móvil, navegador, gráfico, red neuronal, bombilla y el logo),
 // se transforman según la sección visible y el fondo alterna entre blanco y naranja.
-(function () {
+function particulas() {
   const root = document.documentElement;
   const canvas = document.getElementById('gl');
   const gl = canvas && (canvas.getContext('webgl', { antialias: false, alpha: false, premultipliedAlpha: false }) || canvas.getContext('experimental-webgl'));
@@ -35,7 +35,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const mobile = matchMedia('(max-width: 900px)').matches;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const N = mobile ? 6500 : 13000;
+  // Móviles y ordenadores modestos: menos partículas para que todo vaya fluido
+  const modesto = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
+  const N = mobile ? (modesto ? 4200 : 6500) : (modesto ? 9000 : 13000);
   const LOGO = 6;
 
   // ---------- Generador pseudoaleatorio estable ----------
@@ -324,7 +326,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   }
   function resize() {
-    dpr = Math.min(devicePixelRatio || 1, 2);
+    dpr = Math.min(devicePixelRatio || 1, modesto ? 1.5 : 2);
     W = innerWidth; H = innerHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     gl.viewport(0, 0, canvas.width, canvas.height);
@@ -457,7 +459,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 120); });
   addEventListener('load', readAnchors);
   requestAnimationFrame(frame);
-})();
+}
+// Las partículas arrancan después del primer pintado, para que el texto se vea y responda antes
+requestAnimationFrame(() => setTimeout(particulas, 0));
 
 // Vídeos de las apps: solo se reproducen a la vista. En el portátil se encadenan las tres apps con un fundido.
 (function () {
@@ -612,4 +616,14 @@ function toObject(data) {
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   els.forEach((el, i) => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('aparece'); io.observe(el); } });
   document.addEventListener('folzia:movimiento', (e) => { if (e.detail.quieto) document.querySelectorAll('.aparece').forEach((el) => el.classList.add('vis')); });
+})();
+
+// Instalar folzia.com como app: el botón solo aparece si el navegador lo permite
+(function () {
+  const caja = document.getElementById('instalar'), btn = document.getElementById('instalar-btn');
+  if (!caja || !btn) return;
+  let aviso = null;
+  addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); aviso = e; caja.hidden = false; });
+  btn.addEventListener('click', async () => { if (!aviso) return; aviso.prompt(); await aviso.userChoice; aviso = null; caja.hidden = true; });
+  addEventListener('appinstalled', () => { caja.hidden = true; });
 })();
