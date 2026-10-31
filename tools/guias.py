@@ -36,6 +36,7 @@ G=[
  '''<p class="srv-lead">Cuando alguien me pide una app, casi siempre piensa en App Store y Google Play. Muchas veces no hace falta pasar por ellas. Te explico la diferencia y cuándo conviene cada opción.</p>
 <h2>Qué es una app web</h2>
 <p>Es una aplicación que funciona en el navegador, en cualquier móvil, tablet u ordenador. Se puede instalar desde el propio navegador y queda en la pantalla de inicio con su icono, como cualquier otra app, tanto en Android como en iPhone. Cuando la actualizo, el cambio le llega a todo el mundo al momento.</p>
+<p class="instalar" data-instalar hidden>Pruébalo con esta misma web. <button type="button" class="ex-mas" data-instalar-btn>Instálala como app</button></p>
 <h2>Qué es una app de tienda</h2>
 <p>Es la que se descarga desde App Store o Google Play. Se programa para cada sistema, o con herramientas que generan las dos versiones, y cada actualización pasa por la revisión de la tienda antes de llegar a los usuarios.</p>
 <h2>Ventajas de una app web</h2>
@@ -159,7 +160,7 @@ for slug,h1,desc,cuerpo in G:
       <div class="directo"><a class="btn btn-ink" href="{WA}" rel="noopener">WhatsApp</a><a class="btn btn-line" href="tel:+34606430834">606 430 834</a><a class="btn btn-line" href="/#contacto">Formulario</a></div>
     </section>
   </main>
-  {FOOT}
+  {FOOT}{(chr(10)+'  <script src="/instalar.js" defer></script>') if 'data-instalar' in cuerpo else ''}
 </body>
 </html>
 '''

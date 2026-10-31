@@ -4,6 +4,7 @@ os.chdir('/home/user/folzia/public')
 def texto(f):
     t = open(f).read()
     t = re.sub(r'<(script|style|header|footer|nav|form|svg|video)[\s\S]*?</\1>', '', t)
+    t = re.sub(r'<p[^>]*data-instalar[\s\S]*?</p>', '', t)
     m = re.search(r'<main[\s\S]*?</main>', t); t = m.group(0) if m else t
     t = re.sub(r'<h1[^>]*>', '\n# ', t); t = re.sub(r'<h2[^>]*>', '\n\n## ', t); t = re.sub(r'<h3[^>]*>', '\n\n### ', t)
     t = re.sub(r'<li[^>]*>', '\n- ', t); t = re.sub(r'<(p|summary|tr)[^>]*>', '\n\n', t); t = re.sub(r'</t[hd]>', ' | ', t)

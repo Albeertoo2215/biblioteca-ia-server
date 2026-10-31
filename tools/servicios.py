@@ -9,7 +9,10 @@ steps=re.search(r'<ol class="steps">.*?</ol>', idx, re.S).group(0)
 # Bloque de garantías de la portada (termina justo antes del bloque de calidad)
 garantias=re.search(r'<div class="garantias">.*?</div>\s*</div>(?=\s*<div class="calidad">)', idx, re.S).group(0)
 garantias=garantias.replace('href="accesibilidad.html"','href="/accesibilidad.html"')
-faqs=dict(re.findall(r'<details class="faq-i"><summary>(.*?)</summary><p>(.*?)</p></details>', idx))
+faqs=dict(re.findall(r'<details class="faq-i"><summary>(.*?)</summary><p>(.*?)</p>(?:<p class="instalar".*?</p>)?</details>', idx))
+# Enlace para instalar esta misma web como app (instalar.js lo muestra solo donde se puede instalar)
+INST='<p class="instalar" data-instalar hidden>Pruébalo con esta misma web. <button type="button" class="ex-mas" data-instalar-btn>Instálala como app</button></p>'
+INST_Q='¿Hay que descargar la app desde App Store o Google Play?'
 WA='https://wa.me/34606430834?text=Hola%20Alberto%2C%20te%20escribo%20desde%20folzia.com'
 EJ={
  'fisio':('Eje','Fisioterapia','movil'),'obra':('Hormigo','Construcción','movil'),
@@ -46,7 +49,7 @@ FOOT=open(P+'aviso-legal.html').read()
 FOOT=re.search(r'<footer class="foot">.*?</footer>', FOOT, re.S).group(0).replace('href="aviso-legal.html"','href="/aviso-legal.html"').replace('href="privacidad.html"','href="/privacidad.html"').replace('href="cookies.html"','href="/cookies.html"').replace('href="accesibilidad.html"','href="/accesibilidad.html"')
 for f,n,h1,desc,ks,qs in PAG:
     titulo,lead,mas=panel(n)
-    fq=''.join(f'\n        <details class="faq-i"><summary>{q}</summary><p>{faqs[q]}</p></details>' for q in qs)
+    fq=''.join(f'\n        <details class="faq-i"><summary>{q}</summary><p>{faqs[q]}</p>{INST if q==INST_Q else ""}</details>' for q in qs)
     ld={"@context":"https://schema.org","@type":"Service","name":h1,"description":desc,"areaServed":[{"@type":"City","name":"Madrid"},{"@type":"Country","name":"España"}],"provider":{"@type":"ProfessionalService","name":"Folzia","url":"https://folzia.com/","telephone":"+34606430834"}}
     faqld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":re.sub(r'<[^>]+>','',faqs[q])}} for q in qs]}
     gus=''.join(f'<li><a href="/guias/{k}.html">{GU[k]}</a></li>' for k in GUIAS_DE[f])
@@ -88,7 +91,7 @@ for f,n,h1,desc,ks,qs in PAG:
     <p class="kicker">Software a medida</p>
     <h1>{h1}</h1>
     <p class="srv-lead">{lead}</p>
-    <p class="srv-p">{mas}</p>
+    <p class="srv-p">{mas}</p>{(chr(10)+'    '+INST) if n==1 else ''}
     <div class="directo"><a class="btn" href="/#contacto">Cuéntame tu idea</a><a class="btn btn-line" href="{WA}" rel="noopener">Escríbeme por WhatsApp</a></div>
 {ejemplos(ks)}
     <section class="srv-sec" aria-labelledby="ct">
@@ -116,7 +119,7 @@ for f,n,h1,desc,ks,qs in PAG:
       <ul>{otros(f)}</ul>
     </section>
   </main>
-  {FOOT}
+  {FOOT}{(chr(10)+'  <script src="/instalar.js" defer></script>') if 'data-instalar' in fq or n==1 else ''}
 </body>
 </html>
 '''

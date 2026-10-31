@@ -520,12 +520,12 @@ fieldset { min-width: 0; }
 .inst-flot svg { width: 17px; height: 17px; fill: none; stroke: var(--orange-text); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 @media (prefers-reduced-motion: reduce) { .inst-flot, .inst-flot button { transition: none; } }
 
-/* Explicación para instalar en iPhone y iPad */
-.ios-inst { width: min(380px, calc(100vw - 32px)); margin: auto auto max(18px, env(safe-area-inset-bottom)); padding: 24px 22px 20px; border: 0; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: 0 24px 60px -20px rgba(20, 16, 14, 0.5); }
-.ios-inst::backdrop { background: rgba(20, 16, 14, 0.4); }
-.ios-inst h2 { margin: 0 0 14px; font-size: 20px; line-height: 1.2; }
-.ios-inst ol { margin: 0 0 18px; padding-left: 22px; display: grid; gap: 10px; font-size: 16px; line-height: 1.45; color: var(--ink-2); }
-.ios-inst ol strong { color: var(--ink); }
-.ios-inst ol svg { width: 19px; height: 19px; vertical-align: -3px; fill: none; stroke: #0a64d8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.ios-inst form { margin: 0; display: flex; justify-content: flex-end; }
-@media (min-width: 761px) { .ios-inst { margin: auto; } }
+/* Explicación de cómo instalar la web según el dispositivo */
+.inst-guia { width: min(380px, calc(100vw - 32px)); margin: auto auto max(18px, env(safe-area-inset-bottom)); padding: 24px 22px 20px; border: 0; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: 0 24px 60px -20px rgba(20, 16, 14, 0.5); }
+.inst-guia::backdrop { background: rgba(20, 16, 14, 0.4); }
+.inst-guia h2 { margin: 0 0 14px; font-size: 20px; line-height: 1.2; }
+.inst-guia ol { margin: 0 0 18px; padding-left: 22px; display: grid; gap: 10px; font-size: 16px; line-height: 1.45; color: var(--ink-2); }
+.inst-guia ol strong { color: var(--ink); }
+.inst-guia ol svg { width: 19px; height: 19px; vertical-align: -3px; fill: none; stroke: #0a64d8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.inst-guia form { margin: 0; display: flex; justify-content: flex-end; }
+@media (min-width: 761px) { .inst-guia { margin: auto; } }

@@ -32,8 +32,6 @@ Si hoy llevas algo a mano, en papel o repartido entre varios programas, lo convi
  Más sobre apps web →
  Mira algunas de ejemplo ↓
 
-Pruébalo con esta misma web. Instálala como app
-
  02
 
 ## Webs y tiendas online
@@ -215,6 +213,7 @@ Software a medida
 Aplicaciones que tu equipo o tus clientes usan desde el navegador o instaladas en el móvil, sin pasar por App Store ni Google Play.
 
 Si hoy llevas algo a mano, en papel o repartido entre varios programas, lo convierto en una app pensada para tu forma de trabajar. Tú me cuentas qué necesitas y yo la diseño, la programo y la dejo lista para usar.
+
  Cuéntame tu ideaEscríbeme por WhatsApp
 
 ## Ejemplos
