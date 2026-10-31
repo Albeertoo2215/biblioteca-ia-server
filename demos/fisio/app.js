@@ -3,11 +3,12 @@
 const $ = (s) => document.querySelector(s);
 const PACIENTE = { n: 'Carmen', lesion: 'Rodilla derecha · reconstrucción de LCA', semana: 6, de: 12, fase: 'Fase 2 · fuerza y control' };
 const SEMANA = [['L', 'ok'], ['M', 'hoy'], ['X', ''], ['J', 'rev'], ['V', ''], ['S', ''], ['D', 'desc']];
+// foto: portada que ya puso la clínica; video: lo sube la clínica desde su panel (si no hay, se ve la ilustración)
 const EJ = [
-  { id: 'bici', n: 'Bicicleta estática', pres: '10 min · resistencia baja', fig: 'bici', est: 'hecho', dolor: 1 },
-  { id: 'ext', n: 'Extensión de rodilla sentada', pres: '3 × 12 · tobillera de 1 kg', fig: 'ext', est: 'curso', series: 3, reps: 12, serie: 3, rep: 10 },
-  { id: 'pared', n: 'Sentadilla en la pared', pres: '3 × 8 · baja hasta 60°', fig: 'pared', est: 'pend' },
-  { id: 'puente', n: 'Puente de glúteo a una pierna', pres: '3 × 10 por lado', fig: 'puente', est: 'pend' },
+  { id: 'bici', n: 'Bicicleta estática', pres: '10 min · resistencia baja', fig: 'bici', est: 'hecho', dolor: 1, foto: 'media/bici.webp' },
+  { id: 'puente', n: 'Puente de glúteo con banda', pres: '3 × 12 · banda elástica', fig: 'puente', est: 'curso', series: 3, reps: 12, serie: 3, rep: 10, carga: 'Banda elástica',
+    pasos: ['Túmbate boca arriba, con las rodillas dobladas y los pies apoyados.', 'Sube la cadera apretando los glúteos hasta alinear hombros, cadera y rodillas.', 'Baja despacio, sin dejar caer la cadera.'] },
+  { id: 'ext', n: 'Extensión de rodilla en máquina', pres: '3 × 10 · carga ligera', fig: 'ext', est: 'pend', foto: 'media/extension.webp' },
 ];
 // Evolución semanal: dolor medio (EVA) y flexión de rodilla en grados
 const EVOL = [
@@ -15,9 +16,8 @@ const EVOL = [
   { s: 4, dolor: 3.9, flex: 106 }, { s: 5, dolor: 3.1, flex: 112 }, { s: 6, dolor: 2.4, flex: 118 },
 ];
 const TEMPO = [['Sube', 0.9], ['Mantén', 0.9], ['Baja', 0.9]]; // segundos por fase (ritmo de la demo)
-// Vídeo de demostración de cada ejercicio: lo sube la clínica; si no hay, se muestra la ilustración
 EJ.forEach((e) => { e.video = null; });
-const st = { vista: location.hash === '#clinica' ? 'clinica' : 'hoy', ej: 'ext', corre: false, t0: 0, fase: 0, eva: null, raf: 0 };
+const st = { vista: location.hash === '#clinica' ? 'clinica' : 'hoy', ej: 'puente', corre: false, t0: 0, fase: 0, eva: null, raf: 0 };
 
 // ---------- Ilustraciones (trazo propio) ----------
 function figura(tipo, ang = 0) {
@@ -40,6 +40,7 @@ function figura(tipo, ang = 0) {
 }
 
 // Portada de un ejercicio con vídeo: el primer fotograma, con un icono de reproducir encima
+const cubierta = (e) => (e.video ? portada(e) : e.foto ? `<img src="${e.foto}" alt="" loading="lazy">` : `<svg viewBox="0 0 ${e.fig === 'ext' ? '240 190' : '130 92'}">${figura(e.fig, 70)}</svg>`);
 const portada = (e) => `<video src="${e.video}#t=0.1" muted playsinline preload="metadata" aria-hidden="true"></video><i class="play-ico" aria-hidden="true"><svg><use href="#i-play"/></svg></i>`;
 
 // ---------- Hoy ----------
@@ -49,8 +50,9 @@ function hoy() {
   <header class="top">
     <svg class="logo"><use href="#logo"/></svg>
     <div class="who"><span>Martes, 14 de octubre</span><b>Hola, ${PACIENTE.n}</b></div>
-    <span class="av">CR</span>
+    <span class="rol pa">Paciente</span>
   </header>
+  ${st.nuevo ? `<button type="button" class="nuevo" data-ej="${st.nuevo}"><span class="nv-mini">${portada(EJ.find((x) => x.id === st.nuevo))}</span><span><em>Nuevo vídeo</em><b>Marta te ha enviado cómo hacer «${EJ.find((x) => x.id === st.nuevo).n}»</b></span></button>` : ''}
   <section class="plan">
     <p class="k">${PACIENTE.lesion}</p>
     <h1>Semana ${PACIENTE.semana} <span>de ${PACIENTE.de}</span></h1>
@@ -62,7 +64,7 @@ function hoy() {
     <div class="h"><h2>Sesión de hoy</h2><span>${hechos} de ${EJ.length} · 25 min</span></div>
     <ul class="ejs">${EJ.map((e) => `
       <li class="${e.est}"><button type="button" data-ej="${e.id}">
-        <span class="fig">${e.video ? portada(e) : `<svg viewBox="0 0 ${e.fig === 'ext' ? '240 190' : '130 92'}">${figura(e.fig, 70)}</svg>`}</span>
+        <span class="fig">${cubierta(e)}</span>
         <span class="tx"><b>${e.n}</b><small>${e.pres}</small>
           <em>${e.est === 'hecho' ? `<svg><use href="#i-check"/></svg>Hecho · dolor ${e.dolor}/10` : e.est === 'curso' ? `En curso · serie ${e.serie} de ${e.series}` : 'Pendiente'}</em></span>
         <svg class="chev"><use href="#i-chev"/></svg>
@@ -81,12 +83,12 @@ function ejercicio() {
   return `
   <header class="top bar">
     <button type="button" class="back" data-go="hoy" aria-label="Volver"><svg><use href="#i-back"/></svg></button>
-    <div class="who"><span>Ejercicio 2 de 4</span><b>${e.n}</b></div>
+    <div class="who"><span>Ejercicio ${EJ.indexOf(e) + 1} de ${EJ.length}</span><b>${e.n}</b></div>
   </header>
   <section class="escena">
-    ${e.video ? `<video id="vid-ej" class="vid-ej" src="${e.video}" muted loop playsinline preload="auto" aria-label="Vídeo del ejercicio grabado por la clínica"></video><span class="por">Vídeo de tu clínica</span>` : `<svg viewBox="0 0 240 190" id="fig" class="fig-xl" aria-label="Ilustración del ejercicio">${figura('ext', 0)}</svg>
-    <span class="grados"><b id="grados">0°</b> flexión</span>`}
-    <span class="carga">Tobillera 1 kg</span>
+    ${e.video ? `<video id="vid-ej" class="vid-ej" src="${e.video}" muted loop playsinline preload="auto" aria-label="Vídeo del ejercicio grabado por la clínica"></video><span class="por">Vídeo de tu clínica</span>` : `${e.fig === 'ext' ? `<svg viewBox="0 0 240 190" id="fig" class="fig-xl" aria-label="Ilustración del ejercicio">${figura('ext', 0)}</svg>
+    <span class="grados"><b id="grados">0°</b> flexión</span>` : `<svg viewBox="0 0 130 92" class="fig-xl fig-est" aria-label="Ilustración del ejercicio">${figura(e.fig, 0)}</svg>`}`}
+    ${e.carga ? `<span class="carga">${e.carga}</span>` : ''}
   </section>
   <div class="tempo" aria-label="Ritmo">${TEMPO.map(([n, s], i) => `<div data-f="${i}"><span>${n}</span><small>${s.toFixed(1).replace('.', ',')} s</small><i></i></div>`).join('')}</div>
   <section class="cuenta">
@@ -96,7 +98,7 @@ function ejercicio() {
   <button type="button" class="main" data-play><svg><use href="#i-${st.corre ? 'pause' : 'play'}"/></svg>${st.corre ? 'Pausar' : 'Seguir con la serie 3'}</button>
   <section class="tecnica" id="tecnica">${tecnica()}</section>
   <details class="como"><summary><svg><use href="#i-info"/></svg>Cómo hacerlo</summary>
-    <ol><li>Sentada al fondo de la silla, espalda apoyada.</li><li>Estira la rodilla del todo y aprieta el muslo arriba.</li><li>Baja despacio, sin dejar caer la pierna.</li></ol>
+    <ol>${(e.pasos || []).map((x) => `<li>${x}</li>`).join('')}</ol>
   </details>
   <p class="aviso"><svg><use href="#i-alert"/></svg>Si notas dolor punzante o la rodilla se hincha, para y escribe a Marta.</p>`;
 }
@@ -191,22 +193,34 @@ function progreso() {
   </section>`;
 }
 
+// Envío del vídeo a los pacientes que tienen ese ejercicio en su pauta
+const PACIENTES = [['Carmen Ruiz', 'Rodilla, LCA · semana 6'], ['Luis Prado', 'Cadera · semana 3'], ['Ana Gil', 'Lumbar · semana 9']];
+function enviar(e) {
+  abrir(`
+    <div class="grip"></div>
+    <p class="k">Vídeo listo · ${e.n}</p>
+    <h2>¿A quién se lo envías?</h2>
+    <p class="nota">Estos pacientes tienen el ejercicio en su pauta.</p>
+    <ul class="pac">${PACIENTES.map(([n, d]) => `<li><label><input type="checkbox" checked><span><b>${n}</b><small>${d}</small></span></label></li>`).join('')}</ul>
+    <button type="button" class="main" data-enviar="${e.id}">Enviar a ${PACIENTES.length} pacientes</button>`);
+}
+
 // ---------- Panel de la clínica: vídeos de cada ejercicio ----------
 function clinica() {
   return `
-  <header class="top"><svg class="logo"><use href="#logo"/></svg><div class="who"><span>Clínica Eje · Marta Ibarra</span><b>Vídeos de ejercicios</b></div></header>
+  <header class="top"><svg class="logo"><use href="#logo"/></svg><div class="who"><span>Clínica Eje · Marta Ibarra</span><b>Vídeos de ejercicios</b></div><span class="rol cl">Clínica</span></header>
   <p class="cl-intro">Graba cada ejercicio con el móvil y súbelo aquí. Tus pacientes lo verán en su pauta en lugar de la ilustración.</p>
   <ul class="cl-lista">${EJ.map((e) => `
     <li class="${e.video ? 'con' : ''}">
-      <span class="cl-mini">${e.video ? portada(e) : `<svg viewBox="0 0 ${e.fig === 'ext' ? '240 190' : '130 92'}">${figura(e.fig, 70)}</svg>`}</span>
-      <span class="cl-tx"><b>${e.n}</b><small>${e.video ? 'Con vídeo de la clínica' : 'Sin vídeo, se muestra la ilustración'}</small><span class="prog" id="cl-p-${e.id}" hidden><i></i></span></span>
+      <span class="cl-mini">${cubierta(e)}</span>
+      <span class="cl-tx"><b>${e.n}</b><small>${e.video ? 'Con vídeo de la clínica' : e.foto ? 'Con foto. Sube un vídeo para verlo en movimiento' : 'Sin vídeo, se muestra la ilustración'}</small><span class="prog" id="cl-p-${e.id}" hidden><i></i></span></span>
       <span class="cl-acc">
         <label class="cl-btn"><input type="file" accept="video/*" class="sr" data-cl="${e.id}"><svg><use href="#i-up"/></svg>${e.video ? 'Cambiar' : 'Subir vídeo'}</label>
         ${e.video ? `<button type="button" class="cl-quitar" data-quitar="${e.id}">Quitar</button>` : ''}
       </span>
     </li>`).join('')}</ul>
   <p class="priv"><svg><use href="#i-lock"/></svg>Si sale una persona en el vídeo, necesitas su consentimiento por escrito.</p>
-  <button type="button" class="main" data-go="hoy">Ver la pauta como paciente</button>
+  <button type="button" class="main" data-go="hoy">Ver lo que recibe el paciente</button>
   <p class="demo">Demo de Folzia · clínica y paciente ficticios.</p>`;
 }
 function subirClinica(id, f) {
@@ -219,7 +233,7 @@ function subirClinica(id, f) {
     if (pct < 100) { setTimeout(paso, 110); return; }
     if (e.video && e.video.startsWith('blob:')) URL.revokeObjectURL(e.video);
     e.video = URL.createObjectURL(f);
-    pintar(); aviso('Vídeo publicado. Tus pacientes ya lo ven en su pauta');
+    pintar(); enviar(e);
   };
   setTimeout(paso, 120);
 }
@@ -239,7 +253,7 @@ const EVA_TXT = ['Sin dolor.', 'Muy leve, apenas lo notas.', 'Leve. Normal en es
 
 document.addEventListener('click', (e) => {
   const q = (s) => e.target.closest(s); let b;
-  if ((b = q('[data-ej]'))) { if (b.dataset.ej === 'ext') { st.vista = 'ejercicio'; pintar(); scrollTo(0, 0); } else aviso('En la demo solo se abre la extensión de rodilla'); return; }
+  if ((b = q('[data-ej]'))) { const ej = EJ.find((x) => x.id === b.dataset.ej); if (ej.series) { st.ej = ej.id; st.vista = 'ejercicio'; pintar(); scrollTo(0, 0); } else aviso('En la demo solo se abre el puente de glúteo'); return; }
   if ((b = q('[data-go]'))) { st.corre = false; st.vista = b.dataset.go; pintar(); scrollTo(0, 0); return; }
   if ((b = q('[data-tab]'))) { if (['hoy', 'progreso'].includes(b.dataset.tab)) { st.vista = b.dataset.tab; pintar(); scrollTo(0, 0); } return; }
   if (q('[data-play]')) {
@@ -248,6 +262,10 @@ document.addEventListener('click', (e) => {
     if (st.corre && !st.raf) st.raf = requestAnimationFrame(bucle);
     const v = $('#vid-ej'); if (v) { if (st.corre) { const pr = v.play(); if (pr) pr.catch(() => {}); } else v.pause(); }
     return;
+  }
+  if ((b = q('[data-enviar]'))) {
+    const n = $('#sheet-in').querySelectorAll('input:checked').length;
+    st.nuevo = b.dataset.enviar; cerrar(); aviso(`Enviado a ${n} pacientes`); return;
   }
   if ((b = q('[data-quitar]'))) {
     const ej = EJ.find((x) => x.id === b.dataset.quitar);

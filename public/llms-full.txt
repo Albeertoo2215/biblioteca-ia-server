@@ -63,7 +63,7 @@ En el móvil
 
  Fisioterapia
  Eje
- La fisio no sabía si sus pacientes hacían los ejercicios en casa. Ahora los siguen paso a paso, le mandan un vídeo y ella ve cómo evoluciona el dolor.
+ La clínica graba sus ejercicios y se los envía a cada paciente. En casa, el paciente los sigue con ese vídeo y la fisio ve cómo evoluciona el dolor.
 
 - 
 
@@ -193,7 +193,7 @@ Si hoy llevas algo a mano, en papel o repartido entre varios programas, lo convi
 ## Ejemplos
 
 Los negocios son inventados, pero las apps funcionan de verdad.
- FisioterapiaEjeLa fisio no sabía si sus pacientes hacían los ejercicios en casa. Ahora los siguen paso a paso, le mandan un vídeo y ella ve cómo evoluciona el dolor.Clínica veterinariaArceLa clínica tenía la agenda, las fichas y los cobros en sitios distintos. Ahora está todo en una pantalla, por veterinario.
+ FisioterapiaEjeLa clínica graba sus ejercicios y se los envía a cada paciente. En casa, el paciente los sigue con ese vídeo y la fisio ve cómo evoluciona el dolor.Clínica veterinariaArceLa clínica tenía la agenda, las fichas y los cobros en sitios distintos. Ahora está todo en una pantalla, por veterinario.
 
 ## Cómo trabajo
 
