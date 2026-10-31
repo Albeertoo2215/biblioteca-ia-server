@@ -509,3 +509,23 @@ fieldset { min-width: 0; }
 .example:hover .phone-frame { transform: translateY(-6px); }
 .instalar { margin-top: 18px; font-size: 16px; color: var(--ink-2); }
 .instalar .ex-mas { margin-top: 0; background: none; border-left: 0; border-right: 0; border-top: 0; padding: 0 0 1px; font: inherit; font-weight: 650; cursor: pointer; }
+
+/* Botón flotante y pequeño de instalar la web como app, encima del de WhatsApp (solo si el navegador lo permite) */
+.inst-flot { position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); z-index: 40; margin: 0; transition: bottom 220ms var(--ease), opacity 220ms var(--ease), visibility 0s linear 0s; }
+.wa-flot:not(.oculto) ~ .inst-flot { bottom: calc(max(18px, env(safe-area-inset-bottom)) + 66px); }
+.inst-flot.oculto { opacity: 0; visibility: hidden; transition: opacity 220ms var(--ease), visibility 0s linear 220ms; }
+.inst-flot button { display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 15px 0 12px; border: 1px solid rgba(20, 16, 14, 0.14); border-radius: 999px; background: #fff; color: var(--ink); font: 600 14px/1 var(--font); cursor: pointer; box-shadow: 0 10px 24px -12px rgba(20, 16, 14, 0.45); transition: border-color 160ms var(--ease), transform 160ms var(--ease); }
+.inst-flot button:hover { border-color: var(--ink); transform: translateY(-2px); }
+.inst-flot button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.inst-flot svg { width: 17px; height: 17px; fill: none; stroke: var(--orange-text); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+@media (prefers-reduced-motion: reduce) { .inst-flot, .inst-flot button { transition: none; } }
+
+/* Explicación para instalar en iPhone y iPad */
+.ios-inst { width: min(380px, calc(100vw - 32px)); margin: auto auto max(18px, env(safe-area-inset-bottom)); padding: 24px 22px 20px; border: 0; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: 0 24px 60px -20px rgba(20, 16, 14, 0.5); }
+.ios-inst::backdrop { background: rgba(20, 16, 14, 0.4); }
+.ios-inst h2 { margin: 0 0 14px; font-size: 20px; line-height: 1.2; }
+.ios-inst ol { margin: 0 0 18px; padding-left: 22px; display: grid; gap: 10px; font-size: 16px; line-height: 1.45; color: var(--ink-2); }
+.ios-inst ol strong { color: var(--ink); }
+.ios-inst ol svg { width: 19px; height: 19px; vertical-align: -3px; fill: none; stroke: #0a64d8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ios-inst form { margin: 0; display: flex; justify-content: flex-end; }
+@media (min-width: 761px) { .ios-inst { margin: auto; } }

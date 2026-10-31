@@ -618,12 +618,34 @@ function toObject(data) {
   document.addEventListener('folzia:movimiento', (e) => { if (e.detail.quieto) document.querySelectorAll('.aparece').forEach((el) => el.classList.add('vis')); });
 })();
 
-// Instalar folzia.com como app: el botón solo aparece si el navegador lo permite
+// Instalar folzia.com como app: los botones solo aparecen si el navegador lo permite
 (function () {
-  const caja = document.getElementById('instalar'), btn = document.getElementById('instalar-btn');
-  if (!caja || !btn) return;
+  const cajas = document.querySelectorAll('[data-instalar]');
+  if (!cajas.length) return;
   let aviso = null;
-  addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); aviso = e; caja.hidden = false; });
-  btn.addEventListener('click', async () => { if (!aviso) return; aviso.prompt(); await aviso.userChoice; aviso = null; caja.hidden = true; });
-  addEventListener('appinstalled', () => { caja.hidden = true; });
+  const mostrar = (si) => cajas.forEach((c) => { c.hidden = !si; });
+  addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); aviso = e; mostrar(true); });
+  // iPhone y iPad no avisan al navegador: el botón abre una explicación de cómo añadirla a la pantalla de inicio
+  const ua = navigator.userAgent;
+  const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  const instalada = navigator.standalone || matchMedia('(display-mode: standalone)').matches;
+  const dentroDeOtraApp = /FBAN|FBAV|Instagram|Line\/|LinkedInApp|TikTok/.test(ua);
+  const guia = document.getElementById('ios-inst');
+  if (ios && !instalada && !dentroDeOtraApp && guia && guia.showModal) mostrar(true);
+  if (ios && !/iPhone|iPod/.test(ua)) { const t = document.getElementById('ios-inst-t'); if (t) t.textContent = 'Instala Folzia en tu iPad'; }
+  if (guia) guia.addEventListener('click', (e) => { if (e.target === guia) guia.close(); }); // tocar fuera la cierra
+  document.querySelectorAll('[data-instalar-btn]').forEach((b) => b.addEventListener('click', async () => {
+    if (ios && guia) { guia.showModal(); return; }
+    if (!aviso) return;
+    aviso.prompt();
+    await aviso.userChoice;
+    aviso = null;
+    mostrar(false); // si lo rechaza, el navegador vuelve a ofrecerlo más adelante y reaparece
+  }));
+  addEventListener('appinstalled', () => mostrar(false));
+  // El flotante se aparta en la sección de contacto para no tapar el formulario
+  const flot = document.querySelector('.inst-flot'), contacto = document.getElementById('contacto');
+  if (flot && contacto && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => flot.classList.toggle('oculto', e.isIntersecting), { rootMargin: '0px 0px -25% 0px' }).observe(contacto);
+  }
 })();

@@ -73,7 +73,7 @@
         <p class="mas-texto">Si hoy llevas algo a mano, en papel o repartido entre varios programas, lo convierto en una app pensada para tu forma de trabajar. Tú me cuentas qué necesitas y yo la diseño, la programo y la dejo lista para usar.</p>
         <a href="apps-web-a-medida.html" class="link more">Más sobre apps web <span aria-hidden="true">→</span></a>
         <a href="#ejemplos" class="link more">Mira algunas de ejemplo <span aria-hidden="true">↓</span></a>
-        <p class="instalar" id="instalar" hidden>Pruébalo con esta misma web. <button type="button" class="ex-mas" id="instalar-btn">Instálala como app</button></p>
+        <p class="instalar" data-instalar hidden>Pruébalo con esta misma web. <button type="button" class="ex-mas" data-instalar-btn>Instálala como app</button></p>
       </div></div>
     </section>
 
@@ -411,7 +411,16 @@
     </section>
   </main>
 
-  <aside aria-label="Contacto rápido"><a class="wa-flot" href="https://wa.me/34606430834?text=Hola%20Alberto%2C%20te%20escribo%20desde%20folzia.com" rel="noopener" aria-label="Escríbeme por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2z"/><path d="M8.9 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .5-.2 1.2-.7 1.5-.6.4-1.5.6-2.6.2-2.2-.8-4-2.6-4.8-4.6-.4-1-.3-1.9.1-2.2z" class="lleno"/></svg><span>WhatsApp</span></a></aside>
+  <aside aria-label="Contacto rápido"><a class="wa-flot" href="https://wa.me/34606430834?text=Hola%20Alberto%2C%20te%20escribo%20desde%20folzia.com" rel="noopener" aria-label="Escríbeme por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2z"/><path d="M8.9 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.6 1 1.4 1.8 2.5 2.4.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .5-.2 1.2-.7 1.5-.6.4-1.5.6-2.6.2-2.2-.8-4-2.6-4.8-4.6-.4-1-.3-1.9.1-2.2z" class="lleno"/></svg><span>WhatsApp</span></a><p class="inst-flot" data-instalar hidden><button type="button" data-instalar-btn><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg>Instalar app</button></p></aside>
+  <dialog class="ios-inst" id="ios-inst" aria-labelledby="ios-inst-t">
+    <h2 id="ios-inst-t">Instala Folzia en tu iPhone</h2>
+    <ol>
+      <li>Pulsa <strong>Compartir</strong> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M8 7.5l4-4 4 4M7 10.5H5.5v10h13v-10H17"/></svg> en la barra del navegador. Si no lo ves, está dentro del menú <strong>···</strong></li>
+      <li>Elige <strong>Añadir a pantalla de inicio</strong></li>
+      <li>Pulsa <strong>Añadir</strong> y tendrás Folzia como una app más</li>
+    </ol>
+    <form method="dialog"><button class="btn btn-sm">Entendido</button></form>
+  </dialog>
   <footer class="foot">
     <div class="wrap foot-cols">
       <div class="foot-marca">
