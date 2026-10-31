@@ -1,6 +1,8 @@
 // Instalar folzia.com como app. El botón sale siempre que el navegador permita instalar webs:
 // si el navegador ofrece su aviso de instalación se usa ese, y si no se explican los pasos para ese dispositivo
 (function () {
+  // Sin service worker, Chrome no ofrece la instalación directa con un toque
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
   const cajas = document.querySelectorAll('[data-instalar]');
   if (!cajas.length || !window.HTMLDialogElement) return;
   const ua = navigator.userAgent;
