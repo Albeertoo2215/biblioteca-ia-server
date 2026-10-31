@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://folzia.com/</loc><lastmod>2026-10-31</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url><loc>https://folzia.com/</loc><lastmod>2026-10-31</lastmod>
+    <video:video><video:thumbnail_loc>https://folzia.com/img/poster-fisio.webp</video:thumbnail_loc><video:title>Eje, app de fisioterapia. App de ejemplo de Folzia</video:title><video:description>Una paciente hace su ejercicio guiado, sube un vídeo para su fisioterapeuta y anota el dolor.</video:description><video:content_loc>https://folzia.com/video/fisio.mp4</video:content_loc><video:duration>16</video:duration></video:video>
+    <video:video><video:thumbnail_loc>https://folzia.com/img/poster-finanzas.webp</video:thumbnail_loc><video:title>Cuadra, app de finanzas para autónomos. App de ejemplo de Folzia</video:title><video:description>Una autónoma revisa sus cuentas del trimestre y emite una factura desde el móvil.</video:description><video:content_loc>https://folzia.com/video/finanzas.mp4</video:content_loc><video:duration>7</video:duration></video:video>
+    <video:video><video:thumbnail_loc>https://folzia.com/img/poster-obra.webp</video:thumbnail_loc><video:title>Hormigo, parte de obra. App de ejemplo de Folzia</video:title><video:description>El encargado reparte las horas de la cuadrilla, imputa un albarán y envía el parte de obra.</video:description><video:content_loc>https://folzia.com/video/obra.mp4</video:content_loc><video:duration>12</video:duration></video:video>
+    <video:video><video:thumbnail_loc>https://folzia.com/img/poster-gestoria.webp</video:thumbnail_loc><video:title>Vértice asesores, gestión de una gestoría. App de ejemplo de Folzia</video:title><video:description>Una gestoría revisa los modelos trimestrales de un cliente y los presenta.</video:description><video:content_loc>https://folzia.com/video/gestoria.mp4</video:content_loc><video:duration>10</video:duration></video:video>
+    <video:video><video:thumbnail_loc>https://folzia.com/img/poster-veterinaria.webp</video:thumbnail_loc><video:title>Arce, gestión de una clínica veterinaria. App de ejemplo de Folzia</video:title><video:description>Agenda por veterinario, ficha clínica y cobro de una consulta.</video:description><video:content_loc>https://folzia.com/video/veterinaria.mp4</video:content_loc><video:duration>9</video:duration></video:video>
+    <video:video><video:thumbnail_loc>https://folzia.com/img/poster-proyectos.webp</video:thumbnail_loc><video:title>Quilla, gestión de un estudio de arquitectura. App de ejemplo de Folzia</video:title><video:description>Fases, honorarios y avance de los proyectos de un estudio de arquitectura.</video:description><video:content_loc>https://folzia.com/video/proyectos.mp4</video:content_loc><video:duration>6</video:duration></video:video>
+  </url>
   <url><loc>https://folzia.com/accesibilidad.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://folzia.com/apps-web-a-medida.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://folzia.com/webs-y-tiendas-online.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://folzia.com/programas-para-empresas.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://folzia.com/primera-version-de-tu-idea.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://folzia.com/guias/</loc><lastmod>2026-10-31</lastmod></url>
-  <url><loc>https://folzia.com/guias/ley-accesibilidad-web.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://folzia.com/guias/app-web-o-app-de-tienda.html</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://folzia.com/guias/cuanto-cuesta-una-app-a-medida.html</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://folzia.com/guias/dejar-el-excel-y-el-papel.html</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://folzia.com/guias/ley-accesibilidad-web.html</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://folzia.com/guias/rgpd-en-tu-app.html</loc><lastmod>2026-10-31</lastmod></url>
 </urlset>

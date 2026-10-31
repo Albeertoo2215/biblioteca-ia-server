@@ -20,11 +20,15 @@ Trabaja solo, así que el cliente habla con él de principio a fin. El proceso e
 
 ## Guías
 
-- [Qué tiene que cumplir tu web o tu app con la ley de accesibilidad](https://folzia.com/guias/ley-accesibilidad-web.html): a quién afecta la Ley 11/2023, quién está exento y qué hacer.
-- [¿App web o app de tienda? Cuál necesita tu negocio](https://folzia.com/guias/app-web-o-app-de-tienda.html): diferencias, ventajas y cuándo conviene cada una.
+- [¿App web o app de tienda? Cuál necesita tu negocio](https://folzia.com/guias/app-web-o-app-de-tienda.html): Diferencias entre una app web y una app de App Store o Google Play, ventajas de cada una y cuándo conviene cada opción para un negocio.
+- [Cuánto cuesta una app a medida y de qué depende el precio](https://folzia.com/guias/cuanto-cuesta-una-app-a-medida.html): Qué hace que una app a medida cueste más o menos, cómo pedir un presupuesto que se pueda comparar y cómo empezar sin gastar de más.
+- [Cómo dejar el Excel y el papel en tu negocio, paso a paso](https://folzia.com/guias/dejar-el-excel-y-el-papel.html): Pasos prácticos para digitalizar un negocio que funciona con hojas de cálculo, papeles y grupos de WhatsApp, empezando por lo que más tiempo hace perder.
+- [Qué tiene que cumplir tu web o tu app con la ley de accesibilidad](https://folzia.com/guias/ley-accesibilidad-web.html): Qué exige la Ley 11/2023 a webs y apps desde junio de 2025, a quién afecta, quién está exento y qué hacer si te toca. Explicado en claro, con fuentes.
+- [Qué tiene que cumplir tu app con el RGPD](https://folzia.com/guias/rgpd-en-tu-app.html): Lo esencial del RGPD para una app o web de negocio, desde la información al usuario y los derechos hasta los proveedores, la seguridad y las cookies.
 
 ## Más información
 
 - [Preguntas frecuentes](https://folzia.com/#preguntas)
 - [Ejemplos de apps](https://folzia.com/#ejemplos)
 - [Declaración de accesibilidad](https://folzia.com/accesibilidad.html)
+- [Texto completo de la web](https://folzia.com/llms-full.txt)
