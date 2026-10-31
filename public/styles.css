@@ -520,12 +520,23 @@ fieldset { min-width: 0; }
 .inst-flot svg { width: 17px; height: 17px; fill: none; stroke: var(--orange-text); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 @media (prefers-reduced-motion: reduce) { .inst-flot, .inst-flot button { transition: none; } }
 
-/* Explicación de cómo instalar la web según el dispositivo */
-.inst-guia { width: min(380px, calc(100vw - 32px)); margin: auto auto max(18px, env(safe-area-inset-bottom)); padding: 24px 22px 20px; border: 0; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: 0 24px 60px -20px rgba(20, 16, 14, 0.5); }
+/* Panel para instalar la web: con un toque arriba y los pasos por dispositivo abajo */
+.inst-guia { width: min(420px, calc(100vw - 32px)); max-height: calc(100dvh - 36px); overflow-y: auto; margin: auto auto max(18px, env(safe-area-inset-bottom)); padding: 24px 22px 20px; border: 0; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: 0 24px 60px -20px rgba(20, 16, 14, 0.5); }
 .inst-guia::backdrop { background: rgba(20, 16, 14, 0.4); }
-.inst-guia h2 { margin: 0 0 14px; font-size: 20px; line-height: 1.2; }
-.inst-guia ol { margin: 0 0 18px; padding-left: 22px; display: grid; gap: 10px; font-size: 16px; line-height: 1.45; color: var(--ink-2); }
+.inst-guia h2 { margin: 0 0 6px; font-size: 21px; line-height: 1.2; }
+.inst-sub { margin: 0 0 16px; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+.inst-bloque { margin: 0 0 12px; padding: 16px; border: 1px solid rgba(20, 16, 14, 0.12); border-radius: 16px; }
+.inst-bloque h3 { margin: 0 0 6px; font-size: 16px; line-height: 1.3; }
+.inst-bloque > p { margin: 0 0 12px; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+.inst-bloque > p:last-child { margin-bottom: 0; }
+.inst-bloque > .inst-msg { margin: 10px 0 0; font-weight: 600; color: var(--ink); }
+.inst-msg:empty { display: none; }
+.inst-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
+.inst-tabs button { min-height: 36px; padding: 0 13px; border: 1px solid rgba(20, 16, 14, 0.18); border-radius: 999px; background: #fff; color: var(--ink); font: 600 14px/1 var(--font); cursor: pointer; }
+.inst-tabs button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.inst-tabs button:focus-visible, .inst-guia .btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.inst-guia ol { margin: 0; padding-left: 22px; display: grid; gap: 8px; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
 .inst-guia ol strong { color: var(--ink); }
-.inst-guia ol svg { width: 19px; height: 19px; vertical-align: -3px; fill: none; stroke: #0a64d8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.inst-guia form { margin: 0; display: flex; justify-content: flex-end; }
+.inst-guia ol svg { width: 18px; height: 18px; vertical-align: -3px; fill: none; stroke: #0a64d8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.inst-guia form { margin: 4px 0 0; display: flex; justify-content: flex-end; }
 @media (min-width: 761px) { .inst-guia { margin: auto; } }
