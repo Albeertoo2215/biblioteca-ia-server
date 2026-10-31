@@ -1,0 +1,25 @@
+# Folzia
+
+> Folzia es el estudio de software a medida de Alberto García Marcos, en Madrid. Diseña y programa apps web, webs y tiendas online, programas internos para empresas y primeras versiones de ideas de app, para todo tipo de negocios en toda España.
+
+Trabaja solo, así que el cliente habla con él de principio a fin. El proceso es hablar, una propuesta por escrito con alcance, plazos y presupuesto, construir por fases que el cliente prueba y lanzar, con mantenimiento opcional. Las apps se diseñan para cumplir las pautas de accesibilidad WCAG 2.2 nivel AA y el RGPD.
+
+## Servicios
+
+- [Apps web a medida](https://folzia.com/apps-web-a-medida.html): aplicaciones para el equipo o los clientes que funcionan en el navegador y se instalan en el móvil, sin pasar por App Store ni Google Play.
+- [Webs y tiendas online](https://folzia.com/webs-y-tiendas-online.html): webs a medida con la marca del negocio, preparadas para reservas, pedidos y pagos.
+- [Programas para empresas](https://folzia.com/programas-para-empresas.html): herramientas internas que sustituyen hojas de cálculo, papeles y grupos de WhatsApp.
+- [Primera versión de tu idea](https://folzia.com/primera-version-de-tu-idea.html): la primera versión de una idea de app para probarla con usuarios reales.
+
+## Contacto
+
+- Web: https://folzia.com/
+- Correo: contacto@folzia.com
+- Teléfono y WhatsApp: +34 606 430 834
+- Zona: Madrid y en remoto en toda España
+
+## Más información
+
+- [Preguntas frecuentes](https://folzia.com/#preguntas)
+- [Ejemplos de apps](https://folzia.com/#ejemplos)
+- [Declaración de accesibilidad](https://folzia.com/accesibilidad.html)
