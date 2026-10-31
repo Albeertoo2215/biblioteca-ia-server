@@ -15,7 +15,9 @@ const EVOL = [
   { s: 4, dolor: 3.9, flex: 106 }, { s: 5, dolor: 3.1, flex: 112 }, { s: 6, dolor: 2.4, flex: 118 },
 ];
 const TEMPO = [['Sube', 0.9], ['Mantén', 0.9], ['Baja', 0.9]]; // segundos por fase (ritmo de la demo)
-const st = { vista: 'hoy', ej: 'ext', corre: false, t0: 0, fase: 0, eva: null, raf: 0 };
+// Vídeo de demostración de cada ejercicio: lo sube la clínica; si no hay, se muestra la ilustración
+EJ.forEach((e) => { e.video = null; });
+const st = { vista: location.hash === '#clinica' ? 'clinica' : 'hoy', ej: 'ext', corre: false, t0: 0, fase: 0, eva: null, raf: 0 };
 
 // ---------- Ilustraciones (trazo propio) ----------
 function figura(tipo, ang = 0) {
@@ -37,6 +39,9 @@ function figura(tipo, ang = 0) {
   return `<g ${P}><path d="M6 84h118" stroke-width="3"/><path d="M26 78 64 56 88 48 98 78"/><path d="M64 56 116 34"/><path d="M30 78 48 70"/></g><circle cx="16" cy="74" r="8" fill="currentColor"/>`;
 }
 
+// Portada de un ejercicio con vídeo: el primer fotograma, con un icono de reproducir encima
+const portada = (e) => `<video src="${e.video}#t=0.1" muted playsinline preload="metadata" aria-hidden="true"></video><i class="play-ico" aria-hidden="true"><svg><use href="#i-play"/></svg></i>`;
+
 // ---------- Hoy ----------
 function hoy() {
   const hechos = EJ.filter((e) => e.est === 'hecho').length;
@@ -57,7 +62,7 @@ function hoy() {
     <div class="h"><h2>Sesión de hoy</h2><span>${hechos} de ${EJ.length} · 25 min</span></div>
     <ul class="ejs">${EJ.map((e) => `
       <li class="${e.est}"><button type="button" data-ej="${e.id}">
-        <span class="fig"><svg viewBox="0 0 ${e.fig === 'ext' ? '240 190' : '130 92'}">${figura(e.fig, 70)}</svg></span>
+        <span class="fig">${e.video ? portada(e) : `<svg viewBox="0 0 ${e.fig === 'ext' ? '240 190' : '130 92'}">${figura(e.fig, 70)}</svg>`}</span>
         <span class="tx"><b>${e.n}</b><small>${e.pres}</small>
           <em>${e.est === 'hecho' ? `<svg><use href="#i-check"/></svg>Hecho · dolor ${e.dolor}/10` : e.est === 'curso' ? `En curso · serie ${e.serie} de ${e.series}` : 'Pendiente'}</em></span>
         <svg class="chev"><use href="#i-chev"/></svg>
@@ -67,7 +72,7 @@ function hoy() {
     <svg><use href="#i-cal"/></svg>
     <div><b>Jueves 16, 16:30 · revisión</b><span>Marta Ibarra · Clínica Eje, sala 2</span></div>
   </section>
-  <p class="demo">Demo de Folzia · clínica y paciente ficticios. No sustituye el criterio de tu fisioterapeuta.</p>`;
+  <p class="demo">Demo de Folzia · clínica y paciente ficticios. No sustituye el criterio de tu fisioterapeuta. <button type="button" class="lnk" data-go="clinica">Ver el panel de la clínica</button></p>`;
 }
 
 // ---------- Ejercicio guiado ----------
@@ -79,8 +84,8 @@ function ejercicio() {
     <div class="who"><span>Ejercicio 2 de 4</span><b>${e.n}</b></div>
   </header>
   <section class="escena">
-    <svg viewBox="0 0 240 190" id="fig" class="fig-xl" aria-label="Ilustración del ejercicio">${figura('ext', 0)}</svg>
-    <span class="grados"><b id="grados">0°</b> flexión</span>
+    ${e.video ? `<video id="vid-ej" class="vid-ej" src="${e.video}" muted loop playsinline preload="auto" aria-label="Vídeo del ejercicio grabado por la clínica"></video><span class="por">Vídeo de tu clínica</span>` : `<svg viewBox="0 0 240 190" id="fig" class="fig-xl" aria-label="Ilustración del ejercicio">${figura('ext', 0)}</svg>
+    <span class="grados"><b id="grados">0°</b> flexión</span>`}
     <span class="carga">Tobillera 1 kg</span>
   </section>
   <div class="tempo" aria-label="Ritmo">${TEMPO.map(([n, s], i) => `<div data-f="${i}"><span>${n}</span><small>${s.toFixed(1).replace('.', ',')} s</small><i></i></div>`).join('')}</div>
@@ -117,7 +122,10 @@ function subir(f) {
   const paso = () => { st.subida.pct = Math.min(100, st.subida.pct + 7 + Math.random() * 9); pinta(); if (st.subida.pct < 100) setTimeout(paso, 120); else aviso('Vídeo enviado a Marta'); };
   setTimeout(paso, 150);
 }
-document.addEventListener('change', (e) => { if (e.target.id === 'vid-in' && e.target.files[0]) subir(e.target.files[0]); });
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'vid-in' && e.target.files[0]) subir(e.target.files[0]);
+  if (e.target.dataset.cl && e.target.files[0]) subirClinica(e.target.dataset.cl, e.target.files[0]);
+});
 
 // Anima la pierna siguiendo el ritmo: sube (90°→0°), mantén, baja (0°→90°)
 function bucle(t) {
@@ -132,14 +140,14 @@ function bucle(t) {
   while (fase < 2 && x > TEMPO[fase][1]) { x -= TEMPO[fase][1]; fase++; }
   const k = Math.min(x / TEMPO[fase][1], 1), suave = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
   const ang = fase === 0 ? 90 * suave : fase === 1 ? 90 : 90 * (1 - suave);
-  $('#fig').innerHTML = figura('ext', ang);
-  $('#grados').textContent = Math.round(90 - ang) + '°';
+  if ($('#fig')) { $('#fig').innerHTML = figura('ext', ang); $('#grados').textContent = Math.round(90 - ang) + '°'; }
   document.querySelectorAll('.tempo > div').forEach((d, i) => { d.classList.toggle('on', i === fase); d.querySelector('i').style.width = (i < fase ? 100 : i === fase ? k * 100 : 0) + '%'; });
 }
 function terminarSerie() {
   const e = EJ.find((x) => x.id === st.ej);
   st.corre = false; e.est = 'hecho';
-  $('#fig').innerHTML = figura('ext', 0); $('#grados').textContent = '90°';
+  if ($('#fig')) { $('#fig').innerHTML = figura('ext', 0); $('#grados').textContent = '90°'; }
+  if ($('#vid-ej')) $('#vid-ej').pause();
   abrir(`
     <div class="grip"></div>
     <p class="k">Serie 3 completada · 36 repeticiones hoy</p>
@@ -183,11 +191,44 @@ function progreso() {
   </section>`;
 }
 
+// ---------- Panel de la clínica: vídeos de cada ejercicio ----------
+function clinica() {
+  return `
+  <header class="top"><svg class="logo"><use href="#logo"/></svg><div class="who"><span>Clínica Eje · Marta Ibarra</span><b>Vídeos de ejercicios</b></div></header>
+  <p class="cl-intro">Graba cada ejercicio con el móvil y súbelo aquí. Tus pacientes lo verán en su pauta en lugar de la ilustración.</p>
+  <ul class="cl-lista">${EJ.map((e) => `
+    <li class="${e.video ? 'con' : ''}">
+      <span class="cl-mini">${e.video ? portada(e) : `<svg viewBox="0 0 ${e.fig === 'ext' ? '240 190' : '130 92'}">${figura(e.fig, 70)}</svg>`}</span>
+      <span class="cl-tx"><b>${e.n}</b><small>${e.video ? 'Con vídeo de la clínica' : 'Sin vídeo, se muestra la ilustración'}</small><span class="prog" id="cl-p-${e.id}" hidden><i></i></span></span>
+      <span class="cl-acc">
+        <label class="cl-btn"><input type="file" accept="video/*" class="sr" data-cl="${e.id}"><svg><use href="#i-up"/></svg>${e.video ? 'Cambiar' : 'Subir vídeo'}</label>
+        ${e.video ? `<button type="button" class="cl-quitar" data-quitar="${e.id}">Quitar</button>` : ''}
+      </span>
+    </li>`).join('')}</ul>
+  <p class="priv"><svg><use href="#i-lock"/></svg>Si sale una persona en el vídeo, necesitas su consentimiento por escrito.</p>
+  <button type="button" class="main" data-go="hoy">Ver la pauta como paciente</button>
+  <p class="demo">Demo de Folzia · clínica y paciente ficticios.</p>`;
+}
+function subirClinica(id, f) {
+  const e = EJ.find((x) => x.id === id), barra = $('#cl-p-' + id);
+  if (barra) barra.hidden = false;
+  let pct = 0;
+  const paso = () => {
+    pct = Math.min(100, pct + 9 + Math.random() * 12);
+    if (barra) barra.querySelector('i').style.width = pct + '%';
+    if (pct < 100) { setTimeout(paso, 110); return; }
+    if (e.video && e.video.startsWith('blob:')) URL.revokeObjectURL(e.video);
+    e.video = URL.createObjectURL(f);
+    pintar(); aviso('Vídeo publicado. Tus pacientes ya lo ven en su pauta');
+  };
+  setTimeout(paso, 120);
+}
+
 function tabbar() {
   return `<nav class="tabbar">${[['hoy', 'i-home', 'Hoy'], ['progreso', 'i-chart', 'Evolución'], ['msg', 'i-chat', 'Mensajes'], ['citas', 'i-cal', 'Citas']].map(([k, i, n]) => `<button type="button" data-tab="${k}" ${st.vista === k ? 'aria-current="page"' : ''}><svg><use href="#${i}"/></svg>${n}${k === 'msg' ? '<i>1</i>' : ''}</button>`).join('')}</nav>`;
 }
 function pintar() {
-  $('#app').innerHTML = (st.vista === 'hoy' ? hoy() : st.vista === 'ejercicio' ? ejercicio() : progreso()) + (st.vista === 'ejercicio' ? '' : tabbar());
+  $('#app').innerHTML = (st.vista === 'hoy' ? hoy() : st.vista === 'ejercicio' ? ejercicio() : st.vista === 'clinica' ? clinica() : progreso()) + (st.vista === 'ejercicio' || st.vista === 'clinica' ? '' : tabbar());
   document.querySelectorAll('[data-w]').forEach((i) => { i.style.width = i.dataset.w + '%'; });
   document.body.dataset.vista = st.vista;
 }
@@ -205,7 +246,13 @@ document.addEventListener('click', (e) => {
     st.corre = !st.corre; st.t0 = 0;
     const btn = q('[data-play]'); btn.innerHTML = `<svg><use href="#i-${st.corre ? 'pause' : 'play'}"/></svg>${st.corre ? 'Pausar' : 'Seguir con la serie 3'}`;
     if (st.corre && !st.raf) st.raf = requestAnimationFrame(bucle);
+    const v = $('#vid-ej'); if (v) { if (st.corre) { const pr = v.play(); if (pr) pr.catch(() => {}); } else v.pause(); }
     return;
+  }
+  if ((b = q('[data-quitar]'))) {
+    const ej = EJ.find((x) => x.id === b.dataset.quitar);
+    if (ej.video && ej.video.startsWith('blob:')) URL.revokeObjectURL(ej.video);
+    ej.video = null; pintar(); aviso('Vídeo quitado. Se vuelve a mostrar la ilustración'); return;
   }
   if ((b = q('[data-eva]'))) {
     st.eva = +b.dataset.eva;
