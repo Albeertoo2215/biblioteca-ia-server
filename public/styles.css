@@ -405,3 +405,23 @@ fieldset { min-width: 0; }
 .srv-otros li a:hover { color: var(--orange-text); }
 @media (max-width: 760px) { .srv-nav { display: none; } .srv-page .top .nav .btn { margin-left: auto; } .srv { padding: 28px 20px 72px; } .srv-sec, .srv-cta { margin-top: 80px; } }
 .more + .more { margin-left: 24px; }
+
+/* Ejemplos de móvil y ordenador juntos */
+.srv-ejs:has(.movil):has(.escritorio) { grid-template-columns: 280px 1fr; gap: 48px; }
+@media (max-width: 760px) { .srv-ejs:has(.movil):has(.escritorio) { grid-template-columns: 1fr; } }
+
+/* Guías */
+.autor { margin-top: 14px; color: var(--mute); font-size: 15px; }
+.guia-cuerpo { margin-top: 36px; max-width: 46em; }
+.guia-cuerpo h2 { font-size: clamp(26px, 2.6vw, 34px); margin: 48px 0 12px; }
+.guia-cuerpo p, .guia-cuerpo li { font-size: 18px; line-height: 1.65; color: var(--ink-2); }
+.guia-cuerpo p + p { margin-top: 12px; }
+.guia-cuerpo ul, .guia-cuerpo ol { margin: 12px 0; padding-left: 22px; }
+.guia-cuerpo li { margin-bottom: 6px; }
+.guia-cuerpo a { color: var(--orange-text); }
+.guia-cuerpo .fuentes li { font-size: 16px; }
+.guias-lista { list-style: none; margin: 40px 0 0; padding: 0; border-top: 1.5px solid var(--line); max-width: 900px; }
+.guias-lista a { display: grid; gap: 6px; padding: 24px 4px; border-bottom: 1.5px solid var(--line); text-decoration: none; color: var(--ink); }
+.guias-lista b { font-size: clamp(20px, 2vw, 26px); font-weight: 750; }
+.guias-lista span { color: var(--ink-2); font-size: 16px; }
+.guias-lista a:hover b { color: var(--orange-text); }

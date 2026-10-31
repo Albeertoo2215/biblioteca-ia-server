@@ -18,6 +18,11 @@ Trabaja solo, así que el cliente habla con él de principio a fin. El proceso e
 - Teléfono y WhatsApp: +34 606 430 834
 - Zona: Madrid y en remoto en toda España
 
+## Guías
+
+- [Qué tiene que cumplir tu web o tu app con la ley de accesibilidad](https://folzia.com/guias/ley-accesibilidad-web.html): a quién afecta la Ley 11/2023, quién está exento y qué hacer.
+- [¿App web o app de tienda? Cuál necesita tu negocio](https://folzia.com/guias/app-web-o-app-de-tienda.html): diferencias, ventajas y cuándo conviene cada una.
+
 ## Más información
 
 - [Preguntas frecuentes](https://folzia.com/#preguntas)
