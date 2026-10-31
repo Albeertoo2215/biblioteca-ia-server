@@ -11,6 +11,7 @@ Herramientas internas, portales para clientes y automatizaciones que sustituyen 
 - `public/fonts/`: tipografía Archivo autoalojada (sin peticiones a Google Fonts).
 - `demos/`: código de las apps de ejemplo (negocios ficticios). **No se publica**: solo sirve para grabar los vídeos de la galería.
   - En la galería: móvil `fisio` (Eje), `finanzas` (Cuadra), `obra` (Hormigo); escritorio `gestoria` (Vértice), `veterinaria` (Arce), `proyectos` (Quilla).
+  - `demos/fisio/media/`: vídeo del puente de glúteo (Pexels, vídeo 6525525) y fotos de la bicicleta estática y de la extensión de rodilla en máquina (Pexels). Licencia de Pexels: uso gratuito, también comercial, sin atribución obligatoria. Recortados para que no se vea la cara.
 - `public/video/` y `public/img/`: vídeos cortos de las apps de ejemplo (WebM y MP4 para Safari, 60 fps) y sus portadas, para la galería.
 - `public/_headers`: cabeceras de seguridad para Cloudflare Pages.
 - `wrangler.toml`: configuración de Cloudflare Workers (recursos estáticos de `public/`).
