@@ -359,3 +359,49 @@ fieldset { min-width: 0; }
 .nf h1 { font-size: clamp(36px, 5vw, 64px); }
 .nf-t { margin-top: 18px; max-width: 32em; font-size: 19px; color: var(--ink-2); }
 .nf-acc { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+/* Confirmación del formulario enviado */
+.form-ok { background: #fff; border-radius: 24px; padding: clamp(28px, 4vw, 48px); box-shadow: 0 30px 60px -30px rgba(23, 17, 15, 0.35); }
+.form-ok:focus { outline: none; }
+.form-ok h3 { font-size: clamp(30px, 3.4vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
+.form-ok p { margin-top: 12px; font-size: 18px; color: var(--ink-2); }
+.form-ok .btn { margin-top: 22px; }
+
+/* Páginas de servicio */
+.srv-page .top .nav { gap: 24px; }
+.srv-nav { margin-left: auto; display: flex; gap: 22px; font-size: 15px; }
+.srv-nav a { color: var(--ink-2); text-decoration: none; }
+.srv-nav a:hover { color: var(--ink); }
+.srv { padding: 48px 32px 96px; }
+.migas { font-size: 14px; color: var(--mute); margin-bottom: 36px; }
+.migas a { color: var(--ink-2); }
+.srv h1 { font-size: clamp(40px, 6vw, 84px); max-width: 14em; margin-top: 4px; }
+.srv-lead { margin-top: 24px; max-width: 30em; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.4; }
+.srv-p { margin-top: 16px; max-width: 34em; font-size: 18px; line-height: 1.6; color: var(--ink-2); }
+.srv .directo { margin-top: 30px; }
+.srv-sec { margin-top: 110px; }
+.srv-sec h2, .srv-cta h2, .srv-otros h2 { font-size: clamp(34px, 4vw, 56px); }
+.srv-nota { margin-top: 12px; color: var(--ink-2); font-size: 17px; }
+.srv .steps { margin-top: 40px; }
+.srv .garantias { margin-top: 64px; }
+.srv .faq-list { margin-top: 32px; max-width: 860px; }
+.srv-ejs { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; align-items: start; }
+.srv-ej { margin: 0; }
+.srv-vid { background: #111; padding: 8px; border-radius: 36px; box-shadow: 0 30px 60px -32px rgba(23, 17, 15, 0.55); }
+.srv-ej.movil .srv-vid { max-width: 280px; }
+.srv-ej.escritorio .srv-vid { border-radius: 16px; padding: 6px; }
+.srv-vid video { display: block; width: 100%; height: auto; border-radius: 29px; background: #f4f1ef; }
+.srv-ej.escritorio .srv-vid video { border-radius: 11px; }
+.srv-ej figcaption { margin-top: 18px; display: grid; gap: 4px; max-width: 34em; }
+.srv-ej figcaption b { font-size: 22px; font-weight: 750; }
+.srv-ej figcaption span:last-child { color: var(--ink-2); font-size: 16px; }
+.srv-cta { margin-top: 110px; background: var(--orange); border-radius: 28px; padding: clamp(32px, 5vw, 64px); }
+.srv-cta p { margin-top: 14px; max-width: 32em; font-size: 19px; }
+.srv-cta .btn-line { border-color: var(--ink); }
+.srv-otros { margin-top: 90px; }
+.srv-otros ul { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 0; border-top: 1.5px solid var(--line); max-width: 860px; }
+.srv-otros li a { display: flex; justify-content: space-between; padding: 20px 4px; border-bottom: 1.5px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 700; font-size: clamp(18px, 1.6vw, 22px); }
+.srv-otros li a::after { content: "→"; }
+.srv-otros li a:hover { color: var(--orange-text); }
+@media (max-width: 760px) { .srv-nav { display: none; } .srv-page .top .nav .btn { margin-left: auto; } .srv { padding: 28px 20px 72px; } .srv-sec, .srv-cta { margin-top: 80px; } }
+.more + .more { margin-left: 24px; }

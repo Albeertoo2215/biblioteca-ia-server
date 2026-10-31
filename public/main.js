@@ -571,8 +571,17 @@ function toObject(data) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       });
       if (!res.ok) throw new Error(res.status);
-      form.reset();
-      status.textContent = 'Recibido. Te escribiré para hablar de tu proyecto.';
+      // Confirmación clara en lugar del formulario, con el WhatsApp por si es urgente
+      const nombre = (form.elements.nombre.value || '').trim().split(' ')[0];
+      const ok = document.createElement('div');
+      ok.className = 'form-ok'; ok.tabIndex = -1; ok.setAttribute('role', 'status');
+      const h = document.createElement('h3'); h.textContent = nombre ? `Recibido, ${nombre}.` : 'Recibido.';
+      const p1 = document.createElement('p'); p1.textContent = 'Gracias por contármelo. Te escribo en cuanto lo lea.';
+      const p2 = document.createElement('p'); p2.textContent = 'Si es urgente, escríbeme por WhatsApp.';
+      const wa = document.createElement('a'); wa.className = 'btn btn-ink'; wa.rel = 'noopener'; wa.textContent = 'WhatsApp 606 430 834';
+      wa.href = 'https://wa.me/34606430834?text=Hola%20Alberto%2C%20te%20acabo%20de%20escribir%20desde%20folzia.com';
+      ok.append(h, p1, p2, wa);
+      form.reset(); form.hidden = true; form.after(ok); ok.focus();
     } catch (err) {
       status.textContent = 'No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo, o escríbeme por correo.';
     } finally {
